@@ -462,13 +462,6 @@
     line-height: 1.6;
     font-size: 0.96rem;
   }
-
-  .visit-counter {
-    display: inline-block;
-    margin-top: 6px;
-    font-size: 0.8rem;
-    color: #d0e0f2;
-  }
   /* FOOTER */
   footer {
     background: var(--primary);
@@ -1552,7 +1545,12 @@
 
 <footer>
   <div class="container">
-    Material de estudio · Historia Social Latinoamericana · Fuente principal: Máximo Zorrilla (2024) · Facultad de Derecho y Ciencias Políticas<br><span id="visit-counter-ext" class="visit-counter">Cargando visitas totales...</span>
+    Material de estudio · Historia Social Latinoamericana · Fuente principal: Máximo Zorrilla (2024) · Facultad de Derecho y Ciencias Políticas<br>
+    <a href="https://hits.sh/sentiege.github.io/HSL/" target="_blank" style="text-decoration:none;">
+      <img src="https://hits.sh/sentiege.github.io/HSL/.svg?view=today-total&label=Visitas&color=4a9eda&labelColor=1e3a5f"
+           alt="Contador de visitas"
+           style="vertical-align:middle;margin-top:6px;border-radius:4px;">
+    </a>
   </div>
 </footer>
 <script>
@@ -1600,22 +1598,6 @@ function checkQuiz(quizNum, btn) {
 
 
 
-// Contador de visitas externo (CountAPI) — funciona en GitHub Pages
-(function() {
-  const el = document.getElementById('visit-counter-ext');
-  if (!el) return;
-  const namespace = 'hsl-zorrilla-demo';
-  const key = 'visitas_totales';
-  const url = 'https://api.countapi.xyz/hit/' + namespace + '/' + key;
-  fetch(url)
-    .then(r => r.json())
-    .then(data => {
-      el.textContent = 'Visitas totales (externo): ' + (data && typeof data.value === 'number' ? data.value : '?');
-    })
-    .catch(() => {
-      el.textContent = 'Visitas totales: no disponible';
-    });
-})();
 </script>
 </body>
 </html>
