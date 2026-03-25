@@ -400,11 +400,65 @@
     font-size: 0.9rem;
   }
   .quiz-opcion input[type="checkbox"] {
-    margin-top: 3px;
-    accent-color: var(--accent);
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    margin-top: 2px;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+    background: transparent;
+    transition: all 0.2s ease;
+  }
+  .quiz-opcion input[type="checkbox"]:checked {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .quiz-opcion input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .quiz-opcion input[type="checkbox"]:hover {
+    border-color: #e0a830;
+    background: rgba(200, 151, 58, 0.1);
   }
   .quiz-opcion span {
     color: #f1f5ff;
+  }
+  /* Explicaciones de error */
+  .quiz-explicacion {
+    display: none;
+    background: rgba(139,32,32,0.25);
+    border-left: 3px solid #e57373;
+    color: #ffd2d2;
+    padding: 10px 14px;
+    margin-top: 6px;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    font-family: sans-serif;
+  }
+  .quiz-opcion.incorrecta-marcada .quiz-explicacion {
+    display: block;
+  }
+  .quiz-opcion.correcta-marcada {
+    background: rgba(30,107,74,0.3);
+    border-radius: 6px;
+    padding: 4px 8px;
+  }
+  .quiz-opcion.incorrecta-marcada {
+    background: rgba(139,32,32,0.2);
+    border-radius: 6px;
+    padding: 4px 8px;
   }
   /* QUIZ SUBMIT */
   .quiz-submit-area {
@@ -892,10 +946,10 @@
               <p>¿Qué define mejor a la historia social?</p>
               
 <div class="quiz-opciones">
-              <label class="quiz-opcion"><input type="checkbox" name="q1" value="A"> <span><strong>A.</strong> Estudio exclusivamente de batallas y grandes personajes.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q1" value="A"> <span><strong>A.</strong> Estudio exclusivamente de batallas y grandes personajes.</span><div class="quiz-explicacion">❌ Incorrecto. La historia social no se centra en batallas ni grandes personajes, sino en la vida cotidiana y los grupos sociales comunes.</div></label>
               <label class="quiz-opcion"><input type="checkbox" name="q1" value="B"> <span><strong>B.</strong> Estudio de la vida cotidiana y de los grupos sociales en su conjunto.</span></label>
-              <label class="quiz-opcion"><input type="checkbox" name="q1" value="C"> <span><strong>C.</strong> Estudio de la geografía física de los territorios.</span></label>
-              <label class="quiz-opcion"><input type="checkbox" name="q1" value="D"> <span><strong>D.</strong> Estudio solo de la economía y las finanzas.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q1" value="C"> <span><strong>C.</strong> Estudio de la geografía física de los territorios.</span><div class="quiz-explicacion">❌ Incorrecto. La geografía física es una disciplina diferente; la historia social estudia las sociedades humanas y sus prácticas cotidianas.</div></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q1" value="D"> <span><strong>D.</strong> Estudio solo de la economía y las finanzas.</span><div class="quiz-explicacion">❌ Incorrecto. Aunque la economía es parte del análisis, la historia social abarca todos los aspectos de la vida social, no solo lo económico.</div></label>
             </div>
             </div>
 
@@ -904,10 +958,10 @@
               <p>Según la RAE, la historia es principalmente...</p>
               
 <div class="quiz-opciones">
-              <label class="quiz-opcion"><input type="checkbox" name="q2" value="A"> <span><strong>A.</strong> Un conjunto de leyendas tradicionales.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q2" value="A"> <span><strong>A.</strong> Un conjunto de leyendas tradicionales.</span><div class="quiz-explicacion">❌ Incorrecto. Aunque las leyendas pueden ser fuentes históricas, la historia es una disciplina académica que va más allá de la tradición oral.</div></label>
               <label class="quiz-opcion"><input type="checkbox" name="q2" value="B"> <span><strong>B.</strong> Una disciplina que narra cronológicamente acontecimientos pasados.</span></label>
-              <label class="quiz-opcion"><input type="checkbox" name="q2" value="C"> <span><strong>C.</strong> Una rama de la literatura fantástica.</span></label>
-              <label class="quiz-opcion"><input type="checkbox" name="q2" value="D"> <span><strong>D.</strong> Un sistema filosófico abstracto sin base empírica.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q2" value="C"> <span><strong>C.</strong> Una rama de la literatura fantástica.</span><div class="quiz-explicacion">❌ Incorrecto. La historia se basa en hechos reales y evidencia documental, no en ficción o fantasía.</div></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q2" value="D"> <span><strong>D.</strong> Un sistema filosófico abstracto sin base empírica.</span><div class="quiz-explicacion">❌ Incorrecto. La historia es una disciplina empírica que se fundamenta en el análisis crítico de fuentes y evidencias concretas.</div></label>
             </div>
             </div>
 
@@ -916,10 +970,10 @@
               <p>¿En qué siglo se consolida la Historia como disciplina científica universitaria?</p>
               
 <div class="quiz-opciones">
-              <label class="quiz-opcion"><input type="checkbox" name="q3" value="A"> <span><strong>A.</strong> Siglo XV.</span></label>
-              <label class="quiz-opcion"><input type="checkbox" name="q3" value="B"> <span><strong>B.</strong> Siglo XVII.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q3" value="A"> <span><strong>A.</strong> Siglo XV.</span><div class="quiz-explicacion">❌ Incorrecto. En el siglo XV aún predominaba la historiografía humanista y cronística, no científica universitaria.</div></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q3" value="B"> <span><strong>B.</strong> Siglo XVII.</span><div class="quiz-explicacion">❌ Incorrecto. Aunque hubo avances metodológicos, la institucionalización universitaria de la Historia como ciencia ocurrió más tarde.</div></label>
               <label class="quiz-opcion"><input type="checkbox" name="q3" value="C"> <span><strong>C.</strong> Siglo XIX.</span></label>
-              <label class="quiz-opcion"><input type="checkbox" name="q3" value="D"> <span><strong>D.</strong> Siglo XXI.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q3" value="D"> <span><strong>D.</strong> Siglo XXI.</span><div class="quiz-explicacion">❌ Incorrecto. La Historia ya era una disciplina consolidada mucho antes del siglo XXI; esta opción es anacrónica.</div></label>
             </div>
             </div>
 
@@ -928,10 +982,10 @@
               <p>¿Quién es considerado el padre de la Historiografía científica?</p>
               
 <div class="quiz-opciones">
-              <label class="quiz-opcion"><input type="checkbox" name="q4" value="A"> <span><strong>A.</strong> Heródoto.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q4" value="A"> <span><strong>A.</strong> Heródoto.</span><div class="quiz-explicacion">❌ Incorrecto. Heródoto es considerado el padre de la Historia en la Antigüedad, pero no de la historiografía científica universitaria moderna.</div></label>
               <label class="quiz-opcion"><input type="checkbox" name="q4" value="B"> <span><strong>B.</strong> Leopold von Ranke.</span></label>
-              <label class="quiz-opcion"><input type="checkbox" name="q4" value="C"> <span><strong>C.</strong> Auguste Comte.</span></label>
-              <label class="quiz-opcion"><input type="checkbox" name="q4" value="D"> <span><strong>D.</strong> Karl Marx.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q4" value="C"> <span><strong>C.</strong> Auguste Comte.</span><div class="quiz-explicacion">❌ Incorrecto. Comte es el padre del positivismo filosófico, no de la historiografía científica específicamente.</div></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q4" value="D"> <span><strong>D.</strong> Karl Marx.</span><div class="quiz-explicacion">❌ Incorrecto. Marx desarrolló el materialismo histórico, pero la institucionalización científica de la Historia se atribuye a Ranke.</div></label>
             </div>
             </div>
 
@@ -940,10 +994,10 @@
               <p>La visión de Draper sobre la colonización española sostiene que:</p>
               
 <div class="quiz-opciones">
-              <label class="quiz-opcion"><input type="checkbox" name="q5" value="A"> <span><strong>A.</strong> Europa civilizó completamente a América sin destruir nada.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q5" value="A"> <span><strong>A.</strong> Europa civilizó completamente a América sin destruir nada.</span><div class="quiz-explicacion">❌ Incorrecto. Draper reconoce explícitamente que la conquista implicó destrucción de civilizaciones valiosas, no un proceso incruento.</div></label>
               <label class="quiz-opcion"><input type="checkbox" name="q5" value="B"> <span><strong>B.</strong> En México y Perú se destruyeron civilizaciones de las que Europa podía aprender.</span></label>
-              <label class="quiz-opcion"><input type="checkbox" name="q5" value="C"> <span><strong>C.</strong> La colonización fue un fracaso económico total.</span></label>
-              <label class="quiz-opcion"><input type="checkbox" name="q5" value="D"> <span><strong>D.</strong> No hubo impacto significativo sobre las sociedades indígenas.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q5" value="C"> <span><strong>C.</strong> La colonización fue un fracaso económico total.</span><div class="quiz-explicacion">❌ Incorrecto. Draper no sostiene que fuera un fracaso económico; su análisis se centra en el aspecto cultural y civilizatorio.</div></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q5" value="D"> <span><strong>D.</strong> No hubo impacto significativo sobre las sociedades indígenas.</span><div class="quiz-explicacion">❌ Incorrecto. Por el contrario, Draper enfatiza el profundo impacto destructivo sobre las civilizaciones originarias.</div></label>
             </div>
             </div>
 
@@ -953,9 +1007,9 @@
               
 <div class="quiz-opciones">
               <label class="quiz-opcion"><input type="checkbox" name="q6" value="A"> <span><strong>A.</strong> Un intento de imponer la justicia y normas cristianas en un contexto violento.</span></label>
-              <label class="quiz-opcion"><input type="checkbox" name="q6" value="B"> <span><strong>B.</strong> Un proceso puramente comercial sin dimensión moral.</span></label>
-              <label class="quiz-opcion"><input type="checkbox" name="q6" value="C"> <span><strong>C.</strong> Un fracaso político sin consecuencias sociales.</span></label>
-              <label class="quiz-opcion"><input type="checkbox" name="q6" value="D"> <span><strong>D.</strong> Un conflicto entre potencias europeas sin presencia indígena.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q6" value="B"> <span><strong>B.</strong> Un proceso puramente comercial sin dimensión moral.</span><div class="quiz-explicacion">❌ Incorrecto. Hanke destaca precisamente la dimensión moral y jurídica de la conquista, no su reducción a lo comercial.</div></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q6" value="C"> <span><strong>C.</strong> Un fracaso político sin consecuencias sociales.</span><div class="quiz-explicacion">❌ Incorrecto. La conquista tuvo profundas consecuencias sociales y políticas que Hanke analiza detalladamente.</div></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q6" value="D"> <span><strong>D.</strong> Un conflicto entre potencias europeas sin presencia indígena.</span><div class="quiz-explicacion">❌ Incorrecto. Los pueblos indígenas fueron protagonistas centrales del proceso de conquista según el análisis de Hanke.</div></label>
             </div>
             </div>
 
@@ -965,9 +1019,9 @@
               
 <div class="quiz-opciones">
               <label class="quiz-opcion"><input type="checkbox" name="q7" value="A"> <span><strong>A.</strong> Hombre americano.</span></label>
-              <label class="quiz-opcion"><input type="checkbox" name="q7" value="B"> <span><strong>B.</strong> Hombre medieval.</span></label>
-              <label class="quiz-opcion"><input type="checkbox" name="q7" value="C"> <span><strong>C.</strong> Hombre europeo.</span></label>
-              <label class="quiz-opcion"><input type="checkbox" name="q7" value="D"> <span><strong>D.</strong> Hombre ilustrado.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q7" value="B"> <span><strong>B.</strong> Hombre medieval.</span><div class="quiz-explicacion">❌ Incorrecto. El "hombre medieval" se refiere a la cosmovisión europea de la Edad Media, no al mestizaje americano.</div></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q7" value="C"> <span><strong>C.</strong> Hombre europeo.</span><div class="quiz-explicacion">❌ Incorrecto. El "hombre europeo" no refleja la mezcla étnica y cultural específica de América Latina.</div></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q7" value="D"> <span><strong>D.</strong> Hombre ilustrado.</span><div class="quiz-explicacion">❌ Incorrecto. El "hombre ilustrado" corresponde al ideal racional del siglo XVIII europeo, no al mestizaje colonial americano.</div></label>
             </div>
             </div>
 
@@ -976,10 +1030,10 @@
               <p>¿Cuál de los siguientes autores pertenece al pensamiento social latinoamericano según Zorrilla?</p>
               
 <div class="quiz-opciones">
-              <label class="quiz-opcion"><input type="checkbox" name="q8" value="A"> <span><strong>A.</strong> Max Weber.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q8" value="A"> <span><strong>A.</strong> Max Weber.</span><div class="quiz-explicacion">❌ Incorrecto. Max Weber es un sociólogo alemán, no un pensador social latinoamericano.</div></label>
               <label class="quiz-opcion"><input type="checkbox" name="q8" value="B"> <span><strong>B.</strong> José Carlos Mariátegui.</span></label>
-              <label class="quiz-opcion"><input type="checkbox" name="q8" value="C"> <span><strong>C.</strong> Émile Durkheim.</span></label>
-              <label class="quiz-opcion"><input type="checkbox" name="q8" value="D"> <span><strong>D.</strong> Georg Simmel.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q8" value="C"> <span><strong>C.</strong> Émile Durkheim.</span><div class="quiz-explicacion">❌ Incorrecto. Durkheim es un sociólogo francés fundador de la sociología académica europea, no latinoamericano.</div></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q8" value="D"> <span><strong>D.</strong> Georg Simmel.</span><div class="quiz-explicacion">❌ Incorrecto. Simmel es un filósofo y sociólogo alemán, no pertenece al pensamiento social latinoamericano.</div></label>
             </div>
             </div>
 
@@ -989,9 +1043,9 @@
               
 <div class="quiz-opciones">
               <label class="quiz-opcion"><input type="checkbox" name="q9" value="A"> <span><strong>A.</strong> La idea de "Orden y Progreso" y la modernización del Estado.</span></label>
-              <label class="quiz-opcion"><input type="checkbox" name="q9" value="B"> <span><strong>B.</strong> El retorno al feudalismo medieval.</span></label>
-              <label class="quiz-opcion"><input type="checkbox" name="q9" value="C"> <span><strong>C.</strong> El rechazo total de la ciencia.</span></label>
-              <label class="quiz-opcion"><input type="checkbox" name="q9" value="D"> <span><strong>D.</strong> La defensa de las monarquías absolutas.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q9" value="B"> <span><strong>B.</strong> El retorno al feudalismo medieval.</span><div class="quiz-explicacion">❌ Incorrecto. El positivismo buscaba la modernización y el progreso, no un retorno a estructuras medievales.</div></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q9" value="C"> <span><strong>C.</strong> El rechazo total de la ciencia.</span><div class="quiz-explicacion">❌ Incorrecto. Por el contrario, el positivismo se fundamenta en el método científico y la razón como vías de conocimiento.</div></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q9" value="D"> <span><strong>D.</strong> La defensa de las monarquías absolutas.</span><div class="quiz-explicacion">❌ Incorrecto. El positivismo latinoamericano se asoció con proyectos republicanos de modernización estatal, no con monarquías absolutas.</div></label>
             </div>
             </div>
 
@@ -1000,10 +1054,10 @@
               <p>¿Qué país incorporó el lema positivista en su bandera nacional?</p>
               
 <div class="quiz-opciones">
-              <label class="quiz-opcion"><input type="checkbox" name="q10" value="A"> <span><strong>A.</strong> México.</span></label>
-              <label class="quiz-opcion"><input type="checkbox" name="q10" value="B"> <span><strong>B.</strong> Argentina.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q10" value="A"> <span><strong>A.</strong> México.</span><div class="quiz-explicacion">❌ Incorrecto. Aunque México tuvo una fuerte influencia positivista, no incorporó el lema en su bandera nacional.</div></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q10" value="B"> <span><strong>B.</strong> Argentina.</span><div class="quiz-explicacion">❌ Incorrecto. La bandera argentina no incluye el lema positivista; tiene el Sol de Mayo como símbolo principal.</div></label>
               <label class="quiz-opcion"><input type="checkbox" name="q10" value="C"> <span><strong>C.</strong> Brasil.</span></label>
-              <label class="quiz-opcion"><input type="checkbox" name="q10" value="D"> <span><strong>D.</strong> Chile.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q10" value="D"> <span><strong>D.</strong> Chile.</span><div class="quiz-explicacion">❌ Incorrecto. La bandera chilena no incorpora el lema positivista; su diseño es anterior a la difusión del positivismo en la región.</div></label>
             </div>
             </div>
 
@@ -1013,9 +1067,9 @@
               
 <div class="quiz-opciones">
               <label class="quiz-opcion"><input type="checkbox" name="q11" value="A"> <span><strong>A.</strong> La raza cósmica.</span></label>
-              <label class="quiz-opcion"><input type="checkbox" name="q11" value="B"> <span><strong>B.</strong> La mano invisible.</span></label>
-              <label class="quiz-opcion"><input type="checkbox" name="q11" value="C"> <span><strong>C.</strong> La lucha de clases.</span></label>
-              <label class="quiz-opcion"><input type="checkbox" name="q11" value="D"> <span><strong>D.</strong> La ética protestante.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q11" value="B"> <span><strong>B.</strong> La mano invisible.</span><div class="quiz-explicacion">❌ Incorrecto. "La mano invisible" es un concepto de Adam Smith sobre el funcionamiento del mercado en economía clásica.</div></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q11" value="C"> <span><strong>C.</strong> La lucha de clases.</span><div class="quiz-explicacion">❌ Incorrecto. "La lucha de clases" es un concepto central del marxismo, no de Vasconcelos.</div></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q11" value="D"> <span><strong>D.</strong> La ética protestante.</span><div class="quiz-explicacion">❌ Incorrecto. "La ética protestante" es un concepto de Max Weber sobre la relación entre religión y capitalismo.</div></label>
             </div>
             </div>
 
@@ -1025,9 +1079,9 @@
               
 <div class="quiz-opciones">
               <label class="quiz-opcion"><input type="checkbox" name="q12" value="A"> <span><strong>A.</strong> Enrique Rodó.</span></label>
-              <label class="quiz-opcion"><input type="checkbox" name="q12" value="B"> <span><strong>B.</strong> José Martí.</span></label>
-              <label class="quiz-opcion"><input type="checkbox" name="q12" value="C"> <span><strong>C.</strong> Leopoldo Zea.</span></label>
-              <label class="quiz-opcion"><input type="checkbox" name="q12" value="D"> <span><strong>D.</strong> Gino Germani.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q12" value="B"> <span><strong>B.</strong> José Martí.</span><div class="quiz-explicacion">❌ Incorrecto. José Martí fue un importante pensador cubano, pero no es el autor de *Ariel*; su obra más conocida incluye *Nuestra América*.</div></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q12" value="C"> <span><strong>C.</strong> Leopoldo Zea.</span><div class="quiz-explicacion">❌ Incorrecto. Leopoldo Zea fue un filósofo mexicano del siglo XX, posterior a la publicación de *Ariel* (1900).</div></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q12" value="D"> <span><strong>D.</strong> Gino Germani.</span><div class="quiz-explicacion">❌ Incorrecto. Gino Germani fue un sociólogo ítalo-argentino del siglo XX, especializado en modernización y clases sociales.</div></label>
             </div>
             </div>
           
@@ -1568,12 +1622,34 @@ function checkQuiz(quizNum, btn) {
   let correct = 0;
   const total = 12;
 
+  // Limpiar estilos previos
+  form.querySelectorAll('.quiz-opcion').forEach(op => {
+    op.classList.remove('correcta-marcada', 'incorrecta-marcada');
+  });
+
   for (let i = 1; i <= total; i++) {
     const qId = 'q' + (((quizNum - 1) * total) + i);
     const checked = form.querySelector('input[name="' + qId + '"]:checked');
-    if (checked && checked.value === correctAnswers[i - 1]) {
+    const correctAnswer = correctAnswers[i - 1];
+    
+    // Buscar todos los inputs de esta pregunta
+    const allOptions = form.querySelectorAll('input[name="' + qId + '"]');
+    
+    if (checked && checked.value === correctAnswer) {
       correct++;
+      // Marcar la opción correcta seleccionada
+      checked.closest('.quiz-opcion').classList.add('correcta-marcada');
+    } else if (checked && checked.value !== correctAnswer) {
+      // Marcar como incorrecta y mostrar explicación
+      checked.closest('.quiz-opcion').classList.add('incorrecta-marcada');
     }
+    
+    // Marcar la respuesta correcta si no fue seleccionada
+    allOptions.forEach(opt => {
+      if (opt.value === correctAnswer && !opt.checked) {
+        opt.closest('.quiz-opcion').classList.add('correcta-marcada');
+      }
+    });
   }
 
   const pct = Math.round((correct / total) * 100);
