@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Historia Social Latinoamericana — Material Integrado </title>
+<title>Historia Social Latinoamericana — Material Integrado</title>
 <style>
   :root {
     --primary: #1a3a5c;
@@ -1552,7 +1552,7 @@
 
 <footer>
   <div class="container">
-    Material de estudio · Historia Social Latinoamericana · Fuente principal: Máximo Zorrilla (2024) · Facultad de Derecho y Ciencias Políticas<br><span id="visit-counter-local" class="visit-counter">Cargando visitas locales...</span><br><span id="visit-counter-ext" class="visit-counter">Cargando visitas totales...</span>
+    Material de estudio · Historia Social Latinoamericana · Fuente principal: Máximo Zorrilla (2024) · Facultad de Derecho y Ciencias Políticas<br><span id="visit-counter-ext" class="visit-counter">Cargando visitas totales...</span>
   </div>
 </footer>
 <script>
@@ -1599,44 +1599,11 @@ function checkQuiz(quizNum, btn) {
 }
 
 
-// Contador de visitas (por navegador)
-(function() {
-  try {
-    const key = 'hsl_visits';
-    let n = parseInt(localStorage.getItem(key) || '0', 10);
-    n = isNaN(n) ? 1 : n + 1;
-    localStorage.setItem(key, String(n));
-    const el = document.getElementById('visit-counter');
-    if (el) {
-      el.textContent = 'Visitas en este navegador: ' + n;
-    }
-  } catch (e) {
-    // si localStorage no está disponible, no se muestra contador
-  }
-})();
-
-
-// Contador de visitas local (por navegador)
-(function() {
-  try {
-    const key = 'hsl_visits_local';
-    let n = parseInt(localStorage.getItem(key) || '0', 10);
-    n = isNaN(n) ? 1 : n + 1;
-    localStorage.setItem(key, String(n));
-    const el = document.getElementById('visit-counter-local');
-    if (el) {
-      el.textContent = 'Visitas en este navegador: ' + n;
-    }
-  } catch (e) {
-    // si localStorage no está disponible, no se muestra contador local
-  }
-})();
 
 // Contador de visitas externo (CountAPI) — funciona en GitHub Pages
 (function() {
   const el = document.getElementById('visit-counter-ext');
   if (!el) return;
-  // namespace y key pueden cambiarse luego; deben ser únicos
   const namespace = 'hsl-zorrilla-demo';
   const key = 'visitas_totales';
   const url = 'https://api.countapi.xyz/hit/' + namespace + '/' + key;
