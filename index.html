@@ -1,0 +1,1654 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Historia Social Latinoamericana — Material Integrado</title>
+<style>
+  :root {
+    --primary: #1a3a5c;
+    --secondary: #2e6da4;
+    --accent: #c8973a;
+    --light: #f4f7fb;
+    --text: #1e2a38;
+    --muted: #5a6a7a;
+    --border: #d0dcea;
+    --white: #ffffff;
+    --green: #1e6b4a;
+    --green-light: #eaf4ef;
+    --red: #8b2020;
+    --red-light: #fdf0f0;
+    --yellow-light: #fffbea;
+    --yellow-border: #e8d48a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Georgia', serif;
+    background: var(--light);
+    color: var(--text);
+    line-height: 1.75;
+    font-size: 16px;
+  }
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, var(--primary) 0%, #0d2440 100%);
+    color: white;
+    padding: 48px 32px 36px;
+    text-align: center;
+    border-bottom: 4px solid var(--accent);
+  }
+  header h1 { font-size: 2.2rem; letter-spacing: 0.5px; margin-bottom: 8px; }
+  header p { color: #a8c4e0; font-size: 1rem; font-style: italic; margin-bottom: 4px; }
+  .source-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    font-size: 0.78rem;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-top: 10px;
+    font-family: sans-serif;
+    letter-spacing: 0.5px;
+    font-style: normal;
+  }
+
+  /* NAV */
+  nav {
+    background: var(--primary);
+    padding: 0 32px;
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    border-bottom: 2px solid var(--accent);
+  }
+  nav a {
+    color: #c8d8ea;
+    text-decoration: none;
+    padding: 12px 18px;
+    font-family: sans-serif;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+    border-bottom: 3px solid transparent;
+  }
+  nav a:hover { color: white; border-bottom-color: var(--accent); }
+
+  /* LAYOUT */
+  .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+  main { padding: 40px 0 60px; }
+
+
+  /* ACCORDION */
+  .accordion-wrap {
+    margin-top: 40px;
+  }
+  details {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(26,58,92,0.08);
+    width: 100%;
+  }
+  details[open] summary .accordion-icon { transform: rotate(180deg); }
+  summary {
+    list-style: none;
+    cursor: pointer;
+    background: linear-gradient(135deg, var(--primary) 0%, #0d2440 100%);
+    border-left: 6px solid var(--accent);
+    padding: 0;
+    user-select: none;
+    transition: background 0.2s;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary:hover { background: linear-gradient(135deg, #1f4570 0%, #122d52 100%); }
+  .summary-inner {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 20px 28px;
+    flex-wrap: nowrap;
+  }
+  .summary-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+  }
+  .unidad-num {
+    font-family: sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .unidad-title {
+    color: white;
+    font-size: 1.18rem;
+    font-weight: bold;
+    font-family: Georgia, serif;
+  }
+  .summary-subtitle {
+    color: #a8c4e0;
+    font-size: 0.83rem;
+    font-family: sans-serif;
+    margin-top: 5px;
+  }
+  .accordion-icon {
+    color: var(--accent);
+    font-size: 1rem;
+    margin-left: 20px;
+    transition: transform 0.3s ease;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+  details .unidad-body {
+    background: white;
+    border: 1px solid var(--border);
+    border-top: none;
+    padding: 36px 36px 40px;
+  }
+  @media (max-width: 640px) {
+    .summary-inner { padding: 16px 18px; gap: 10px; }
+    details .unidad-body { padding: 20px; }
+  }
+
+
+  /* SECCIONES */
+  .seccion { margin-top: 36px; }
+  .seccion:first-child { margin-top: 0; }
+  h3 {
+    color: var(--primary);
+    font-size: 1.2rem;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+    margin-top: 32px;
+  }
+  h4 {
+    color: var(--secondary);
+    font-size: 1rem;
+    margin: 24px 0 10px;
+    font-family: sans-serif;
+  }
+  p { margin-bottom: 14px; }
+  ul, ol { margin: 10px 0 16px 24px; }
+  li { margin-bottom: 6px; }
+
+  /* FUENTE BADGE */
+  .zorrilla-tag {
+    display: inline-block;
+    background: var(--green-light);
+    color: var(--green);
+    border: 1px solid #a8d4bc;
+    font-size: 0.72rem;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-family: sans-serif;
+    font-weight: bold;
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+  .externo-tag {
+    display: inline-block;
+    background: #f0f0f0;
+    color: #555;
+    border: 1px solid #ccc;
+    font-size: 0.72rem;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-family: sans-serif;
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* CALLOUTS */
+  .callout {
+    border-left: 4px solid;
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+    font-size: 0.95rem;
+  }
+  .callout-def { border-color: var(--secondary); background: #eef4fb; }
+  .callout-key { border-color: var(--accent); background: var(--yellow-light); }
+  .callout-warn { border-color: #c0392b; background: var(--red-light); }
+  .callout-source { border-color: var(--green); background: var(--green-light); }
+  .callout-title {
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .callout-def .callout-title { color: var(--secondary); }
+  .callout-key .callout-title { color: #a07820; }
+  .callout-warn .callout-title { color: #c0392b; }
+  .callout-source .callout-title { color: var(--green); }
+
+  /* CITA TEXTUAL */
+  blockquote {
+    border-left: 4px solid var(--accent);
+    background: var(--yellow-light);
+    padding: 14px 20px;
+    margin: 20px 0;
+    font-style: italic;
+    border-radius: 0 6px 6px 0;
+  }
+  blockquote cite {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.85rem;
+    font-style: normal;
+    color: var(--muted);
+  }
+
+  /* TABLA */
+  .tabla-wrap { overflow-x: auto; margin: 20px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  thead tr { background: var(--primary); color: white; }
+  th { padding: 10px 14px; text-align: left; font-family: sans-serif; font-weight: 600; }
+  td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+  tbody tr:nth-child(even) { background: #f8fafc; }
+  tbody tr:hover { background: #eef4fb; }
+
+  /* NOTA AL PIE */
+  .nota {
+    font-size: 0.82rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    margin-top: 20px;
+    padding-top: 12px;
+    font-family: sans-serif;
+    font-style: italic;
+  }
+
+  /* LEYENDA */
+  .leyenda {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 32px 0 0;
+    font-family: sans-serif;
+    font-size: 0.85rem;
+  }
+  .leyenda strong { display: block; margin-bottom: 8px; color: var(--primary); }
+  .leyenda span { margin-right: 20px; display: inline-block; }
+
+  /* QUIZ */
+  .quiz-section {
+    background: var(--primary);
+    border-radius: 10px;
+    padding: 32px;
+    margin-top: 48px;
+    color: white;
+  }
+  .quiz-section h2 { color: white; border: none; margin-bottom: 24px; font-size: 1.3rem; }
+
+  .quiz-accordion {
+    margin-bottom: 18px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .quiz-summary {
+    list-style: none;
+    cursor: pointer;
+    display: block;
+  }
+  .quiz-summary::-webkit-details-marker { display: none; }
+
+  .quiz-summary-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px 14px 20px;
+    gap: 16px;
+  }
+  .quiz-summary-left {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .quiz-label {
+    font-family: sans-serif;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+  }
+  .quiz-title {
+    font-family: Georgia, serif;
+    font-size: 1.02rem;
+    font-weight: 700;
+  }
+  .quiz-subtitle {
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    opacity: 0.92;
+  }
+  .quiz-accordion-icon {
+    font-size: 1rem;
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+  }
+  .quiz-accordion details[open] .quiz-accordion-icon { transform: rotate(180deg); }
+
+  .quiz-accordion details {
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(0,0,0,0.15);
+  }
+  .quiz-body {
+    background: rgba(0,0,0,0.15);
+    padding: 18px 18px 22px;
+  }
+
+  .quiz-form {
+    margin: 0;
+  }
+
+  /* Dificultad: colores (encabezado) */
+  .quiz-easy > details > summary {
+    background: linear-gradient(135deg, #16653a, #1e7b4a);
+  }
+  .quiz-easy .quiz-label { color: #b8f5c7; }
+
+  .quiz-medium > details > summary {
+    background: linear-gradient(135deg, #b88a1a, #d4a624);
+  }
+  .quiz-medium .quiz-label { color: #fff4c2; }
+
+  .quiz-hard > details > summary {
+    background: linear-gradient(135deg, #8b2020, #b52c2c);
+  }
+  .quiz-hard .quiz-label { color: #ffd2d2; }
+
+  .quiz-exam > details > summary {
+    background: linear-gradient(135deg, #3b3f9c, #5157c7);
+  }
+  .quiz-exam .quiz-label { color: #dce0ff; }
+
+
+  .quiz-pregunta {
+    background: rgba(255,255,255,0.04);
+    border-radius: 8px;
+    padding: 14px 14px 10px;
+    margin-bottom: 10px;
+    border-left: 3px solid var(--accent);
+  }
+  .quiz-pregunta .num {
+    font-size: 0.75rem;
+    color: var(--accent);
+    font-family: sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .quiz-pregunta p { margin: 0 0 6px; color: #e0eaf5; }
+
+  .quiz-opciones {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .quiz-opcion {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.9rem;
+  }
+  .quiz-opcion input[type="checkbox"] {
+    margin-top: 3px;
+    accent-color: var(--accent);
+  }
+  .quiz-opcion span {
+    color: #f1f5ff;
+  }
+  /* QUIZ SUBMIT */
+  .quiz-submit-area {
+    margin-top: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .quiz-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 10px 28px;
+    border-radius: 24px;
+    font-family: sans-serif;
+    font-size: 0.92rem;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .quiz-btn:hover { background: #e0a830; transform: translateY(-1px); }
+  .quiz-btn:active { transform: translateY(0); }
+  .quiz-result {
+    font-family: sans-serif;
+    font-size: 0.93rem;
+    width: 100%;
+  }
+  .res-ok {
+    display: block;
+    background: rgba(30,107,74,0.35);
+    border: 1px solid #4caf80;
+    color: #b8ffd4;
+    border-radius: 8px;
+    padding: 12px 16px;
+    line-height: 1.5;
+  }
+  .res-fail {
+    display: block;
+    background: rgba(139,32,32,0.35);
+    border: 1px solid #e57373;
+    color: #ffd2d2;
+    border-radius: 8px;
+    padding: 12px 16px;
+    line-height: 1.5;
+  }
+  .res-excellent {
+    display: block;
+    background: rgba(30,58,92,0.5);
+    border: 2px solid var(--accent);
+    color: #fff9e6;
+    border-radius: 8px;
+    padding: 12px 16px;
+    line-height: 1.6;
+    font-size: 0.96rem;
+  }
+
+  .visit-counter {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 0.8rem;
+    color: #d0e0f2;
+  }
+  /* FOOTER */
+  footer {
+    background: var(--primary);
+    color: #a8c4e0;
+    text-align: center;
+    padding: 20px;
+    font-family: sans-serif;
+    font-size: 0.82rem;
+    margin-top: 60px;
+  }
+
+  @media (max-width: 640px) {
+    header h1 { font-size: 1.5rem; }
+    .unidad-body { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <h1>Historia Social Latinoamericana</h1>
+    <p>Material integrado — Unidades I, II y III</p>
+    <p>Facultad de Derecho y Ciencias Políticas</p>
+    <span class="source-badge">Fuente principal: Máximo Zorrilla — HSL (2024)</span>
+  </div>
+</header>
+
+<nav>
+  <div class="container" style="display:flex;flex-wrap:wrap;gap:0;">
+    <a href="#unidad1">Unidad I</a>
+    <a href="#unidad2">Unidad II</a>
+    <a href="#unidad3">Unidad III</a>
+    <a href="#quizzes">Quizzes</a>
+  </div>
+</nav>
+
+<main>
+<div class="container">
+
+  <div class="leyenda">
+    <strong>🔑 Leyenda de fuentes</strong>
+    <span><span class="zorrilla-tag">Zorrilla</span> Contenido del libro</span>
+    <span><span class="externo-tag">Complementario</span> Material externo / docente</span>
+  </div>
+
+  <!-- ======== UNIDAD I ======== -->
+  <div id="unidad1" class="accordion-wrap">
+  <details>
+    <summary class="unidad-summary">
+      <div class="summary-inner">
+        <div class="summary-left">
+          <span class="unidad-num">UNIDAD 1</span>
+          <span class="unidad-title">Historia Social e Introducción</span>
+        <div class="summary-subtitle">Historia social · Significados · Pensamiento social latinoamericano · Positivismo</div>
+        </div>
+        <span class="accordion-icon">▼</span>
+      </div>
+    </summary>
+    <div class="unidad-body">
+
+
+      <h3>1. Significados de la historia <span class="zorrilla-tag">Zorrilla §1.1</span></h3>
+      <p>La historia es la <em>"disciplina que estudia y narra cronológicamente los acontecimientos pasados"</em> (RAE), especialmente los hechos realizados por el hombre en el pasado y que repercuten en el presente. Sin embargo, es imposible definirla por la multiplicidad de sus significados. Las visiones más comunes son:</p>
+      <ul>
+        <li><strong>En la Antigüedad:</strong> acto de investigación, inquirir, indagar; lo que los testigos vieron y contaron. No se acudía a fuentes anteriores —pues era poco frecuente la escritura de esos hechos—, y las existentes eran poco confiables. Lo anterior no era Historia, sino anticuaria. <em>Heródoto</em>, considerado el padre de la historia, combinó investigación oral con verificación crítica de fuentes, buscando diferenciar lo verdadero de lo falso.</li>
+        <li><strong>En la Edad Media:</strong> el objeto de estudio constituían los acontecimientos pasados remotos y recientes; los relatos que transmiten conocimiento de esos hechos; el conjunto de acontecimiento pasados que expresan los conocimientos e investigaciones de los autores.</li>
+        <li><strong>Siglo XIX — disciplina científica:</strong> Ranke (1795–1886) fue el padre de la Historiografía científica y el responsable del estudio de la materia en las universidades. La Historia nació como disciplina académica bajo el nombre de Facultad de Filosofía y Letras en la Universidad de Berlín.</li>
+      </ul>
+
+      <h3>2. Historia social <span class="zorrilla-tag">Zorrilla §1.2</span></h3>
+      <div class="callout callout-def">
+        <div class="callout-title">📖 Definición</div>
+        La historia social es una rama académica que examina las sociedades humanas, centrándose en la vida cotidiana, las prácticas y las interacciones de las personas comunes, en contraste con las élites y los eventos políticos significativos. Esta disciplina se ocupa del estudio integral de la sociedad.
+      </div>
+      <p>A partir del materialismo histórico de raíz marxista, y su posterior adaptación por diversas corrientes historiográficas —como en Francia la <strong>Escuela de Annales</strong> (Marc Bloch y Lucien Febvre, 1929) y <strong>Past and Present</strong> en Inglaterra (fundada en 1952)—, se establece un vínculo estrecho entre la historia económica y la historia social, reconociendo que el progreso material está intrínsecamente relacionado con el desarrollo social.</p>
+
+      <h3>3. Introducción a nuestra historia <span class="zorrilla-tag">Zorrilla §1.3</span></h3>
+      <p>El pensamiento latinoamericano tiene en sus orígenes la herencia de la conquista y colonización española. Cuando Colón llegó al continente americano, este era un lugar complejo, diverso y fascinante: allí vivían entre 40 y 60 millones de personas que hablaban cerca de 1.200 idiomas distintos, agrupados en unas 120 familias lingüísticas (BBC, 2021). La conquista, sin embargo, desde un nivel discursivo, buscó imponer la idea de que Latinoamérica era un territorio de salvajes y bárbaros (Basantes, 2019, p.2).</p>
+
+      <div class="callout callout-warn">
+        <div class="callout-title">⚖️ La controversia histórica sobre la colonización</div>
+        <p>Zorrilla presenta dos visiones contrapuestas:</p>
+        <ul>
+          <li><strong>J. W. Draper</strong> (<em>Historia del Desarrollo Intelectual de Europa</em>): <em>"En Méjico y en el Perú fueron destruidas civilizaciones en las que Europa hubiera podido instruirse."</em></li>
+          <li><strong>Lewis Hanke</strong> (<em>La Lucha por la Justicia en la Conquista de América</em>): fue <em>"uno de los mayores intentos que el mundo haya visto de hacer prevalecer la justicia y las normas cristianas en una época brutal y sanguinaria."</em></li>
+        </ul>
+        <p style="margin-top:10px;">En realidad, no fue una cosa o la otra, sino ambas a la vez. La justicia y la defensa de los derechos indígenas se plantearon precisamente porque la injusticia y la barbarie estaban ocurriendo. El conflicto tampoco era solo entre españoles e indígenas, sino entre la Corona y la Iglesia —que a veces defendían la protección indígena— y los colonos y conquistadores —que priorizaban la explotación—. La historiografía moderna sugiere una historia crítica y multifacética, que se aleje de las narrativas polarizadas y simplistas (Zorrilla, 2024).</p>
+      </div>
+
+      <h4>3.1 Períodos de la historia <span class="zorrilla-tag">Zorrilla §1.3.1</span></h4>
+      <div class="tabla-wrap">
+        <table>
+          <thead><tr><th>Período</th><th>Fechas</th><th>Hito</th></tr></thead>
+          <tbody>
+            <tr><td>Edad Antigua</td><td>-3000 (escritura) → 476 (Caída I.R. Occ.)</td><td>Surgimiento de la escritura y civilizaciones clásicas</td></tr>
+            <tr><td>Edad Media</td><td>476 → 1453 (Caída I.R. Or.)</td><td>Feudalismo, Iglesia, cruzadas</td></tr>
+            <tr><td>Edad Moderna</td><td>1453 → 1789 (Rev. Francesa)</td><td>Renacimiento, imprenta, descubrimiento de América (1492), Reforma protestante, Revolución científica</td></tr>
+            <tr><td>Edad Contemporánea</td><td>1789 → hasta hoy</td><td>Revoluciones liberales, industrialización, independencias latinoamericanas</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>América se integra en la narrativa de Occidente durante la <strong>Edad Moderna</strong>, con el descubrimiento del 12 de octubre de 1492, en un contexto marcado por la caída de Constantinopla (1453), el fin de la Reconquista española (1492), la invención de la imprenta y la Revolución científica.</p>
+
+      <h4>3.2 El hombre americano <span class="zorrilla-tag">Zorrilla §1.3.2</span></h4>
+      <p>La mezcla de nativos, europeos y negros dio como resultado al <em>hombre americano</em>. Las sociedades latinoamericanas se conforman a partir del encuentro e interacción de las tres sociedades en territorio americano (Bértola, 2010). Las demás repúblicas tienen en común gran parte de su historia colonial y la misma lengua, el español; pero las culturas precolombinas contribuyeron de manera muy desigual a la formación de los perfiles nacionales actuales, determinando que las disimilitudes entre países como Argentina y México sean, posiblemente, tan grandes como las semejanzas (Furtado, 1975, p.16). Lo mismo ocurre con la influencia étnico-cultural africana: es predominante en el Caribe y muy distinta en los países andinos, marcados por la herencia indígena.</p>
+
+      <h3>4. Representantes del pensamiento social latinoamericano <span class="zorrilla-tag">Zorrilla §1.3</span></h3>
+      <p>Entre los representantes destacados del pensamiento social latinoamericano, Zorrilla incluye a quienes abordaron la <em>identidad latinoamericana, la dependencia, la colonialidad y la construcción de alternativas sociales y epistemológicas</em>:</p>
+      <div class="tabla-wrap">
+        <table>
+          <thead><tr><th>Autor</th><th>País</th><th>Corriente / Aporte principal</th></tr></thead>
+          <tbody>
+            <tr><td><strong>José Martí</strong></td><td>Cuba</td><td>Reflexión sobre la identidad latinoamericana; concepto de <em>"Nuestra América"</em> frente al imperialismo norteamericano. Influido por el krausismo liberal-espiritualista.</td></tr>
+            <tr><td><strong>José Carlos Mariátegui</strong></td><td>Perú</td><td>Fundador de la revista <em>Amauta</em>; adaptó el marxismo a la realidad indígena y agraria peruana. Intentó un socialismo inspirado en la cultura inca precolonial. <em>7 Ensayos de Interpretación de la Realidad Peruana</em>.</td></tr>
+            <tr><td><strong>Leopoldo Zea</strong></td><td>México</td><td>El positivismo fue el primer intento latinoamericano por alcanzar su propia identidad y modernización; etapa necesaria pero superada hacia la autenticidad filosófica y cultural.</td></tr>
+            <tr><td><strong>José Vasconcelos</strong></td><td>México</td><td>Promotor de la educación pública; creador del concepto de la <em>"raza cósmica"</em> como reivindicación de la identidad mestiza frente al ideal de la nación blanca y europeizada.</td></tr>
+            <tr><td><strong>Enrique Rodó</strong></td><td>Uruguay</td><td>Autor de <em>Ariel</em> (1900); reacción idealista y antimaterialista frente al positivismo y el utilitarismo anglosajón. Eje filosófico de la Generación del Centenario.</td></tr>
+            <tr><td><strong>Gino Germani</strong></td><td>Argentina</td><td>Sociología latinoamericana; análisis de la dependencia, la modernización y los procesos de cambio social en la región.</td></tr>
+            <tr><td><strong>Boaventura de Sousa Santos</strong></td><td>Brasil</td><td>Colonialidad del saber; construcción de alternativas epistemológicas frente al pensamiento eurocéntrico.</td></tr>
+            <tr><td><strong>Augusto Salazar Bondy</strong></td><td>Perú</td><td>Necesidad de una filosofía auténtica latinoamericana; colonialidad del pensamiento y sus consecuencias para la identidad regional.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>5. El positivismo latinoamericano <span class="zorrilla-tag">Zorrilla Cap. II §6</span></h3>
+      <p>El positivismo fue la corriente filosófica fundada por <strong>Auguste Comte</strong>, quien propuso la <em>"Ley de los tres estados"</em>: teológico → metafísico → positivo (científico-racional). Llegó a América Latina en la segunda mitad del siglo XIX y tuvo un papel decisivo en la modernización del Estado y la educación. En este contexto, los positivistas latinoamericanos desarrollaron una <strong>versión propia</strong> (<em>sui géneris</em>), utilizando el positivismo como herramienta para construir Estados nacionales modernos, laicos y científicos, alejados del escolasticismo colonial.</p>
+
+      <h4>Principales expresiones en América Latina</h4>
+      <ul>
+        <li><strong>Brasil:</strong> el lema <em>"Ordem e Progresso"</em> en su bandera es expresión directa del positivismo comtiano.</li>
+        <li><strong>México:</strong> Gabino Barreda aplicó el positivismo para reformar el sistema educativo nacional tras las Leyes de Reforma de Juárez.</li>
+        <li><strong>Argentina:</strong> Domingo Faustino Sarmiento impulsó la educación pública, laica y científica como eje de modernización del Estado.</li>
+        <li><strong>Venezuela, Paraguay:</strong> los positivistas reformaron también los sistemas educativos nacionales separándolos de la Iglesia.</li>
+      </ul>
+
+      <div class="callout callout-warn">
+        <div class="callout-title">⚠️ Críticas al positivismo (Zorrilla §6.1)</div>
+        El positivismo latinoamericano legitimó el <strong>darwinismo social</strong>: justificó la supuesta inferioridad de los pueblos indígenas y afrolatinoamericanos como "etapas inferiores de la evolución". Ignoró las desigualdades estructurales en nombre del "progreso" y sirvió como ideología de regímenes oligárquicos. La reacción contra el positivismo llegó con la Generación del Centenario (Rodó, Vasconcelos, Mariátegui) a principios del siglo XX.
+      </div>
+    </div>
+  
+    </div>
+  </details>
+
+<div id="unidad2" class="accordion-wrap">
+  <details >
+    <summary class="unidad-summary">
+      <div class="summary-inner">
+        <div class="summary-left">
+          <span class="unidad-num">UNIDAD 2</span>
+          <span class="unidad-title">Sociología Histórica</span>
+        <div class="summary-subtitle">Concepto · Objeto de estudio · Métodos · Teóricos · Ramas · Origen y evolución</div>
+        </div>
+        <span class="accordion-icon">▼</span>
+      </div>
+    </summary>
+    <div class="unidad-body">
+
+
+      <div class="callout callout-source">
+        <div class="callout-title">ℹ️ Nota sobre la fuente</div>
+        Esta unidad corresponde a contenido <strong>complementario</strong> elaborado por el docente. El libro de Zorrilla (<em>Historia Social Latinoamericana</em>) no contiene un capítulo dedicado a Sociología como disciplina; su enfoque es histórico-estructural. El material de esta unidad proviene de fuentes de introducción a la sociología general.
+      </div>
+
+      <h3>1. Sociología histórica <span class="externo-tag">Complementario</span></h3>
+      <div class="callout callout-def">
+        <div class="callout-title">🔑 Concepto central</div>
+        La <strong>sociología histórica</strong> es la corriente que estudia cómo las grandes estructuras sociales (Estado, capitalismo, clase social, familia, religión) nacen, se desarrollan y se transforman en contextos históricos específicos. Combina los métodos y perspectivas de la sociología y la historia.
+      </div>
+      <p>Mientras la sociología clásica buscaba <em>leyes universales</em> del comportamiento social, la sociología histórica enfatiza que las estructuras y procesos sociales son <em>históricamente contingentes</em>: surgieron en condiciones específicas y pueden transformarse.</p>
+
+      <h3>2. Concepto y objeto de estudio de la sociología <span class="externo-tag">Complementario</span></h3>
+      <p>La <strong>sociología</strong> es la ciencia que estudia la sociedad humana: sus estructuras, instituciones, relaciones, grupos y procesos de cambio. Busca explicar por qué las personas actúan de determinadas maneras en contextos colectivos y cómo esas acciones generan estructuras que, a su vez, condicionan el comportamiento.</p>
+      <div class="tabla-wrap">
+        <table>
+          <thead><tr><th>Autor</th><th>Concepto del objeto de estudio</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Durkheim</strong></td><td>Los <em>hechos sociales</em>: fenómenos externos al individuo que ejercen coerción sobre su conducta (normas, leyes, costumbres)</td></tr>
+            <tr><td><strong>Weber</strong></td><td>La <em>acción social</em>: comportamiento humano dotado de sentido subjetivo que se orienta hacia otros actores</td></tr>
+            <tr><td><strong>Marx</strong></td><td>Las <em>relaciones de producción y clases sociales</em>: estructura económica que determina las relaciones sociales y la superestructura ideológica</td></tr>
+            <tr><td><strong>Parsons</strong></td><td>Los <em>sistemas y funciones sociales</em>: la sociedad como sistema complejo de funciones interdependientes</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>3. Métodos en sociología <span class="externo-tag">Complementario</span></h3>
+      <ul>
+        <li><strong>Método cuantitativo:</strong> uso de datos estadísticos, encuestas y mediciones numéricas para identificar patrones generales en grandes poblaciones.</li>
+        <li><strong>Método cualitativo:</strong> entrevistas en profundidad, etnografía y análisis de discurso; comprende significados, experiencias subjetivas y procesos culturales.</li>
+        <li><strong>Método comparativo:</strong> compara distintas sociedades o períodos históricos para identificar similitudes y diferencias explicativas. Fundamental en sociología histórica.</li>
+        <li><strong>Análisis documental / histórico:</strong> análisis de fuentes primarias: archivos, censos, documentos oficiales, correspondencia. Esencial para la sociología histórica y el estudio de procesos de larga duración.</li>
+      </ul>
+      <div class="callout callout-key">
+        <div class="callout-title">🔍 Triangulación metodológica</div>
+        En la práctica, los sociólogos históricos combinan métodos (triangulación) para ganar robustez explicativa: datos cuantitativos del período, análisis de fuentes primarias y comparación con otros casos nacionales.
+      </div>
+
+      <h3>4. Principales teóricos <span class="externo-tag">Complementario</span></h3>
+      <div class="tabla-wrap">
+        <table>
+          <thead><tr><th>Teórico</th><th>Concepto central</th><th>Aporte a la comprensión de América Latina</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Karl Marx</strong> (1818–1883)</td><td>Lucha de clases, modos de producción, materialismo histórico</td><td>Análisis del capitalismo dependiente, la explotación del trabajo indígena y la formación de clases en la colonia</td></tr>
+            <tr><td><strong>Émile Durkheim</strong> (1858–1917)</td><td>Hechos sociales, solidaridad mecánica/orgánica, anomia</td><td>Comprensión de la crisis social durante la modernización acelerada y la transición del orden tradicional al moderno</td></tr>
+            <tr><td><strong>Max Weber</strong> (1864–1920)</td><td>Acción social, tipos de dominación, burocracia, ética protestante</td><td>Análisis del patrimonialismo y la dominación carismática presentes en el caudillismo latinoamericano</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>Teóricos contemporáneos relevantes:</strong> Antonio Gramsci (hegemonía cultural), Norbert Elias (proceso de civilización), Pierre Bourdieu (capital social y habitus) e Immanuel Wallerstein (sistema-mundo).</p>
+
+      <h3>5. Ramas de la sociología <span class="externo-tag">Complementario</span></h3>
+      <ul>
+        <li><strong>Sociología política:</strong> estudia el poder, el Estado, los partidos, los movimientos sociales y las formas de dominación.</li>
+        <li><strong>Sociología económica:</strong> analiza las estructuras de producción, el mercado y las relaciones económicas como hechos sociales.</li>
+        <li><strong>Sociología del conocimiento:</strong> examina cómo el contexto social condiciona la producción del conocimiento y las ideologías.</li>
+        <li><strong>Sociología de la educación:</strong> estudia la escuela como institución reproductora y transformadora de estructuras sociales.</li>
+        <li><strong>Sociología histórica:</strong> combina análisis sociológico con perspectiva temporal para comprender procesos de largo plazo.</li>
+        <li><strong>Sociología rural / urbana:</strong> estudia las dinámicas específicas del campo y la ciudad, sus conflictos y transformaciones.</li>
+        <li><strong>Sociología de género:</strong> analiza las estructuras de desigualdad y las relaciones de poder entre géneros.</li>
+      </ul>
+
+      <h3>6. Origen y evolución de la sociología <span class="externo-tag">Complementario</span></h3>
+      <p>La sociología nace como disciplina científica a mediados del siglo XIX como respuesta intelectual a las profundas transformaciones generadas por la <strong>Revolución Industrial</strong> y la <strong>Revolución Francesa</strong>.</p>
+      <div class="tabla-wrap">
+        <table>
+          <thead><tr><th>Etapa</th><th>Período</th><th>Características</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Fundacional</strong></td><td>1830–1900</td><td>Comte acuña "sociología" (1838). Spencer, Durkheim, Marx y Weber establecen los paradigmas fundacionales.</td></tr>
+            <tr><td><strong>Clásica y sistematización</strong></td><td>1900–1950</td><td>Institucionalización académica. Weber y Durkheim son canonizados. Parsons desarrolla el funcionalismo estructural.</td></tr>
+            <tr><td><strong>Crisis y renovación</strong></td><td>1960–1980</td><td>Marxismo estructuralista (Althusser), teoría crítica (Escuela de Frankfurt), interaccionismo simbólico y etnometodología.</td></tr>
+            <tr><td><strong>Posmodernidad y globalización</strong></td><td>1980–presente</td><td>Giddens (estructuración), Bourdieu (campo y habitus), Wallerstein (sistema-mundo), teorías postcoloniales y decoloniales.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>La sociología latinoamericana se institucionaliza a partir de los años 50–60 del siglo XX, influida por el estructuralismo y la <strong>teoría de la dependencia</strong> (Prebisch, Cardoso y Faletto, Quijano). Tiene un fuerte carácter crítico y comprometido con los procesos de cambio social.</p>
+    </div>
+  
+    </div>
+  </details>
+
+<div id="unidad3" class="accordion-wrap">
+  <details >
+    <summary class="unidad-summary">
+      <div class="summary-inner">
+        <div class="summary-left">
+          <span class="unidad-num">UNIDAD 3</span>
+          <span class="unidad-title">Historia Social Latinoamericana Colonial</span>
+        <div class="summary-subtitle">Bases económicas · Encomienda · Polos de crecimiento · Feudalismo · Comercio colonial · Final de la era colonial</div>
+        </div>
+        <span class="accordion-icon">▼</span>
+      </div>
+    </summary>
+    <div class="unidad-body">
+
+
+      <h3>1. Bases económicas y sociales de la ocupación territorial <span class="zorrilla-tag">Zorrilla §2.1</span></h3>
+      <blockquote>
+        "Los rasgos esenciales de la estructura social de los países latinoamericanos se originan en la forma que tomó la conquista española y las instituciones que implantaron españoles y portugueses, con fines económicos."
+        <cite>— Celso Furtado (1975), citado en Zorrilla</cite>
+      </blockquote>
+      <p>Las circunstancias de la <strong>Reconquista española</strong> llevaron a la formación de un Estado muy centralista, aunque las regiones de la península mantenían rasgos feudales. A diferencia de otras regiones de Europa, el desarrollo del capitalismo comercial en España fue tardío. En Portugal, el capitalismo estaba estrechamente ligado a la monarquía. El descubrimiento de América se da al final de la Reconquista, con gran número de individuos dispuestos a aventuras guerreras en busca de recompensa.</p>
+      <p>En América, la debilidad de los pueblos a conquistar o la lejanía del Poder Central permitió el desarrollo de la conquista basado en la <strong>iniciativa individual</strong>. El verdadero motor fue el interés privado del conquistador: el Estado español optó por ceder a particulares la exploración y sometimiento de nuevos territorios, siendo las empresas estatales la excepción.</p>
+
+      <h3>2. Acción individual y la encomienda <span class="zorrilla-tag">Zorrilla §2.1.1 – §2.1.2</span></h3>
+
+      <h4>2.1 Las Capitulaciones</h4>
+      <p>El marco contractual de la acción individual lo delimitó el Estado. La conquista y sumisión de poblaciones indígenas se articuló mediante las <strong>Capitulaciones</strong> —contrato de carácter público—, transfiriendo el Estado al conquistador algunas prerrogativas y exigiendo ciertas obligaciones, alcanzando las recompensas su forma definitiva en la encomienda. El caso más conocido: las Capitulaciones de Santa Fe entre los Reyes Católicos y Cristóbal Colón (1492).</p>
+
+      <h4>2.2 La Encomienda</h4>
+      <p>La encomienda es una entidad socioeconómica a través de la cual un grupo de personas debía compensar a otros con trabajo o bienes por el uso de un recurso o algún servicio recibido. En América, se asignaba al conquistador la responsabilidad de una población indígena, con la misión de cristianizarla. Este derecho era concedido por el Rey a un súbdito español —el <em>encomendero</em>— como reconocimiento por sus servicios, permitiéndole recibir los tributos de los indígenas pagados mediante productos agrícolas o trabajo en tierras o minas.</p>
+      <p>En 1503, la corona española comenzó a otorgar legalmente encomiendas mediante una Real Provisión del 20 de diciembre de ese año. Nicolás de Ovando (1460–1511) propuso que los pueblos indígenas se establecieran en comunidades organizadas al modo español y promovió matrimonios interraciales para facilitar su civilización y cristianización.</p>
+
+      <div class="callout callout-key">
+        <div class="callout-title">💡 Eficacia diferencial de la encomienda (Furtado, 1975, p.25)</div>
+        "La organización social basada en la encomienda fue eficaz en regiones con población indígena relativamente densa y con algún desarrollo material y estratificación social." En regiones de pobre desarrollo, la encomienda no funcionó y se recurrió a la esclavitud, tendiendo la población indígena a desaparecer rápidamente.
+      </div>
+
+      <h4>2.3 Comparación: señor feudal vs. encomendero</h4>
+      <p>Los señores feudales en España obtenían excedentes de la población sometida y los utilizaban de una u otra forma en la región. En el Nuevo Mundo, el encomendero buscaba <em>sustraer</em> ese excedente para <strong>transferirlo a Europa</strong>: por sus hábitos de consumo de productos importados o porque el objetivo último era alcanzar una buena posición económica y social en su tierra de origen. Su objetivo siempre fue movilizar ese excedente para descubrir, producir y transportar metales preciosos —en palabras de Cipolla (1999) <em>"desafiando enemigos, corsarios y la furia de los elementos"</em> (p.9)—. Esta diferencia fundamental explica la naturaleza extractiva de la economía colonial latinoamericana.</p>
+      <p>Los portugueses, en los primeros dos siglos, implantaron una <strong>agricultura tropical</strong>. Al encontrar una población inepta para el arduo trabajo en las plantaciones de azúcar, introdujeron la mano de obra africana, dando a su acción un cariz más de colonización y no de conquista (Furtado, 1975).</p>
+
+      <h4>2.4 Pérdida de importancia y fin de la encomienda <span class="zorrilla-tag">Zorrilla §2.1.2.2.4 – §2.1.2.2.5</span></h4>
+      <p>El sistema de la encomienda experimentó un colapso estructural a lo largo del siglo XVI por dos factores:</p>
+      <ul>
+        <li><strong>Crisis demográfica:</strong> el drástico descenso de la población indígena minó la base misma de la encomienda.</li>
+        <li><strong>Diversificación económica:</strong> la economía colonial evolucionó hacia la minería, el comercio y nuevas prácticas agrícolas, que demandaban mano de obra más especializada. Furtado (1975) señala que el indígena dejaba de ser la riqueza por excelencia.</li>
+      </ul>
+      <p>La desintegración formal se inició en 1510, cuando los misioneros dominicos comenzaron a denunciar los abusos. Las <strong>Leyes de Burgos</strong> (1512) establecieron directrices de uso. Las <strong>Leyes Nuevas</strong> (1542) —impulsadas por las gestiones de <strong>Fray Bartolomé de las Casas</strong> (1474–1566)— ordenaron la eliminación de la esclavitud y la servidumbre personal, pero fueron profundamente resistidas por los encomenderos. La encomienda fue abolida definitivamente en <strong>1791</strong> por Real Cédula del Rey Carlos IV.</p>
+
+      <h3>3. Los polos de crecimiento y los orígenes del feudalismo latinoamericano <span class="zorrilla-tag">Zorrilla §2.2.3 – §2.2.4</span></h3>
+
+      <h4>3.1 Polos de crecimiento</h4>
+      <p>La producción de plata —especialmente la de <strong>Potosí</strong> (Bolivia)— tenía como meta la exportación hacia España, pero simultáneamente actuó como potente impulso económico interno en las regiones productoras. Áreas como Chile y el norte argentino se convirtieron en centros de abastecimiento de alimentos para las regiones mineras. La producción de plata en Bolivia y de mercurio en Perú, junto con el intercambio de productos entre Chile y Argentina, formaron una <strong>red económica interconectada</strong>, con la mano de obra indígena trabajando bajo el sistema de encomienda en todo el proceso.</p>
+      <blockquote>
+        "En resumen, la extracción de metales, aunque orientada a la exportación, generó un sistema económico regional complejo y dinámico en el Virreinato del Perú, creando polos de desarrollo y cadenas de suministro internas que interconectaban distintas regiones coloniales."
+        <cite>— Zorrilla (2024)</cite>
+      </blockquote>
+
+      <h4>3.2 La gran propiedad y los orígenes del latifundio</h4>
+      <p>La organización de los nativos para generar un excedente agrícola estaba relacionada con la <strong>gran propiedad agrícola</strong>. Las donaciones de tierras —<em>mercedes</em>— se implementaron inicialmente para fomentar la conquista. Aunque la tierra carecía de atractivo económico directo en un inicio, su posesión se volvió valiosa para generar excedentes y obtener ganancias de la población indígena a través del control de su fuerza de trabajo y tributo (Furtado, 1975, pp.29–30).</p>
+      <p>La bonanza de la producción de plata decayó drásticamente a mediados del siglo XVII. Esta retracción minera debilitó la economía colonial, y cuando disminuyó la demanda de excedentes, <strong>la encomienda perdió su sentido y desapareció a principios del siglo XVIII</strong>. La propiedad de la tierra pasó entonces a ser la base del orden social:</p>
+      <blockquote>
+        "Los grandes dominios rurales, centrados en la subsistencia y con poca conexión con la autoridad estatal, se volvieron característicos de la sociedad latinoamericana."
+        <cite>— Furtado (1975), citado en Zorrilla</cite>
+      </blockquote>
+
+      <h4>3.3 Evolución social en Brasil <span class="zorrilla-tag">Zorrilla §2.2.4.2</span></h4>
+      <p>En Brasil, la gran plantación esclavista comenzó a decaer en la segunda mitad del siglo XVII con la caída del monopolio del azúcar y la competencia antillana. La fuerza laboral en los territorios interiores era sobre todo indígena, en contraste con la mano de obra africana de las plantaciones costeras. La población rural se estableció en unidades autónomas y fragmentadas, con una clase dirigente que extraía excedentes <strong>bajo un modelo similar al feudalismo</strong>.</p>
+      <p>El descubrimiento de <strong>oro en Brasil</strong> a inicios del siglo XVIII cambió estas tendencias: creó un mercado para animales de tracción, generó empleo para la mano de obra subempleada, desarrolló el comercio y la vida urbana, y enlazó regiones del país a través de un sistema de transporte relacionado con la producción minera. Esto fortaleció la economía brasileña, conectando diversas áreas del territorio a poco tiempo de la independencia.</p>
+
+      <h4>3.4 Cuadro comparativo de fases del período colonial (Zorrilla, con base en Furtado)</h4>
+      <div class="tabla-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Característica</th>
+              <th>América Hispana (1ª fase, ss. XVI–XVII)</th>
+              <th>América Hispana (2ª fase, XVII–XVIII)</th>
+              <th>América Portuguesa (1ª fase)</th>
+              <th>América Portuguesa (2ª fase)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Énfasis económico</td><td>Gran éxito minero (plata)</td><td>Declinación de la minería</td><td>Agricultura de exportación (azúcar)</td><td>Depresión económica</td></tr>
+            <tr><td>Relación con metrópoli</td><td>Fuerte dependencia</td><td>Disminución de dependencia</td><td>Aislada, orientada al exterior</td><td>Formación de mercado interno</td></tr>
+            <tr><td>Impacto demográfico</td><td>Destrucción de la población indígena</td><td>Aumento de la población</td><td>Uso intenso de mano de obra africana</td><td>Incremento de actividad interna</td></tr>
+            <tr><td>Elite dominante</td><td>Ligada a España y burocracia colonial</td><td>Clase terrateniente con intereses locales</td><td>Elite exportadora (señores de ingenio)</td><td>Elite enfocada en la circulación interna</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>4. Fuerzas centrífugas y centrípetas <span class="zorrilla-tag">Zorrilla §2.2.5</span></h3>
+      <p>El declive de la producción de plata y el debilitamiento del Estado español llevaron, a principios del siglo XVIII, al abandono del sistema de flotas y a la necesidad de otorgar concesiones comerciales a <strong>Inglaterra</strong>. Esta aprovechó rápidamente las aperturas para ganar influencia en enclaves estratégicos como Portobello y Buenos Aires, convertida en punto clave de acceso al Alto Perú. Desde 1680, los portugueses habían establecido y explotado comercialmente la <strong>Colonia del Sacramento</strong>. El <strong>Acuerdo de Utrecht de 1713</strong> consolidó la presencia inglesa, permitiéndoles establecerse en Buenos Aires y obtener el monopolio del comercio de esclavos.</p>
+      <p>El declive minero y la presencia inglesa motivaron a los españoles a diversificar la producción y liberalizar el comercio. Indicadores claros de este cambio fueron la creación de los <strong>Virreinatos de Nueva Granada y del Río de la Plata</strong>, reflejando la priorización oficial de los sectores agrícola y comercial.</p>
+      <div class="tabla-wrap">
+        <table>
+          <thead><tr><th>Tipo de fuerza</th><th>Actores</th><th>Tendencia</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Centrípetas</strong> (hacia el centro)</td>
+              <td>Corona española, virreyes, audiencias, Iglesia Católica, Casa de Contratación de Sevilla, derecho indiano</td>
+              <td>Centralización del control político y económico en la metrópoli</td>
+            </tr>
+            <tr>
+              <td><strong>Centrífugas</strong> (hacia la periferia)</td>
+              <td>Encomenderos y hacendados locales, cabildos municipales, contrabando, economías regionales autosuficientes, rebeliones indígenas</td>
+              <td>Autonomía y fragmentación del poder central</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Esta tensión entre centralización y fragmentación explica tanto la inestabilidad del sistema colonial como las guerras civiles y el <strong>caudillismo</strong> que marcaron el período post-independencia. Las estructuras de poder local que la Corona no pudo eliminar completamente se convirtieron en el sustrato del caudillismo del siglo XIX, y explican también por qué la unidad latinoamericana soñada por Bolívar fracasó.</p>
+
+      <h3>5. El comercio colonial <span class="zorrilla-tag">Zorrilla §2.2</span></h3>
+
+      <h4>5.1 Producción de oro</h4>
+      <p>Tras la fase inicial de saqueo de tesoros en México y Perú, los conquistadores se dedicaron a la búsqueda de <strong>oro de aluvión</strong>, una fuente que se agotaba con rapidez. La explotación se basaba en la coerción de los indígenas, quienes eran obligados a guiar a los encomenderos hacia los yacimientos fluviales. En Brasil, la localización de oro fue más lenta: el factor clave no fue la escasez del metal, sino la falta de conocimiento indígena sobre la minería, lo que forzó a los portugueses a emprender de forma autónoma la exploración.</p>
+
+      <h4>5.2 Producción de plata</h4>
+      <p>La producción de plata se consolidó a mediados del siglo XVI. Un factor determinante fue la introducción, en la década de 1570, de la <strong>técnica de amalgama con mercurio</strong>, que transformó la minería colonial. El mercurio provenía de las minas de Huancavelica (Perú). La Corona estableció el <em>"quinto real"</em> (20% de la producción) como impuesto. Las minas de <strong>Potosí</strong> (Bolivia) y <strong>Zacatecas</strong> (México) fueron los dos grandes centros de extracción.</p>
+
+      <h4>5.3 Sistema comercial colonial</h4>
+      <ul>
+        <li><strong>El exclusivismo colonial:</strong> las colonias solo podían comerciar con la metrópoli, a través de puertos designados (Veracruz, Cartagena, Lima/El Callao, Buenos Aires). Todo comercio con otras potencias era ilegal.</li>
+        <li><strong>Las flotas y galeones:</strong> sistema de convoyes protegidos que transportaban mercancías y plata entre América y España.</li>
+        <li><strong>El contrabando:</strong> la rigidez del sistema y los altos costos del monopolio estimularon el contrabando masivo, especialmente con holandeses, ingleses y franceses. En el Río de la Plata, fue estructural desde el siglo XVII.</li>
+        <li><strong>Reformas borbónicas (siglo XVIII):</strong> Carlos III liberalizó parcialmente el comercio con el <em>Reglamento de Libre Comercio</em> (1778), permitiendo el comercio entre más puertos americanos y españoles. Esto transformó a <strong>Buenos Aires</strong> en un centro comercial legal, desplazando el tráfico que antes pasaba por Lima, y fortaleció a una élite criolla rioplatense que luego lideró el proceso independentista.</li>
+      </ul>
+
+      <h3>6. El final de la era colonial <span class="zorrilla-tag">Zorrilla Cap. II §1 – §3.1.4</span></h3>
+      <p>El final de la era colonial no fue un proceso repentino sino el resultado de la acumulación de contradicciones internas y del impacto de factores externos que convergieron a finales del siglo XVIII y principios del XIX.</p>
+
+      <h4>6.1 Factores internos del colapso colonial</h4>
+      <ul>
+        <li><strong>Crisis fiscal:</strong> la Corona española enfrentaba déficits crónicos y recurrió a mayores impuestos sobre las colonias, generando resentimiento entre los criollos.</li>
+        <li><strong>Segregación criolla:</strong> los criollos (americanos de origen europeo) estaban excluidos de los altos cargos de la administración colonial, reservados para los peninsulares (<em>chapetones</em> o <em>gachupines</em>). Este agravio fue el motor ideológico de la independencia.</li>
+        <li><strong>Contradicciones del sistema de castas:</strong> la rigidez de las jerarquías raciales generaba tensión permanente entre criollos, mestizos, mulatos, indígenas y esclavos.</li>
+      </ul>
+
+      <h4>6.2 Factores externos</h4>
+      <ul>
+        <li><strong>La Ilustración europea:</strong> las ideas de libertad, igualdad y soberanía popular llegaron a los criollos ilustrados.</li>
+        <li><strong>La Revolución Norteamericana (1776) y la Francesa (1789):</strong> modelos concretos de independencia y cambio político republicano.</li>
+        <li><strong>Las guerras napoleónicas (1808):</strong> la invasión francesa a España y la captura de Carlos IV y Fernando VII dejaron a las colonias sin metrópoli legítima, abriendo el vacío de poder que desencadenó los movimientos independentistas. La Constitución de Cádiz no proporcionó representación justa ni libertad comercial a los americanos, quienes optaron definitivamente por la independencia.</li>
+      </ul>
+
+      <blockquote>
+        "A lo largo de la primera mitad del siglo XIX, América Latina se distinguía por las luchas de independencia y la formación de estados nacionales. Sentó las bases de la América Latina moderna: una región políticamente independiente pero económicamente subordinada a las potencias industriales, dirigida por una elite liberal que buscaba el progreso a través de la integración al mercado mundial como exportadora de materias primas."
+        <cite>— Zorrilla (2024), con base en Furtado</cite>
+      </blockquote>
+
+      <p>Durante estas luchas emergieron dos movimientos: el primero, una burguesía que buscaba modernizar el comercio y alejarse del pasado colonial; el segundo, fuerzas que querían romper con las estructuras coloniales e incorporar a las comunidades indígenas. A lo largo del siglo XIX el primer movimiento predominó, mientras que el segundo cobró relevancia en el siglo XX, <strong>comenzando con la Revolución Mexicana</strong>.</p>
+
+      <div class="nota">
+        <strong>Fuente:</strong> Zorrilla, M. (2024). <em>Historia Social Latinoamericana</em>. Asunción: UNA — Facultad de Derecho y Ciencias Políticas. Capítulo I: Aproximación a la historia americana (pp. 7–17) y Capítulo II: Formación de los Estados nacionales (pp. 18–26). Basado principalmente en Furtado, C. (1975). <em>La Economía Latinoamericana</em> y Zanatta, L. (2012). <em>Historia de América Latina</em>.
+      </div>
+    </div>
+  
+    </div>
+  </details>
+</div>
+
+</div><!-- /container -->
+
+<div id="quizzes" class="quiz-section">
+    <div class="container">
+      <h2>🎯 Quizzes de repaso — Unidades I, II y III</h2>
+
+      <!-- QUIZ 1: Unidad I (Fácil) -->
+      <div class="quiz-accordion quiz-easy">
+        <details>
+          <summary class="quiz-summary">
+            <div class="quiz-summary-inner">
+              <div class="quiz-summary-left">
+                <span class="quiz-label">Quiz 1 · Fácil</span>
+                <span class="quiz-title">Unidad I — Historia Social e Introducción</span>
+                <span class="quiz-subtitle">Historia social · Significados · Pensamiento social latinoamericano · Positivismo</span>
+              </div>
+              <span class="quiz-accordion-icon">▼</span>
+            </div>
+          </summary>
+          <div class="quiz-body">
+          <form class="quiz-form">
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 1 · Unidad I</div>
+              <p>¿Qué define mejor a la historia social?</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q1" value="A"> <span><strong>A.</strong> Estudio exclusivamente de batallas y grandes personajes.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q1" value="B"> <span><strong>B.</strong> Estudio de la vida cotidiana y de los grupos sociales en su conjunto.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q1" value="C"> <span><strong>C.</strong> Estudio de la geografía física de los territorios.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q1" value="D"> <span><strong>D.</strong> Estudio solo de la economía y las finanzas.</span></label>
+            </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 2 · Unidad I</div>
+              <p>Según la RAE, la historia es principalmente...</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q2" value="A"> <span><strong>A.</strong> Un conjunto de leyendas tradicionales.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q2" value="B"> <span><strong>B.</strong> Una disciplina que narra cronológicamente acontecimientos pasados.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q2" value="C"> <span><strong>C.</strong> Una rama de la literatura fantástica.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q2" value="D"> <span><strong>D.</strong> Un sistema filosófico abstracto sin base empírica.</span></label>
+            </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 3 · Unidad I</div>
+              <p>¿En qué siglo se consolida la Historia como disciplina científica universitaria?</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q3" value="A"> <span><strong>A.</strong> Siglo XV.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q3" value="B"> <span><strong>B.</strong> Siglo XVII.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q3" value="C"> <span><strong>C.</strong> Siglo XIX.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q3" value="D"> <span><strong>D.</strong> Siglo XXI.</span></label>
+            </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 4 · Unidad I</div>
+              <p>¿Quién es considerado el padre de la Historiografía científica?</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q4" value="A"> <span><strong>A.</strong> Heródoto.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q4" value="B"> <span><strong>B.</strong> Leopold von Ranke.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q4" value="C"> <span><strong>C.</strong> Auguste Comte.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q4" value="D"> <span><strong>D.</strong> Karl Marx.</span></label>
+            </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 5 · Unidad I</div>
+              <p>La visión de Draper sobre la colonización española sostiene que:</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q5" value="A"> <span><strong>A.</strong> Europa civilizó completamente a América sin destruir nada.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q5" value="B"> <span><strong>B.</strong> En México y Perú se destruyeron civilizaciones de las que Europa podía aprender.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q5" value="C"> <span><strong>C.</strong> La colonización fue un fracaso económico total.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q5" value="D"> <span><strong>D.</strong> No hubo impacto significativo sobre las sociedades indígenas.</span></label>
+            </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 6 · Unidad I</div>
+              <p>Para Hanke, la conquista española fue principalmente:</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q6" value="A"> <span><strong>A.</strong> Un intento de imponer la justicia y normas cristianas en un contexto violento.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q6" value="B"> <span><strong>B.</strong> Un proceso puramente comercial sin dimensión moral.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q6" value="C"> <span><strong>C.</strong> Un fracaso político sin consecuencias sociales.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q6" value="D"> <span><strong>D.</strong> Un conflicto entre potencias europeas sin presencia indígena.</span></label>
+            </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 7 · Unidad I</div>
+              <p>¿Qué expresión alude a la mezcla de nativos, europeos y africanos en América?</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q7" value="A"> <span><strong>A.</strong> Hombre americano.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q7" value="B"> <span><strong>B.</strong> Hombre medieval.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q7" value="C"> <span><strong>C.</strong> Hombre europeo.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q7" value="D"> <span><strong>D.</strong> Hombre ilustrado.</span></label>
+            </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 8 · Unidad I</div>
+              <p>¿Cuál de los siguientes autores pertenece al pensamiento social latinoamericano según Zorrilla?</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q8" value="A"> <span><strong>A.</strong> Max Weber.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q8" value="B"> <span><strong>B.</strong> José Carlos Mariátegui.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q8" value="C"> <span><strong>C.</strong> Émile Durkheim.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q8" value="D"> <span><strong>D.</strong> Georg Simmel.</span></label>
+            </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 9 · Unidad I</div>
+              <p>El positivismo latinoamericano se asocia principalmente con:</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q9" value="A"> <span><strong>A.</strong> La idea de "Orden y Progreso" y la modernización del Estado.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q9" value="B"> <span><strong>B.</strong> El retorno al feudalismo medieval.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q9" value="C"> <span><strong>C.</strong> El rechazo total de la ciencia.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q9" value="D"> <span><strong>D.</strong> La defensa de las monarquías absolutas.</span></label>
+            </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 10 · Unidad I</div>
+              <p>¿Qué país incorporó el lema positivista en su bandera nacional?</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q10" value="A"> <span><strong>A.</strong> México.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q10" value="B"> <span><strong>B.</strong> Argentina.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q10" value="C"> <span><strong>C.</strong> Brasil.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q10" value="D"> <span><strong>D.</strong> Chile.</span></label>
+            </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 11 · Unidad I</div>
+              <p>¿Cuál de los siguientes conceptos está ligado a José Vasconcelos?</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q11" value="A"> <span><strong>A.</strong> La raza cósmica.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q11" value="B"> <span><strong>B.</strong> La mano invisible.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q11" value="C"> <span><strong>C.</strong> La lucha de clases.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q11" value="D"> <span><strong>D.</strong> La ética protestante.</span></label>
+            </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 12 · Unidad I</div>
+              <p>El libro <em>Ariel</em>, fundamental en la reacción contra el positivismo, fue escrito por:</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q12" value="A"> <span><strong>A.</strong> Enrique Rodó.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q12" value="B"> <span><strong>B.</strong> José Martí.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q12" value="C"> <span><strong>C.</strong> Leopoldo Zea.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q12" value="D"> <span><strong>D.</strong> Gino Germani.</span></label>
+            </div>
+            </div>
+          
+          <div class="quiz-submit-area">
+            <button type="button" class="quiz-btn" onclick="checkQuiz(1, this)">Comparar resultados</button>
+            <div class="quiz-result" id="quiz-result-1"></div>
+          </div>
+          </form>
+          </div>
+        </details>
+      </div>
+
+      <!-- QUIZ 2: Unidad II (Medio) -->
+      <div class="quiz-accordion quiz-medium">
+        <details>
+          <summary class="quiz-summary">
+            <div class="quiz-summary-inner">
+              <div class="quiz-summary-left">
+                <span class="quiz-label">Quiz 2 · Medio</span>
+                <span class="quiz-title">Unidad II — Sociología Histórica</span>
+                <span class="quiz-subtitle">Concepto · Objeto de estudio · Métodos · Teóricos · Ramas · Origen y evolución</span>
+              </div>
+              <span class="quiz-accordion-icon">▼</span>
+            </div>
+          </summary>
+          <div class="quiz-body">
+          <form class="quiz-form">
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 1 · Unidad II</div>
+              <p>La sociología histórica se caracteriza por:</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q13" value="A"> <span><strong>A.</strong> Estudiar solo datos estadísticos actuales.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q13" value="B"> <span><strong>B.</strong> Analizar estructuras y procesos sociales en su desarrollo a lo largo del tiempo.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q13" value="C"> <span><strong>C.</strong> Rechazar el uso de fuentes históricas.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q13" value="D"> <span><strong>D.</strong> Limitarse al estudio de biografías individuales.</span></label>
+            </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 2 · Unidad II</div>
+              <p>Para Durkheim, el objeto central de la sociología son:</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q14" value="A"> <span><strong>A.</strong> Los hechos sociales.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q14" value="B"> <span><strong>B.</strong> Los fenómenos biológicos.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q14" value="C"> <span><strong>C.</strong> Las leyes físicas.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q14" value="D"> <span><strong>D.</strong> Las obras de arte.</span></label>
+            </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 3 · Unidad II</div>
+              <p>Max Weber define la acción social como aquella que:</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q15" value="A"> <span><strong>A.</strong> No tiene ningún sentido para el actor.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q15" value="B"> <span><strong>B.</strong> Está orientada por un sentido subjetivo en relación con otros.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q15" value="C"> <span><strong>C.</strong> Se limita a reflejos biológicos automáticos.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q15" value="D"> <span><strong>D.</strong> Solo puede estudiarse con estadísticas.</span></label>
+            </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 4 · Unidad II</div>
+              <p>El método comparativo en sociología histórica permite:</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q16" value="A"> <span><strong>A.</strong> Evitar el análisis de otros casos nacionales.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q16" value="B"> <span><strong>B.</strong> Comparar sociedades o períodos para identificar similitudes y diferencias explicativas.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q16" value="C"> <span><strong>C.</strong> Estudiar únicamente un caso individual.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q16" value="D"> <span><strong>D.</strong> Reemplazar toda evidencia empírica por especulación.</span></label>
+            </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 5 · Unidad II</div>
+              <p>¿Cuál de las siguientes NO es una rama típica de la sociología?</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q17" value="A"> <span><strong>A.</strong> Sociología política.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q17" value="B"> <span><strong>B.</strong> Sociología económica.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q17" value="C"> <span><strong>C.</strong> Sociología de la educación.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q17" value="D"> <span><strong>D.</strong> Geología estructural.</span></label>
+            </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 6 · Unidad II</div>
+              <p>La sociología surge como disciplina en el contexto de:</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q18" value="A"> <span><strong>A.</strong> La expansión del Imperio romano.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q18" value="B"> <span><strong>B.</strong> La Revolución Industrial y la Revolución Francesa.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q18" value="C"> <span><strong>C.</strong> La caída del Imperio bizantino.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q18" value="D"> <span><strong>D.</strong> La invención de la imprenta.</span></label>
+            </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 7 · Unidad II</div>
+              <p>Auguste Comte acuña el término "sociología" alrededor de:</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q19" value="A"> <span><strong>A.</strong> 1830.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q19" value="B"> <span><strong>B.</strong> 1492.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q19" value="C"> <span><strong>C.</strong> 1917.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q19" value="D"> <span><strong>D.</strong> 2001.</span></label>
+            </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 8 · Unidad II</div>
+              <p>La sociología del conocimiento estudia:</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q20" value="A"> <span><strong>A.</strong> La estructura de la materia.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q20" value="B"> <span><strong>B.</strong> Cómo el contexto social condiciona la producción de ideas y saberes.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q20" value="C"> <span><strong>C.</strong> Únicamente los procesos biológicos del cerebro.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q20" value="D"> <span><strong>D.</strong> La composición química del suelo.</span></label>
+            </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 9 · Unidad II</div>
+              <p>¿Cuál de los siguientes autores se asocia a la teoría del sistema-mundo?</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q21" value="A"> <span><strong>A.</strong> Norbert Elias.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q21" value="B"> <span><strong>B.</strong> Pierre Bourdieu.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q21" value="C"> <span><strong>C.</strong> Immanuel Wallerstein.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q21" value="D"> <span><strong>D.</strong> Antonio Gramsci.</span></label>
+            </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 10 · Unidad II</div>
+              <p>La sociología histórica combina principalmente:</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q22" value="A"> <span><strong>A.</strong> Métodos físicos y químicos.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q22" value="B"> <span><strong>B.</strong> Perspectivas sociológicas con análisis histórico de largo plazo.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q22" value="C"> <span><strong>C.</strong> Estética y crítica literaria.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q22" value="D"> <span><strong>D.</strong> Teología y metafísica.</span></label>
+            </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 11 · Unidad II</div>
+              <p>Una característica de la sociología latinoamericana de los años 60–70 es:</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q23" value="A"> <span><strong>A.</strong> Su total desinterés por la política.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q23" value="B"> <span><strong>B.</strong> Su fuerte vínculo con la teoría de la dependencia y el análisis crítico.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q23" value="C"> <span><strong>C.</strong> Su concentración exclusiva en sociedades europeas.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q23" value="D"> <span><strong>D.</strong> Su rechazo a cualquier trabajo empírico.</span></label>
+            </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 12 · Unidad II</div>
+              <p>¿Qué método es especialmente importante para reconstruir procesos históricos en sociología?</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q24" value="A"> <span><strong>A.</strong> El experimento de laboratorio.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q24" value="B"> <span><strong>B.</strong> El análisis documental y de archivos.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q24" value="C"> <span><strong>C.</strong> La observación de fenómenos naturales.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q24" value="D"> <span><strong>D.</strong> La simulación informática sin fuentes históricas.</span></label>
+            </div>
+            </div>
+
+          
+          <div class="quiz-submit-area">
+            <button type="button" class="quiz-btn" onclick="checkQuiz(2, this)">Comparar resultados</button>
+            <div class="quiz-result" id="quiz-result-2"></div>
+          </div>
+          </form>
+          </div>
+        </details>
+      </div>
+
+      <!-- QUIZ 3: Unidad III (Difícil) -->
+      <div class="quiz-accordion quiz-hard">
+        <details>
+          <summary class="quiz-summary">
+            <div class="quiz-summary-inner">
+              <div class="quiz-summary-left">
+                <span class="quiz-label">Quiz 3 · Difícil</span>
+                <span class="quiz-title">Unidad III — Historia Social Latinoamericana Colonial</span>
+                <span class="quiz-subtitle">Bases económicas · Encomienda · Polos de crecimiento · Feudalismo · Comercio colonial · Independencia</span>
+              </div>
+              <span class="quiz-accordion-icon">▼</span>
+            </div>
+          </summary>
+          <div class="quiz-body">
+          <form class="quiz-form">
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 1 · Unidad III</div>
+              <p>Según Furtado, la estructura social latinoamericana se origina principalmente en:</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q25" value="A"> <span><strong>A.</strong> Las migraciones europeas del siglo XX.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q25" value="B"> <span><strong>B.</strong> La forma que tomó la conquista española y las instituciones implantadas.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q25" value="C"> <span><strong>C.</strong> La Revolución Industrial inglesa.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q25" value="D"> <span><strong>D.</strong> La expansión del Imperio otomano.</span></label>
+            </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 2 · Unidad III</div>
+              <p>La encomienda en América consistía en:</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q26" value="A"> <span><strong>A.</strong> Entregar tierras baldías a campesinos europeos sin obligaciones.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q26" value="B"> <span><strong>B.</strong> Conceder a un encomendero el derecho a recibir tributos y trabajo de una población indígena bajo el pretexto de su cristianización.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q26" value="C"> <span><strong>C.</strong> Un sistema de comercio libre entre colonias.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q26" value="D"> <span><strong>D.</strong> Un título nobiliario sin funciones económicas.</span></label>
+            </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 3 · Unidad III</div>
+              <p>¿Cuál es la diferencia clave entre el señor feudal europeo y el encomendero americano?</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q27" value="A"> <span><strong>A.</strong> El señor feudal no recibía ningún excedente.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q27" value="B"> <span><strong>B.</strong> El encomendero buscaba transferir el excedente hacia Europa, no reinvertirlo localmente.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q27" value="C"> <span><strong>C.</strong> El encomendero era elegido por sufragio universal.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q27" value="D"> <span><strong>D.</strong> No había diferencia sustantiva entre ambos.</span></label>
+            </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 4 · Unidad III</div>
+              <p>La producción de plata en Potosí generó:</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q28" value="A"> <span><strong>A.</strong> Solo riqueza local sin vínculos externos.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q28" value="B"> <span><strong>B.</strong> Una red de polos de crecimiento y cadenas de abastecimiento regional.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q28" value="C"> <span><strong>C.</strong> Un aislamiento total del Alto Perú.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q28" value="D"> <span><strong>D.</strong> Exclusivamente desarrollo agrícola autosuficiente.</span></label>
+            </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 5 · Unidad III</div>
+              <p>La gran propiedad rural latinoamericana se consolidó cuando:</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q29" value="A"> <span><strong>A.</strong> La encomienda se volvió más fuerte en el siglo XVIII.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q29" value="B"> <span><strong>B.</strong> La encomienda perdió importancia y la tierra pasó a ser la base del orden social.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q29" value="C"> <span><strong>C.</strong> Las ciudades coloniales desaparecieron.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q29" value="D"> <span><strong>D.</strong> Se abolió la esclavitud sin cambios en la tierra.</span></label>
+            </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 6 · Unidad III</div>
+              <p>El Tratado/Utrecht de 1713 permitió a Inglaterra:</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q30" value="A"> <span><strong>A.</strong> Monopolizar el comercio de esclavos y establecerse en enclaves como Buenos Aires.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q30" value="B"> <span><strong>B.</strong> Retirar todas sus naves del Atlántico.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q30" value="C"> <span><strong>C.</strong> Dominar el comercio de plata de Potosí.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q30" value="D"> <span><strong>D.</strong> Ocupar políticamente el Virreinato del Perú.</span></label>
+            </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 7 · Unidad III</div>
+              <p>Las fuerzas centrífugas en el sistema colonial se asocian con:</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q31" value="A"> <span><strong>A.</strong> La centralización total del poder en la Corona.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q31" value="B"> <span><strong>B.</strong> Los intereses de encomenderos, hacendados y cabildos que tendían a la autonomía local.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q31" value="C"> <span><strong>C.</strong> La unidad espiritual de la Iglesia.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q31" value="D"> <span><strong>D.</strong> La obediencia absoluta de todos los actores coloniales.</span></label>
+            </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 8 · Unidad III</div>
+              <p>El Reglamento de Libre Comercio de 1778 tuvo como efecto principal:</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q32" value="A"> <span><strong>A.</strong> Debilitar a Buenos Aires y fortalecer a Lima.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q32" value="B"> <span><strong>B.</strong> Transformar a Buenos Aires en centro comercial legal, fortaleciendo a la élite criolla rioplatense.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q32" value="C"> <span><strong>C.</strong> Prohibir todo comercio con España.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q32" value="D"> <span><strong>D.</strong> Eliminar el contrabando en el Río de la Plata.</span></label>
+            </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 9 · Unidad III</div>
+              <p>Entre los factores externos del fin del orden colonial se encuentra:</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q33" value="A"> <span><strong>A.</strong> La Reforma protestante.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q33" value="B"> <span><strong>B.</strong> Las guerras napoleónicas y la invasión francesa a España.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q33" value="C"> <span><strong>C.</strong> La caída de Constantinopla.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q33" value="D"> <span><strong>D.</strong> La unificación alemana.</span></label>
+            </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 10 · Unidad III</div>
+              <p>La crisis fiscal de la Corona española se tradujo en:</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q34" value="A"> <span><strong>A.</strong> Reducción drástica de impuestos en las colonias.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q34" value="B"> <span><strong>B.</strong> Aumento de cargas impositivas sobre las colonias, generando resentimiento criollo.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q34" value="C"> <span><strong>C.</strong> Renuncia a toda forma de control económico.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q34" value="D"> <span><strong>D.</strong> Abandono inmediato de América.</span></label>
+            </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 11 · Unidad III</div>
+              <p>¿Qué movimiento revolucionario marca, según Zorrilla, el inicio del cuestionamiento profundo al orden liberal oligárquico en América Latina?</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q35" value="A"> <span><strong>A.</strong> La Revolución Mexicana.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q35" value="B"> <span><strong>B.</strong> La independencia de Brasil.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q35" value="C"> <span><strong>C.</strong> La Guerra de Secesión estadounidense.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q35" value="D"> <span><strong>D.</strong> La unificación italiana.</span></label>
+            </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 12 · Unidad III</div>
+              <p>Según Zorrilla, la América Latina independiente del siglo XIX puede caracterizarse como:</p>
+              
+<div class="quiz-opciones">
+              <label class="quiz-opcion"><input type="checkbox" name="q36" value="A"> <span><strong>A.</strong> Políticamente dependiente y económicamente autosuficiente.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q36" value="B"> <span><strong>B.</strong> Políticamente independiente pero económicamente subordinada al capitalismo industrial.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q36" value="C"> <span><strong>C.</strong> Políticamente fragmentada y autosuficiente industrialmente.</span></label>
+              <label class="quiz-opcion"><input type="checkbox" name="q36" value="D"> <span><strong>D.</strong> Sin inserción alguna en el mercado mundial.</span></label>
+            </div>
+            </div>
+
+          
+          <div class="quiz-submit-area">
+            <button type="button" class="quiz-btn" onclick="checkQuiz(3, this)">Comparar resultados</button>
+            <div class="quiz-result" id="quiz-result-3"></div>
+          </div>
+          </form>
+          </div>
+        </details>
+      </div>
+
+
+      <!-- QUIZ 4: Examen Parcial (Integrador) -->
+      <div class="quiz-accordion quiz-exam">
+        <details>
+          <summary class="quiz-summary">
+            <div class="quiz-summary-inner">
+              <div class="quiz-summary-left">
+                <span class="quiz-label">Examen Parcial</span>
+                <span class="quiz-title">Unidades I, II y III</span>
+                <span class="quiz-subtitle">Historia social · Sociología histórica · Colonia e independencia latinoamericana</span>
+              </div>
+              <span class="quiz-accordion-icon">▼</span>
+            </div>
+          </summary>
+          <div class="quiz-body">
+          <form class="quiz-form">
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 1 · Examen Parcial</div>
+              <p>¿Qué rasgo distingue a la historia social frente a la historia política tradicional?</p>
+              <div class="quiz-opciones">
+                <label class="quiz-opcion"><input type="checkbox" name="q37" value="A"> <span><strong>A.</strong> Se centra solo en la acción de grandes líderes y batallas.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q37" value="B"> <span><strong>B.</strong> Analiza la vida cotidiana, los grupos subalternos y las estructuras sociales.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q37" value="C"> <span><strong>C.</strong> Se limita al estudio de constituciones y códigos legales.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q37" value="D"> <span><strong>D.</strong> Ignora completamente los procesos económicos.</span></label>
+              </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 2 · Examen Parcial</div>
+              <p>¿Cuál es un punto en común entre el enfoque histórico de Zorrilla y la sociología histórica?</p>
+              <div class="quiz-opciones">
+                <label class="quiz-opcion"><input type="checkbox" name="q38" value="A"> <span><strong>A.</strong> Ambos rechazan el uso de fuentes documentales.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q38" value="B"> <span><strong>B.</strong> Ambos analizan procesos de larga duración y estructuras sociales.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q38" value="C"> <span><strong>C.</strong> Ambos se centran exclusivamente en la psicología individual.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q38" value="D"> <span><strong>D.</strong> Ambos niegan el papel de la economía.</span></label>
+              </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 3 · Examen Parcial</div>
+              <p>En términos sociológicos, la encomienda puede entenderse como:</p>
+              <div class="quiz-opciones">
+                <label class="quiz-opcion"><input type="checkbox" name="q39" value="A"> <span><strong>A.</strong> Un contrato laboral moderno basado en la libre elección.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q39" value="B"> <span><strong>B.</strong> Una institución de dominación y extracción de excedente sobre población indígena.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q39" value="C"> <span><strong>C.</strong> Un mecanismo de participación democrática en la colonia.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q39" value="D"> <span><strong>D.</strong> Un sistema de comercio libre entre virreinatos.</span></label>
+              </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 4 · Examen Parcial</div>
+              <p>¿Qué autor asocia Zorrilla con la crítica al colonialismo y la búsqueda de una filosofía auténtica latinoamericana?</p>
+              <div class="quiz-opciones">
+                <label class="quiz-opcion"><input type="checkbox" name="q40" value="A"> <span><strong>A.</strong> Augusto Salazar Bondy.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q40" value="B"> <span><strong>B.</strong> Max Weber.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q40" value="C"> <span><strong>C.</strong> Émile Durkheim.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q40" value="D"> <span><strong>D.</strong> Adam Smith.</span></label>
+              </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 5 · Examen Parcial</div>
+              <p>¿Qué concepto de Durkheim ayuda a entender la crisis social en las transiciones al capitalismo periférico?</p>
+              <div class="quiz-opciones">
+                <label class="quiz-opcion"><input type="checkbox" name="q41" value="A"> <span><strong>A.</strong> Alienación.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q41" value="B"> <span><strong>B.</strong> Anomia.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q41" value="C"> <span><strong>C.</strong> Plusvalía.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q41" value="D"> <span><strong>D.</strong> Fetichismo de la mercancía.</span></label>
+              </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 6 · Examen Parcial</div>
+              <p>¿Cuál fue una consecuencia estructural de la caída de la producción de plata en el siglo XVII?</p>
+              <div class="quiz-opciones">
+                <label class="quiz-opcion"><input type="checkbox" name="q42" value="A"> <span><strong>A.</strong> Fortalecimiento del sistema de encomienda.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q42" value="B"> <span><strong>B.</strong> Consolidación de la gran propiedad rural como base del orden social.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q42" value="C"> <span><strong>C.</strong> Desaparición total de las elites terratenientes.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q42" value="D"> <span><strong>D.</strong> Sustitución inmediata por industrialización.</span></label>
+              </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 7 · Examen Parcial</div>
+              <p>El positivismo latinoamericano fue funcional a las elites porque:</p>
+              <div class="quiz-opciones">
+                <label class="quiz-opcion"><input type="checkbox" name="q43" value="A"> <span><strong>A.</strong> Negaba cualquier jerarquía racial.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q43" value="B"> <span><strong>B.</strong> Justificaba, mediante el darwinismo social, la supuesta inferioridad de indígenas y afrodescendientes.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q43" value="C"> <span><strong>C.</strong> Rechazaba la noción de progreso.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q43" value="D"> <span><strong>D.</strong> Proponía la abolición inmediata de toda forma de autoridad.</span></label>
+              </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 8 · Examen Parcial</div>
+              <p>¿Cuál de las siguientes situaciones expresa mejor una <em>fuerza centrífuga</em> en el sistema colonial?</p>
+              <div class="quiz-opciones">
+                <label class="quiz-opcion"><input type="checkbox" name="q44" value="A"> <span><strong>A.</strong> La Casa de Contratación de Sevilla controlando el comercio.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q44" value="B"> <span><strong>B.</strong> Los cabildos y hacendados defendiendo sus intereses locales frente a la Corona.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q44" value="C"> <span><strong>C.</strong> La Inquisición asegurando la unidad religiosa.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q44" value="D"> <span><strong>D.</strong> La creación de nuevos virreinatos para reforzar el control metropolitano.</span></label>
+              </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 9 · Examen Parcial</div>
+              <p>¿Qué papel tuvo Inglaterra en el final del orden colonial hispano?</p>
+              <div class="quiz-opciones">
+                <label class="quiz-opcion"><input type="checkbox" name="q45" value="A"> <span><strong>A.</strong> Se mantuvo completamente al margen del comercio atlántico.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q45" value="B"> <span><strong>B.</strong> Aprovechó concesiones como el Asiento de negros y se consolidó como socio comercial clave tras Utrecht.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q45" value="C"> <span><strong>C.</strong> Fue derrotada militarmente por España y Portugal.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q45" value="D"> <span><strong>D.</strong> Trasladó su corte a Buenos Aires.</span></label>
+              </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 10 · Examen Parcial</div>
+              <p>¿Cuál de las siguientes afirmaciones describe mejor la situación de América Latina tras su independencia, según Zorrilla y Furtado?</p>
+              <div class="quiz-opciones">
+                <label class="quiz-opcion"><input type="checkbox" name="q46" value="A"> <span><strong>A.</strong> Políticamente dependiente y económicamente autosuficiente.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q46" value="B"> <span><strong>B.</strong> Políticamente independiente pero económicamente subordinada al capitalismo industrial.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q46" value="C"> <span><strong>C.</strong> Aislada del mercado mundial.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q46" value="D"> <span><strong>D.</strong> Líder del sistema económico internacional.</span></label>
+              </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 11 · Examen Parcial</div>
+              <p>¿Qué proceso histórico se considera un parteaguas en la crítica al orden liberal oligárquico en América Latina?</p>
+              <div class="quiz-opciones">
+                <label class="quiz-opcion"><input type="checkbox" name="q47" value="A"> <span><strong>A.</strong> La Revolución Mexicana.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q47" value="B"> <span><strong>B.</strong> La independencia de Brasil.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q47" value="C"> <span><strong>C.</strong> La Guerra de Secesión estadounidense.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q47" value="D"> <span><strong>D.</strong> La revolución industrial inglesa.</span></label>
+              </div>
+            </div>
+
+            <div class="quiz-pregunta">
+              <div class="num">Pregunta 12 · Examen Parcial</div>
+              <p>¿Cuál de las siguientes opciones expresa mejor la idea de "hombre americano"?</p>
+              <div class="quiz-opciones">
+                <label class="quiz-opcion"><input type="checkbox" name="q48" value="A"> <span><strong>A.</strong> El europeo que vive temporalmente en América.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q48" value="B"> <span><strong>B.</strong> El resultado histórico de la mezcla entre poblaciones indígenas, europeas y africanas en el continente.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q48" value="C"> <span><strong>C.</strong> Únicamente los pueblos originarios antes de 1492.</span></label>
+                <label class="quiz-opcion"><input type="checkbox" name="q48" value="D"> <span><strong>D.</strong> Solo la población criolla de origen europeo.</span></label>
+              </div>
+            </div>
+
+          <div class="quiz-submit-area">
+            <button type="button" class="quiz-btn" onclick="checkQuiz(4, this)">Comparar resultados</button>
+            <div class="quiz-result" id="quiz-result-4"></div>
+          </div>
+          </form>
+          </div>
+        </details>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="container">
+    Material de estudio · Historia Social Latinoamericana · Fuente principal: Máximo Zorrilla (2024) · Facultad de Derecho y Ciencias Políticas<br><span id="visit-counter-local" class="visit-counter">Cargando visitas locales...</span><br><span id="visit-counter-ext" class="visit-counter">Cargando visitas totales...</span>
+  </div>
+</footer>
+<script>
+const ANSWERS = {
+  1: ['B','B','C','B','B','A','A','B','A','C','A','A'],
+  2: ['B','A','B','B','D','B','A','B','C','B','B','B'],
+  3: ['B','B','B','B','B','A','B','B','B','B','A','B'],
+  4: ['B','B','B','A','B','B','B','B','B','B','A','B'],
+};
+
+function checkQuiz(quizNum, btn) {
+  const form = btn.closest('form');
+  const resDiv = document.getElementById('quiz-result-' + quizNum);
+  const correctAnswers = ANSWERS[quizNum];
+  let correct = 0;
+  const total = 12;
+
+  for (let i = 1; i <= total; i++) {
+    const qId = 'q' + (((quizNum - 1) * total) + i);
+    const checked = form.querySelector('input[name="' + qId + '"]:checked');
+    if (checked && checked.value === correctAnswers[i - 1]) {
+      correct++;
+    }
+  }
+
+  const pct = Math.round((correct / total) * 100);
+
+  if (quizNum === 1 || quizNum === 2) {
+    if (pct >= 80) {
+      resDiv.innerHTML = '<span class="res-ok">✅ ¡Muy bien! Obtuviste ' + correct + '/12 (' + pct + '%). ¡Seguí adelante!</span>';
+    } else {
+      resDiv.innerHTML = '<span class="res-fail">⚠️ Obtuviste ' + correct + '/12 (' + pct + '%). Necesitás al menos el 80%. Te recomendamos <strong>volver a repasar la Unidad ' + quizNum + '</strong> antes de continuar.</span>';
+    }
+  } else {
+    if (pct > 90) {
+      resDiv.innerHTML = '<span class="res-excellent">🎓 ¡Excelente! Obtuviste ' + correct + '/12 (' + pct + '%). Si respondiste los 3 quizzes y el examen parcial, estás preparado para el Prof. Zorrilla. <strong>¡Suerte en tu examen!</strong></span>';
+    } else if (pct >= 80) {
+      resDiv.innerHTML = '<span class="res-ok">✅ Obtuviste ' + correct + '/12 (' + pct + '%). ¡Buen resultado! Intentá superar el 90% para confirmar tu preparación total.</span>';
+    } else {
+      resDiv.innerHTML = '<span class="res-fail">⚠️ Obtuviste ' + correct + '/12 (' + pct + '%). Necesitás reforzar estos contenidos antes del examen.</span>';
+    }
+  }
+  resDiv.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+}
+
+
+// Contador de visitas (por navegador)
+(function() {
+  try {
+    const key = 'hsl_visits';
+    let n = parseInt(localStorage.getItem(key) || '0', 10);
+    n = isNaN(n) ? 1 : n + 1;
+    localStorage.setItem(key, String(n));
+    const el = document.getElementById('visit-counter');
+    if (el) {
+      el.textContent = 'Visitas en este navegador: ' + n;
+    }
+  } catch (e) {
+    // si localStorage no está disponible, no se muestra contador
+  }
+})();
+
+
+// Contador de visitas local (por navegador)
+(function() {
+  try {
+    const key = 'hsl_visits_local';
+    let n = parseInt(localStorage.getItem(key) || '0', 10);
+    n = isNaN(n) ? 1 : n + 1;
+    localStorage.setItem(key, String(n));
+    const el = document.getElementById('visit-counter-local');
+    if (el) {
+      el.textContent = 'Visitas en este navegador: ' + n;
+    }
+  } catch (e) {
+    // si localStorage no está disponible, no se muestra contador local
+  }
+})();
+
+// Contador de visitas externo (CountAPI) — funciona en GitHub Pages
+(function() {
+  const el = document.getElementById('visit-counter-ext');
+  if (!el) return;
+  // namespace y key pueden cambiarse luego; deben ser únicos
+  const namespace = 'hsl-zorrilla-demo';
+  const key = 'visitas_totales';
+  const url = 'https://api.countapi.xyz/hit/' + namespace + '/' + key;
+  fetch(url)
+    .then(r => r.json())
+    .then(data => {
+      el.textContent = 'Visitas totales (externo): ' + (data && typeof data.value === 'number' ? data.value : '?');
+    })
+    .catch(() => {
+      el.textContent = 'Visitas totales: no disponible';
+    });
+})();
+</script>
+</body>
+</html>
