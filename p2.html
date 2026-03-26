@@ -3,822 +3,1671 @@
 <head>
 <meta charset="UTF-8">
 <title>Historia Social Latinoamericana – Material de repaso</title>
+
 <style>
-:root{
-  --bg:#f0f4ff;
-  --card:#ffffff;
-  --primary:#1976d2;
-  --primary-soft:#e3f2fd;
-  --accent:#ffb74d;
-  --text:#1f2933;
-  --muted:#6b7c93;
-  --border:#e0e0e0;
-  --shadow:0 18px 45px rgba(15,35,52,0.18);
-}
-*{box-sizing:border-box;}
-body{
-  margin:0;
-  padding:0;
-  font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  background:radial-gradient(circle at top,#e8f0ff,#dde7ff 40%,#f7f9ff 100%);
-  color:var(--text);
-}
+  :root {
+    --primary: #1a3a5c;
+    --secondary: #2e6da4;
+    --accent: #c8973a;
+    --light: #f4f7fb;
+    --text: #1e2a38;
+    --muted: #5a6a7a;
+    --border: #d0dcea;
+    --white: #ffffff;
+    --green: #1e6b4a;
+    --green-light: #eaf4ef;
+    --red: #8b2020;
+    --red-light: #fdf0f0;
+    --yellow-light: #fffbea;
+    --yellow-border: #e8d48a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Georgia', serif;
+    background: var(--light);
+    color: var(--text);
+    line-height: 1.75;
+    font-size: 16px;
+  }
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, var(--primary) 0%, #0d2440 100%);
+    color: white;
+    padding: 48px 32px 36px;
+    text-align: center;
+    border-bottom: 4px solid var(--accent);
+  }
+  header h1 { font-size: 2.2rem; letter-spacing: 0.5px; margin-bottom: 8px; }
+  header p { color: #a8c4e0; font-size: 1rem; font-style: italic; margin-bottom: 4px; }
+  .source-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    font-size: 0.78rem;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-top: 10px;
+    font-family: sans-serif;
+    letter-spacing: 0.5px;
+    font-style: normal;
+  }
 
-/* HEADER tipo landing */
-header{
-  text-align:center;
-  padding:32px 16px 18px;
-}
-header h1{
-  margin:0;
-  font-size:28px;
-  font-weight:700;
-  color:#0f172a;
-}
-header p{
-  margin:8px 0 0;
-  font-size:15px;
-  color:var(--muted);
-}
-header .pill{
-  display:inline-block;
-  margin-top:10px;
-  padding:4px 10px;
-  border-radius:999px;
-  background:rgba(25,118,210,0.12);
-  color:#0d47a1;
-  font-size:12px;
-  font-weight:500;
-}
+  /* NAV */
+  nav {
+    background: var(--primary);
+    padding: 0 32px;
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    border-bottom: 2px solid var(--accent);
+  }
+  nav a {
+    color: #c8d8ea;
+    text-decoration: none;
+    padding: 12px 18px;
+    font-family: sans-serif;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+    border-bottom: 3px solid transparent;
+  }
+  nav a:hover { color: white; border-bottom-color: var(--accent); }
 
-/* CONTENEDOR CENTRAL tipo tarjeta */
-main{
-  max-width:900px;
-  margin:0 auto 32px;
-  padding:0 16px 24px;
-}
-.cuaderno{
-  background:var(--card);
-  border-radius:18px;
-  box-shadow:var(--shadow);
-  padding:22px 20px 22px;
-  border:1px solid rgba(255,255,255,0.7);
-}
-.intro{
-  font-size:14px;
-  margin-top:0;
-  margin-bottom:14px;
-  color:var(--muted);
-}
+  /* LAYOUT */
+  .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+  main { padding: 40px 0 60px; }
 
-/* CAPÍTULOS estilo acordéon colorido */
-.capitulo{
-  border-radius:12px;
-  border:1px solid var(--border);
-  margin-bottom:12px;
-  overflow:hidden;
-  background:linear-gradient(135deg,#f9fbff,#f3f7ff);
-}
-.capitulo-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:11px 14px;
-  cursor:pointer;
-}
-.cap-left{
-  display:flex;
-  align-items:flex-start;
-  gap:8px;
-}
-.cap-badge{
-  width:26px;
-  height:26px;
-  border-radius:9px;
-  background:var(--primary);
-  color:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:13px;
-  font-weight:600;
-  box-shadow:0 4px 10px rgba(25,118,210,0.35);
-}
-.capitulo-titulo{
-  font-size:15px;
-  font-weight:600;
-}
-.capitulo-sub{
-  font-size:12px;
-  color:var(--muted);
-}
-.chevron{
-  font-size:16px;
-  color:var(--primary);
-  transition:transform .2s;
-}
-.capitulo.open .chevron{
-  transform:rotate(90deg);
-}
-.capitulo-body{
-  max-height:0;
-  overflow:hidden;
-  transition:max-height .25s ease-out, padding .2s;
-  padding:0 14px;
-  background:#ffffff;
-  border-top:1px solid rgba(0,0,0,0.04);
-}
+  /* ACCORDION */
+  .accordion-wrap {
+    margin-top: 40px;
+  }
+  details {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(26,58,92,0.08);
+    width: 100%;
+    margin-bottom: 24px;
+  }
+  details[open] summary .accordion-icon { transform: rotate(180deg); }
+  summary {
+    list-style: none;
+    cursor: pointer;
+    background: linear-gradient(135deg, var(--primary) 0%, #0d2440 100%);
+    border-left: 6px solid var(--accent);
+    padding: 0;
+    user-select: none;
+    transition: background 0.2s;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary:hover { background: linear-gradient(135deg, #1f4570 0%, #122d52 100%); }
+  .summary-inner {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 20px 28px;
+    flex-wrap: nowrap;
+  }
+  .summary-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+  }
+  .unidad-num {
+    font-family: sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .unidad-title {
+    color: white;
+    font-size: 1.18rem;
+    font-weight: bold;
+    font-family: Georgia, serif;
+  }
+  .summary-subtitle {
+    color: #a8c4e0;
+    font-size: 0.83rem;
+    font-family: sans-serif;
+    margin-top: 5px;
+  }
+  .accordion-icon {
+    color: var(--accent);
+    font-size: 1rem;
+    margin-left: 20px;
+    transition: transform 0.3s ease;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+  details .unidad-body {
+    background: white;
+    border: 1px solid var(--border);
+    border-top: none;
+    padding: 36px 36px 40px;
+  }
+  @media (max-width: 640px) {
+    .summary-inner { padding: 16px 18px; gap: 10px; }
+    details .unidad-body { padding: 20px; }
+  }
 
-/* contenido tipo carilla */
-.carilla-bloque{
-  margin-bottom:10px;
-  border-left:3px solid var(--primary-soft);
-  padding-left:10px;
-}
-.carilla-bloque h3{
-  margin:6px 0 2px;
-  font-size:14px;
-  color:#1a237e;
-}
-.carilla-bloque ul{
-  margin:4px 0 4px 14px;
-  padding:0;
-  font-size:13px;
-}
-.carilla-bloque li{
-  margin-bottom:4px;
-}
+  /* SECCIONES */
+  .seccion { margin-top: 36px; }
+  .seccion:first-child { margin-top: 0; }
+  h2 {
+    font-size: 1.4rem;
+    color: var(--primary);
+    margin-bottom: 12px;
+  }
+  h3 {
+    color: var(--primary);
+    font-size: 1.2rem;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+    margin-top: 32px;
+  }
+  h4 {
+    color: var(--secondary);
+    font-size: 1rem;
+    margin: 24px 0 10px;
+    font-family: sans-serif;
+  }
+  p { margin-bottom: 14px; }
+  ul, ol { margin: 10px 0 16px 24px; }
+  li { margin-bottom: 6px; }
 
-/* QUIZ colorido */
-.quiz-area{
-  margin-top:20px;
-  padding-top:12px;
-  border-top:1px dashed var(--border);
-}
-.quiz-titulo{
-  font-size:14px;
-  margin-bottom:6px;
-  font-weight:500;
-  color:#0f172a;
-}
-.quiz-grid{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-}
-.btn-quiz{
-  flex:1 1 150px;
-  border:none;
-  border-radius:999px;
-  padding:7px 11px;
-  font-size:13px;
-  cursor:pointer;
-  background:linear-gradient(135deg,#e3f2fd,#bbdefb);
-  color:#0d47a1;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  box-shadow:0 4px 12px rgba(21,101,192,0.25);
-}
-.btn-quiz span.badge{
-  background:rgba(255,255,255,0.85);
-  color:#0d47a1;
-  padding:1px 7px;
-  border-radius:999px;
-  font-size:11px;
-}
-.btn-quiz:hover{
-  filter:brightness(1.05);
-}
-.btn-quiz.active{
-  background:linear-gradient(135deg,#1976d2,#0d47a1);
-  color:#fff;
-}
-.btn-quiz.active span.badge{
-  background:rgba(255,255,255,.18);
-  color:#fff;
-}
-.quiz-panel{
-  margin-top:12px;
-  border-radius:12px;
-  border:1px solid var(--border);
-  padding:10px 12px;
-  background:#f9fbff;
-}
-.quiz-panel h2{
-  margin:0 0 6px;
-  font-size:15px;
-  color:#0f172a;
-}
-.pregunta-texto{
-  font-weight:600;
-  font-size:14px;
-}
-.opcion{
-  display:block;
-  margin:5px 0;
-  font-size:13px;
-}
-.opcion input{
-  accent-color:var(--primary);
-}
-.btn{
-  border:none;
-  border-radius:999px;
-  padding:6px 13px;
-  font-size:13px;
-  cursor:pointer;
-  background:var(--primary);
-  color:#fff;
-  box-shadow:0 4px 10px rgba(25,118,210,0.35);
-}
-.btn:disabled{
-  opacity:.5;
-  cursor:not-allowed;
-  box-shadow:none;
-}
-.contador{
-  font-size:12px;
-  color:var(--muted);
-  margin-left:8px;
-}
-.correcta{color:#2e7d32;}
-.incorrecta{color:#c62828;}
-.explicacion{
-  margin-top:6px;
-  font-size:12px;
-  padding:6px 8px;
-  border-left:3px solid var(--primary);
-  background:var(--primary-soft);
-}
+  /* FUENTE BADGE */
+  .zorrilla-tag {
+    display: inline-block;
+    background: var(--green-light);
+    color: var(--green);
+    border: 1px solid #a8d4bc;
+    font-size: 0.72rem;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-family: sans-serif;
+    font-weight: bold;
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+  .externo-tag {
+    display: inline-block;
+    background: #f0f0f0;
+    color: #555;
+    border: 1px solid #ccc;
+    font-size: 0.72rem;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-family: sans-serif;
+    vertical-align: middle;
+    margin-left: 8px;
+  }
 
-/* FOOTER pequeño */
-footer{
-  text-align:center;
-  font-size:11px;
-  color:var(--muted);
-  margin-bottom:10px;
-}
+  /* CALLOUTS */
+  .callout {
+    border-left: 4px solid;
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+    font-size: 0.95rem;
+  }
+  .callout-def { border-color: var(--secondary); background: #eef4fb; }
+  .callout-key { border-color: var(--accent); background: var(--yellow-light); }
+  .callout-warn { border-color: #c0392b; background: var(--red-light); }
+  .callout-source { border-color: var(--green); background: var(--green-light); }
+  .callout-title {
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .callout-def .callout-title { color: var(--secondary); }
+  .callout-key .callout-title { color: #a07820; }
+  .callout-warn .callout-title { color: #c0392b; }
+  .callout-source .callout-title { color: var(--green); }
 
-/* RESPONSIVE */
-@media (max-width:640px){
-  header h1{font-size:22px;}
-  .cuaderno{padding:18px 14px;}
-  .quiz-grid{flex-direction:column;}
-}
+  /* CITA TEXTUAL */
+  blockquote {
+    border-left: 4px solid var(--accent);
+    background: var(--yellow-light);
+    padding: 14px 20px;
+    margin: 20px 0;
+    font-style: italic;
+    border-radius: 0 6px 6px 0;
+  }
+  blockquote cite {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.85rem;
+    font-style: normal;
+    color: var(--muted);
+  }
+
+  /* TABLA */
+  .tabla-wrap { overflow-x: auto; margin: 20px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  thead tr { background: var(--primary); color: white; }
+  th { padding: 10px 14px; text-align: left; font-family: sans-serif; font-weight: 600; }
+  td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+  tbody tr:nth-child(even) { background: #f8fafc; }
+  tbody tr:hover { background: #eef4fb; }
+
+  /* NOTA AL PIE */
+  .nota {
+    font-size: 0.82rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    margin-top: 20px;
+    padding-top: 12px;
+    font-family: sans-serif;
+    font-style: italic;
+  }
+
+  /* LEYENDA */
+  .leyenda {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 32px 0 0;
+    font-family: sans-serif;
+    font-size: 0.85rem;
+  }
+  .leyenda strong { display: block; margin-bottom: 8px; color: var(--primary); }
+  .leyenda span { margin-right: 20px; display: inline-block; }
+
+  /* QUIZ */
+  .quiz-section {
+    background: var(--primary);
+    border-radius: 10px;
+    padding: 32px;
+    margin-top: 48px;
+    color: white;
+  }
+  .quiz-section h2 { color: white; border: none; margin-bottom: 24px; font-size: 1.3rem; }
+
+  .quiz-accordion {
+    margin-bottom: 18px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .quiz-summary {
+    list-style: none;
+    cursor: pointer;
+    display: block;
+  }
+  .quiz-summary::-webkit-details-marker { display: none; }
+
+  .quiz-summary-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px 14px 20px;
+    gap: 16px;
+  }
+  .quiz-summary-left {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .quiz-label {
+    font-family: sans-serif;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+  }
+  .quiz-title {
+    font-family: Georgia, serif;
+    font-size: 1.02rem;
+    font-weight: 700;
+  }
+  .quiz-subtitle {
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    opacity: 0.92;
+  }
+  .quiz-accordion-icon {
+    font-size: 1rem;
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+  }
+  .quiz-accordion details[open] .quiz-accordion-icon { transform: rotate(180deg); }
+
+  .quiz-accordion details {
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(0,0,0,0.15);
+  }
+  .quiz-body {
+    background: rgba(0,0,0,0.15);
+    padding: 18px 18px 22px;
+  }
+  .quiz-form { margin: 0; }
+
+  .quiz-easy > details > summary {
+    background: linear-gradient(135deg, #16653a, #1e7b4a);
+  }
+  .quiz-easy .quiz-label { color: #b8f5c7; }
+
+  .quiz-medium > details > summary {
+    background: linear-gradient(135deg, #b88a1a, #d4a624);
+  }
+  .quiz-medium .quiz-label { color: #fff4c2; }
+
+  .quiz-hard > details > summary {
+    background: linear-gradient(135deg, #8b2020, #b52c2c);
+  }
+  .quiz-hard .quiz-label { color: #ffd2d2; }
+
+  .quiz-pregunta {
+    background: rgba(255,255,255,0.04);
+    border-radius: 8px;
+    padding: 14px 14px 10px;
+    margin-bottom: 10px;
+    border-left: 3px solid var(--accent);
+  }
+  .quiz-pregunta .num {
+    font-size: 0.75rem;
+    color: var(--accent);
+    font-family: sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .quiz-pregunta p { margin: 0 0 6px; color: #e0eaf5; }
+
+  .quiz-opciones {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .quiz-opcion {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.9rem;
+  }
+  .quiz-opcion input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    margin-top: 2px;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+    background: transparent;
+    transition: all 0.2s ease;
+  }
+  .quiz-opcion input[type="checkbox"]:checked {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .quiz-opcion input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .quiz-opcion input[type="checkbox"]:hover {
+    border-color: #e0a830;
+    background: rgba(200, 151, 58, 0.1);
+  }
+  .quiz-opcion span { color: #f1f5ff; }
+
+  .quiz-explicacion {
+    display: none;
+    background: rgba(139,32,32,0.25);
+    border-left: 3px solid #e57373;
+    color: #ffd2d2;
+    padding: 10px 14px;
+    margin-top: 6px;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    font-family: sans-serif;
+  }
+  .quiz-opcion.incorrecta-marcada .quiz-explicacion {
+    display: block;
+  }
+  .quiz-opcion.correcta-marcada {
+    background: rgba(30,107,74,0.3);
+    border-radius: 6px;
+    padding: 4px 8px;
+  }
+  .quiz-opcion.incorrecta-marcada {
+    background: rgba(139,32,32,0.2);
+    border-radius: 6px;
+    padding: 4px 8px;
+  }
+
+  .quiz-submit-area {
+    margin-top: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .quiz-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 10px 28px;
+    border-radius: 24px;
+    font-family: sans-serif;
+    font-size: 0.92rem;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .quiz-btn:hover { background: #e0a830; transform: translateY(-1px); }
+  .quiz-btn:active { transform: translateY(0); }
+  .quiz-result {
+    font-family: sans-serif;
+    font-size: 0.93rem;
+    width: 100%;
+  }
+  .res-ok {
+    display: block;
+    background: rgba(30,107,74,0.35);
+    border: 1px solid #4caf80;
+    color: #b8ffd4;
+    border-radius: 8px;
+    padding: 12px 16px;
+    line-height: 1.5;
+  }
+  .res-fail {
+    display: block;
+    background: rgba(139,32,32,0.35);
+    border: 1px solid #e57373;
+    color: #ffd2d2;
+    border-radius: 8px;
+    padding: 12px 16px;
+    line-height: 1.5;
+  }
+  .res-excellent {
+    display: block;
+    background: rgba(30,58,92,0.5);
+    border: 2px solid var(--accent);
+    color: #fff9e6;
+    border-radius: 8px;
+    padding: 12px 16px;
+    line-height: 1.6;
+    font-size: 0.96rem;
+  }
+
+  footer {
+    background: var(--primary);
+    color: #a8c4e0;
+    text-align: center;
+    padding: 20px;
+    font-family: sans-serif;
+    font-size: 0.82rem;
+    margin-top: 60px;
+  }
+
+  @media (max-width: 640px) {
+    header h1 { font-size: 1.5rem; }
+    .unidad-body { padding: 20px; }
+    .quiz-section { padding: 24px 18px; }
+  }
 </style>
 </head>
 <body>
+
 <header>
   <h1>Historia Social Latinoamericana – Material de repaso</h1>
-  <p>Basado en el programa y en el libro de HSL – del prof. Zorrilla.</p>
-  <div class="pill">Capítulos en modo carilla + quizzes por tema</div>
+  <p>Basado en el programa de HSL y en el libro de Historia Social Latinoamericana del prof. Zorrilla.</p>
+  <div class="source-badge">Programa HSL · UNA – Derecho y Ciencias Políticas</div>
 </header>
 
-<main>
-  <div class="cuaderno">
-    <p class="intro">
-      Desplegá cada capítulo como si fuera una carilla de apuntes y después practicá con el quiz de ese capítulo.
-    </p>
+<nav>
+  <a href="#u1">Unidad 1 · Historia social y época colonial</a>
+  <a href="#u2">Unidad 2 · Estados nacionales y positivismo</a>
+  <a href="#u3">Unidad 3 · Transición al capitalismo periférico</a>
+</nav>
 
-    <!-- =================== CAPÍTULOS / CARILLAS =================== -->
-    <!-- Capítulo 1 -->
-    <div class="capitulo" data-cap="1">
-      <div class="capitulo-header">
-        <div class="cap-left">
-          <div class="cap-badge">1</div>
-          <div>
-            <div class="capitulo-titulo">Capítulo 1 – Historia social y época colonial</div>
-            <div class="capitulo-sub">Historia social, pensamiento social latinoamericano, bases de la ocupación, comercio colonial y fin de la era colonial.</div>
+<main class="container">
+
+  <section class="leyenda">
+    <strong>Leyenda de fuentes</strong>
+    <span>■ <span style="color:var(--green);font-weight:bold;">Zorrilla</span>: Contenido del libro <em>Historia Social Latinoamericana</em>.</span>
+    <span>■ <span style="color:#555;font-weight:bold;">Complementario</span>: Material externo / notas de cátedra.</span>
+  </section>
+
+  <section class="accordion-wrap">
+
+    <!-- ================= UNIDAD 1 ================= -->
+    <details id="u1" open>
+      <summary>
+        <div class="summary-inner">
+          <div class="summary-left">
+            <div class="unidad-num">UNIDAD 1</div>
+            <div class="unidad-title">Historia social e historia colonial latinoamericana</div>
+            <div class="summary-subtitle">
+              Historia social · Significados · Pensamiento social latinoamericano · Bases económicas de la ocupación · Encomienda · Comercio colonial · Polos de crecimiento · Feudalismo · Fuerzas centrífugas y centrípetas · Fin de la era colonial.
+            </div>
+          </div>
+          <div class="accordion-icon">▼</div>
+        </div>
+      </summary>
+      <div class="unidad-body">
+
+        <div class="seccion">
+          <h2>1. Historia social. Significado de la historia</h2>
+
+          <h3>1.1 Significados de la historia <span class="zorrilla-tag">Zorrilla §1.1</span></h3>
+          <p>
+            La historia es la «disciplina que estudia y narra cronológicamente los acontecimientos pasados», especialmente los hechos realizados por el ser humano que repercuten en el presente. No existe, sin embargo, una única definición porque la noción de historia cambió según las épocas.
+          </p>
+          <ul>
+            <li><strong>Antigüedad:</strong> la historia se entendía como investigación y relato de testigos directos; predominaba la tradición oral y las primeras crónicas escritas.</li>
+            <li><strong>Edad Media:</strong> se enfatizaban los relatos sobre acontecimientos pasados —remotos y recientes— como parte de una visión providencial cristiana.</li>
+            <li><strong>Siglo XIX:</strong> con Leopold von Ranke la historia se consolida como disciplina científica universitaria, basada en crítica de fuentes y archivo.</li>
+          </ul>
+
+          <div class="callout callout-def">
+            <div class="callout-title">Idea clave</div>
+            La historia no es solo una «lista de fechas», sino un análisis crítico de procesos y estructuras que conectan pasado y presente.
+          </div>
+
+          <h3>1.2 Historia social <span class="zorrilla-tag">Zorrilla §1.2</span></h3>
+          <p>
+            La historia social es una rama que estudia las sociedades humanas poniendo el foco en la vida cotidiana, las prácticas y las relaciones de los grupos sociales —especialmente los sectores subalternos—, en lugar de centrarse exclusivamente en grandes personajes o hechos políticos.
+          </p>
+          <ul>
+            <li>Se apoya en el <strong>materialismo histórico</strong> de raíz marxista, que vincula las condiciones materiales de producción con las formas de vida social y política.</li>
+            <li>Corrientes como la <strong>Escuela de Annales</strong> en Francia y la revista <em>Past and Present</em> en Inglaterra ayudaron a unir historia económica e historia social.</li>
+          </ul>
+
+          <h3>1.3 Introducción a nuestra historia y pensamiento social latinoamericano <span class="zorrilla-tag">Zorrilla §1.3</span></h3>
+          <p>
+            Antes de la conquista, América era un continente densamente poblado y culturalmente diverso, con entre 40 y 60 millones de habitantes que hablaban alrededor de 1.200 lenguas, agrupadas en unas 120 familias lingüísticas.
+          </p>
+          <p>
+            La conquista y la colonización españolas intentaron imponer la idea de que América era un «territorio de salvajes y bárbaros». Zorrilla contrasta la visión de Draper —destrucción de civilizaciones avanzadas— con la de Hanke —intento de aplicar justicia cristiana— y propone una lectura crítica que reconozca simultáneamente violencia y debates ético‑jurídicos.
+          </p>
+
+          <h3>1.4 Representantes del pensamiento social latinoamericano <span class="zorrilla-tag">Zorrilla §1.3</span></h3>
+          <div class="tabla-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Autor</th>
+                  <th>País</th>
+                  <th>Aporte principal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>José Martí</td>
+                  <td>Cuba</td>
+                  <td>Concepto de «Nuestra América»; crítica al imperialismo y defensa de la identidad latinoamericana.</td>
+                </tr>
+                <tr>
+                  <td>José Carlos Mariátegui</td>
+                  <td>Perú</td>
+                  <td>Adaptó el marxismo a la realidad indígena y agraria andina en sus <em>7 Ensayos</em>.</td>
+                </tr>
+                <tr>
+                  <td>Leopoldo Zea</td>
+                  <td>México</td>
+                  <td>Interpretó el positivismo como etapa necesaria hacia una filosofía latinoamericana auténtica.</td>
+                </tr>
+                <tr>
+                  <td>José Vasconcelos</td>
+                  <td>México</td>
+                  <td>Idea de la «raza cósmica» como reivindicación de la identidad mestiza.</td>
+                </tr>
+                <tr>
+                  <td>Enrique Rodó</td>
+                  <td>Uruguay</td>
+                  <td><em>Ariel</em>: crítica al utilitarismo y defensa de un idealismo latinoamericano.</td>
+                </tr>
+                <tr>
+                  <td>Gino Germani</td>
+                  <td>Argentina</td>
+                  <td>Estudios sobre modernización, clases medias y procesos de cambio social en la región.</td>
+                </tr>
+                <tr>
+                  <td>Boaventura de Sousa Santos</td>
+                  <td>Portugal/Brasil</td>
+                  <td>Crítica a la «sociología de las ausencias» y propuesta de epistemologías del Sur.</td>
+                </tr>
+                <tr>
+                  <td>Augusto Salazar Bondy</td>
+                  <td>Perú</td>
+                  <td>Denuncia de la «filosofía inauténtica» y reflexión sobre la dependencia cultural.</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
-        <div class="chevron">▶</div>
-      </div>
-      <div class="capitulo-body">
-        <div class="carilla-bloque">
-          <h3>1. Historia social y pensamiento latinoamericano</h3>
-          <ul>
-            <li>La historia social estudia la vida cotidiana, los grupos sociales y las estructuras que articulan economía y poder.</li>
-            <li>El pensamiento social latinoamericano reflexiona sobre identidad, dependencia y colonialidad (Martí, Mariátegui, Zea, Vasconcelos, Rodó, Germani, entre otros).</li>
-          </ul>
-        </div>
-        <div class="carilla-bloque">
-          <h3>2. Bases económicas y sociales de la ocupación</h3>
-          <ul>
-            <li>Conquista organizada mediante Capitulaciones, donde la Corona delega exploración y sometimiento de territorios a particulares.</li>
-            <li>Encomienda: comunidades indígenas asignadas a encomenderos, que cobran tributo y trabajo a cambio de protección y evangelización.</li>
-            <li>Acción individual de los conquistadores, movida por el interés privado y el reparto del botín.</li>
-          </ul>
-        </div>
-        <div class="carilla-bloque">
-          <h3>3. Comercio colonial y polos de crecimiento</h3>
-          <ul>
-            <li>Oro y plata como eje de la economía; desarrollo de centros mineros que generan redes regionales de abastecimiento.</li>
-            <li>Surgen polos de crecimiento integrados al mercado mundial y zonas más periféricas o rezagadas.</li>
-          </ul>
-        </div>
-        <div class="carilla-bloque">
-          <h3>4. Orígenes del feudalismo latinoamericano</h3>
-          <ul>
-            <li>Declive de la minería y consolidación de la gran propiedad agraria como base del poder local.</li>
-            <li>Formación de latifundios y relaciones de dominación personal sobre comunidades campesinas e indígenas.</li>
-          </ul>
-        </div>
-        <div class="carilla-bloque">
-          <h3>5. Fuerzas centrífugas y centrípetas / fin de la era colonial</h3>
-          <ul>
-            <li>Unidad política y espiritual de los imperios ibéricos frente a la heterogeneidad social y regional de América.</li>
-            <li>Crisis económicas, reformas borbónicas y conflictos internos que preparan el derrumbe del orden colonial.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
 
-    <!-- Capítulo 2 -->
-    <div class="capitulo" data-cap="2">
-      <div class="capitulo-header">
-        <div class="cap-left">
-          <div class="cap-badge">2</div>
-          <div>
-            <div class="capitulo-titulo">Capítulo 2 – Estados nacionales y positivismo</div>
-            <div class="capitulo-sub">Movimientos independentistas, nacionalismo, transición del feudalismo y emergencia del capitalismo.</div>
+        <div class="seccion">
+          <h2>2. Bases económicas y sociales de la ocupación territorial</h2>
+
+          <h3>2.1 Acción individual, Capitulaciones y encomienda <span class="zorrilla-tag">Zorrilla §2.1–2.1.2</span></h3>
+
+          <blockquote>
+            «Los rasgos esenciales de la estructura social de los países latinoamericanos se originan en la forma que tomó la conquista española y las instituciones que implantaron españoles y portugueses, con fines económicos».
+            <cite>Celso Furtado, citado por Zorrilla</cite>
+          </blockquote>
+
+          <p>
+            La conquista se desarrolló en un contexto de Estado fuertemente centralizado por la Reconquista, pero con regiones peninsulares todavía feudales y un capitalismo comercial tardío. España optó por delegar gran parte de la expansión americana a particulares.
+          </p>
+
+          <h4>Capitulaciones</h4>
+          <p>
+            Las Capitulaciones fueron contratos públicos entre la Corona y particulares (Colón, adelantados, conquistadores), que otorgaban derechos de exploración, conquista y repartos de tierras y tributos a cambio de lealtad y evangelización.
+          </p>
+
+          <h4>La encomienda</h4>
+          <p>
+            La encomienda fue la institución socioeconómica que organizó trabajo y tributo indígena en favor de los encomenderos:
+          </p>
+          <ul>
+            <li>El Rey asignaba un conjunto de indígenas a un encomendero como recompensa por servicios militares o administrativos.</li>
+            <li>Los indígenas debían tributo (productos agrícolas, textiles, trabajo en minas o tierras) y recibían a cambio supuesta protección y cristianización.</li>
+            <li>El objetivo práctico fue movilizar excedentes para la extracción de metales preciosos y el consumo de bienes europeos.</li>
+          </ul>
+
+          <h4>Señor feudal vs. encomendero</h4>
+          <div class="tabla-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Aspecto</th>
+                  <th>Señor feudal (España)</th>
+                  <th>Encomendero (América)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Destino del excedente</td>
+                  <td>Se reinvierte en la región bajo su dominio.</td>
+                  <td>Se extrae para enviarlo a Europa y mejorar la posición del encomendero en la metrópoli.</td>
+                </tr>
+                <tr>
+                  <td>Base productiva</td>
+                  <td>Excedente agrícola y rentas señoriales.</td>
+                  <td>Tributo indígena + minería de metales preciosos.</td>
+                </tr>
+                <tr>
+                  <td>Relación con el Estado</td>
+                  <td>Autonomía señorial frente a la monarquía.</td>
+                  <td>Concesión directa del Rey; parte de la administración imperial.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>2.2 Pérdida de importancia y fin de la encomienda <span class="zorrilla-tag">Zorrilla §2.1.2.2.4–2.1.2.2.5</span></h3>
+          <ul>
+            <li><strong>Crisis demográfica:</strong> la caída drástica de la población indígena dificultó sostener el sistema.</li>
+            <li><strong>Diversificación económica:</strong> minería, comercio y nuevas formas de agricultura demandaron otros arreglos laborales.</li>
+            <li><strong>Cambios legales:</strong> denuncias de abusos (dominicos, Las Casas) dieron lugar a Leyes de Burgos (1512) y Leyes Nuevas (1542); la abolición formal llegó en 1791.</li>
+          </ul>
+        </div>
+
+        <div class="seccion">
+          <h2>3. Comercio colonial, polos de crecimiento y orígenes del feudalismo</h2>
+
+          <h3>3.1 Oro y plata: minería y red económica colonial <span class="zorrilla-tag">Zorrilla §2.2</span></h3>
+          <ul>
+            <li>Fase inicial de <strong>saqueo</strong> de tesoros prehispánicos, seguida por búsqueda de oro de aluvión.</li>
+            <li>Consolidación de la <strong>plata</strong> a partir de mediados del siglo XVI gracias a la técnica de amalgama con mercurio (Huancavelica).</li>
+            <li>Centros clave: <strong>Potosí</strong> (Bolivia) y <strong>Zacatecas</strong> (México); pago del «quinto real» (20% de la producción) a la Corona.</li>
+          </ul>
+
+          <h3>3.2 Polos de crecimiento y redes regionales <span class="zorrilla-tag">Zorrilla §2.2.3</span></h3>
+          <p>
+            Aunque la plata estaba dirigida a la exportación, generó una densa red económica interna:
+          </p>
+          <ul>
+            <li>Regiones como Chile y el noroeste argentino abastecían de alimentos, mulas y vino a las zonas mineras.</li>
+            <li>Se consolidan rutas comerciales interiores que articulan virreinatos y audiencias.</li>
+          </ul>
+
+          <h3>3.3 Gran propiedad y latifundio <span class="zorrilla-tag">Zorrilla §2.2.4</span></h3>
+          <ul>
+            <li>Las <strong>mercedes de tierras</strong> (donaciones) pasan de incentivo militar a base del poder económico local.</li>
+            <li>Al declinar la minería en el siglo XVII, la gran propiedad rural se convierte en el eje de la estructura social.</li>
+            <li>Se consolidan <strong>latifundios</strong> con unidades autosuficientes, escasa presencia estatal y control personal sobre la población campesina.</li>
+          </ul>
+
+          <h3>3.4 Fuerzas centrífugas y centrípetas. Final de la era colonial <span class="zorrilla-tag">Zorrilla Cap. II §1–3</span></h3>
+          <div class="tabla-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Tipo de fuerza</th>
+                  <th>Actores</th>
+                  <th>Tendencia</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Centrípetas (hacia el centro)</td>
+                  <td>Corona, virreyes, audiencias, Iglesia, Casa de Contratación, derecho indiano.</td>
+                  <td>Centralizar el control político y económico en la metrópoli.</td>
+                </tr>
+                <tr>
+                  <td>Centrífugas (hacia la periferia)</td>
+                  <td>Encomenderos y hacendados, cabildos, economías regionales, contrabando, rebeliones.</td>
+                  <td>Autonomía y fragmentación del poder central; preparación del caudillismo posterior.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4>Factores del colapso colonial</h4>
+          <ul>
+            <li>Crisis fiscal de la Corona y aumento de impuestos a las colonias.</li>
+            <li>Exclusión de los criollos de los cargos altos y tensiones del sistema de castas.</li>
+            <li>Influencia de la Ilustración, revoluciones de Estados Unidos y Francia, y guerras napoleónicas.</li>
+          </ul>
+        </div>
+
+        <p class="nota">
+          Esta unidad combina el capítulo introductorio de Zorrilla (historia social y pensamiento latinoamericano) con el capítulo sobre bases económicas de la colonización, encomienda, comercio colonial, polos de crecimiento y fin de la era colonial.
+        </p>
+
+      </div>
+    </details>
+
+    <!-- ================= UNIDAD 2 ================= -->
+    <details id="u2">
+      <summary>
+        <div class="summary-inner">
+          <div class="summary-left">
+            <div class="unidad-num">UNIDAD 2</div>
+            <div class="unidad-title">Formación de los Estados nacionales y positivismo latinoamericano</div>
+            <div class="summary-subtitle">
+              Formación de los Estados nacionales · Movimientos independentistas · Factores políticos · Nacionalismo · Independencias tardías · Del feudalismo a la conciencia nacional · Emergencia del capitalismo · Positivismo latinoamericano.
+            </div>
+          </div>
+          <div class="accordion-icon">▼</div>
+        </div>
+      </summary>
+      <div class="unidad-body">
+
+        <div class="seccion">
+          <h2>1. De la crisis colonial a la formación de los Estados nacionales</h2>
+
+          <h3>1.1 Factores internos y externos de la independencia <span class="zorrilla-tag">Zorrilla Cap. II §1–3</span></h3>
+          <h4>Factores internos</h4>
+          <ul>
+            <li><strong>Crisis fiscal:</strong> aumento de impuestos y reformas borbónicas que afectaron intereses criollos.</li>
+            <li><strong>Segregación criolla:</strong> exclusión de los americanos de origen europeo de los cargos más altos, reservados a peninsulares.</li>
+            <li><strong>Conflictos sociales:</strong> tensiones del sistema de castas y levantamientos indígenas y esclavos.</li>
+          </ul>
+
+          <h4>Factores externos</h4>
+          <ul>
+            <li>Difusión de las ideas de la <strong>Ilustración</strong>: libertad, igualdad, soberanía popular.</li>
+            <li>Ejemplos de la <strong>Revolución Norteamericana</strong> (1776) y la <strong>Revolución Francesa</strong> (1789).</li>
+            <li>Guerras napoleónicas e invasión de España: crisis de legitimidad de la monarquía y vacío de poder.</li>
+          </ul>
+
+          <div class="callout callout-key">
+            <div class="callout-title">Movimiento independentista</div>
+            Dos grandes tendencias: una burguesía criolla que buscaba modernizar comercio y Estado sin alterar demasiado el orden social, y corrientes más radicales que pretendían incorporar a indígenas, esclavos y sectores populares.
           </div>
         </div>
-        <div class="chevron">▶</div>
-      </div>
-      <div class="capitulo-body">
-        <div class="carilla-bloque">
-          <h3>1. Deterioro de los imperios ibéricos</h3>
-          <ul>
-            <li>Monarquías ibéricas endeudadas, economías agrarias y uso del metal americano para pagar importaciones industriales europeas.</li>
-            <li>Ideas ilustradas y crisis políticas internas erosionan el absolutismo y la legitimidad de la metrópoli.</li>
-          </ul>
-        </div>
-        <div class="carilla-bloque">
-          <h3>2. Situación de la colonia y movimientos independentistas</h3>
-          <ul>
-            <li>Contrabando, rebeliones indígenas y esclavas muestran las tensiones estructurales del orden colonial.</li>
-            <li>Independencias impulsadas por élites criollas con ritmos distintos (Haití, Río de la Plata, Venezuela, México, Brasil, etc.).</li>
-          </ul>
-        </div>
-        <div class="carilla-bloque">
-          <h3>3. Formación de los Estados nacionales</h3>
-          <ul>
-            <li>Desarme del orden virreinal y construcción de repúblicas con instituciones, territorios y ciudadanías propias.</li>
-            <li>Autonomía regional fuerte, caudillismo y dificultades para consolidar Estados centralizados y estables.</li>
-          </ul>
-        </div>
-        <div class="carilla-bloque">
-          <h3>4. Emergencia del capitalismo y positivismo</h3>
-          <ul>
-            <li>Inserción en el mercado mundial como exportadores de materias primas, consolidando un capitalismo dependiente.</li>
-            <li>Positivismo latinoamericano: fe en la ciencia, el orden y el Estado fuerte como motor de modernización (“orden y progreso”).</li>
-          </ul>
-        </div>
-      </div>
-    </div>
 
-    <!-- Capítulo 3 -->
-    <div class="capitulo" data-cap="3">
-      <div class="capitulo-header">
-        <div class="cap-left">
-          <div class="cap-badge">3</div>
-          <div>
-            <div class="capitulo-titulo">Capítulo 3 – Transición al capitalismo periférico</div>
-            <div class="capitulo-sub">Economía atlántica, auge del siglo XVIII, reformas liberales y cambio social.</div>
+        <div class="seccion">
+          <h2>2. Movimientos independentistas, nacionalismo e independencias tardías</h2>
+
+          <h3>2.1 Movimientos independentistas y factores políticos <span class="zorrilla-tag">Zorrilla Cap. II §3</span></h3>
+          <p>
+            Entre finales del siglo XVIII y la primera mitad del XIX, la mayor parte de Hispanoamérica rompe definitivamente con la monarquía española: Caracas, Buenos Aires, México, Bogotá, Santiago y otras ciudades se convierten en centros revolucionarios.
+          </p>
+          <ul>
+            <li>Se forman <strong>juntas</strong> locales en nombre del Rey ausente, que luego derivan en gobiernos autónomos.</li>
+            <li>Aparecen líderes carismáticos (Bolívar, San Martín, Morelos, Artigas) que combinan guerra de independencia y construcción de un nuevo orden.</li>
+          </ul>
+
+          <h3>2.2 Nacionalismo e independencias tardías <span class="zorrilla-tag">Zorrilla Cap. II §3.1–3.1.4</span></h3>
+          <ul>
+            <li>El <strong>nacionalismo</strong> articula una comunidad imaginada («americanos», «mexicanos», «argentinos») frente al dominio peninsular.</li>
+            <li>Se definen símbolos (banderas, himnos, efemérides) y se reescribe el pasado colonial para legitimar las nuevas repúblicas.</li>
+          </ul>
+          <p>
+            Las independencias tardías presentan trayectorias propias:
+          </p>
+          <ul>
+            <li><strong>Brasil:</strong> independencia relativamente negociada (1822) con mantenimiento de la monarquía y continuidad de la esclavitud.</li>
+            <li><strong>Cuba y Puerto Rico:</strong> permanecen bajo dominio español hasta el final del siglo XIX; su independencia se vincula a la guerra hispano‑estadounidense.</li>
+          </ul>
+        </div>
+
+        <div class="seccion">
+          <h2>3. Del feudalismo latinoamericano a la conciencia nacional</h2>
+
+          <h3>3.1 Continuidades y rupturas tras la independencia <span class="zorrilla-tag">Zorrilla Cap. II §4</span></h3>
+          <p>
+            La independencia desmanteló el orden imperial, pero no eliminó de inmediato las estructuras señoriales y latifundistas heredadas del período colonial. Muchas élites criollas mantuvieron el control de la tierra y de la mano de obra.
+          </p>
+          <ul>
+            <li>Persisten relaciones de dependencia personal en el campo (peonaje, inquilinaje, arrendamientos abusivos).</li>
+            <li>La ciudadanía formal convive con exclusión política y social de indígenas, afrodescendientes y sectores populares.</li>
+          </ul>
+
+          <h3>3.2 Formación de la conciencia nacional</h3>
+          <div class="callout callout-def">
+            <div class="callout-title">Conciencia nacional</div>
+            Es el proceso por el cual distintos grupos sociales comienzan a reconocerse como parte de una misma comunidad política (la nación), más allá de identidades locales, corporativas o de casta.
+          </div>
+          <ul>
+            <li>Escuela pública, servicio militar y rituales cívicos ayudan a construir una identidad nacional compartida.</li>
+            <li>Sin embargo, la integración es desigual: muchas comunidades indígenas y rurales permanecen semi‑excluidas.</li>
+          </ul>
+        </div>
+
+        <div class="seccion">
+          <h2>4. Emergencia del capitalismo en América Latina</h2>
+
+          <h3>4.1 Inserción en el mercado mundial <span class="zorrilla-tag">Zorrilla Cap. II §5</span></h3>
+          <p>
+            Durante el siglo XIX, las nuevas repúblicas se integran al capitalismo mundial como <strong>economías exportadoras de materias primas</strong> (lana, carne, café, azúcar, caucho, minerales), mientras importan manufacturas e instrumentos de crédito.
+          </p>
+          <ul>
+            <li>Relación centro–periferia: Europa (y luego Estados Unidos) como centro industrial‑financiero; América Latina como periferia proveedora de insumos.</li>
+            <li>Dependencia de pocos productos y mercados: vulnerabilidad frente a las oscilaciones de precios internacionales.</li>
+          </ul>
+
+          <h3>4.2 Transformaciones internas</h3>
+          <ul>
+            <li>Consolidación de <strong>oligarquías terratenientes</strong> y comerciales ligadas al mercado externo.</li>
+            <li>Expansión de ferrocarriles, puertos y ciudades portuarias como Buenos Aires, Río de Janeiro, Montevideo, Valparaíso.</li>
+          </ul>
+
+        </div>
+
+        <div class="seccion">
+          <h2>5. Positivismo latinoamericano</h2>
+
+          <h3>5.1 Rasgos generales <span class="zorrilla-tag">Zorrilla Cap. II §6</span></h3>
+          <p>
+            El positivismo, fundado por Auguste Comte, defendía la idea de que la humanidad pasa por tres etapas —teológica, metafísica y positiva—, siendo esta última la de la ciencia y el método experimental. En América Latina se adoptó como ideología de modernización estatal.
+          </p>
+          <ul>
+            <li>Fe en la <strong>ciencia</strong> y el progreso técnico.</li>
+            <li>Defensa del <strong>orden</strong> como condición para el progreso.</li>
+            <li>Proyecto de Estados fuertes, laicos y centralizados, con educación pública y estadísticas.</li>
+          </ul>
+
+          <h3>5.2 Expresiones nacionales</h3>
+          <ul>
+            <li><strong>Brasil:</strong> el lema «Ordem e Progresso» en la bandera es una síntesis del positivismo comtiano.</li>
+            <li><strong>México:</strong> Gabino Barreda y los científicos porfiristas aplican el positivismo a la reforma educativa y al discurso del progreso.</li>
+            <li><strong>Cono Sur:</strong> en Argentina, Uruguay y Chile se asocia a políticas laicas, educación masiva y proyectos de inmigración europea.</li>
+          </ul>
+
+          <h3>5.3 Críticas y reacciones</h3>
+          <p>
+            El positivismo generó también un <strong>darwinismo social</strong> que justificó jerarquías raciales y desigualdad como «ley natural», y fue cuestionado por corrientes como la Generación del Centenario (Rodó, Vasconcelos, Mariátegui), que reivindicaron la dimensión espiritual, mestiza e indígena de América Latina.
+          </p>
+        </div>
+
+        <p class="nota">
+          Esta unidad articula el capítulo de Zorrilla sobre formación de los Estados nacionales con el análisis de la emergencia del capitalismo dependiente y el positivismo latinoamericano como ideología de modernización.
+        </p>
+
+      </div>
+    </details>
+
+    <!-- ================= UNIDAD 3 ================= -->
+    <details id="u3">
+      <summary>
+        <div class="summary-inner">
+          <div class="summary-left">
+            <div class="unidad-num">UNIDAD 3</div>
+            <div class="unidad-title">Transición al capitalismo periférico</div>
+            <div class="summary-subtitle">
+              Transición · Capitalismo periférico · Economía atlántica y revolución industrial · Auge americano del siglo XVIII · Proceso de cambio social y sus características básicas.
+            </div>
+          </div>
+          <div class="accordion-icon">▼</div>
+        </div>
+      </summary>
+      <div class="unidad-body">
+
+        <div class="seccion">
+          <h2>1. Transición al capitalismo periférico</h2>
+
+          <h3>1.1 Situación general <span class="zorrilla-tag">Zorrilla Cap. III §1–1.1</span></h3>
+          <p>
+            La transición al capitalismo periférico describe el pasaje desde estructuras coloniales mercantilistas a una inserción capitalista dependiente, en la cual América Latina se integra al mercado mundial en posición subordinada.
+          </p>
+          <ul>
+            <li>Formalmente independiente, pero económicamente dependiente de centros industriales y financieros.</li>
+            <li>Especialización en exportación de bienes primarios (agro‑minerales), importación de manufacturas y capital.</li>
+          </ul>
+
+          <div class="callout callout-def">
+            <div class="callout-title">Capitalismo periférico</div>
+            Modelo en el cual las economías latinoamericanas forman parte del sistema capitalista mundial, pero ocupan una posición subordinada en términos de tecnología, finanzas y capacidad de decisión.
           </div>
         </div>
-        <div class="chevron">▶</div>
+
+        <div class="seccion">
+          <h2>2. Bases de la transición: economía atlántica y revolución industrial</h2>
+
+          <h3>2.1 Economía atlántica y revolución industrial <span class="zorrilla-tag">Zorrilla Cap. III §1.2</span></h3>
+          <ul>
+            <li>La <strong>revolución industrial</strong> en Europa incrementó la demanda de materias primas (algodón, guano, caucho, alimentos) y de mercados para sus productos.</li>
+            <li>El Atlántico se consolidó como eje de circulación de mercancías, capitales y personas entre Europa y América.</li>
+          </ul>
+          <p>
+            La expansión ferroviaria, el telégrafo y la navegación a vapor redujeron costos de transporte e integración, facilitando que productos latinoamericanos llegaran más rápido y en mayor volumen a los mercados europeos.
+          </p>
+
+          <h3>2.2 Auge americano del siglo XVIII <span class="zorrilla-tag">Zorrilla Cap. III §1.2</span></h3>
+          <p>
+            Ya en el siglo XVIII, antes de la independencia, se observan signos del «auge americano»: crecimiento de la producción de metales y productos agrícolas, reformas borbónicas que liberalizan parcialmente el comercio y nuevas rutas internas.
+          </p>
+          <ul>
+            <li>Reorientación del comercio desde Lima hacia Buenos Aires con el Reglamento de Libre Comercio (1778).</li>
+            <li>Expansión de economías regionales que se especializan en abastecer el mercado mundial.</li>
+          </ul>
+        </div>
+
+        <div class="seccion">
+          <h2>3. Proceso de cambio social: características básicas</h2>
+
+          <h3>3.1 Transformaciones económicas y sociales <span class="zorrilla-tag">Zorrilla Cap. III §2</span></h3>
+          <ul>
+            <li><strong>Expansión de la frontera agraria:</strong> colonización de «tierras vacías» (en realidad, escasamente controladas por el Estado) mediante colonos europeos y migraciones internas.</li>
+            <li><strong>Reformas liberales y mercado de tierras:</strong> desamortización de bienes de la Iglesia y comunidades indígenas, consolidando un mercado de tierras pero también nuevas oligarquías.</li>
+            <li><strong>Mercado de trabajo:</strong> coexistencia de peonaje, trabajo coercitivo y asalariado libre; formación incipiente de proletariado urbano.</li>
+          </ul>
+
+          <h3>3.2 Rasgos estructurales del cambio</h3>
+          <ul>
+            <li>Crecimiento económico significativo, pero acompañado de fuerte concentración de la tierra y la riqueza.</li>
+            <li>Urbanización y surgimiento de nuevas clases medias, sin desaparición de la pobreza rural e informalidad.</li>
+            <li>Mayor presencia del Estado en infraestructura y control fiscal, aunque con debilidades institucionales y dependencia financiera externa.</li>
+          </ul>
+
+          <div class="callout callout-key">
+            <div class="callout-title">Resumen de la transición</div>
+            La región pasa de colonias minero‑agrarias de un imperio ibérico a repúblicas agroexportadoras integradas a un sistema capitalista mundial, manteniendo desigualdad social y dependencia externa como rasgos persistentes.
+          </div>
+        </div>
+
+        <p class="nota">
+          Esta unidad recoge el capítulo III de Zorrilla sobre transición al capitalismo periférico, articulando economía atlántica, auge americano del siglo XVIII y características básicas del proceso de cambio social.
+        </p>
+
       </div>
-      <div class="capitulo-body">
-        <div class="carilla-bloque">
-          <h3>1. Situación general y bases de la transición</h3>
-          <ul>
-            <li>Paso de estructuras coloniales a un capitalismo periférico integrado de forma subordinada al mercado mundial.</li>
-            <li>Transición apoyada en aboliciones, reformas liberales y colonización de tierras consideradas “vacías”.</li>
-          </ul>
+    </details>
+
+  </section>
+
+  <!-- ===================== QUIZ ===================== -->
+  <section class="quiz-section">
+    <h2>Autoevaluación por unidades</h2>
+
+    <!-- QUIZ UNIDAD 1 -->
+    <div class="quiz-accordion quiz-easy">
+      <details>
+        <summary class="quiz-summary">
+          <div class="quiz-summary-inner">
+            <div class="quiz-summary-left">
+              <div class="quiz-label">Unidad 1</div>
+              <div class="quiz-title">Historia social y época colonial</div>
+              <div class="quiz-subtitle">Historia social · pensamiento social latinoamericano · encomienda · comercio colonial · feudalismo · fuerzas centrífugas y centrípetas.</div>
+            </div>
+            <div class="quiz-accordion-icon">▼</div>
+          </div>
+        </summary>
+        <div class="quiz-body">
+          <form class="quiz-form" data-unit="1">
+            <!-- Pregunta 1 -->
+            <div class="quiz-pregunta" data-correct="b">
+              <div class="num">P1 · Concepto</div>
+              <p>¿Qué estudia principalmente la historia social en el enfoque trabajado en esta materia?</p>
+              <ul class="quiz-opciones">
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="a">
+                  <span>Solo las batallas y los grandes líderes políticos de cada época.</span>
+                  <div class="quiz-explicacion">La historia social justamente se distancia de una historia solo política o de «grandes hombres».</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="b">
+                  <span>La vida cotidiana, los grupos sociales y las estructuras que articulan economía, poder y cultura.</span>
+                  <div class="quiz-explicacion">Correcto: se centra en las prácticas y relaciones de los grupos sociales en su contexto económico y político.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="c">
+                  <span>Exclusivamente las instituciones jurídicas del Estado moderno.</span>
+                  <div class="quiz-explicacion">La historia social incluye instituciones, pero va mucho más allá de lo jurídico‑estatal.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="d">
+                  <span>Solo los cambios tecnológicos y científicos de larga duración.</span>
+                  <div class="quiz-explicacion">Los cambios tecnológicos importan, pero el foco está en las relaciones sociales.</div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Pregunta 2 -->
+            <div class="quiz-pregunta" data-correct="c">
+              <div class="num">P2 · Encomienda</div>
+              <p>¿Cuál de las siguientes opciones describe mejor la encomienda en América?</p>
+              <ul class="quiz-opciones">
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="a">
+                  <span>Un contrato salarial moderno entre el Estado y los indígenas.</span>
+                  <div class="quiz-explicacion">No fue un contrato salarial moderno, sino una institución colonial de dominación.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="b">
+                  <span>Una cooperativa indígena de comercio con plena autonomía.</span>
+                  <div class="quiz-explicacion">La encomienda no otorgaba autonomía, sino subordinación al encomendero.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="c">
+                  <span>La asignación de comunidades indígenas a un encomendero que recibía tributo y trabajo a cambio de protección y evangelización.</span>
+                  <div class="quiz-explicacion">Correcto: esa es la definición básica de la encomienda en el contexto colonial hispanoamericano.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="d">
+                  <span>Un sistema de tierras comunales sin relación con la Corona.</span>
+                  <div class="quiz-explicacion">La encomienda dependía de concesiones reales, no era una propiedad comunal autónoma.</div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Pregunta 3 -->
+            <div class="quiz-pregunta" data-correct="b">
+              <div class="num">P3 · Capitulaciones</div>
+              <p>Las Capitulaciones pueden definirse como:</p>
+              <ul class="quiz-opciones">
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="a">
+                  <span>Un conjunto de sermones eclesiásticos sobre la conquista.</span>
+                  <div class="quiz-explicacion">No eran textos religiosos, sino contratos políticos y económicos.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="b">
+                  <span>Contratos públicos por los que la Corona delegaba en particulares la exploración, conquista y poblamiento de nuevos territorios.</span>
+                  <div class="quiz-explicacion">Correcto: las Capitulaciones fijaban derechos y obligaciones de conquistadores y Corona.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="c">
+                  <span>Leyes borbónicas de libre comercio del siglo XVIII.</span>
+                  <div class="quiz-explicacion">Las reformas borbónicas son posteriores y de otro tipo.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="d">
+                  <span>Tratados internacionales entre España y Portugal para repartir América.</span>
+                  <div class="quiz-explicacion">Eso se relaciona más con el Tratado de Tordesillas, no con las Capitulaciones.</div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Pregunta 4 -->
+            <div class="quiz-pregunta" data-correct="c">
+              <div class="num">P4 · Polos de crecimiento</div>
+              <p>En el esquema de Zorrilla, los «polos de crecimiento» durante la colonia se refieren a:</p>
+              <ul class="quiz-opciones">
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="a">
+                  <span>Las ciudades europeas que comerciaban con América.</span>
+                  <div class="quiz-explicacion">El foco está en dinámicas internas de América, no en Europa.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="b">
+                  <span>Las misiones religiosas que prohibían cualquier intercambio económico.</span>
+                  <div class="quiz-explicacion">Las misiones podían tener economía propia, pero el concepto va más allá.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="c">
+                  <span>Regiones coloniales (como zonas mineras y sus áreas de abastecimiento) que dinamizaban redes económicas internas más allá de la simple exportación a Europa.</span>
+                  <div class="quiz-explicacion">Correcto: la minería generaba cadenas de producción y comercio dentro de América.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="d">
+                  <span>Áreas sin contacto con la metrópoli ni con otras regiones.</span>
+                  <div class="quiz-explicacion">Los polos se caracterizan justamente por su alto nivel de articulación económica.</div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Pregunta 5 -->
+            <div class="quiz-pregunta" data-correct="d">
+              <div class="num">P5 · Feudalismo latinoamericano</div>
+              <p>¿Qué rasgo es propio de los orígenes del «feudalismo latinoamericano» según Furtado y Zorrilla?</p>
+              <ul class="quiz-opciones">
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="a">
+                  <span>Desaparición total de la gran propiedad rural.</span>
+                  <div class="quiz-explicacion">Ocurre lo contrario: la gran propiedad se consolida.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="b">
+                  <span>División igualitaria de la tierra entre todos los campesinos.</span>
+                  <div class="quiz-explicacion">Las estructuras de propiedad fueron altamente desiguales.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="c">
+                  <span>Sometimiento del Estado a las comunidades indígenas.</span>
+                  <div class="quiz-explicacion">Las comunidades fueron subordinadas, no al revés.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="d">
+                  <span>Latifundios con fuerte dependencia personal y extracción de excedente local en unidades relativamente aisladas.</span>
+                  <div class="quiz-explicacion">Correcto: se trata de grandes dominios rurales con lazos personales de dominación.</div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Pregunta 6 -->
+            <div class="quiz-pregunta" data-correct="a">
+              <div class="num">P6 · Fuerzas centrífugas y centrípetas</div>
+              <p>En el análisis de Zorrilla, las «fuerzas centrífugas» del período colonial se relacionan con:</p>
+              <ul class="quiz-opciones">
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="a">
+                  <span>Autonomía de economías regionales, poder de hacendados locales y contrabando que debilitaban el control de la metrópoli.</span>
+                  <div class="quiz-explicacion">Correcto: esas fuerzas empujan hacia la fragmentación y la autonomía.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="b">
+                  <span>La Casa de Contratación de Sevilla y el derecho indiano.</span>
+                  <div class="quiz-explicacion">Esos son ejemplos de fuerzas centrípetas, centralizadoras.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="c">
+                  <span>Las órdenes religiosas obedientes al Rey.</span>
+                  <div class="quiz-explicacion">En muchos casos actuaron como soporte del orden imperial.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="d">
+                  <span>Los reglamentos de flotas y galeones.</span>
+                  <div class="quiz-explicacion">Esos reglamentos reforzaban el control central del comercio.</div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="quiz-submit-area">
+              <button type="button" class="quiz-btn">Corregir Unidad 1</button>
+              <div class="quiz-result"></div>
+            </div>
+          </form>
         </div>
-        <div class="carilla-bloque">
-          <h3>2. Economía atlántica, revolución industrial y auge americano</h3>
-          <ul>
-            <li>Industrialización europea aumenta la demanda de materias primas y alimentos desde América Latina.</li>
-            <li>Ciclos mineros y productos coloniales del siglo XVIII preparan el futuro modelo agroexportador.</li>
-          </ul>
-        </div>
-        <div class="carilla-bloque">
-          <h3>3. Reformas liberales y mercado de tierras</h3>
-          <ul>
-            <li>Desamortización de bienes de Iglesia y comunidades para crear un mercado de tierras “libre”.</li>
-            <li>Consolidación de nuevas oligarquías agrarias y creación de mercados laborales ajustados a la exportación.</li>
-          </ul>
-        </div>
-        <div class="carilla-bloque">
-          <h3>4. Características del cambio social</h3>
-          <ul>
-            <li>Crecimiento económico, ferrocarriles, comercio externo y urbanización acelerada.</li>
-            <li>Persistencia de desigualdades, concentración de la tierra y coexistencia de trabajo coercitivo y asalariado.</li>
-          </ul>
-        </div>
-      </div>
+      </details>
     </div>
 
-    <!-- =================== QUIZ =================== -->
-    <div class="quiz-area">
-      <div class="quiz-titulo">
-        Quiz por capítulos (3 botones, cada uno con 6 preguntas).
-      </div>
-      <div class="quiz-grid">
-        <button class="btn-quiz" data-quiz="1">
-          Capítulo 1 – Quiz <span class="badge">6 preguntas</span>
-        </button>
-        <button class="btn-quiz" data-quiz="2">
-          Capítulo 2 – Quiz <span class="badge">6 preguntas</span>
-        </button>
-        <button class="btn-quiz" data-quiz="3">
-          Capítulo 3 – Quiz <span class="badge">6 preguntas</span>
-        </button>
-      </div>
+    <!-- QUIZ UNIDAD 2 -->
+    <div class="quiz-accordion quiz-medium">
+      <details>
+        <summary class="quiz-summary">
+          <div class="quiz-summary-inner">
+            <div class="quiz-summary-left">
+              <div class="quiz-label">Unidad 2</div>
+              <div class="quiz-title">Estados nacionales y positivismo</div>
+              <div class="quiz-subtitle">Independencias · nacionalismo · independencia tardía · capitalismo dependiente · positivismo latinoamericano.</div>
+            </div>
+            <div class="quiz-accordion-icon">▼</div>
+          </div>
+        </summary>
+        <div class="quiz-body">
+          <form class="quiz-form" data-unit="2">
 
-      <div class="quiz-panel" id="quizPanel" style="display:none;">
-        <h2 id="quizTitulo">Quiz</h2>
-        <div class="pregunta-texto" id="preguntaTexto"></div>
-        <div id="opcionesCont"></div>
-        <div style="margin-top:8px;">
-          <button class="btn" id="btnResponder" disabled>Responder</button>
-          <span class="contador" id="contadorQuiz">0/0 correctas</span>
+            <!-- Pregunta 1 -->
+            <div class="quiz-pregunta" data-correct="c">
+              <div class="num">P1 · Estados nacionales</div>
+              <p>Formar un «Estado nacional» en América Latina implicó principalmente:</p>
+              <ul class="quiz-opciones">
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="a">
+                  <span>Solo cambiar la bandera y el himno, manteniendo intactas las instituciones coloniales.</span>
+                  <div class="quiz-explicacion">La ruptura fue institucional, territorial y política, no solo simbólica.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="b">
+                  <span>Crear una monarquía local totalmente subordinada a España.</span>
+                  <div class="quiz-explicacion">Las nuevas repúblicas rompieron el vínculo con la monarquía española.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="c">
+                  <span>Construir nuevas instituciones, territorios y ciudadanías propias tras la ruptura con los imperios ibéricos.</span>
+                  <div class="quiz-explicacion">Correcto: implica organizar el poder, el territorio y quiénes son considerados ciudadanos.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="d">
+                  <span>Volver al sistema de virreinatos con otros nombres.</span>
+                  <div class="quiz-explicacion">Los virreinatos se desmantelan; surgen repúblicas y nuevos Estados.</div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Pregunta 2 -->
+            <div class="quiz-pregunta" data-correct="b">
+              <div class="num">P2 · Nacionalismo</div>
+              <p>El nacionalismo latinoamericano del siglo XIX se caracteriza por:</p>
+              <ul class="quiz-opciones">
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="a">
+                  <span>No tener impacto político real y limitarse a la literatura.</span>
+                  <div class="quiz-explicacion">El nacionalismo tuvo un fuerte impacto político y militar.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="b">
+                  <span>Legitimar proyectos de élite y articular discursos de identidad y soberanía frente a la metrópoli y otras potencias.</span>
+                  <div class="quiz-explicacion">Correcto: además, tensiona la relación con sectores internos excluidos.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="c">
+                  <span>Rechazar toda forma de Estado y defender el regreso al orden colonial.</span>
+                  <div class="quiz-explicacion">El nacionalismo impulsa la ruptura, no el regreso al pasado colonial.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="d">
+                  <span>Ser un fenómeno puramente económico sin dimensión simbólica.</span>
+                  <div class="quiz-explicacion">Tiene un fuerte componente simbólico, cultural y político.</div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Pregunta 3 -->
+            <div class="quiz-pregunta" data-correct="d">
+              <div class="num">P3 · Independencias tardías</div>
+              <p>¿Cuál de las siguientes afirmaciones expresa mejor la idea de «independencias tardías»?</p>
+              <ul class="quiz-opciones">
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="a">
+                  <span>Que todas las colonias se independizaron al mismo tiempo en 1810.</span>
+                  <div class="quiz-explicacion">Las cronologías fueron muy diferentes entre regiones.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="b">
+                  <span>Que la independencia de Haití ocurrió recién a fines del siglo XIX.</span>
+                  <div class="quiz-explicacion">Haití se independiza a inicios del siglo XIX, no al final.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="c">
+                  <span>Que Brasil fue la primera colonia americana en independizarse.</span>
+                  <div class="quiz-explicacion">Brasil tiene un proceso propio, pero no es el caso de «primera colonia».</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="d">
+                  <span>Que algunos territorios como Brasil, Cuba o Puerto Rico siguieron bajo dominio colonial cuando otras regiones ya eran independientes.</span>
+                  <div class="quiz-explicacion">Correcto: muestran otras cronologías y formas de ruptura.</div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Pregunta 4 -->
+            <div class="quiz-pregunta" data-correct="c">
+              <div class="num">P4 · Feudalismo y conciencia nacional</div>
+              <p>¿Cómo se vincula la crisis del «feudalismo latinoamericano» con la formación de la conciencia nacional?</p>
+              <ul class="quiz-opciones">
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="a">
+                  <span>El feudalismo genera de inmediato igualdad política plena.</span>
+                  <div class="quiz-explicacion">El orden señorial se basa en desigualdades jerárquicas, no en igualdad.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="b">
+                  <span>No hay ningún tipo de vínculo posible entre ambos procesos.</span>
+                  <div class="quiz-explicacion">La transformación de la estructura agraria afecta la construcción de ciudadanía.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="c">
+                  <span>La erosión de las relaciones señoriales y del poder de los grandes dominios rurales abre espacio para nuevas formas de ciudadanía y pertenencia nacional.</span>
+                  <div class="quiz-explicacion">Correcto: es un proceso largo, conflictivo y desigual, pero central para la modernidad política.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="d">
+                  <span>La conciencia nacional reemplaza por completo las desigualdades de clase.</span>
+                  <div class="quiz-explicacion">La nación no elimina automáticamente las desigualdades de clase y raza.</div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Pregunta 5 -->
+            <div class="quiz-pregunta" data-correct="b">
+              <div class="num">P5 · Capitalismo dependiente</div>
+              <p>¿Cómo se caracteriza la «emergencia del capitalismo» en América Latina en el siglo XIX?</p>
+              <ul class="quiz-opciones">
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="a">
+                  <span>Como un proceso de industrialización autónoma que convierte a la región en centro del sistema mundial.</span>
+                  <div class="quiz-explicacion">La industrialización fue limitada y desigual; el centro estuvo en Europa y luego EE. UU.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="b">
+                  <span>Como una inserción al mercado mundial principalmente como exportadora de materias primas e importadora de manufacturas y capital.</span>
+                  <div class="quiz-explicacion">Correcto: ese es el núcleo de la noción de capitalismo dependiente / periférico.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="c">
+                  <span>Como un régimen que prohíbe toda forma de comercio exterior.</span>
+                  <div class="quiz-explicacion">Ocurre lo contrario: se fomenta la apertura comercial selectiva.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="d">
+                  <span>Como el retorno a una economía puramente agraria sin exportaciones.</span>
+                  <div class="quiz-explicacion">El modelo agroexportador es precisamente lo opuesto.</div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Pregunta 6 -->
+            <div class="quiz-pregunta" data-correct="a">
+              <div class="num">P6 · Positivismo</div>
+              <p>¿Qué rasgo es característico del positivismo latinoamericano de fines del siglo XIX?</p>
+              <ul class="quiz-opciones">
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="a">
+                  <span>Confianza en la ciencia, el orden y el Estado fuerte como motores de progreso y modernización.</span>
+                  <div class="quiz-explicacion">Correcto: «orden y progreso» es la síntesis más conocida de esta corriente.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="b">
+                  <span>Rechazo total de la educación y de la estadística.</span>
+                  <div class="quiz-explicacion">El positivismo impulsa la educación y la estadística como herramientas del Estado.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="c">
+                  <span>Defensa de la monarquía absoluta y del derecho divino de los reyes.</span>
+                  <div class="quiz-explicacion">Se asocia más bien a repúblicas laicas y Estados seculares.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="d">
+                  <span>Idealización romántica del pasado medieval europeo.</span>
+                  <div class="quiz-explicacion">Eso corresponde más al romanticismo, no al positivismo.</div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="quiz-submit-area">
+              <button type="button" class="quiz-btn">Corregir Unidad 2</button>
+              <div class="quiz-result"></div>
+            </div>
+          </form>
         </div>
-        <div id="resultado" style="margin-top:6px;font-size:13px;"></div>
-        <div id="explicacion" class="explicacion" style="display:none;"></div>
-      </div>
+      </details>
     </div>
-  </div>
+
+    <!-- QUIZ UNIDAD 3 -->
+    <div class="quiz-accordion quiz-hard">
+      <details>
+        <summary class="quiz-summary">
+          <div class="quiz-summary-inner">
+            <div class="quiz-summary-left">
+              <div class="quiz-label">Unidad 3</div>
+              <div class="quiz-title">Transición al capitalismo periférico</div>
+              <div class="quiz-subtitle">Economía atlántica · revolución industrial · auge americano del siglo XVIII · cambio social y desigualdad.</div>
+            </div>
+            <div class="quiz-accordion-icon">▼</div>
+          </div>
+        </summary>
+        <div class="quiz-body">
+          <form class="quiz-form" data-unit="3">
+
+            <!-- Pregunta 1 -->
+            <div class="quiz-pregunta" data-correct="c">
+              <div class="num">P1 · Capitalismo periférico</div>
+              <p>¿Qué significa «capitalismo periférico» aplicado a América Latina?</p>
+              <ul class="quiz-opciones">
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="a">
+                  <span>Un sistema económico autosuficiente, sin vínculos externos.</span>
+                  <div class="quiz-explicacion">La noción de periferia implica justamente fuertes vínculos externos.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="b">
+                  <span>La ausencia completa de relaciones capitalistas en la región.</span>
+                  <div class="quiz-explicacion">Hay capitalismo, pero en posición subordinada.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="c">
+                  <span>Una inserción subordinada en el capitalismo mundial, especializada en exportación de bienes primarios y dependiente en tecnología y finanzas.</span>
+                  <div class="quiz-explicacion">Correcto: esa es la clave de la formulación centro‑periferia.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="d">
+                  <span>Un modelo cerrado sin comercio exterior ni inversión extranjera.</span>
+                  <div class="quiz-explicacion">La periferia se caracteriza por exportar e importar, no por cerrarse.</div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Pregunta 2 -->
+            <div class="quiz-pregunta" data-correct="b">
+              <div class="num">P2 · Revolución industrial</div>
+              <p>¿Qué impacto tuvo la revolución industrial europea sobre América Latina?</p>
+              <ul class="quiz-opciones">
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="a">
+                  <span>Europa dejó de importar por completo materias primas de América.</span>
+                  <div class="quiz-explicacion">Ocurrió lo contrario: la demanda de materias primas aumentó.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="b">
+                  <span>Incrementó la demanda de productos agro‑minerales latinoamericanos y la necesidad de nuevos mercados para las manufacturas europeas.</span>
+                  <div class="quiz-explicacion">Correcto: esa doble demanda articula la economía atlántica.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="c">
+                  <span>Obligó a Europa a financiar la industrialización completa de América Latina.</span>
+                  <div class="quiz-explicacion">Las inversiones se concentraron en infraestructura exportadora, no en industrialización general.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="d">
+                  <span>Eliminó toda forma de comercio entre ambas regiones.</span>
+                  <div class="quiz-explicacion">El comercio se intensificó, no se eliminó.</div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Pregunta 3 -->
+            <div class="quiz-pregunta" data-correct="d">
+              <div class="num">P3 · Auge americano del siglo XVIII</div>
+              <p>Cuando Zorrilla habla del «auge americano» del siglo XVIII, se refiere a:</p>
+              <ul class="quiz-opciones">
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="a">
+                  <span>La completa desintegración económica de las colonias.</span>
+                  <div class="quiz-explicacion">Se observan crisis, pero también crecimiento y reorientaciones.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="b">
+                  <span>Un cierre total del comercio colonial para proteger a la industria española.</span>
+                  <div class="quiz-explicacion">Las reformas borbónicas apuntan a liberalizar parcialmente, no a cerrar.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="c">
+                  <span>La independencia temprana de todas las colonias a inicios del siglo XVIII.</span>
+                  <div class="quiz-explicacion">Las independencias ocurren sobre todo a comienzos del siglo XIX.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="d">
+                  <span>Un período de expansión productiva y comercial en América que anticipa la inserción agroexportadora posterior.</span>
+                  <div class="quiz-explicacion">Correcto: es un antecedente del modelo exportador del siglo XIX.</div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Pregunta 4 -->
+            <div class="quiz-pregunta" data-correct="a">
+              <div class="num">P4 · Reformas liberales y tierra</div>
+              <p>En la transición al capitalismo periférico, las reformas liberales sobre la tierra (desamortización, venta de bienes eclesiásticos y comunales) tuvieron como efecto principal:</p>
+              <ul class="quiz-opciones">
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="a">
+                  <span>Crear un mercado de tierras formal, pero muchas veces concentrando la propiedad en nuevas oligarquías agrarias.</span>
+                  <div class="quiz-explicacion">Correcto: aunque en discurso se hablaba de propiedad libre, en la práctica se consolidó la gran propiedad.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="b">
+                  <span>Fortalecer la propiedad comunal indígena sin cambios.</span>
+                  <div class="quiz-explicacion">En la mayoría de los casos, la propiedad comunal fue debilitada o fragmentada.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="c">
+                  <span>Eliminar por completo el mercado de tierras.</span>
+                  <div class="quiz-explicacion">La meta explícita era justamente activar ese mercado.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="d">
+                  <span>Prohibir la compra de tierras por parte de extranjeros.</span>
+                  <div class="quiz-explicacion">En muchos países, las leyes permitieron e incluso fomentaron inversiones externas.</div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Pregunta 5 -->
+            <div class="quiz-pregunta" data-correct="c">
+              <div class="num">P5 · Cambio social</div>
+              <p>¿Cuál de las siguientes características describe mejor el proceso de cambio social en la transición al capitalismo periférico?</p>
+              <ul class="quiz-opciones">
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="a">
+                  <span>Desaparición casi total de la desigualdad social.</span>
+                  <div class="quiz-explicacion">La desigualdad se mantiene e incluso puede profundizarse.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="b">
+                  <span>Homogeneidad social plena y ausencia de conflictos.</span>
+                  <div class="quiz-explicacion">Siguen existiendo conflictos de clase, étnicos y regionales.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="c">
+                  <span>Crecimiento económico con persistencia de concentración de tierras, coexistencia de trabajo coercitivo y asalariado y urbanización desigual.</span>
+                  <div class="quiz-explicacion">Correcto: crecimiento no implica, automáticamente, democratización social.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="d">
+                  <span>Fin inmediato de la dependencia externa.</span>
+                  <div class="quiz-explicacion">La dependencia externa sigue siendo un rasgo estructural de la región.</div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Pregunta 6 -->
+            <div class="quiz-pregunta" data-correct="b">
+              <div class="num">P6 · Ferrocarriles y capital extranjero</div>
+              <p>En la interpretación de Zorrilla, los ferrocarriles y el capital extranjero en el siglo XIX latinoamericano se orientaron principalmente a:</p>
+              <ul class="quiz-opciones">
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="a">
+                  <span>Construir una red de transporte interna sin relación con el comercio exterior.</span>
+                  <div class="quiz-explicacion">Las líneas solían conectar zonas productoras con puertos de exportación.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="b">
+                  <span>Financiar infraestructura clave para la exportación (ferrocarriles, puertos) y préstamos a gobiernos vinculados a la inserción en el mercado mundial.</span>
+                  <div class="quiz-explicacion">Correcto: la inversión externa se concentró en sectores vinculados al modelo agroexportador.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="c">
+                  <span>Desarrollar una industria pesada completamente autónoma en cada país.</span>
+                  <div class="quiz-explicacion">Hubo industria, pero muy limitada y dependiente de insumos y máquinas importadas.</div>
+                </li>
+                <li class="quiz-opcion">
+                  <input type="checkbox" value="d">
+                  <span>Eliminar las exportaciones para enfocarse en el mercado interno.</span>
+                  <div class="quiz-explicacion">El objetivo era exactamente el opuesto: expandir las exportaciones.</div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="quiz-submit-area">
+              <button type="button" class="quiz-btn">Corregir Unidad 3</button>
+              <div class="quiz-result"></div>
+            </div>
+          </form>
+        </div>
+      </details>
+    </div>
+
+  </section>
+
 </main>
 
 <footer>
-  Historia Social Latinoamericana – Cátedra Zorrilla – Material de repaso estudiantil.
+  Historia Social Latinoamericana · Cátedra Zorrilla · Material de apoyo para el repaso estudiantil.
 </footer>
 
 <script>
-// ===================== PREGUNTAS =====================
-const preguntas = [
-  // Capítulo 1
-  {
-    unidad:1,
-    texto:"¿Qué estudia principalmente la historia social en este enfoque?",
-    opciones:[
-      "Solo batallas y grandes líderes",
-      "La vida cotidiana, los grupos sociales y las estructuras que articulan economía y sociedad",
-      "Exclusivamente las instituciones políticas",
-      "Solo los cambios tecnológicos"
-    ],
-    correcta:1,
-    explicacion:"La historia social se centra en las prácticas y relaciones de los grupos sociales, conectadas con la economía y el poder."
-  },
-  {
-    unidad:1,
-    texto:"¿Qué institución articuló trabajo y tributo indígena durante la conquista española?",
-    opciones:[
-      "El cabildo abierto",
-      "La mita urbana",
-      "La encomienda",
-      "La Audiencia"
-    ],
-    correcta:2,
-    explicacion:"La encomienda asignaba comunidades indígenas a encomenderos, que recibían tributo y trabajo a cambio de protección y evangelización."
-  },
-  {
-    unidad:1,
-    texto:"¿Qué eran las Capitulaciones en el contexto de la conquista?",
-    opciones:[
-      "Concesiones de ciudadanía",
-      "Contratos por los que la Corona delegaba la exploración y conquista a particulares",
-      "Leyes de abolición de la esclavitud",
-      "Tratados de paz con Inglaterra"
-    ],
-    correcta:1,
-    explicacion:"Las Capitulaciones eran acuerdos entre la Corona y particulares para explorar, conquistar y poblar nuevos territorios."
-  },
-  {
-    unidad:1,
-    texto:"Según Furtado, ¿qué factor explica la estructura social latinoamericana?",
-    opciones:[
-      "La ausencia de instituciones coloniales",
-      "La temprana industrialización ibérica",
-      "La forma que tomó la conquista y las instituciones económicas implantadas",
-      "El aislamiento total respecto de Europa"
-    ],
-    correcta:2,
-    explicacion:"La combinación entre tipo de conquista e instituciones económicas explica los rasgos centrales de la estructura social."
-  },
-  {
-    unidad:1,
-    texto:"¿Qué rol tuvieron la plata y el oro en la economía colonial?",
-    opciones:[
-      "Solo abastecían el mercado interno americano",
-      "No tuvieron importancia estructural",
-      "Financiaban a la metrópoli y generaban polos regionales de crecimiento",
-      "Se prohibía su exportación fuera de América"
-    ],
-    correcta:2,
-    explicacion:"Los metales preciosos servían para financiar a las metrópolis y estructurar redes económicas dentro de América."
-  },
-  {
-    unidad:1,
-    texto:"¿Qué significa 'feudalismo latinoamericano' en este programa?",
-    opciones:[
-      "Una copia exacta del feudalismo europeo",
-      "Solo un modelo político",
-      "Un orden basado en gran propiedad agraria, dominación personal y extracción de excedente local",
-      "Un régimen sin jerarquías sociales"
-    ],
-    correcta:2,
-    explicacion:"Se alude a grandes dominios rurales con subordinación personal y control del excedente por minorías terratenientes."
-  },
+  // Lógica de corrección de quizzes (misma para todas las unidades)
+  document.querySelectorAll('.quiz-form').forEach(form => {
+    const btn = form.querySelector('.quiz-btn');
+    const resultBox = form.querySelector('.quiz-result');
 
-  // Capítulo 2
-  {
-    unidad:2,
-    texto:"¿Qué caracteriza a la formación de los Estados nacionales latinoamericanos?",
-    opciones:[
-      "Proceso lineal y ordenado",
-      "Proceso desordenado, con fuerte autonomía regional y caudillismo",
-      "Ausencia de conflictos internos",
-      "Imposición directa de modelos británicos"
-    ],
-    correcta:1,
-    explicacion:"Los Estados surgen sobre ruinas virreinales, con fragmentación regional y liderazgo de élites criollas."
-  },
-  {
-    unidad:2,
-    texto:"¿Qué rol jugó el nacionalismo en el siglo XIX latinoamericano?",
-    opciones:[
-      "No tuvo relevancia política",
-      "Solo fue un fenómeno cultural sin efectos",
-      "Legitimó proyectos de élite y articuló discursos de identidad y soberanía",
-      "Se limitó exclusivamente a sectores indígenas"
-    ],
-    correcta:2,
-    explicacion:"El nacionalismo funcionó como marco de legitimación y como respuesta a la dependencia externa y la desigualdad interna."
-  },
-  {
-    unidad:2,
-    texto:"¿Qué efecto económico tuvo la independencia, según el programa?",
-    opciones:[
-      "Industrialización inmediata y autónoma",
-      "Ruptura de estructuras coloniales sin modelo alternativo sólido, con crisis y desorden",
-      "Eliminación total de la deuda externa",
-      "Desaparición del contrabando"
-    ],
-    correcta:1,
-    explicacion:"Tras la independencia se producen crisis fiscales y comerciales, con muchas continuidades estructurales coloniales."
-  },
-  {
-    unidad:2,
-    texto:"¿Cómo se define el positivismo latinoamericano?",
-    opciones:[
-      "Como rechazo absoluto de la ciencia",
-      "Como retorno a estructuras feudales",
-      "Como confianza en la ciencia, el orden y el Estado fuerte para impulsar el progreso",
-      "Como negación del mercado mundial"
-    ],
-    correcta:2,
-    explicacion:"El positivismo se asocia a proyectos de modernización dirigidos por élites y a la consigna de 'orden y progreso'."
-  },
-  {
-    unidad:2,
-    texto:"¿Qué vínculo se plantea entre feudalismo y conciencia nacional?",
-    opciones:[
-      "El feudalismo crea de inmediato ciudadanía igualitaria",
-      "No hay vínculos posibles",
-      "La crisis de relaciones señoriales abre paso a nuevas formas de ciudadanía y de identidad nacional",
-      "La conciencia nacional elimina toda desigualdad social"
-    ],
-    correcta:2,
-    explicacion:"La erosión de estructuras señoriales es parte del tránsito hacia sujetos que se piensan como ciudadanos del Estado nacional."
-  },
-  {
-    unidad:2,
-    texto:"¿Cómo se inserta América Latina en el capitalismo del siglo XIX?",
-    opciones:[
-      "Como centro industrial del sistema",
-      "Como espacio aislado sin comercio",
-      "Como región exportadora de materias primas, dependiente de potencias industriales",
-      "Como proveedor exclusivo de servicios financieros"
-    ],
-    correcta:2,
-    explicacion:"Las repúblicas se integran al mercado mundial en posición periférica, especializadas en bienes primarios."
-  },
+    btn.addEventListener('click', () => {
+      let total = 0;
+      let correctas = 0;
 
-  // Capítulo 3
-  {
-    unidad:3,
-    texto:"¿Qué significa 'capitalismo periférico' aplicado a América Latina?",
-    opciones:[
-      "Capitalismo autosuficiente y central",
-      "Sistema sin relaciones capitalistas",
-      "Inserción subordinada en el capitalismo mundial, especializada en materias primas",
-      "Economía cerrada sin exportaciones"
-    ],
-    correcta:2,
-    explicacion:"Designa economías capitalistas dependientes, articuladas al mercado mundial desde la exportación de bienes primarios."
-  },
-  {
-    unidad:3,
-    texto:"¿Qué relación hay entre revolución industrial europea y América Latina?",
-    opciones:[
-      "Europa deja de importar materias primas",
-      "No existe relación económica alguna",
-      "La industrialización europea aumenta la demanda de productos latinoamericanos",
-      "Europa se vuelve dependiente del trabajo latinoamericano para su industria pesada"
-    ],
-    correcta:2,
-    explicacion:"La industria europea necesita alimentos y materias primas, reforzando el modelo agroexportador latinoamericano."
-  },
-  {
-    unidad:3,
-    texto:"¿Qué buscaban las reformas liberales sobre la tierra (desamortización)?",
-    opciones:[
-      "Congelar la propiedad",
-      "Crear un mercado de tierras liberando bienes de Iglesia y comunidades",
-      "Restituir privilegios feudales",
-      "Eliminar cualquier forma de propiedad privada"
-    ],
-    correcta:1,
-    explicacion:"La desamortización pretendía activar tierras inmovilizadas, aunque fortaleció a nuevas oligarquías agrarias."
-  },
-  {
-    unidad:3,
-    texto:"¿Cuál es una característica básica del cambio social en la transición al capitalismo periférico?",
-    opciones:[
-      "Desaparición de las desigualdades",
-      "Homogeneidad social plena",
-      "Persistencia de desigualdad, concentración de tierra y coexistencia de trabajos coercitivos y asalariados",
-      "Fin de la dependencia externa"
-    ],
-    correcta:2,
-    explicacion:"El crecimiento se combina con alta desigualdad y formas laborales mixtas."
-  },
-  {
-    unidad:3,
-    texto:"¿Qué papel tienen ferrocarriles y capital extranjero en esta transición?",
-    opciones:[
-      "No se vinculan al modelo exportador",
-      "Se orientan solo al mercado interno",
-      "Financian infraestructura clave para ampliar exportaciones y articular territorios",
-      "Sustituyen completamente a las élites locales"
-    ],
-    correcta:2,
-    explicacion:"Los capitales externos se concentran en ferrocarriles, puertos y préstamos a gobiernos, ligados a la exportación."
-  },
-  {
-    unidad:3,
-    texto:"¿Qué efecto tuvo el modelo agroexportador liberal, según la bibliografía?",
-    opciones:[
-      "Creó plena igualdad social",
-      "No modificó estructuras antiguas",
-      "Impulsó crecimiento e integración, pero con concentración de riqueza y alta vulnerabilidad",
-      "Eliminó las crisis fiscales"
-    ],
-    correcta:2,
-    explicacion:"El boom exportador trajo obras e ingresos, pero también dependencia de pocos productos y fuertes brechas sociales."
-  }
-];
+      form.querySelectorAll('.quiz-pregunta').forEach(p => {
+        total++;
+        const correct = p.getAttribute('data-correct');
+        const opciones = p.querySelectorAll('.quiz-opcion');
+        let seleccion = null;
 
-// Acordeón capítulos
-document.querySelectorAll('.capitulo-header').forEach(h=>{
-  h.addEventListener('click',()=>{
-    const cap = h.parentElement;
-    const body = cap.querySelector('.capitulo-body');
-    const isOpen = cap.classList.contains('open');
-    if(isOpen){
-      body.style.maxHeight = '0px';
-      cap.classList.remove('open');
-    }else{
-      body.style.maxHeight = body.scrollHeight + 'px';
-      cap.classList.add('open');
-    }
-  });
-});
+        opciones.forEach(op => {
+          op.classList.remove('correcta-marcada', 'incorrecta-marcada');
+          const input = op.querySelector('input[type="checkbox"]');
+          if (input.checked) {
+            seleccion = input.value;
+          }
+        });
 
-// Quiz
-let quizUnidadActual = null;
-let indicesPreguntas = [];
-let indiceActual = -1;
-let seleccion = null;
-let correctas = 0;
+        opciones.forEach(op => {
+          const input = op.querySelector('input[type="checkbox"]');
+          const value = input.value;
+          if (value === correct) {
+            if (seleccion === value) {
+              op.classList.add('correcta-marcada');
+            }
+          } else {
+            if (seleccion === value) {
+              op.classList.add('incorrecta-marcada');
+            }
+          }
+        });
 
-const quizPanel   = document.getElementById('quizPanel');
-const quizTitulo  = document.getElementById('quizTitulo');
-const preguntaTxt = document.getElementById('preguntaTexto');
-const opcionesCont= document.getElementById('opcionesCont');
-const btnResponder= document.getElementById('btnResponder');
-const contadorLbl = document.getElementById('contadorQuiz');
-const resultado   = document.getElementById('resultado');
-const explicacion = document.getElementById('explicacion');
+        if (seleccion === correct) {
+          correctas++;
+        }
+      });
 
-function barajar(arr){
-  const a = arr.slice();
-  for(let i=a.length-1;i>0;i--){
-    const j = Math.floor(Math.random()*(i+1));
-    [a[i],a[j]] = [a[j],a[i]];
-  }
-  return a;
-}
+      const porcentaje = (correctas / total) * 100;
+      let mensaje = '';
 
-function iniciarQuiz(unidad){
-  quizUnidadActual = unidad;
-  const arr = preguntas.filter(p=>p.unidad===unidad);
-  indicesPreguntas = barajar(arr.map((_,idx)=>idx));
-  indiceActual = -1;
-  correctas = 0;
-  quizTitulo.textContent = `Quiz Capítulo ${unidad}`;
-  quizPanel.style.display = 'block';
-  siguientePregunta();
-}
+      if (porcentaje === 100) {
+        mensaje = '<div class="res-excellent">¡Excelente! ' + correctas + ' de ' + total + ' respuestas correctas. Dominás muy bien esta unidad.</div>';
+      } else if (porcentaje >= 60) {
+        mensaje = '<div class="res-ok">Resultado: ' + correctas + ' de ' + total + '. Buen desempeño, pero conviene repasar algunos puntos clave.</div>';
+      } else {
+        mensaje = '<div class="res-fail">Resultado: ' + correctas + ' de ' + total + '. Te conviene volver a leer la unidad y revisar los conceptos fundamentales.</div>';
+      }
 
-function construirPregunta() {
-  const listaUnidad = preguntas.filter(p=>p.unidad===quizUnidadActual);
-  const idxLocal = indicesPreguntas[indiceActual];
-  const p = listaUnidad[idxLocal];
-
-  preguntaTxt.textContent = p.texto;
-  opcionesCont.innerHTML = '';
-  seleccion = null;
-  btnResponder.disabled = true;
-  resultado.textContent = '';
-  resultado.className = '';
-  explicacion.style.display = 'none';
-  explicacion.textContent = '';
-
-  p.opciones.forEach((op,i)=>{
-    const label = document.createElement('label');
-    label.className = 'opcion';
-    const r = document.createElement('input');
-    r.type='radio';
-    r.name='opcion';
-    r.value=i;
-    r.addEventListener('change',()=>{
-      seleccion = i;
-      btnResponder.disabled = false;
+      resultBox.innerHTML = mensaje;
     });
-    label.appendChild(r);
-    label.appendChild(document.createTextNode(' '+op));
-    opcionesCont.appendChild(label);
   });
-
-  contadorLbl.textContent = `${indiceActual+1}/${indicesPreguntas.length} correctas: ${correctas}`;
-}
-
-function siguientePregunta(){
-  indiceActual++;
-  const total = indicesPreguntas.length;
-  if(indiceActual>=total){
-    preguntaTxt.textContent = "Fin del quiz de este capítulo.";
-    opcionesCont.innerHTML = '';
-    btnResponder.disabled = true;
-    resultado.textContent = `Resultado final: ${correctas} de ${total} correctas.`;
-    resultado.className = correctas>=Math.ceil(total*0.7)?'correcta':'incorrecta';
-    explicacion.style.display='none';
-    contadorLbl.textContent = `${total}/${total} correctas: ${correctas}`;
-    return;
-  }
-  construirPregunta();
-}
-
-btnResponder.addEventListener('click',()=>{
-  if(seleccion===null)return;
-  const listaUnidad = preguntas.filter(p=>p.unidad===quizUnidadActual);
-  const idxLocal = indicesPreguntas[indiceActual];
-  const p = listaUnidad[idxLocal];
-  if(seleccion===p.correcta){
-    correctas++;
-    resultado.textContent = "¡Correcto!";
-    resultado.className = 'correcta';
-  }else{
-    resultado.textContent = "Incorrecto. Respuesta correcta: " + p.opciones[p.correcta];
-    resultado.className = 'incorrecta';
-  }
-  explicacion.textContent = p.explicacion;
-  explicacion.style.display='block';
-  contadorLbl.textContent = `${indiceActual+1}/${indicesPreguntas.length} correctas: ${correctas}`;
-  setTimeout(siguientePregunta, 1100);
-});
-
-// Botones de selección de quiz
-document.querySelectorAll('.btn-quiz').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.btn-quiz').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    const u = parseInt(btn.dataset.quiz,10);
-    iniciarQuiz(u);
-  });
-});
 </script>
+
 </body>
 </html>
-```
-
-Para que se vea “igual de lindo” que tu página de ejemplo, podés ahora:
-
-- Subir este archivo a tu repo de GitHub Pages (como `index.html` en la misma carpeta donde está `HSL`). [der.una](https://www.der.una.py/application/files/5815/3900/3807/3Historia_Social_Latinoamericana_I.pdf)
-- Verlo en el celular: el diseño ya está adaptado (móvil first, botones grandes, colores vivos).
