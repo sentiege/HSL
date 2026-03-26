@@ -2,15 +2,14 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Historia Social Latinoamericana – Repaso</title>
+<title>Historia Social Latinoamericana – Material de repaso</title>
 <style>
 :root{
   --bg:#f3f0ea;
   --card:#ffffff;
   --primary:#1e88e5;
   --primary-soft:#e3f2fd;
-  --accent:#ffb74d;
-  --text:#222;
+  --text:#212121;
   --muted:#757575;
   --border:#e0e0e0;
   --shadow:0 4px 12px rgba(0,0,0,0.12);
@@ -24,35 +23,36 @@ body{
   color:var(--text);
 }
 header{
-  background:linear-gradient(120deg,#1565c0,#42a5f5);
-  color:#fff;
-  padding:14px 18px;
-  box-shadow:var(--shadow);
-  position:sticky;
-  top:0;
-  z-index:10;
+  padding:24px 16px 10px;
+  text-align:center;
 }
 header h1{
   margin:0;
-  font-size:18px;
+  font-size:24px;
+  font-weight:600;
 }
 header p{
-  margin:4px 0 0;
-  font-size:13px;
-  opacity:.9;
+  margin:6px 0 0;
+  font-size:14px;
+  color:var(--muted);
 }
-
 main{
   max-width:960px;
-  margin:16px auto;
-  padding:0 10px 20px;
+  margin:0 auto 24px;
+  padding:0 12px 20px;
 }
 .cuaderno{
   background:var(--card);
   border-radius:10px;
   box-shadow:var(--shadow);
-  padding:16px;
+  padding:18px 16px 20px;
   border:1px solid rgba(0,0,0,0.03);
+}
+.intro{
+  font-size:14px;
+  margin-top:0;
+  margin-bottom:14px;
+  color:var(--muted);
 }
 
 /* -------- MENÚ DE CAPÍTULOS (CARILLAS) -------- */
@@ -97,9 +97,6 @@ main{
   padding:0 12px;
   background:#fff;
 }
-.capitulo.open .capitulo-body{
-  padding:10px 12px 12px;
-}
 
 /* contenido tipo carilla */
 .carilla-bloque{
@@ -126,6 +123,11 @@ main{
   margin-top:18px;
   padding-top:12px;
   border-top:1px dashed var(--border);
+}
+.quiz-titulo{
+  font-size:14px;
+  margin-bottom:6px;
+  font-weight:500;
 }
 .quiz-grid{
   display:flex;
@@ -200,10 +202,10 @@ main{
   opacity:.5;
   cursor:not-allowed;
 }
-.meta{
-  font-size:11px;
+.contador{
+  font-size:12px;
   color:var(--muted);
-  margin-left:6px;
+  margin-left:8px;
 }
 .correcta{color:#2e7d32;}
 .incorrecta{color:#c62828;}
@@ -214,30 +216,25 @@ main{
   border-left:3px solid var(--primary);
   background:var(--primary-soft);
 }
-.contador{
-  font-size:12px;
-  color:var(--muted);
-  margin-left:8px;
-}
 
 /* -------- RESPONSIVE -------- */
 @media (max-width:600px){
-  header h1{font-size:16px;}
-  .cuaderno{padding:12px;}
+  header h1{font-size:20px;}
+  .cuaderno{padding:14px;}
   .quiz-grid{flex-direction:column;}
 }
 </style>
 </head>
 <body>
 <header>
-  <h1>Historia Social Latinoamericana – Repaso</h1>
-  <p>Basado en el programa y en el libro de Zorrilla.[file:1]</p>
+  <h1>Historia Social Latinoamericana – Material de repaso</h1>
+  <p>Basado en el programa y en el libro de HSL – del prof. Zorrilla.</p>
 </header>
 
 <main>
   <div class="cuaderno">
-    <p style="font-size:13px;margin-top:0;margin-bottom:10px;">
-      Elegí un capítulo para desplegar la carilla de teoría y luego usá los botones de quiz para practicar.
+    <p class="intro">
+      Usá los capítulos como carillas de lectura rápida y luego practicá con los quizzes de cada uno.
     </p>
 
     <!-- =================== CARILLAS / CAPÍTULOS =================== -->
@@ -246,7 +243,7 @@ main{
       <div class="capitulo-header">
         <div>
           <div class="capitulo-titulo">Capítulo 1 – Historia social y época colonial</div>
-          <div class="capitulo-sub">Significados de la historia, bases de la ocupación, comercio colonial, feudalismo y fin de la era colonial.[file:1]</div>
+          <div class="capitulo-sub">Historia social, pensamiento social latinoamericano, bases de la ocupación, comercio colonial, feudalismo y fin de la era colonial.</div>
         </div>
         <div class="chevron">▶</div>
       </div>
@@ -254,37 +251,37 @@ main{
         <div class="carilla-bloque">
           <h3>1. Historia social y pensamiento latinoamericano</h3>
           <ul>
-            <li>Historia social: estudia vida cotidiana, grupos sociales y estructuras, vinculando economía y sociedad desde el materialismo histórico y corrientes como Annales.[file:1]</li>
-            <li>Pensamiento social latinoamericano: autores como Martí, Mariátegui, Zea, Vasconcelos, Rodó, Germani reflexionan sobre identidad, dependencia y colonialidad.[file:1]</li>
+            <li>La historia social estudia la vida cotidiana, los grupos sociales y las estructuras que articulan economía y poder.</li>
+            <li>El pensamiento social latinoamericano aborda identidad, dependencia y colonialidad (Martí, Mariátegui, Zea, Vasconcelos, Rodó, Germani, entre otros).</li>
           </ul>
         </div>
         <div class="carilla-bloque">
           <h3>2. Bases económicas y sociales de la ocupación</h3>
           <ul>
-            <li>Conquista organizada mediante Capitulaciones: contratos por los que la Corona delega a particulares la exploración y sometimiento de territorios.[file:1]</li>
-            <li>Encomienda: asignación de comunidades indígenas a encomenderos, que cobran tributo y trabajo a cambio de supuesta protección y evangelización.[file:1]</li>
-            <li>Acción individual de los conquistadores, movida por el interés privado y el reparto del botín.[file:1]</li>
+            <li>Conquista organizada mediante Capitulaciones: la Corona delega exploración y sometimiento de territorios a particulares.</li>
+            <li>Encomienda: comunidades indígenas asignadas a encomenderos, que cobran tributo y trabajo a cambio de protección y evangelización.</li>
+            <li>Acción individual de los conquistadores, movida por el interés privado y el reparto del botín.</li>
           </ul>
         </div>
         <div class="carilla-bloque">
           <h3>3. Comercio colonial y polos de crecimiento</h3>
           <ul>
-            <li>Centralidad de la plata y el oro; técnica de amalgama con mercurio y minas como Potosí y Zacatecas.[file:1]</li>
-            <li>Las zonas mineras generan redes regionales (alimentos, transporte, comercio), creando polos de desarrollo internos.[file:1]</li>
+            <li>Centralidad del oro y la plata; desarrollo de grandes centros mineros que generan redes regionales de abastecimiento.</li>
+            <li>Surgen polos de crecimiento articulados al mercado mundial y espacios más periféricos o rezagados.</li>
           </ul>
         </div>
         <div class="carilla-bloque">
           <h3>4. Orígenes del feudalismo latinoamericano</h3>
           <ul>
-            <li>Declive de la minería y paso a la gran propiedad agraria como base del poder, con dominación sobre comunidades indígenas.[file:1]</li>
-            <li>Formación de latifundios y unidades aisladas, con fuerte dependencia personal y extracción de excedentes.[file:1]</li>
+            <li>Declive de la minería y paso a la gran propiedad agraria como base del poder.</li>
+            <li>Formación de latifundios y relaciones de dominación personal sobre comunidades campesinas e indígenas.</li>
           </ul>
         </div>
         <div class="carilla-bloque">
           <h3>5. Fuerzas centrífugas y centrípetas / fin de la era colonial</h3>
           <ul>
-            <li>Unidad política y espiritual de los imperios ibéricos vs. heterogeneidad social y regional latinoamericana.[file:1]</li>
-            <li>Crisis de la plata, reformas borbónicas, presión británica y guerras napoleónicas llevan al derrumbe del orden colonial e inicio de las independencias.[file:1]</li>
+            <li>Unidad política y espiritual de los imperios ibéricos frente a la heterogeneidad social y regional de América.</li>
+            <li>Crisis de la plata, reformas borbónicas, presiones externas y conflictos internos que preparan el derrumbe del orden colonial.</li>
           </ul>
         </div>
       </div>
@@ -295,7 +292,7 @@ main{
       <div class="capitulo-header">
         <div>
           <div class="capitulo-titulo">Capítulo 2 – Estados nacionales y positivismo</div>
-          <div class="capitulo-sub">Movimientos independentistas, nacionalismo, transición del feudalismo y emergencia del capitalismo.[file:1]</div>
+          <div class="capitulo-sub">Movimientos independentistas, nacionalismo, transición del feudalismo, emergencia del capitalismo y positivismo latinoamericano.</div>
         </div>
         <div class="chevron">▶</div>
       </div>
@@ -303,29 +300,29 @@ main{
         <div class="carilla-bloque">
           <h3>1. Deterioro de los imperios ibéricos</h3>
           <ul>
-            <li>España y Portugal endeudados, con economías agrarias y uso del metal americano para pagar productos industriales europeos.[file:1]</li>
-            <li>Ideas ilustradas y crisis internas erosionan el absolutismo.[file:1]</li>
+            <li>Monarquías ibéricas endeudadas, economías agrarias y utilización del metal americano para pagar importaciones industriales europeas.</li>
+            <li>Ideas ilustradas y crisis políticas internas erosionan al absolutismo.</li>
           </ul>
         </div>
         <div class="carilla-bloque">
           <h3>2. Situación de la colonia y movimientos independentistas</h3>
           <ul>
-            <li>Contrabando, piratería y rebeliones indígenas y esclavas muestran tensiones estructurales.[file:1]</li>
-            <li>Independencias articuladas por élites criollas, con distintas cronologías (Caracas, Buenos Aires, México, Haití, Brasil).[file:1]</li>
+            <li>Contrabando, rebeliones indígenas y esclavas evidencian tensiones estructurales del orden colonial.</li>
+            <li>Independencias impulsadas por élites criollas, con ritmos distintos (Haití, Río de la Plata, Venezuela, México, Brasil, etc.).</li>
           </ul>
         </div>
         <div class="carilla-bloque">
           <h3>3. Formación de los Estados nacionales</h3>
           <ul>
-            <li>Desarme del orden virreinal y construcción de repúblicas con instituciones, territorios y ciudadanías propias.[file:1]</li>
-            <li>Autonomía regional fuerte, caudillismo y dificultad para consolidar Estados centralizados.[file:1]</li>
+            <li>Desarme del orden virreinal y construcción de repúblicas con instituciones, territorios y ciudadanías propias.</li>
+            <li>Autonomía regional fuerte, caudillismo y dificultades para consolidar Estados centralizados.</li>
           </ul>
         </div>
         <div class="carilla-bloque">
-          <h3>4. Emergencia del capitalismo y positivismo latinoamericano</h3>
+          <h3>4. Emergencia del capitalismo y positivismo</h3>
           <ul>
-            <li>Inserción en el mercado mundial como exportadores de materias primas, consolidando un capitalismo dependiente.[file:1]</li>
-            <li>Positivismo: culto a la ciencia, “orden y progreso” y Estado fuerte como motor de modernización.[file:1]</li>
+            <li>Inserción en el mercado mundial como exportadores de materias primas, consolidando un capitalismo dependiente.</li>
+            <li>Positivismo latinoamericano: fe en la ciencia, el orden y el Estado fuerte como motor de modernización (“orden y progreso”).</li>
           </ul>
         </div>
       </div>
@@ -336,7 +333,7 @@ main{
       <div class="capitulo-header">
         <div>
           <div class="capitulo-titulo">Capítulo 3 – Transición al capitalismo periférico</div>
-          <div class="capitulo-sub">Economía atlántica, auge del siglo XVIII y cambio social.[file:1]</div>
+          <div class="capitulo-sub">Economía atlántica, auge del siglo XVIII, reformas liberales y cambio social.</div>
         </div>
         <div class="chevron">▶</div>
       </div>
@@ -344,29 +341,29 @@ main{
         <div class="carilla-bloque">
           <h3>1. Situación general y bases de la transición</h3>
           <ul>
-            <li>De estructuras coloniales a un capitalismo periférico integrado de forma subordinada al mercado mundial.[file:1]</li>
-            <li>Transición apoyada en aboliciones, reformas liberales y colonización de tierras “vacías”.[file:1]</li>
+            <li>Paso de estructuras coloniales a un capitalismo periférico integrado de forma subordinada al mercado mundial.</li>
+            <li>Transición apoyada en aboliciones, reformas liberales y colonización de tierras consideradas “vacías”.</li>
           </ul>
         </div>
         <div class="carilla-bloque">
           <h3>2. Economía atlántica, revolución industrial y auge americano</h3>
           <ul>
-            <li>Industrialización europea aumenta demanda de materias primas y alimentos desde América Latina.[file:1]</li>
-            <li>Ciclos mineros y productos coloniales del siglo XVIII preparan el modelo agroexportador.[file:1]</li>
+            <li>Industrialización europea aumenta la demanda de materias primas y alimentos desde América Latina.</li>
+            <li>Ciclos mineros y productos coloniales del siglo XVIII preparan el modelo agroexportador.</li>
           </ul>
         </div>
         <div class="carilla-bloque">
           <h3>3. Reformas liberales y mercado de tierras</h3>
           <ul>
-            <li>Desamortización de bienes de Iglesia y comunidades indígenas para crear un mercado de tierras.[file:1]</li>
-            <li>Consolidación de nuevas oligarquías agrarias y creación de mercados laborales adaptados a la exportación.[file:1]</li>
+            <li>Desamortización de bienes de Iglesia y comunidades indígenas para crear un mercado de tierras.</li>
+            <li>Consolidación de nuevas oligarquías agrarias y creación de mercados laborales ajustados a la exportación.</li>
           </ul>
         </div>
         <div class="carilla-bloque">
           <h3>4. Características del cambio social</h3>
           <ul>
-            <li>Crecimiento económico, ferrocarriles, comercio externo y urbanización.[file:1]</li>
-            <li>Persistencia de desigualdades, concentración de tierra y coexistencia de trabajo coercitivo y asalariado.[file:1]</li>
+            <li>Crecimiento económico, ferrocarriles, comercio externo y urbanización acelerada.</li>
+            <li>Persistencia de desigualdades, concentración de la tierra y coexistencia de trabajo coercitivo y asalariado.</li>
           </ul>
         </div>
       </div>
@@ -374,7 +371,7 @@ main{
 
     <!-- =================== QUIZ =================== -->
     <div class="quiz-area">
-      <div style="font-size:13px;margin-bottom:6px;">
+      <div class="quiz-titulo">
         Quiz por capítulos (3 botones, cada uno con 6 preguntas).
       </div>
       <div class="quiz-grid">
@@ -407,18 +404,18 @@ main{
 <script>
 // ===================== PREGUNTAS (6 POR CAPÍTULO) =====================
 const preguntas = [
-  // Capítulo 1 (unidad 1)
+  // Capítulo 1
   {
     unidad:1,
-    texto:"¿Qué estudia principalmente la historia social en el enfoque trabajado?",
+    texto:"¿Qué estudia principalmente la historia social en este enfoque?",
     opciones:[
       "Solo batallas y grandes líderes",
-      "Vida cotidiana, grupos sociales y estructuras que articulan economía y sociedad",
+      "La vida cotidiana, los grupos sociales y las estructuras que articulan economía y sociedad",
       "Exclusivamente las instituciones políticas",
       "Solo los cambios tecnológicos"
     ],
     correcta:1,
-    explicacion:"La historia social se centra en la vida cotidiana y las relaciones sociales, conectándolas con las estructuras económicas y de poder.[file:1]"
+    explicacion:"La historia social se centra en las relaciones y prácticas de los grupos sociales, conectadas con la economía y el poder."
   },
   {
     unidad:1,
@@ -430,19 +427,19 @@ const preguntas = [
       "La Audiencia"
     ],
     correcta:2,
-    explicacion:"La encomienda asignaba comunidades indígenas a encomenderos, que recibían tributo y trabajo a cambio de protección y evangelización.[file:1]"
+    explicacion:"La encomienda asignaba comunidades indígenas a encomenderos, que recibían tributo y trabajo a cambio de protección y evangelización."
   },
   {
     unidad:1,
     texto:"¿Qué eran las Capitulaciones en el contexto de la conquista?",
     opciones:[
       "Concesiones de ciudadanía",
-      "Contratos públicos por los que la Corona delegaba la exploración y conquista a particulares",
+      "Contratos por los que la Corona delegaba la exploración y conquista a particulares",
       "Leyes de abolición de la esclavitud",
       "Tratados de paz con Inglaterra"
     ],
     correcta:1,
-    explicacion:"Las Capitulaciones eran contratos donde la Corona otorgaba prerrogativas a particulares para explorar y someter territorios americanos.[file:1]"
+    explicacion:"Las Capitulaciones eran acuerdos entre la Corona y particulares para explorar, conquistar y poblar nuevos territorios."
   },
   {
     unidad:1,
@@ -454,7 +451,7 @@ const preguntas = [
       "El aislamiento total respecto de Europa"
     ],
     correcta:2,
-    explicacion:"Furtado señala que la combinación de conquista y diseño institucional económico es el origen de la estructura social regional.[file:1]"
+    explicacion:"La combinación entre tipo de conquista e instituciones económicas explica los rasgos centrales de la estructura social."
   },
   {
     unidad:1,
@@ -462,26 +459,26 @@ const preguntas = [
     opciones:[
       "Solo abastecían el mercado interno americano",
       "No tuvieron importancia estructural",
-      "Financiaban a la metrópoli y, al mismo tiempo, generaban polos regionales de crecimiento",
+      "Financiaban a la metrópoli y generaban polos regionales de crecimiento",
       "Se prohibía su exportación fuera de América"
     ],
     correcta:2,
-    explicacion:"Los metales preciosos alimentaban el mercantilismo europeo y creaban redes regionales de abastecimiento y comercio en América.[file:1]"
+    explicacion:"Los metales preciosos servían para financiar a las metrópolis y estructurar redes económicas dentro de América."
   },
   {
     unidad:1,
-    texto:"¿Qué significado tiene el “feudalismo latinoamericano” en este programa?",
+    texto:"¿Qué significa 'feudalismo latinoamericano' en este programa?",
     opciones:[
       "Una copia exacta del feudalismo europeo",
-      "Simplemente un modelo político",
-      "Un orden basado en la gran propiedad agraria, dominio personal y extracción de excedente local",
+      "Solo un modelo político",
+      "Un orden basado en gran propiedad agraria, dominación personal y extracción de excedente local",
       "Un régimen sin jerarquías sociales"
     ],
     correcta:2,
-    explicacion:"Se alude a grandes dominios rurales con fuerte subordinación personal y control del excedente por minorías terratenientes.[file:1]"
+    explicacion:"Se alude a grandes dominios rurales con fuerte subordinación personal y control del excedente por minorías terratenientes."
   },
 
-  // Capítulo 2 (unidad 2)
+  // Capítulo 2
   {
     unidad:2,
     texto:"¿Qué caracteriza a la formación de los Estados nacionales latinoamericanos?",
@@ -492,7 +489,7 @@ const preguntas = [
       "Imposición directa de modelos británicos"
     ],
     correcta:1,
-    explicacion:"Los Estados se construyen sobre ruinas virreinales, con fragmentación regional y liderazgo de élites criollas.[file:1]"
+    explicacion:"Los Estados surgen sobre ruinas virreinales, con fragmentación regional y liderazgo de élites criollas."
   },
   {
     unidad:2,
@@ -500,23 +497,23 @@ const preguntas = [
     opciones:[
       "No tuvo relevancia política",
       "Solo fue un fenómeno cultural sin efectos",
-      "Sirvió para legitimar proyectos de élite y para articular discursos de identidad y soberanía",
-      "Se limitó a los sectores indígenas"
+      "Legitimó proyectos de élite y articuló discursos de identidad y soberanía",
+      "Se limitó exclusivamente a sectores indígenas"
     ],
     correcta:2,
-    explicacion:"El nacionalismo legitimó a nuevas élites y expresó tensiones frente a la dependencia externa y la desigualdad interna.[file:1]"
+    explicacion:"El nacionalismo funcionó como marco de legitimación y como respuesta a la dependencia externa y la desigualdad interna."
   },
   {
     unidad:2,
-    texto:"Según el material, ¿qué efecto económico tuvo la independencia?",
+    texto:"¿Qué efecto económico tuvo la independencia, según el programa?",
     opciones:[
       "Industrialización inmediata y autónoma",
-      "Ruptura de estructuras coloniales sin modelo alternativo sólido, generando crisis y desorden",
+      "Ruptura de estructuras coloniales sin modelo alternativo sólido, con crisis y desorden",
       "Eliminación total de la deuda externa",
       "Desaparición del contrabando"
     ],
     correcta:1,
-    explicacion:"Tras la independencia se producen crisis fiscales y comerciales, con muchas continuidades estructurales.[file:1]"
+    explicacion:"Tras la independencia se producen crisis fiscales y comerciales, con muchas continuidades estructurales coloniales."
   },
   {
     unidad:2,
@@ -528,7 +525,7 @@ const preguntas = [
       "Como negación del mercado mundial"
     ],
     correcta:2,
-    explicacion:"El positivismo se asocia a proyectos de modernización dirigidos por élites y a la consigna de “orden y progreso”.[file:1]"
+    explicacion:"El positivismo se asocia a proyectos de modernización dirigidos por élites y a la consigna de 'orden y progreso'."
   },
   {
     unidad:2,
@@ -540,7 +537,7 @@ const preguntas = [
       "La conciencia nacional elimina toda desigualdad social"
     ],
     correcta:2,
-    explicacion:"La erosión de estructuras señoriales es parte del tránsito hacia sujetos que se piensan como ciudadanos del Estado nacional.[file:1]"
+    explicacion:"La erosión de estructuras señoriales es parte del tránsito hacia sujetos que se piensan como ciudadanos del Estado nacional."
   },
   {
     unidad:2,
@@ -552,10 +549,10 @@ const preguntas = [
       "Como proveedor exclusivo de servicios financieros"
     ],
     correcta:2,
-    explicacion:"Las repúblicas se integran al mercado mundial en posición periférica, especializadas en productos primarios.[file:1]"
+    explicacion:"Las repúblicas se integran al mercado mundial en posición periférica, especializadas en bienes primarios."
   },
 
-  // Capítulo 3 (unidad 3)
+  // Capítulo 3
   {
     unidad:3,
     texto:"¿Qué significa 'capitalismo periférico' aplicado a América Latina?",
@@ -566,7 +563,7 @@ const preguntas = [
       "Economía cerrada sin exportaciones"
     ],
     correcta:2,
-    explicacion:"Se refiere a economías capitalistas dependientes, articuladas al mercado mundial desde la exportación de bienes primarios.[file:1]"
+    explicacion:"Designa economías capitalistas dependientes, articuladas al mercado mundial desde la exportación de bienes primarios."
   },
   {
     unidad:3,
@@ -578,19 +575,19 @@ const preguntas = [
       "Europa se vuelve dependiente del trabajo latinoamericano para su industria pesada"
     ],
     correcta:2,
-    explicacion:"La industria europea necesita alimentos y materias primas, reforzando el modelo agroexportador latinoamericano.[file:1]"
+    explicacion:"La industria europea necesita alimentos y materias primas, reforzando el modelo agroexportador latinoamericano."
   },
   {
     unidad:3,
     texto:"¿Qué buscaban las reformas liberales sobre la tierra (desamortización)?",
     opciones:[
       "Congelar la propiedad",
-      "Crear un mercado de tierras, liberando bienes de Iglesia y comunidades",
+      "Crear un mercado de tierras liberando bienes de Iglesia y comunidades",
       "Restituir privilegios feudales",
       "Eliminar cualquier forma de propiedad privada"
     ],
     correcta:1,
-    explicacion:"La desamortización pretendía activar tierras inmovilizadas, aunque fortaleció a nuevas oligarquías agrarias.[file:1]"
+    explicacion:"La desamortización pretendía activar tierras inmovilizadas, aunque fortaleció a nuevas oligarquías agrarias."
   },
   {
     unidad:3,
@@ -602,7 +599,7 @@ const preguntas = [
       "Fin de la dependencia externa"
     ],
     correcta:2,
-    explicacion:"El crecimiento se combina con alta desigualdad y formas laborales mixtas.[file:1]"
+    explicacion:"El crecimiento se combina con alta desigualdad y formas laborales mixtas."
   },
   {
     unidad:3,
@@ -614,19 +611,19 @@ const preguntas = [
       "Sustituyen completamente a las élites locales"
     ],
     correcta:2,
-    explicacion:"Los capitales foráneos se concentran en infraestructura (ferrocarriles, puertos) y préstamos a gobiernos.[file:1]"
+    explicacion:"Los capitales externos se concentran en ferrocarriles, puertos y préstamos a gobiernos, ligados a la exportación."
   },
   {
     unidad:3,
-    texto:"Según Zanatta, ¿qué efecto tuvo el modelo agroexportador liberal?",
+    texto:"¿Qué efecto tuvo el modelo agroexportador liberal, según la bibliografía?",
     opciones:[
       "Creó plena igualdad social",
-      "No modificó las estructuras antiguas",
+      "No modificó estructuras antiguas",
       "Impulsó crecimiento e integración, pero con concentración de riqueza y alta vulnerabilidad",
       "Eliminó las crisis fiscales"
     ],
     correcta:2,
-    explicacion:"El boom exportador trajo obras e ingresos, pero también dependencia de pocos productos y fuertes brechas sociales.[file:1]"
+    explicacion:"El boom exportador trajo obras e ingresos, pero también dependencia de pocos productos y fuertes brechas sociales."
   }
 ];
 
@@ -674,7 +671,7 @@ function barajar(arr){
 function iniciarQuiz(unidad){
   quizUnidadActual = unidad;
   const arr = preguntas.filter(p=>p.unidad===unidad);
-  indicesPreguntas = barajar(arr.map((p,idx)=>idx));
+  indicesPreguntas = barajar(arr.map((_,idx)=>idx));
   indiceActual = -1;
   correctas = 0;
   quizTitulo.textContent = `Quiz Capítulo ${unidad}`;
@@ -747,7 +744,6 @@ btnResponder.addEventListener('click',()=>{
   explicacion.textContent = p.explicacion;
   explicacion.style.display='block';
   contadorLbl.textContent = `${indiceActual+1}/${indicesPreguntas.length} correctas: ${correctas}`;
-  // pasar automáticamente a la próxima tras pequeña pausa
   setTimeout(siguientePregunta, 1100);
 });
 
