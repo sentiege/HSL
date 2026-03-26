@@ -1,3 +1,8 @@
+No es posible copiar “exactamente” el estilo de esa página porque no se puede acceder a su código ni a sus estilos desde acá, pero sí se puede aproximar mucho: header centrado, tarjeta clara en el medio, colores vivos y bloques de contenido ordenados. [der.una](https://www.der.una.py/application/files/5815/3900/3807/3Historia_Social_Latinoamericana_I.pdf)
+
+Te dejo una versión más colorida y atractiva, lista para usar como `index.html`:
+
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -5,48 +10,64 @@
 <title>Historia Social Latinoamericana – Material de repaso</title>
 <style>
 :root{
-  --bg:#f3f0ea;
+  --bg:#f0f4ff;
   --card:#ffffff;
-  --primary:#1e88e5;
+  --primary:#1976d2;
   --primary-soft:#e3f2fd;
-  --text:#212121;
-  --muted:#757575;
+  --accent:#ffb74d;
+  --text:#1f2933;
+  --muted:#6b7c93;
   --border:#e0e0e0;
-  --shadow:0 4px 12px rgba(0,0,0,0.12);
+  --shadow:0 18px 45px rgba(15,35,52,0.18);
 }
 *{box-sizing:border-box;}
 body{
   margin:0;
   padding:0;
   font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  background:var(--bg);
+  background:radial-gradient(circle at top,#e8f0ff,#dde7ff 40%,#f7f9ff 100%);
   color:var(--text);
 }
+
+/* HEADER tipo landing */
 header{
-  padding:24px 16px 10px;
   text-align:center;
+  padding:32px 16px 18px;
 }
 header h1{
   margin:0;
-  font-size:24px;
-  font-weight:600;
+  font-size:28px;
+  font-weight:700;
+  color:#0f172a;
 }
 header p{
-  margin:6px 0 0;
-  font-size:14px;
+  margin:8px 0 0;
+  font-size:15px;
   color:var(--muted);
 }
+header .pill{
+  display:inline-block;
+  margin-top:10px;
+  padding:4px 10px;
+  border-radius:999px;
+  background:rgba(25,118,210,0.12);
+  color:#0d47a1;
+  font-size:12px;
+  font-weight:500;
+}
+
+/* CONTENEDOR CENTRAL tipo tarjeta */
 main{
-  max-width:960px;
-  margin:0 auto 24px;
-  padding:0 12px 20px;
+  max-width:900px;
+  margin:0 auto 32px;
+  padding:0 16px 24px;
 }
 .cuaderno{
   background:var(--card);
-  border-radius:10px;
+  border-radius:18px;
   box-shadow:var(--shadow);
-  padding:18px 16px 20px;
-  border:1px solid rgba(0,0,0,0.03);
+  padding:22px 20px 22px;
+  border:1px solid rgba(255,255,255,0.7);
 }
 .intro{
   font-size:14px;
@@ -55,24 +76,38 @@ main{
   color:var(--muted);
 }
 
-/* -------- MENÚ DE CAPÍTULOS (CARILLAS) -------- */
+/* CAPÍTULOS estilo acordéon colorido */
 .capitulo{
-  border-radius:8px;
+  border-radius:12px;
   border:1px solid var(--border);
   margin-bottom:12px;
   overflow:hidden;
-  background:#fafafa;
+  background:linear-gradient(135deg,#f9fbff,#f3f7ff);
 }
 .capitulo-header{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:10px 12px;
+  padding:11px 14px;
   cursor:pointer;
-  background:linear-gradient(90deg,#fafafa,#f0f4ff);
 }
-.capitulo-header:hover{
-  background:linear-gradient(90deg,#e8f0ff,#f0f4ff);
+.cap-left{
+  display:flex;
+  align-items:flex-start;
+  gap:8px;
+}
+.cap-badge{
+  width:26px;
+  height:26px;
+  border-radius:9px;
+  background:var(--primary);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:13px;
+  font-weight:600;
+  box-shadow:0 4px 10px rgba(25,118,210,0.35);
 }
 .capitulo-titulo{
   font-size:15px;
@@ -94,8 +129,9 @@ main{
   max-height:0;
   overflow:hidden;
   transition:max-height .25s ease-out, padding .2s;
-  padding:0 12px;
-  background:#fff;
+  padding:0 14px;
+  background:#ffffff;
+  border-top:1px solid rgba(0,0,0,0.04);
 }
 
 /* contenido tipo carilla */
@@ -105,7 +141,7 @@ main{
   padding-left:10px;
 }
 .carilla-bloque h3{
-  margin:4px 0;
+  margin:6px 0 2px;
   font-size:14px;
   color:#1a237e;
 }
@@ -115,12 +151,12 @@ main{
   font-size:13px;
 }
 .carilla-bloque li{
-  margin-bottom:3px;
+  margin-bottom:4px;
 }
 
-/* -------- QUIZ -------- */
+/* QUIZ colorido */
 .quiz-area{
-  margin-top:18px;
+  margin-top:20px;
   padding-top:12px;
   border-top:1px dashed var(--border);
 }
@@ -128,6 +164,7 @@ main{
   font-size:14px;
   margin-bottom:6px;
   font-weight:500;
+  color:#0f172a;
 }
 .quiz-grid{
   display:flex;
@@ -135,47 +172,48 @@ main{
   gap:8px;
 }
 .btn-quiz{
-  flex:1 1 120px;
+  flex:1 1 150px;
   border:none;
   border-radius:999px;
-  padding:6px 10px;
+  padding:7px 11px;
   font-size:13px;
   cursor:pointer;
-  background:#eeeeee;
-  color:#37474f;
+  background:linear-gradient(135deg,#e3f2fd,#bbdefb);
+  color:#0d47a1;
   display:flex;
   align-items:center;
   justify-content:space-between;
+  box-shadow:0 4px 12px rgba(21,101,192,0.25);
 }
 .btn-quiz span.badge{
-  background:var(--primary-soft);
-  color:#1565c0;
+  background:rgba(255,255,255,0.85);
+  color:#0d47a1;
   padding:1px 7px;
   border-radius:999px;
   font-size:11px;
 }
 .btn-quiz:hover{
-  background:#e0e0e0;
+  filter:brightness(1.05);
 }
 .btn-quiz.active{
-  background:var(--primary);
+  background:linear-gradient(135deg,#1976d2,#0d47a1);
   color:#fff;
 }
 .btn-quiz.active span.badge{
   background:rgba(255,255,255,.18);
   color:#fff;
 }
-
 .quiz-panel{
   margin-top:12px;
-  border-radius:8px;
+  border-radius:12px;
   border:1px solid var(--border);
   padding:10px 12px;
-  background:#fff;
+  background:#f9fbff;
 }
 .quiz-panel h2{
   margin:0 0 6px;
   font-size:15px;
+  color:#0f172a;
 }
 .pregunta-texto{
   font-weight:600;
@@ -192,15 +230,17 @@ main{
 .btn{
   border:none;
   border-radius:999px;
-  padding:6px 12px;
+  padding:6px 13px;
   font-size:13px;
   cursor:pointer;
   background:var(--primary);
   color:#fff;
+  box-shadow:0 4px 10px rgba(25,118,210,0.35);
 }
 .btn:disabled{
   opacity:.5;
   cursor:not-allowed;
+  box-shadow:none;
 }
 .contador{
   font-size:12px;
@@ -217,10 +257,18 @@ main{
   background:var(--primary-soft);
 }
 
-/* -------- RESPONSIVE -------- */
-@media (max-width:600px){
-  header h1{font-size:20px;}
-  .cuaderno{padding:14px;}
+/* FOOTER pequeño */
+footer{
+  text-align:center;
+  font-size:11px;
+  color:var(--muted);
+  margin-bottom:10px;
+}
+
+/* RESPONSIVE */
+@media (max-width:640px){
+  header h1{font-size:22px;}
+  .cuaderno{padding:18px 14px;}
   .quiz-grid{flex-direction:column;}
 }
 </style>
@@ -229,21 +277,25 @@ main{
 <header>
   <h1>Historia Social Latinoamericana – Material de repaso</h1>
   <p>Basado en el programa y en el libro de HSL – del prof. Zorrilla.</p>
+  <div class="pill">Capítulos en modo carilla + quizzes por tema</div>
 </header>
 
 <main>
   <div class="cuaderno">
     <p class="intro">
-      Usá los capítulos como carillas de lectura rápida y luego practicá con los quizzes de cada uno.
+      Desplegá cada capítulo como si fuera una carilla de apuntes y después practicá con el quiz de ese capítulo.
     </p>
 
-    <!-- =================== CARILLAS / CAPÍTULOS =================== -->
+    <!-- =================== CAPÍTULOS / CARILLAS =================== -->
     <!-- Capítulo 1 -->
     <div class="capitulo" data-cap="1">
       <div class="capitulo-header">
-        <div>
-          <div class="capitulo-titulo">Capítulo 1 – Historia social y época colonial</div>
-          <div class="capitulo-sub">Historia social, pensamiento social latinoamericano, bases de la ocupación, comercio colonial, feudalismo y fin de la era colonial.</div>
+        <div class="cap-left">
+          <div class="cap-badge">1</div>
+          <div>
+            <div class="capitulo-titulo">Capítulo 1 – Historia social y época colonial</div>
+            <div class="capitulo-sub">Historia social, pensamiento social latinoamericano, bases de la ocupación, comercio colonial y fin de la era colonial.</div>
+          </div>
         </div>
         <div class="chevron">▶</div>
       </div>
@@ -252,13 +304,13 @@ main{
           <h3>1. Historia social y pensamiento latinoamericano</h3>
           <ul>
             <li>La historia social estudia la vida cotidiana, los grupos sociales y las estructuras que articulan economía y poder.</li>
-            <li>El pensamiento social latinoamericano aborda identidad, dependencia y colonialidad (Martí, Mariátegui, Zea, Vasconcelos, Rodó, Germani, entre otros).</li>
+            <li>El pensamiento social latinoamericano reflexiona sobre identidad, dependencia y colonialidad (Martí, Mariátegui, Zea, Vasconcelos, Rodó, Germani, entre otros).</li>
           </ul>
         </div>
         <div class="carilla-bloque">
           <h3>2. Bases económicas y sociales de la ocupación</h3>
           <ul>
-            <li>Conquista organizada mediante Capitulaciones: la Corona delega exploración y sometimiento de territorios a particulares.</li>
+            <li>Conquista organizada mediante Capitulaciones, donde la Corona delega exploración y sometimiento de territorios a particulares.</li>
             <li>Encomienda: comunidades indígenas asignadas a encomenderos, que cobran tributo y trabajo a cambio de protección y evangelización.</li>
             <li>Acción individual de los conquistadores, movida por el interés privado y el reparto del botín.</li>
           </ul>
@@ -266,14 +318,14 @@ main{
         <div class="carilla-bloque">
           <h3>3. Comercio colonial y polos de crecimiento</h3>
           <ul>
-            <li>Centralidad del oro y la plata; desarrollo de grandes centros mineros que generan redes regionales de abastecimiento.</li>
-            <li>Surgen polos de crecimiento articulados al mercado mundial y espacios más periféricos o rezagados.</li>
+            <li>Oro y plata como eje de la economía; desarrollo de centros mineros que generan redes regionales de abastecimiento.</li>
+            <li>Surgen polos de crecimiento integrados al mercado mundial y zonas más periféricas o rezagadas.</li>
           </ul>
         </div>
         <div class="carilla-bloque">
           <h3>4. Orígenes del feudalismo latinoamericano</h3>
           <ul>
-            <li>Declive de la minería y paso a la gran propiedad agraria como base del poder.</li>
+            <li>Declive de la minería y consolidación de la gran propiedad agraria como base del poder local.</li>
             <li>Formación de latifundios y relaciones de dominación personal sobre comunidades campesinas e indígenas.</li>
           </ul>
         </div>
@@ -281,7 +333,7 @@ main{
           <h3>5. Fuerzas centrífugas y centrípetas / fin de la era colonial</h3>
           <ul>
             <li>Unidad política y espiritual de los imperios ibéricos frente a la heterogeneidad social y regional de América.</li>
-            <li>Crisis de la plata, reformas borbónicas, presiones externas y conflictos internos que preparan el derrumbe del orden colonial.</li>
+            <li>Crisis económicas, reformas borbónicas y conflictos internos que preparan el derrumbe del orden colonial.</li>
           </ul>
         </div>
       </div>
@@ -290,9 +342,12 @@ main{
     <!-- Capítulo 2 -->
     <div class="capitulo" data-cap="2">
       <div class="capitulo-header">
-        <div>
-          <div class="capitulo-titulo">Capítulo 2 – Estados nacionales y positivismo</div>
-          <div class="capitulo-sub">Movimientos independentistas, nacionalismo, transición del feudalismo, emergencia del capitalismo y positivismo latinoamericano.</div>
+        <div class="cap-left">
+          <div class="cap-badge">2</div>
+          <div>
+            <div class="capitulo-titulo">Capítulo 2 – Estados nacionales y positivismo</div>
+            <div class="capitulo-sub">Movimientos independentistas, nacionalismo, transición del feudalismo y emergencia del capitalismo.</div>
+          </div>
         </div>
         <div class="chevron">▶</div>
       </div>
@@ -300,22 +355,22 @@ main{
         <div class="carilla-bloque">
           <h3>1. Deterioro de los imperios ibéricos</h3>
           <ul>
-            <li>Monarquías ibéricas endeudadas, economías agrarias y utilización del metal americano para pagar importaciones industriales europeas.</li>
-            <li>Ideas ilustradas y crisis políticas internas erosionan al absolutismo.</li>
+            <li>Monarquías ibéricas endeudadas, economías agrarias y uso del metal americano para pagar importaciones industriales europeas.</li>
+            <li>Ideas ilustradas y crisis políticas internas erosionan el absolutismo y la legitimidad de la metrópoli.</li>
           </ul>
         </div>
         <div class="carilla-bloque">
           <h3>2. Situación de la colonia y movimientos independentistas</h3>
           <ul>
-            <li>Contrabando, rebeliones indígenas y esclavas evidencian tensiones estructurales del orden colonial.</li>
-            <li>Independencias impulsadas por élites criollas, con ritmos distintos (Haití, Río de la Plata, Venezuela, México, Brasil, etc.).</li>
+            <li>Contrabando, rebeliones indígenas y esclavas muestran las tensiones estructurales del orden colonial.</li>
+            <li>Independencias impulsadas por élites criollas con ritmos distintos (Haití, Río de la Plata, Venezuela, México, Brasil, etc.).</li>
           </ul>
         </div>
         <div class="carilla-bloque">
           <h3>3. Formación de los Estados nacionales</h3>
           <ul>
             <li>Desarme del orden virreinal y construcción de repúblicas con instituciones, territorios y ciudadanías propias.</li>
-            <li>Autonomía regional fuerte, caudillismo y dificultades para consolidar Estados centralizados.</li>
+            <li>Autonomía regional fuerte, caudillismo y dificultades para consolidar Estados centralizados y estables.</li>
           </ul>
         </div>
         <div class="carilla-bloque">
@@ -331,9 +386,12 @@ main{
     <!-- Capítulo 3 -->
     <div class="capitulo" data-cap="3">
       <div class="capitulo-header">
-        <div>
-          <div class="capitulo-titulo">Capítulo 3 – Transición al capitalismo periférico</div>
-          <div class="capitulo-sub">Economía atlántica, auge del siglo XVIII, reformas liberales y cambio social.</div>
+        <div class="cap-left">
+          <div class="cap-badge">3</div>
+          <div>
+            <div class="capitulo-titulo">Capítulo 3 – Transición al capitalismo periférico</div>
+            <div class="capitulo-sub">Economía atlántica, auge del siglo XVIII, reformas liberales y cambio social.</div>
+          </div>
         </div>
         <div class="chevron">▶</div>
       </div>
@@ -349,13 +407,13 @@ main{
           <h3>2. Economía atlántica, revolución industrial y auge americano</h3>
           <ul>
             <li>Industrialización europea aumenta la demanda de materias primas y alimentos desde América Latina.</li>
-            <li>Ciclos mineros y productos coloniales del siglo XVIII preparan el modelo agroexportador.</li>
+            <li>Ciclos mineros y productos coloniales del siglo XVIII preparan el futuro modelo agroexportador.</li>
           </ul>
         </div>
         <div class="carilla-bloque">
           <h3>3. Reformas liberales y mercado de tierras</h3>
           <ul>
-            <li>Desamortización de bienes de Iglesia y comunidades indígenas para crear un mercado de tierras.</li>
+            <li>Desamortización de bienes de Iglesia y comunidades para crear un mercado de tierras “libre”.</li>
             <li>Consolidación de nuevas oligarquías agrarias y creación de mercados laborales ajustados a la exportación.</li>
           </ul>
         </div>
@@ -401,8 +459,12 @@ main{
   </div>
 </main>
 
+<footer>
+  Historia Social Latinoamericana – Cátedra Zorrilla – Material de repaso estudiantil.
+</footer>
+
 <script>
-// ===================== PREGUNTAS (6 POR CAPÍTULO) =====================
+// ===================== PREGUNTAS =====================
 const preguntas = [
   // Capítulo 1
   {
@@ -415,7 +477,7 @@ const preguntas = [
       "Solo los cambios tecnológicos"
     ],
     correcta:1,
-    explicacion:"La historia social se centra en las relaciones y prácticas de los grupos sociales, conectadas con la economía y el poder."
+    explicacion:"La historia social se centra en las prácticas y relaciones de los grupos sociales, conectadas con la economía y el poder."
   },
   {
     unidad:1,
@@ -475,7 +537,7 @@ const preguntas = [
       "Un régimen sin jerarquías sociales"
     ],
     correcta:2,
-    explicacion:"Se alude a grandes dominios rurales con fuerte subordinación personal y control del excedente por minorías terratenientes."
+    explicacion:"Se alude a grandes dominios rurales con subordinación personal y control del excedente por minorías terratenientes."
   },
 
   // Capítulo 2
@@ -627,7 +689,7 @@ const preguntas = [
   }
 ];
 
-// ===================== LÓGICA CAPÍTULOS (ACORDEÓN) =====================
+// Acordeón capítulos
 document.querySelectorAll('.capitulo-header').forEach(h=>{
   h.addEventListener('click',()=>{
     const cap = h.parentElement;
@@ -643,7 +705,7 @@ document.querySelectorAll('.capitulo-header').forEach(h=>{
   });
 });
 
-// ===================== LÓGICA QUIZ =====================
+// Quiz
 let quizUnidadActual = null;
 let indicesPreguntas = [];
 let indiceActual = -1;
@@ -759,3 +821,9 @@ document.querySelectorAll('.btn-quiz').forEach(btn=>{
 </script>
 </body>
 </html>
+```
+
+Para que se vea “igual de lindo” que tu página de ejemplo, podés ahora:
+
+- Subir este archivo a tu repo de GitHub Pages (como `index.html` en la misma carpeta donde está `HSL`). [der.una](https://www.der.una.py/application/files/5815/3900/3807/3Historia_Social_Latinoamericana_I.pdf)
+- Verlo en el celular: el diseño ya está adaptado (móvil first, botones grandes, colores vivos).
