@@ -3,911 +3,1075 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historia Social Latinoamericana - Unidades 4, 5 y 6</title>
+    <title>Historia Social Latinoamericana - Unidades IV, V y VI</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #333;
-            line-height: 1.6;
+            min-height: 100vh;
             padding: 20px;
+            color: #333;
         }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
             background: white;
             border-radius: 10px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            overflow: hidden;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #1a3a52 0%, #2d5a7b 100%);
-            color: white;
             padding: 40px;
+        }
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
             text-align: center;
         }
+        header h1 { font-size: 2.5em; margin-bottom: 10px; font-weight: 600; }
+        header p { font-size: 1.1em; opacity: 0.9; font-weight: 400; }
 
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .header p {
-            font-size: 1.1em;
-            opacity: 0.9;
-        }
-
-        .nav-tabs {
+        .tabs {
             display: flex;
-            background-color: #f0f0f0;
-            border-bottom: 3px solid #667eea;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #ddd;
             flex-wrap: wrap;
         }
-
-        .nav-tabs button {
-            flex: 1;
-            padding: 15px 20px;
+        .tab-button {
+            padding: 12px 24px;
+            background: #f0f0f0;
             border: none;
-            background-color: #f0f0f0;
             cursor: pointer;
-            font-size: 0.95em;
-            font-weight: 600;
-            color: #333;
-            transition: all 0.3s ease;
+            font-size: 1em;
+            font-weight: 500;
             border-bottom: 3px solid transparent;
-            min-width: 150px;
+            transition: all 0.3s;
+            color: #333;
         }
-
-        .nav-tabs button:hover {
-            background-color: #e0e0e0;
-            color: #667eea;
-        }
-
-        .nav-tabs button.active {
-            background-color: white;
+        .tab-button:hover { background: #e0e0e0; }
+        .tab-button.active {
+            background: white;
             color: #667eea;
             border-bottom-color: #667eea;
+            font-weight: 600;
         }
-
         .tab-content {
             display: none;
-            padding: 40px;
-            animation: fadeIn 0.3s ease;
-            max-height: 80vh;
-            overflow-y: auto;
+            animation: fadeIn 0.3s;
+            overflow: visible;
         }
-
         .tab-content.active {
             display: block;
+            overflow-y: auto;
         }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        h2 {
-            color: #1a3a52;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #667eea;
-            padding-bottom: 10px;
-            font-size: 1.8em;
-        }
-
-        h3 {
-            color: #2d5a7b;
-            margin-top: 25px;
-            margin-bottom: 15px;
-            font-size: 1.3em;
-        }
-
-        h4 {
-            color: #667eea;
-            margin-top: 15px;
-            margin-bottom: 10px;
-            font-size: 1.1em;
-        }
-
-        .question-block {
-            background-color: #f9f9f9;
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f9f9f9;
             border-left: 4px solid #667eea;
-            padding: 20px;
-            margin-bottom: 25px;
             border-radius: 5px;
-            transition: all 0.3s ease;
         }
-
-        .question-block:hover {
-            background-color: #f0f7ff;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
-        }
-
-        .question-block.unit4 {
-            border-left-color: #3498db;
-        }
-
-        .question-block.unit5 {
-            border-left-color: #e74c3c;
-        }
-
-        .question-block.unit6 {
-            border-left-color: #2ecc71;
-        }
-
-        .question-title {
-            font-weight: bold;
-            color: #1a3a52;
-            margin-bottom: 12px;
-            font-size: 1.05em;
-        }
-
-        .question-number {
-            display: inline-block;
-            background-color: #667eea;
-            color: white;
-            padding: 2px 8px;
-            border-radius: 3px;
-            margin-right: 8px;
-            font-weight: bold;
-            font-size: 0.9em;
-        }
-
-        .answer-text {
-            color: #444;
-            line-height: 1.8;
-            margin-top: 10px;
-            background: white;
-            padding: 12px;
-            border-radius: 4px;
-        }
-
-        .correct-answer {
-            display: inline-block;
-            background-color: #e8f5e9;
-            color: #2e7d32;
-            padding: 8px 12px;
-            border-radius: 4px;
-            margin-top: 8px;
-            font-weight: 600;
-            font-size: 0.95em;
-        }
-
-        .correct-answer::before {
-            content: "✓ ";
-        }
-
-        ul, ol {
-            margin-left: 20px;
-            margin-top: 10px;
+        .section h2 {
+            color: #667eea;
             margin-bottom: 15px;
+            font-size: 1.8em;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
         }
-
-        li {
-            margin-bottom: 8px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            background-color: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            border-radius: 5px;
+        .section h2:hover { text-decoration: underline; }
+        .toggle-icon { font-size: 1.3em; transition: transform 0.3s; }
+        .section.collapsed h2 .toggle-icon { transform: rotate(-90deg); }
+        .section-content {
+            max-height: 99999px;
             overflow: hidden;
+            transition: max-height 0.6s ease;
         }
+        .section.collapsed .section-content { max-height: 0; }
+        .section h3 { color: #764ba2; margin-top: 20px; margin-bottom: 10px; font-size: 1.3em; font-weight: 600; }
+        .section h4 { color: #666; margin-top: 15px; margin-bottom: 8px; font-size: 1.1em; font-weight: 500; }
+        .section p { line-height: 1.8; color: #555; margin-bottom: 12px; text-align: justify; }
+        .section ul, .section ol { margin-left: 25px; margin-bottom: 12px; }
+        .section li { line-height: 1.8; color: #555; margin-bottom: 8px; }
 
-        th {
-            background-color: #667eea;
-            color: white;
-            padding: 12px;
-            text-align: left;
-            font-weight: 600;
-        }
-
-        td {
-            padding: 12px;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        tr:hover {
-            background-color: #f0f7ff;
-        }
-
-        .unit-label {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.85em;
-            font-weight: bold;
-            margin-right: 10px;
-            margin-bottom: 15px;
-        }
-
-        .unit4-label {
-            background-color: #d1ecf1;
-            color: #0c5460;
-            border: 1px solid #bee5eb;
-        }
-
-        .unit5-label {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-
-        .unit6-label {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-
-        .options-list {
-            background-color: white;
-            padding: 12px;
-            border-radius: 4px;
-            margin: 10px 0;
-        }
-
-        .options-list p {
-            margin: 8px 0;
-            padding-left: 10px;
-        }
-
-        .footer {
-            background-color: #f0f0f0;
-            padding: 20px;
-            text-align: center;
-            color: #666;
-            border-top: 1px solid #ddd;
-        }
-
-        .section-intro {
-            background-color: #e3f2fd;
+        .highlight {
+            background: #fff3cd;
             padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            border-left: 4px solid #2196F3;
+            border-left: 4px solid #ff9800;
+            margin: 15px 0;
+            border-radius: 4px;
+            color: #333;
         }
+        .highlight em { font-style: italic; color: #ff6f00; }
+        .definition {
+            background: #e3f2fd;
+            padding: 15px;
+            border-left: 4px solid #2196f3;
+            margin: 15px 0;
+            border-radius: 4px;
+            color: #333;
+            line-height: 1.8;
+        }
+        .guide-section {
+            background: #f3e5f5;
+            padding: 20px;
+            border-left: 4px solid #9c27b0;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .guide-section h3 { color: #7b1fa2; margin-bottom: 15px; font-weight: 600; }
+        .guide-section .question {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border-left: 3px solid #9c27b0;
+        }
+        .guide-section .question > strong { color: #7b1fa2; font-weight: 600; }
+        .guide-section .answer {
+            background: #f0f4c3;
+            padding: 12px;
+            margin-top: 8px;
+            border-radius: 4px;
+            display: none;
+            color: #333;
+            line-height: 1.7;
+        }
+        .guide-section .answer strong { color: #7b1fa2; font-weight: 600; }
+        .guide-section .answer.show { display: block; }
+        .answer-toggle {
+            cursor: pointer;
+            color: #7b1fa2;
+            font-weight: 500;
+            font-size: 0.95em;
+            margin-top: 8px;
+            display: inline-block;
+        }
+        .answer-toggle:hover { text-decoration: underline; }
+        .info-box {
+            background: #e8f5e9;
+            padding: 15px;
+            border-left: 4px solid #4caf50;
+            margin: 15px 0;
+            border-radius: 4px;
+            color: #333;
+            line-height: 1.8;
+        }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; background: white; }
+        table th { background: #667eea; color: white; padding: 12px; text-align: left; font-weight: 600; }
+        table td { padding: 12px; border-bottom: 1px solid #ddd; color: #555; }
+        table tr:hover { background: #f5f5f5; }
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #777;
+            margin-top: 40px;
+            border-top: 1px solid #ddd;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+        /* ---- QUIZ INTERACTIVO ---- */
+        .quiz-question {
+            background: #f9f9f9;
+            border-left: 4px solid #667eea;
+            border-radius: 6px;
+            padding: 18px 20px;
+            margin-bottom: 20px;
+            transition: background 0.3s;
+        }
+        .quiz-question.answered-correct { border-left-color: #27ae60; background: #f0faf4; }
+        .quiz-question.answered-wrong   { border-left-color: #e74c3c; background: #fff5f5; }
+        .quiz-q-text { font-weight: 600; color: #1a3a52; margin-bottom: 12px; font-size: 1.02em; }
+        .q-num {
+            display: inline-block; background: #667eea; color: white;
+            padding: 2px 8px; border-radius: 4px; margin-right: 8px; font-size: 0.85em;
+        }
+        .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+        .quiz-option {
+            display: flex; align-items: flex-start; gap: 10px;
+            padding: 10px 12px; border-radius: 5px; cursor: pointer;
+            border: 1px solid #e0e0e0; background: white;
+            transition: background 0.2s, border-color 0.2s;
+            font-size: 0.97em;
+        }
+        .quiz-option:hover { background: #eef2ff; border-color: #667eea; }
+        .quiz-option input[type=radio] { margin-top: 2px; accent-color: #667eea; }
+        .quiz-option.correct-opt  { background: #e6f9ee !important; border-color: #27ae60 !important; font-weight: 600; color: #155724; }
+        .quiz-option.wrong-opt    { background: #fdecea !important; border-color: #e74c3c !important; color: #7b1a1a; text-decoration: line-through; }
+        .quiz-feedback {
+            margin-top: 10px; padding: 8px 12px; border-radius: 5px;
+            font-weight: 600; font-size: 0.95em; display: none;
+        }
+        .quiz-feedback.show { display: block; }
+        .quiz-feedback.correct { background: #d4edda; color: #155724; }
+        .quiz-feedback.wrong   { background: #f8d7da; color: #721c24; }
+        .quiz-option input:disabled + span { cursor: not-allowed; }
     </style>
+</head>
 </head>
 <body>
     <div class="container">
-        <div class="header">
+        <header>
             <h1>📚 Historia Social Latinoamericana</h1>
-            <p>Unidades 4, 5 y 6 - Material de Estudio Completo</p>
+            <p>Máximo Zorrilla - Unidades IV, V y VI</p>
+            <p style="font-size: 0.95em; margin-top: 10px;">Contenido detallado + Guías de estudio interactivas</p>
+        </header>
+
+        <!-- TABS DE NAVEGACIÓN -->
+        <div class="tabs">
+            <button class="tab-button active" onclick="switchTab('contenido')">📖 CONTENIDO DEL LIBRO</button>
+            <button class="tab-button" onclick="switchTab('guias')">✏️ GUÍAS DE ESTUDIO</button>
+            <button class="tab-button" onclick="switchTab('quiz')">🎯 Selección Múltiple</button>
         </div>
 
-        <div class="nav-tabs">
-            <button class="tab-btn active" onclick="openTab(event, 'content')">📖 Contenido</button>
-            <button class="tab-btn" onclick="openTab(event, 'guia')">✍️ Guía Unidad 6</button>
-            <button class="tab-btn" onclick="openTab(event, 'preguntas')">❓ Selección Múltiple</button>
+        <!-- ========== SECCIÓN 1: CONTENIDO DEL LIBRO ========== -->
+        <div id="contenido" class="tab-content active">
+
+            <div style="display:flex; gap:10px; margin-bottom:20px; align-items:center; flex-wrap:wrap;">
+                <button onclick="expandAll()" style="padding:8px 16px; background:#667eea; color:white; border:none; border-radius:6px; cursor:pointer; font-weight:600;">⬇ Expandir todo</button>
+                <button onclick="collapseAll()" style="padding:8px 16px; background:#764ba2; color:white; border:none; border-radius:6px; cursor:pointer; font-weight:600;">⬆ Colapsar todo</button>
+                <span style="color:#888; font-size:0.9em;">Haz clic en el título de cada unidad para expandir/colapsar</span>
+            </div>
+
+            <!-- UNIDAD IV -->
+            <div class="section">
+                <h2 onclick="toggleSection(this)">
+                    <span>IV. RÉGIMEN DE ESCLAVITUD (Páginas 31-36)</span>
+                    <span class="toggle-icon">▼</span>
+                </h2>
+                <div class="section-content">
+                    <h3>1. Origen de la Esclavitud</h3>
+                    <p>La esclavitud es una situación jurídica en la que un individuo (el esclavo) es considerado propiedad de otro (el amo), careciendo de libertad y derechos sobre sí mismo. Un esclavo puede ser tratado como objeto o mercancía: vendido, comprado, intercambiado o donado. El amo tiene derecho a maltratarlo y castigarlo.</p>
+                    <div class="definition">
+                        El surgimiento de la esclavitud se remonta a épocas prehistóricas, cuando las sociedades adquirieron complejidad gracias al desarrollo de la agricultura y la noción de propiedad. Fue rasgo distintivo en economías de Grecia y Roma durante la Antigüedad, así como en plantaciones de diversas regiones de América durante el período colonial e independencia temprana.
+                    </div>
+                    <h4>La Hispanoamérica esclavista</h4>
+                    <p>La isla de La Española fue rápidamente colonizada y explotada, provocando drástica reducción de población indígena debido a trabajo forzado y enfermedades. Los españoles luego colonizaron Cuba, enfocándose en minería de oro. Al agotarse recursos, se suprimió trabajo forzado, pero la población estaba aniquilada, siendo reemplazada por esclavos traídos de África. Nativos de Trinidad y Bahamas también sufrieron incursiones de cazadores de esclavos.</p>
+                    <h4>Sistema de Asientos</h4>
+                    <p>Los asientos fueron prácticas comunes en América española hasta siglo XVIII, utilizados para ventas y suministro. El asiento de negros fue el más significativo: representaba monopolio sobre esclavitud africana.</p>
+                    <div class="highlight">
+                        Consistía en contrato exclusivo entre Corona española y comerciantes que les otorgaba derecho a suministrar esclavos africanos a colonias españolas. El imperio español rara vez participó directamente en comercio atlántico desde África; optó por subcontratar importación a comerciantes extranjeros: portugueses, genoveses, neerlandeses, franceses y británicos.
+                    </div>
+                    <p>Primeros contratistas:</p>
+                    <ul>
+                        <li>1517: Compañía genovesa acordó suministrar 1000 esclavos durante 8 años</li>
+                        <li>1528: Firma alemana para suministrar 4000 esclavos</li>
+                        <li>Por monopolio, firma pagaba 20.000 ducados anuales a corona. Cada esclavo se vendía a precio que no excedía 45 ducados</li>
+                    </ul>
+
+                    <h3>2. Desarrollo del Sistema Esclavista</h3>
+                    <p>La evolución de concesionarios fue la siguiente:</p>
+                    <table>
+                        <tr><th>Período</th><th>Concesionario</th><th>Detalles</th></tr>
+                        <tr><td>1516-1640</td><td>Portugueses y Génova</td><td>Concesión inicial otorgada a empresa genovesa en 1516</td></tr>
+                        <tr><td>1640-1695</td><td>Neerlandeses</td><td>Asumieron control del comercio</td></tr>
+                        <tr><td>1701</td><td>Compañía Real de Guinea</td><td>Felipe V otorgó asiento</td></tr>
+                        <tr><td>1713-1750</td><td>Gran Bretaña</td><td>Paz de Utrecht (1713). South Sea Company: transportar 144.000 esclavos en 30 años. Renovado 1748</td></tr>
+                    </table>
+                    <p>Magnitud del sistema en el Caribe y América:</p>
+                    <ul>
+                        <li>Haití: Franceses llevaron muchos africanos; en 1950 solo 2.000 blancos entre 3.500.000 habitantes</li>
+                        <li>Cuba: Hacia 1847, más de mitad de 9.000.000 habitantes eran esclavos</li>
+                        <li>Brasil: Hacia 1818, aproximadamente mitad de 4.000.000 de personas eran esclavos</li>
+                        <li>Jamaica y Caribe: Entre 1700 y 1786, transportados 610.000 a Jamaica y 2.130.000 a diversas islas</li>
+                        <li>EE.UU.: Aproximadamente 500.000 esclavos hasta Guerra de Independencia; 1.000.000 en 1800; 4.500.000 en 1860</li>
+                    </ul>
+
+                    <h3>3. Abolición de la Esclavitud</h3>
+                    <p>Según Piqueras (2024), en la abolición convergen tres cuestiones: interés económico de beneficiarios, experiencia social de cautivos, y vertiente moral sobre lo justo, humano, correcto.</p>
+                    <div class="info-box">
+                        El movimiento abolicionista emergió como movimiento a finales siglo XVIII, alimentado por la Ilustración e ideas liberales. En Reino Unido, fue encabezado por adherentes de iglesias cristianas. En 1807, lograron prohibición del comercio de esclavos en barcos británicos. Posteriormente lanzaron campaña de erradicación de trata de personas, usando marina y estableciendo acuerdos con naciones.
+                    </div>
+                    <p>Procesos de abolición por país:</p>
+                    <ul>
+                        <li>Gran Bretaña (1807-1833): Abolición trata 1807; abolición esclavitud 1833</li>
+                        <li>Presión británica: Diplomacia, ofertas financieras, envío flota británica a patrullar costas</li>
+                        <li>España (último europeo): España fue último en terminar comercio transatlántico (1866) y último país europeo en prohibir esclavitud en colonias. Entre 1820-1866, introdujo clandestinamente ~700.000 africanos esclavizados. Las Cortes españolas conocieron propuestas abolición desde 1811, pero actuaron recién en 1865</li>
+                        <li>Brasil: Prohibición trata africana 1850; esclavitud abolida 1888 (última nación americana)</li>
+                    </ul>
+
+                    <h3>3.1 La Disolución del Sistema Esclavista</h3>
+                    <h4>Factores centrales según Fernando Henrique Cardoso</h4>
+                    <p>Cardoso define tres límites de elasticidad del esclavismo americano:</p>
+                    <div class="highlight"><em>a) La trata negrera:</em> Debía continuar para abastecer mercado de mano obra a precios aceptables</div>
+                    <div class="highlight"><em>b) Coyunturas económicas:</em> Debían propiciar grandes ganancias sin cambiar estructuras productivas ("economía del despilfarro")</div>
+                    <div class="highlight"><em>c) Competencia:</em> NO debía existir competencia de producción con mano obra libre, asalariada. El capitalismo, al desarrollarse, llevaba a la destrucción del sistema esclavista</div>
+
+                    <h4>Factor A - Abolición de la trata de esclavos</h4>
+                    <ul>
+                        <li><em>Interpretación tradicional (Ragatz, Eric Williams):</em> La disminución de trata y esclavitud en Antillas fue debida a decadencia de producción azucarera y revolución industrial que amplió mercado inglés.</li>
+                        <li><em>Seymour Drescher (crítica):</em> El comercio Gran Bretaña-Antillas creció antes de la abolición. Las razones están en debates parlamentarios: problemas morales y temor de revueltas de esclavos.</li>
+                    </ul>
+
+                    <h4>Factor B - Características de despilfarro</h4>
+                    <p>La segunda condición para la supervivencia fue la irracionalidad del sistema esclavista e imposibilidad de racionalizar la economía sin abolirlo. Apoyado por Marx y Weber. El ejemplo de Brasil demuestra que sí se podían hacer cambios dentro del sistema esclavista: innovaciones en transporte y procesamiento de café, movimiento de esclavos entre actividades.</p>
+
+                    <h3>4. Mercado de Mano de Obra Después de la Abolición</h3>
+                    <p>La única opción viable a largo plazo fue un modelo demográfico que favoreciera el aumento de la población esclava (lo que sucedió en EE.UU.). En América Latina este incremento no se materializó. Las alternativas efectivas se restringieron a plazos cortos: la trata interna y las modificaciones al sistema productivo.</p>
+                    <p>En Brasil, después de 1850, se intentaron soluciones como la compra de esclavos de provincias menos prósperas. La trata intraprovincial en Río Janeiro fue muy importante. Solo fue un paliativo que posponía sin evitar el colapso del sistema esclavista.</p>
+                </div>
+            </div>
+
+            <!-- UNIDAD V -->
+            <div class="section">
+                <h2 onclick="toggleSection(this)">
+                    <span>V. REFORMAS (Páginas 38-50)</span>
+                    <span class="toggle-icon">▼</span>
+                </h2>
+                <div class="section-content">
+                    <h3>1. Significado Económico de las Reformas Liberales</h3>
+                    <h4>1.1 Caracterización General</h4>
+                    <p>Las reformas liberales en América Latina representaban el esfuerzo de las elites para modernizar sus economías e instituciones según los principios del liberalismo económico y político. Estas reformas buscaban:</p>
+                    <ul>
+                        <li>Romper con la estructura colonial heredada</li>
+                        <li>Integrar países al mercado mundial como exportadores de materias primas</li>
+                        <li>Centralizar la autoridad estatal y crear instituciones nacionales modernas</li>
+                        <li>Reducir la influencia de la Iglesia católica en asuntos civiles</li>
+                        <li>Establecer sistemas educativos laicos</li>
+                        <li>Fomentar la inversión extranjera y el comercio internacional</li>
+                    </ul>
+
+                    <h4>1.2 Tipos Básicos de Reforma Liberal</h4>
+                    <p>a) Reformas secularizadoras: Restricción del poder de la Iglesia, separación Iglesia-Estado, educación laica, secularización del matrimonio y cementerios.</p>
+                    <p>b) Reformas económicas: Liberalización del comercio, eliminación de monopolios coloniales, privatización de tierras comunales indígenas, protección de la propiedad privada.</p>
+                    <p>c) Reformas político-administrativas: Modernización del estado, constituciones liberales, sistemas presidenciales, códigos civiles modernos.</p>
+
+                    <h3>2. Diferentes Procesos de Reforma por País</h3>
+                    <h4>2.1 México</h4>
+                    <p>Después de la independencia en 1821, México sufría inestabilidad extrema. La Reforma Juárez (1855-1876) implementó las reformas más radicales de América Latina:</p>
+                    <ul>
+                        <li>Ley Lerdo (1856): Desamortización de bienes eclesiásticos y comunales indígenas</li>
+                        <li>Ley Iglesias (1857): Restricción de derechos económicos de la Iglesia</li>
+                        <li>Leyes de Reforma (1859-1860): Nacionalización de bienes eclesiásticos</li>
+                        <li>Constitución 1857: Prohibición de fueros eclesiásticos, libertad de conciencia, educación estatal</li>
+                        <li>Conflicto: Guerra de Reforma 1857-1861; intervención francesa 1862-1867</li>
+                        <li>Resultado: La tierra pasó a terratenientes, no a indígenas como se buscaba</li>
+                    </ul>
+
+                    <h4>2.2 El Salvador</h4>
+                    <p>País pequeño con economía agrícola y creciente influencia cafetalera. Reformas liberal-moderadas menos radicales que México, más enfocadas en integración comercial al mercado mundial (café y añil) y modernización selectiva sin romper con élites tradicionales.</p>
+
+                    <h4>2.3 Colombia</h4>
+                    <p>Luchas constantes entre centralistas y federalistas. Constitución 1863 (sistema federal). Reformas radical-liberales (1863-1880): expulsión jesuita, secularización educativa, limitación del poder de la Iglesia. Reacción conservadora: Constitución 1886 revirtió muchas reformas y restauró el poder de la Iglesia.</p>
+
+                    <h4>2.4 Venezuela</h4>
+                    <p>Reformas limitadas por debilidad estatal. Guzmán Blanco (1870-1888): "Ilustración liberal" con autoritarismo político. Medidas: educación primaria estatal, algunas limitaciones de la Iglesia, modernización selectiva de infraestructura.</p>
+
+                    <h4>2.5 Chile</h4>
+                    <p>Estabilidad política relativa después de 1830. Reformas graduales y moderadas, consistentes en el tiempo. Período liberal (1861-1891): limitación gradual del poder de la Iglesia, secularización parcial de la educación. Exitosa integración al mercado mundial como exportador de materias primas (cobre, salitre).</p>
+
+                    <h4>2.6 Perú</h4>
+                    <p>Inestabilidad extrema post-independencia, economía basada en minería en declive, población indígena mayoritaria, Iglesia poderosa. Reformas débiles e intermitentes. La Iglesia mantuvo considerable poder. Desamortización parcial de tierras eclesiásticas sin transformación estructural profunda.</p>
+
+                    <h3>Síntesis: Reformas Liberales en América Latina</h3>
+                    <table>
+                        <tr>
+                            <th>País</th><th>Intensidad Reforma</th><th>Énfasis Principal</th><th>Resultado</th>
+                        </tr>
+                        <tr><td>México</td><td>MUY RADICAL</td><td>Secularización + tierra</td><td>Tierra a terratenientes; estado laico</td></tr>
+                        <tr><td>Colombia</td><td>RADICAL (luego revertido)</td><td>Federalismo + Iglesia</td><td>Reversión conservadora 1886</td></tr>
+                        <tr><td>Chile</td><td>MODERADO-CONSISTENTE</td><td>Comercio + secularización gradual</td><td>Integración exitosa al mercado mundial</td></tr>
+                        <tr><td>Venezuela</td><td>MODERADO-AUTORITARIO</td><td>Infraestructura + educación</td><td>Modernización selectiva</td></tr>
+                        <tr><td>El Salvador</td><td>MODERADO</td><td>Comercio exterior</td><td>Economía cafetalera integrada</td></tr>
+                        <tr><td>Perú/Bolivia</td><td>DÉBIL</td><td>Limitado por inestabilidad</td><td>Iglesia mantuvo poder; poco cambio</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- UNIDAD VI -->
+            <div class="section">
+                <h2 onclick="toggleSection(this)">
+                    <span>VI. COLONIZACIÓN EN ÁREAS VACÍAS (Páginas 52-61)</span>
+                    <span class="toggle-icon">▼</span>
+                </h2>
+                <div class="section-content">
+                    <h3>1. Generalidades</h3>
+                    <p>La colonización en áreas vacías representa un proceso diferente a la conquista-colonización española inicial. Se refiere a la ocupación y poblamiento de territorios considerados "vacíos" o escasamente poblados durante la época post-independencia, especialmente en el siglo XIX.</p>
+                    <div class="definition">
+                        Estos territorios eran ocupados mediante inmigración europea, inversión privada en tierras agrícolas, ganadería, y en algunos casos minería, bajo el marco de un estado-nación republicano, no como colonia bajo dominio europeo directo.
+                    </div>
+                    <p>Diferencia con la conquista colonial:</p>
+                    <ul>
+                        <li>Conquista colonial (XVI-XVII): imposición militar, encomienda, extracción de recursos y metales preciosos</li>
+                        <li>Colonización de áreas vacías (XIX): poblamiento e integración económica al mercado mundial; estructura terrateniente/capitalista más que feudal</li>
+                    </ul>
+
+                    <h3>2. Factores de la Colonización</h3>
+                    <h4>Factor A: Demográfico</h4>
+                    <ul>
+                        <li>Inmigración europea: Oleadas de inmigrantes (italianos, españoles, alemanes, portugueses) buscaban tierras en América</li>
+                        <li>Crecimiento natural: Las poblaciones locales también colonizaban internamente</li>
+                        <li>Expulsión de indígenas: Los territorios "vacíos" generalmente requerían desplazamiento previo de comunidades indígenas</li>
+                    </ul>
+                    <h4>Factor B: Económico</h4>
+                    <ul>
+                        <li>Demanda de mercados internacionales de productos agrícolas</li>
+                        <li>Inversión privada en tierras: terratenientes y compañías buscaban tierras baratas</li>
+                        <li>Ferrocarriles y puertos: permitían comercialización de productos antes inaccesibles</li>
+                    </ul>
+                    <h4>Factor C: Político</h4>
+                    <ul>
+                        <li>Estados consolidaban soberanía territorial mediante ocupación efectiva</li>
+                        <li>Ocupación de fronteras con países vecinos</li>
+                        <li>Seguridad nacional: poblar para evitar invasiones extranjeras</li>
+                    </ul>
+                    <h4>Factor D: Ideológico</h4>
+                    <ul>
+                        <li>Concepto "tierra vacía" ignoraba presencia indígena</li>
+                        <li>Positivismo justificaba "progreso civilizador"</li>
+                        <li>Darwinismo social legitimaba desplazamiento de indígenas</li>
+                    </ul>
+
+                    <h3>3. Tipos Básicos de Colonización</h3>
+                    <div class="definition">
+                        Dos tipos básicos: Ocupación Lenta (Pionera): expansión gradual, importancia económica limitada. Ejemplos: zonas selváticas de Ecuador, Perú, Bolivia. Ocupación Rápida: expansión acelerada con economía de exportación dominante. Ejemplos: llanuras del Río de la Plata, San Pablo, Amazonía, Antioquia, valle central de Costa Rica.
+                    </div>
+
+                    <h4>3.1 Argentina</h4>
+                    <p><strong>Economía ganadera temprana:</strong> Producción de tasajo (carne salada), cueros y sebo para exportación. Actividad extensiva en pampas.</p>
+                    <p><strong>Ciclo de la lana (mediados s. XIX):</strong> Introducción de ovejas merinas. Entre 1865-1880, la lana representó casi el 50% de exportaciones argentinas. Requirió cercado de campos y mano de obra especializada.</p>
+                    <p><strong>Campañas al Desierto:</strong> Campaña de Rosas (1833) y Campaña de Roca (1879). Expansión territorial con exterminio de indígenas y apropiación masiva de tierras. Consolidaron una poderosa clase terrateniente.</p>
+                    <p><strong>Ferrocarril y capital británico:</strong> Conectó pampas con puerto de Buenos Aires. Diseño radial orientado a exportación, no integración interna. Profundizó dependencia estructural con Gran Bretaña.</p>
+
+                    <h4>3.2 Uruguay</h4>
+                    <p><strong>Reglamento Provisorio de Artigas (1815):</strong> Plan de reforma agraria revolucionario. Distribución de tierras a los "más infelices". Alternativa igualitaria derrotada militarmente por fuerzas portuguesas y unitarias.</p>
+                    <p><strong>Transformación post-1870:</strong> Introducción del alambrado delimitó propiedad privada. Código Rural (1875) criminalizó ocupación sin título. Concentración de tierra acelerada; formación de proletariado rural sin tierra.</p>
+
+                    <h4>3.3 Brasil: San Pablo y Amazonía</h4>
+                    <p><strong>San Pablo - Café:</strong> Transición de esclavitud a colonato con inmigrantes europeos (principalmente italianos). Familias recibían vivienda, parcelas de subsistencia y porcentaje de ganancias del café. Permitía reproducción generacional de fuerza de trabajo sin acumulación real.</p>
+                    <p><strong>Amazonía - Caucho (1870s-1910s):</strong> Sistema de aviamiento (endeudamiento perpetuo): seringueiro → aviador → patrón. Actividad extractiva temporal sin instituciones sociales estables. Colapso por competencia del caucho asiático cultivado dejó región en depresión crónica.</p>
+
+                    <h4>3.4 Colombia: La Colonización Antioqueña</h4>
+                    <p>Proceso único caracterizado por migración interna (no europea) de campesinos mestizos. Pequeña propiedad familiar campesina en zonas montañosas. Policultivo diversificado. Café como cultivo democratizador cultivable en pequeñas parcelas. Generó clase media rural que impulsó industrialización colombiana del s. XX.</p>
+
+                    <h4>3.5 Costa Rica</h4>
+                    <p>Sin oro ni plata, sin población indígena densa, sin latifundios consolidados: "igualitaria en la pobreza". Pequeños agricultores homogéneos de subsistencia. Con expansión del café (1830s): surgió oligarquía que monopolizó el procesamiento y exportación, generando la desigualdad que la pobreza previa no había creado.</p>
+
+                    <h4>3.6 Ocupación Extranjera y Economías de Enclave</h4>
+                    <p>Economía de enclave: territorio controlado por compañías extranjeras, orientado totalmente a exportación, con mínima integración nacional. Las ganancias fluyen al exterior sin generar desarrollo local.</p>
+                    <ul>
+                        <li>Minas de cobre de Chile (Chuquicamata): control de EE.UU.</li>
+                        <li>Estaño de Bolivia: empresas extranjeras post-1900s</li>
+                        <li>Banano de Costa Rica: United Fruit Company</li>
+                        <li>Petróleo de Venezuela: EE.UU. y Gran Bretaña</li>
+                        <li>Guano de Perú: Gran Bretaña</li>
+                    </ul>
+
+                    <h3>Síntesis Comparativa: Colonización en Áreas Vacías</h3>
+                    <table>
+                        <tr>
+                            <th>País</th><th>Tipo Colonización</th><th>Pobladores Principales</th><th>Productos Exportables</th><th>Estructura de Tierra</th><th>Integración Mercado</th>
+                        </tr>
+                        <tr><td>Argentina</td><td>Agrícola-ganadera "blanca"</td><td>Europeos (italianos, españoles)</td><td>Trigo, maíz, carne, lana</td><td>Estancias grandes / Clase media urbana</td><td>Muy fuerte (exportador mayor)</td></tr>
+                        <tr><td>Uruguay</td><td>Ganadera selectiva</td><td>Europeos principalmente</td><td>Lana, carne, cueros</td><td>Estancias moderadas</td><td>Fuerte (complementaria Argentina)</td></tr>
+                        <tr><td>Brasil San Pablo</td><td>Cafetera capitalista</td><td>Europeos (italianos), después ex-esclavos libres</td><td>Café</td><td>Latifundios cafetaleros</td><td>Muy fuerte (café mundial)</td></tr>
+                        <tr><td>Brasil Amazonía</td><td>Extractiva cauchera</td><td>Migrantes internos, extranjeros</td><td>Caucho (1880-1910)</td><td>Sistema aviamiento (endeude)</td><td>Fuerte temporal, después colapso</td></tr>
+                        <tr><td>Colombia (Eje Cafetero)</td><td>Cafetera campesina</td><td>Antioqueños (migrantes internos)</td><td>Café</td><td>Pequeña propiedad campesina</td><td>Fuerte (café exportable)</td></tr>
+                        <tr><td>Costa Rica</td><td>Café / Banano (enclave)</td><td>Centroamericanos, algunos europeos</td><td>Café, banano</td><td>Pequeños cafeteros / Enclaves bananeros</td><td>Fuerte (dependencia bananeras)</td></tr>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+                <!-- ========== SECCIÓN 2: GUÍAS DE ESTUDIO ========== -->
+        <div id="guias" class="tab-content">
+            <h2 style="color: #667eea; margin-bottom: 25px; font-size: 2em;">📋 Guías de Estudio Interactivas</h2>
+            <p style="margin-bottom: 30px; font-size: 1.1em; color: #555;">Haz clic en "Ver respuesta" para revelar cada respuesta. Estas preguntas cubren los temas esenciales de las Unidades 4, 5 y 6.</p>
+
+            <!-- GUÍA UNIDAD IV -->
+            <div class="guide-section">
+                <h3>UNIDAD IV - Régimen de Esclavitud</h3>
+
+                <div class="question">
+                    <strong>1. ¿Cuál es la definición de esclavitud según el texto y cuáles eran sus características principales en América?</strong>
+                    <div class="answer">
+                        La esclavitud es una situación jurídica donde un individuo (esclavo) es considerado propiedad de otro (amo), sin libertad ni derechos. Podía ser vendido, comprado, intercambiado o donado. En América surgió por colapso de demandas de mano obra indígena post-conquista. El sistema fue más desarrollado en Brasil, Caribe (Cuba, Haití), y norte de América debido a demanda de plantaciones de azúcar, café, algodón. Una diferencia importante con sistemas antiguos de Asia es que la esclavitud americana fue racial, basada en color de piel, asociada con producción de mercancías para exportación.
+                    </div>
+                    <div class="answer-toggle" onclick="toggleAnswer(this)">Ver respuesta ▼</div>
+                </div>
+
+                <div class="question">
+                    <strong>2. ¿Qué fue el "asiento de negros" y cuál fue su importancia en la trata esclavista?</strong>
+                    <div class="answer">
+                        El asiento de negros era un contrato exclusivo entre la Corona española y comerciantes otorgando derecho de suministrar esclavos africanos a colonias españolas. Fue un monopolio de la trata de esclavos. Los primeros contratos fueron: Génova (1517, 1000 esclavos) y Alemania (1528, 4000 esclavos). Su importancia radica en ser el sistema legal que permitió la movilización masiva de africanos hacia América. Generaba ingresos para la Corona y fue la base del comercio atlántico de esclavos.
+                    </div>
+                    <div class="answer-toggle" onclick="toggleAnswer(this)">Ver respuesta ▼</div>
+                </div>
+
+                <div class="question">
+                    <strong>3. ¿Qué factores llevaron a la abolición de la esclavitud en América? Analiza el rol de Gran Bretaña.</strong>
+                    <div class="answer">
+                        Factores: a) Movimiento abolicionista moral (Ilustración, iglesias cristianas); b) Economía esclavista contradictoria con capitalismo emergente; c) Revueltas de esclavos (Haití 1791); d) Presión de Gran Bretaña. Gran Bretaña prohibió trata en 1807 y esclavitud en 1833. Sus presiones incluyeron diplomacia, ofertas financieras, y marina patrullando costas. El debate historiográfico entre Williams y Drescher cuestiona si fue por declive económico o razones morales. Lo central es que el capitalismo como sistema dominante hizo incompatible la esclavitud. Gran Bretaña, país más avanzado capitalista, lideró abolición presionando otros países.
+                    </div>
+                    <div class="answer-toggle" onclick="toggleAnswer(this)">Ver respuesta ▼</div>
+                </div>
+
+                <div class="question">
+                    <strong>4. Según Cardoso, ¿cuáles eran los tres límites de la "elasticidad" del esclavismo americano?</strong>
+                    <div class="answer">
+                        Tres límites: a) Trata negrera debía continuar abasteciendo mercado de mano obra a precios aceptables; b) Coyunturas económicas debían propiciar ganancias sin cambiar estructuras productivas ("economía de despilfarro"); c) NO debía existir competencia de producción con mano obra libre y asalariada; el capitalismo al desarrollarse destruía esclavismo. Esta teoría es importante como marco conceptual para entender cómo capitalismo y esclavismo eran sistemas contradictorios. El sistema esclavista requería trata continua, irracionalidad económica, aislamiento de competencia capitalista; si esto fallaba, colapsaba.
+                    </div>
+                    <div class="answer-toggle" onclick="toggleAnswer(this)">Ver respuesta ▼</div>
+                </div>
+
+                <div class="question">
+                    <strong>5. ¿Cuál fue el impacto del mercado de mano de obra post-abolición en países como Brasil? ¿Qué alternativas se implementaron?</strong>
+                    <div class="answer">
+                        Post-abolición trata (1850 en Brasil): inmigración europea aumentó (italianos, españoles). Alternativas: a) Trata interna: compra de esclavos de provincias menos prósperas (especialmente importante en Río Janeiro); b) Modificación del sistema productivo: reorganización en zona cafetera; innovaciones técnicas (ferrocarriles, máquinas de vapor); traslado de esclavos de actividades menos rentables a producción de café; c) Inmigración europea: reemplazo gradual de mano obra esclava. Brasil fue último país en abolir esclavitud (1888); el proceso largo generó dependencia de inmigración europea y transformación del sistema laboral.
+                    </div>
+                    <div class="answer-toggle" onclick="toggleAnswer(this)">Ver respuesta ▼</div>
+                </div>
+
+                <div class="question">
+                    <strong>6. ¿Por qué fue importante la prohibición de la trata en 1807 si la esclavitud no fue abolida hasta 1833?</strong>
+                    <div class="answer">
+                        La prohibición de trata en 1807 fue el primer paso estratégico: atacó la fuente de reposición de esclavos. Sin trata, la población esclava solo podía mantenerse por reproducción natural; en el Caribe y América Latina esto era deficiente (mortalidad alta, natalidad baja). Presionó las economías esclavistas hacia colapso sin confrontación política directa. La abolición en 1833 fue formalización de un proceso que ya había debilitado el sistema años previos.
+                    </div>
+                    <div class="answer-toggle" onclick="toggleAnswer(this)">Ver respuesta ▼</div>
+                </div>
+
+            </div>
+
+            <!-- GUÍA UNIDAD V -->
+            <div class="guide-section">
+                <h3>UNIDAD V - Reformas Liberales</h3>
+
+                <div class="question">
+                    <strong>1. ¿Cuál fue el significado económico de las reformas liberales en América Latina? ¿Cómo buscaban transformar la estructura económica colonial?</strong>
+                    <div class="answer">
+                        Las reformas buscaban integrar Latinoamérica al mercado capitalista mundial como exportadora de materias primas. Las transformaciones incluyeron: a) Eliminación de monopolios comerciales coloniales; b) Privatización de tierras comunales indígenas y eclesiásticas; c) Mecanización de agricultura; d) Inversión extranjera; e) Secularización. El resultado fue integración al mercado mundial, pero bajo dependencia: Latinoamérica exportaba materias primas baratas, importaba manufactura cara; la acumulación de capital fluía hacia el extranjero, no internamente.
+                    </div>
+                    <div class="answer-toggle" onclick="toggleAnswer(this)">Ver respuesta ▼</div>
+                </div>
+
+                <div class="question">
+                    <strong>2. Compara la profundidad y radicalidad de las reformas liberales en México, Colombia y Chile.</strong>
+                    <div class="answer">
+                        México: MÁS RADICAL. La Reforma Juárez (1855-1876) incluyó nacionalización de bienes eclesiásticos, Constitución 1857. Interrumpida por intervención francesa (1862-1867). Colombia: RADICAL INTERMEDIO. Constitución federal 1863, reformas 1863-1880, pero reversión con Constitución 1886 (conservadora, restauró poder de Iglesia). Chile: MODERADA CONSISTENTE. Reformas graduales, integración al mercado mundial exitosa. Chile fue más consistente y estable; México más radical pero inestable; Colombia reversible.
+                    </div>
+                    <div class="answer-toggle" onclick="toggleAnswer(this)">Ver respuesta ▼</div>
+                </div>
+
+                <div class="question">
+                    <strong>3. ¿Cuál fue la Reforma Juárez en México y cuáles fueron sus principales leyes?</strong>
+                    <div class="answer">
+                        La Reforma Juárez (1855-1876) fue conjunto de transformaciones liberales radicales. Leyes principales: a) Ley Lerdo (1856): Desamortización de bienes eclesiásticos y comunales indígenas; b) Ley Iglesias (1857): Restricción de derechos económicos de la Iglesia; c) Leyes de Reforma (1859-1860): Nacionalización de bienes eclesiásticos, matrimonio civil obligatorio, cementerios seculares; d) Constitución 1857: Prohibición de fueros eclesiásticos, libertad de conciencia, educación pública estatal. Resultado: tierra pasó a terratenientes, no a indígenas como se esperaba.
+                    </div>
+                    <div class="answer-toggle" onclick="toggleAnswer(this)">Ver respuesta ▼</div>
+                </div>
+
+                <div class="question">
+                    <strong>4. ¿Cómo diferían las reformas liberales en Bolivia y Perú comparadas con México y Colombia?</strong>
+                    <div class="answer">
+                        México/Colombia = RADICALES, secularización profunda, limitación de Iglesia. Bolivia/Perú = DÉBILES, reformas limitadas, Iglesia mantuvo poder, enfoque minería. Razones: a) Inestabilidad política extrema en Bolivia y Perú; b) Economía minera decadente = recursos limitados; c) Poblaciones indígenas mayoritarias = resistencia a reformas; d) Iglesia aún muy poderosa; e) Estados muy débiles impidiendo reformas profundas. Patrón: Reformas exitosas en países estables con economía diversificada; débiles en países pobres e inestables.
+                    </div>
+                    <div class="answer-toggle" onclick="toggleAnswer(this)">Ver respuesta ▼</div>
+                </div>
+
+                <div class="question">
+                    <strong>5. ¿Qué fue la "desamortización" de tierras y cómo afectó a la población indígena y eclesiástica?</strong>
+                    <div class="answer">
+                        La desamortización fue proceso de venta obligatoria de tierras "amortizadas" (propiedad eclesiástica o comunal que no podía venderse). La Ley Lerdo (México 1856) fue el modelo. Afectó: a) Iglesia: perdió poder económico basado en tierras; b) Indígenas: tierras comunales pasaron al mercado; campesinos pobres no podían comprar; terratenientes y criollos ricos compraron a precios bajos; indígenas fueron desplazados o convertidos en peones. La ironía histórica: reformas que buscaban "progreso" e "igualdad" resultaron en desposesión sistemática de la población indígena.
+                    </div>
+                    <div class="answer-toggle" onclick="toggleAnswer(this)">Ver respuesta ▼</div>
+                </div>
+
+            </div>
+
+            <!-- GUÍA UNIDAD VI -->
+            <div class="guide-section">
+                <h3>UNIDAD VI - Colonización en Áreas Vacías</h3>
+
+                <div class="question">
+                    <strong>1. ¿Qué se entendía por "áreas vacías" y cómo fue el proceso de colonización diferente a la conquista colonial?</strong>
+                    <div class="answer">
+                        "Áreas vacías" = territorios considerados "sin dueño" o "escasamente poblados", aunque muchas estaban pobladas por indígenas. Diferencias con conquista colonial: Conquista (XVI-XVII): imposición militar, extracción de metales preciosos, encomienda, dominio europeo directo. Colonización de áreas vacías (XIX): poblamiento e inmigración, inversión privada en tierras agrícolas, integración al mercado mundial, estado-nación republicano. El concepto "área vacía" era ideología: ignoraba presencia indígena, justificaba desplazamiento como "progreso".
+                    </div>
+                    <div class="answer-toggle" onclick="toggleAnswer(this)">Ver respuesta ▼</div>
+                </div>
+
+                <div class="question">
+                    <strong>2. Analiza los factores que impulsaron la colonización de áreas vacías en Latinoamérica durante el siglo XIX.</strong>
+                    <div class="answer">
+                        Factores: a) DEMOGRÁFICO: Inmigración europea masiva (italianos, españoles, alemanes); crecimiento natural; desalojo de indígenas; b) ECONÓMICO: Demanda de mercados internacionales de productos agrícolas; inversión privada en tierras; ferrocarriles y puertos; c) POLÍTICO: Estados consolidaban soberanía territorial; ocupación de fronteras; seguridad nacional; d) IDEOLÓGICO: Concepto "tierra vacía" ignoraba indígenas; positivismo justificaba "progreso civilizador"; darwinismo social legitimaba desplazamiento. La colonización fue expansión capitalista que significaba desalojo de indígenas, integración al mercado mundial, concentración de tierra.
+                    </div>
+                    <div class="answer-toggle" onclick="toggleAnswer(this)">Ver respuesta ▼</div>
+                </div>
+
+                <div class="question">
+                    <strong>3. Compara la colonización de Argentina versus la colonización antioqueña de Colombia.</strong>
+                    <div class="answer">
+                        ARGENTINA: Europeos masivos (italianos, españoles, alemanes); estancias grandes controladas por élite terrateniente; trigo, maíz, carne, lana; concentración de tierra pero clase media urbana relativamente desarrollada. ANTIOQUIA: Campesinos antioqueños (migrantes internos), NO europeos; pequeña propiedad campesina; café; estructura más igualitaria. Diferencia clave: Argentina = colonización "blanca" con concentración de tierra; Antioquia = colonización interna con pequeña propiedad. Argentina tuvo élite más oligárquica; Antioquia estructura más democrática relativamente.
+                    </div>
+                    <div class="answer-toggle" onclick="toggleAnswer(this)">Ver respuesta ▼</div>
+                </div>
+
+                <div class="question">
+                    <strong>4. ¿Qué fue el "ciclo del caucho" en Amazonía brasileña? ¿Cuáles fueron las consecuencias de su colapso?</strong>
+                    <div class="answer">
+                        El ciclo del caucho (1880s-1910s) fue boom de demanda internacional de caucho (neumáticos). Extracción bajo sistema "aviamiento" (endeudamiento perpetuo). Manaos y Belém prosperaron temporalmente. Colapso (1910s) por competencia de caucho cultivado asiático. Consecuencias: a) Boom-bust cycle: riqueza temporal, colapso permanente; b) Sistema aviamiento perpetuó pobreza de trabajadores; c) Falta de diversificación: Amazonía quedó monoproductiva; d) Región quedó pobre, atrasada, dependiente. Lección: enclaves monoculturales son vulnerables a ciclos de mercado internacional.
+                    </div>
+                    <div class="answer-toggle" onclick="toggleAnswer(this)">Ver respuesta ▼</div>
+                </div>
+
+                <div class="question">
+                    <strong>5. ¿Qué fue una "economía de enclave" y cuáles fueron sus características? Proporciona ejemplos.</strong>
+                    <div class="answer">
+                        Una economía de enclave es territorio controlado por compañías extranjeras, orientado totalmente a exportación, con mínima integración a la economía nacional. Características: a) Propiedad extranjera; b) Extracción sin procesamiento local; c) Trabajadores locales mal pagados; gerencia extranjera; d) Ganancias van al exterior; e) Infraestructura solo para exportación. Ejemplos: Chuquicamata Chile (EEUU); Estaño Bolivia; Banano Costa Rica (United Fruit Company); Petróleo Venezuela; Guano Perú (Gran Bretaña). Resultado: colonización sin desarrollo; dependencia; subordinación económica.
+                    </div>
+                    <div class="answer-toggle" onclick="toggleAnswer(this)">Ver respuesta ▼</div>
+                </div>
+
+                <div class="question">
+                    <strong>6. Analiza el rol de la inmigración europea en el proceso de colonización de áreas vacías.</strong>
+                    <div class="answer">
+                        Rol: La inmigración europea fue motor de colonización territorial. Quiénes migraban: italianos, españoles, alemanes, portugueses; campesinos pobres sin tierra en Europa. Por qué: pobreza en Europa; promesas de tierra; agentes de reclutamiento pagados por estados latinoamericanos. Consecuencias: a) Desplazamiento de indígenas; b) Blanqueamiento selectivo de población (Argentina, Uruguay); c) Marginalización de mestizos e indígenas; d) Conflictos laborales; e) Formación de clase media urbana en ciudades (Buenos Aires, São Paulo); f) Colonización con patrón étnico/racial marcado.
+                    </div>
+                    <div class="answer-toggle" onclick="toggleAnswer(this)">Ver respuesta ▼</div>
+                </div>
+
+                <div class="question">
+                    <strong>7. ¿Cómo evolucionó la economía ganadera en Argentina desde el "saladero" hasta el ciclo de la lana?</strong>
+                    <div class="answer">
+                        <b>SALADERO (inicios s. XIX):</b> Producción de carne salada (tasajo) y exportación de cuero y sebo. Actividad extensiva basada en ganado vacuno. Primer motor de la economía pampeana.<br><br>
+                        <b>CRISIS (1830s):</b> Sequías y competencia de otras regiones generaron declive del saladero como actividad principal.<br><br>
+                        <b>CICLO DE LA LANA (mediados s. XIX):</b> Introducción de ovejas merinas. Requería cercado de campos, mano de obra especializada y mestizaje de animales. Entre 1865-1880 la lana representó casi el 50% de exportaciones argentinas. La transición implicó una reorganización profunda del campo pampeano: de haciendas abiertas a campos cercados, de peonadas nómadas a trabajadores más especializados.
+                    </div>
+                    <div class="answer-toggle" onclick="toggleAnswer(this)">Ver respuesta ▼</div>
+                </div>
+
+                <div class="question">
+                    <strong>8. ¿Qué importancia tuvieron las Campañas al Desierto (Rosas 1833 y Roca 1879) en la estructura de propiedad de la tierra en Argentina?</strong>
+                    <div class="answer">
+                        <b>CAMPAÑA DE ROSAS (1833):</b> Primera expansión sistemática hacia el sur y oeste de la pampa. Permitió la formación de grandes fortunas terratenientes. La tierra "liberada" fue repartida entre aliados políticos y militares del gobierno, sentando bases de la oligarquía terrateniente bonaerense.<br><br>
+                        <b>CAMPAÑA DE ROCA (1879):</b> Segunda expansión motivada por la cría de ovejas. Resultó en exterminio sistemático de comunidades indígenas (tehuelches, mapuches) y apropiación masiva de nuevas tierras. Se distribuyeron millones de hectáreas entre un pequeño grupo de beneficiarios. Consolidó una poderosa clase terrateniente que dominó la política argentina por décadas.
+                    </div>
+                    <div class="answer-toggle" onclick="toggleAnswer(this)">Ver respuesta ▼</div>
+                </div>
+
+                <div class="question">
+                    <strong>9. ¿Cuál fue el papel del ferrocarril y del capital británico en la consolidación del modelo exportador argentino?</strong>
+                    <div class="answer">
+                        El ferrocarril fue el instrumento clave para conectar las llanuras pampeanas con el puerto de Buenos Aires. La inversión británica financió miles de kilómetros de vías, pero bajo lógica de enclave: las líneas convergían en Buenos Aires (forma de abanico) en lugar de conectar el interior entre sí. Creó una economía radial centrada en exportación, no en integración nacional. El capital británico también dominó frigoríficos, bancos y seguros, consolidando la hegemonía de la clase terrateniente porteña y la dependencia estructural de Argentina hacia el mercado británico.
+                    </div>
+                    <div class="answer-toggle" onclick="toggleAnswer(this)">Ver respuesta ▼</div>
+                </div>
+
+                <div class="question">
+                    <strong>10. ¿En qué consistió el Reglamento Provisorio de 1815 de Artigas en Uruguay y qué representó históricamente?</strong>
+                    <div class="answer">
+                        Fue un plan de reforma agraria revolucionario que buscaba distribuir tierras confiscadas a españoles y realistas entre los más necesitados: peones, soldados licenciados, indígenas y negros libres. El principio rector era "los más infelices serán los más privilegiados". Representó una alternativa igualitaria y popular al latifundismo heredado de la colonia. Sin embargo, enfrentó la resistencia brutal de la élite terrateniente y fue derrotado militarmente por fuerzas portuguesas y unitarias argentinas. Históricamente simboliza el proyecto de reforma social más avanzado de su época en la región.
+                    </div>
+                    <div class="answer-toggle" onclick="toggleAnswer(this)">Ver respuesta ▼</div>
+                </div>
+
+                <div class="question">
+                    <strong>11. ¿Qué factores técnicos y legales transformaron la propiedad del suelo en Uruguay después de 1870?</strong>
+                    <div class="answer">
+                        <b>ALAMBRADO:</b> La introducción del alambre de púas permitió el cercamiento eficiente de campos a bajo costo, delimitando con precisión la propiedad privada. Transformó el paisaje rural: de campo abierto a potreros definidos.<br><br>
+                        <b>CÓDIGO RURAL (1875):</b> Marco legal que criminalizó la ocupación de tierras sin título, protegió la propiedad ganadera privada y reguló relaciones laborales rurales en beneficio de los propietarios.<br><br>
+                        <b>Consecuencias:</b> Expulsión de pequeños ocupantes y campesinos sin título; concentración acelerada de tierra; formación de un proletariado rural sin tierra; transición a ganadería tecnificada con razas seleccionadas y pasturas mejoradas.
+                    </div>
+                    <div class="answer-toggle" onclick="toggleAnswer(this)">Ver respuesta ▼</div>
+                </div>
+
+                <div class="question">
+                    <strong>12. Describa el sistema de "colonato" en Brasil y cómo permitía la reproducción de la fuerza de trabajo inmigrante.</strong>
+                    <div class="answer">
+                        El colonato era un sistema donde familias inmigrantes europeas recibían: vivienda en la finca, parcelas propias para cultivo de subsistencia y un porcentaje de la ganancia de la venta del café.<br><br>
+                        <b>Ventajas para el hacendado:</b> Reducción de costos salariales fijos; la familia reproducía su propia fuerza de trabajo generacionalmente; los hijos crecían en la finca listos para trabajar; la parcela de subsistencia eliminaba el costo de alimentación.<br><br>
+                        <b>Limitación:</b> El colono nunca acumulaba suficiente capital para independizarse, perpetuando su dependencia. Fue la solución al colapso del trabajo esclavo sin conceder libertad económica real.
+                    </div>
+                    <div class="answer-toggle" onclick="toggleAnswer(this)">Ver respuesta ▼</div>
+                </div>
+
+                <div class="question">
+                    <strong>13. Explique la cadena de dependencia económica entre seringueiro, aviador y patrón en la Amazonia cauchera.</strong>
+                    <div class="answer">
+                        <b>PATRÓN (seringalista):</b> Dueño del seringal. Monopolizaba la compra del caucho a precios que él fijaba y vendía todos los insumos al seringueiro a precios inflados.<br><br>
+                        <b>AVIADOR (intermediario financiero):</b> Financiaba al patrón con crédito y mercancías. Cobraba con caucho a precios que él determinaba.<br><br>
+                        <b>SERINGUEIRO (extractor):</b> Llegaba ya endeudado. Nunca podía saldar su deuda porque vendía barato y compraba caro al mismo patrón. Era prisionero económico del seringal.<br><br>
+                        Resultado: acumulación de riqueza en la cima (comerciantes de Manaos/Belém) y miseria crónica en la base.
+                    </div>
+                    <div class="answer-toggle" onclick="toggleAnswer(this)">Ver respuesta ▼</div>
+                </div>
+
+                <div class="question">
+                    <strong>14. ¿Qué características hicieron de la colonización antioqueña un proceso único frente a otras regiones?</strong>
+                    <div class="answer">
+                        <b>Migración interna, no europea:</b> Campesinos mestizos del interior colombiano, sin inmigración europea masiva.<br><br>
+                        <b>Pequeña propiedad campesina:</b> Predominó la parcela familiar sobre el latifundio.<br><br>
+                        <b>Geografía montañosa:</b> Colonización "hacia arriba", ocupando laderas andinas donde el gran latifundio era menos viable.<br><br>
+                        <b>Café como cultivo democratizador:</b> Cultivable en pequeñas parcelas familiares, a diferencia del azúcar o banano que requieren escala.<br><br>
+                        <b>Resultado histórico:</b> Antioquia desarrolló una clase media rural y comercial relativamente sólida que luego impulsó la industrialización colombiana del siglo XX.
+                    </div>
+                    <div class="answer-toggle" onclick="toggleAnswer(this)">Ver respuesta ▼</div>
+                </div>
+
+                <div class="question">
+                    <strong>15. ¿Por qué se describe a la sociedad costarricense previa al café como "igualitaria en la pobreza" y cómo cambió con la expansión cafetera?</strong>
+                    <div class="answer">
+                        <b>Antes del café:</b> Costa Rica colonial no tenía grandes depósitos minerales, población indígena densa explotable, latifundios consolidados, ni esclavitud sistemática. La población era homogéneamente pobre: pequeños agricultores de subsistencia, sin jerarquías económicas marcadas. Esa "igualdad" era igualdad de precariedad, no de bienestar.<br><br>
+                        <b>Con la expansión cafetera (1830s en adelante):</b> El café comenzó a diferenciar a quienes podían procesar y exportar (beneficiadores) de quienes solo cultivaban. Surgió una oligarquía cafetera que monopolizó el procesamiento y la exportación. Paradójicamente, la expansión económica generó la desigualdad que la pobreza previa no había creado.
+                    </div>
+                    <div class="answer-toggle" onclick="toggleAnswer(this)">Ver respuesta ▼</div>
+                </div>
+
+            </div>
+
+        </div>
+                <!-- ========== SECCIÓN 3: SELECCIÓN MÚLTIPLE INTERACTIVA ========== -->
+        <div id="quiz" class="tab-content">
+            <h2 style="color: #667eea; margin-bottom: 10px; font-size: 2em;">🎯 Ejercicios de Selección Múltiple</h2>
+            <p style="margin-bottom: 10px; font-size: 1.1em; color: #555;">Seleccioná una opción por pregunta. El resultado se muestra al instante.</p>
+
+            <div id="quiz-score-bar" style="background:#f0f4ff; border:2px solid #667eea; border-radius:10px; padding:15px 25px; margin-bottom:30px; display:flex; align-items:center; gap:20px; flex-wrap:wrap;">
+                <span style="font-size:1.1em; font-weight:600; color:#1a3a52;">📊 Progreso:</span>
+                <span id="score-text" style="font-size:1.1em; color:#667eea; font-weight:700;">0 / 21 respondidas</span>
+                <span id="correct-text" style="font-size:1.1em; color:#27ae60; font-weight:700;">✓ 0 correctas</span>
+                <span id="wrong-text" style="font-size:1.1em; color:#e74c3c; font-weight:700;">✗ 0 incorrectas</span>
+                <button onclick="resetQuiz()" style="margin-left:auto; padding:8px 18px; background:#667eea; color:white; border:none; border-radius:6px; cursor:pointer; font-weight:600; font-size:0.95em;">🔄 Reiniciar</button>
+            </div>
+
+            <!-- UNIDAD 4 -->
+            <div class="guide-section">
+                <h3>UNIDAD IV — Régimen de Esclavitud</h3>
+
+                <div class="quiz-question" id="q1">
+                    <p class="quiz-q-text"><span class="q-num">4.1</span> ¿Cuál fue el origen principal del sistema de esclavitud en América Latina?</p>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q1" value="a"> <span>a) La encomienda transformada en esclavitud total por ley colonial</span></label>
+                        <label class="quiz-option"><input type="radio" name="q1" value="b"> <span>b) La necesidad de mano de obra tras el colapso demográfico indígena</span></label>
+                        <label class="quiz-option"><input type="radio" name="q1" value="c"> <span>c) Las guerras entre colonos que generaban prisioneros esclavizados</span></label>
+                        <label class="quiz-option"><input type="radio" name="q1" value="d"> <span>d) La importación de esclavos desde Asia promovida por Portugal</span></label>
+                    </div>
+                    <div class="quiz-feedback" id="fb1"></div>
+                </div>
+
+                <div class="quiz-question" id="q2">
+                    <p class="quiz-q-text"><span class="q-num">4.2</span> ¿Qué fue el "asiento de negros"?</p>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q2" value="a"> <span>a) Un registro oficial donde se anotaba la cantidad de esclavos por provincia</span></label>
+                        <label class="quiz-option"><input type="radio" name="q2" value="b"> <span>b) El nombre del principal puerto de desembarco de esclavos en el Caribe</span></label>
+                        <label class="quiz-option"><input type="radio" name="q2" value="c"> <span>c) Un contrato monopólico otorgado por la Corona española para suministrar esclavos a sus colonias</span></label>
+                        <label class="quiz-option"><input type="radio" name="q2" value="d"> <span>d) Una ley que prohibía la esclavitud de indígenas y la reemplazaba con esclavos africanos</span></label>
+                    </div>
+                    <div class="quiz-feedback" id="fb2"></div>
+                </div>
+
+                <div class="quiz-question" id="q3">
+                    <p class="quiz-q-text"><span class="q-num">4.3</span> Según Fernando Henrique Cardoso, ¿cuáles eran los tres límites de elasticidad del esclavismo americano?</p>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q3" value="a"> <span>a) La demografía, la religión y la política colonial</span></label>
+                        <label class="quiz-option"><input type="radio" name="q3" value="b"> <span>b) Continuidad de la trata, coyunturas de ganancia sin cambio estructural y ausencia de competencia de trabajo libre</span></label>
+                        <label class="quiz-option"><input type="radio" name="q3" value="c"> <span>c) El control del Estado, la Iglesia y los terratenientes sobre la mano de obra</span></label>
+                        <label class="quiz-option"><input type="radio" name="q3" value="d"> <span>d) La oferta africana, la demanda americana y el precio de mercado internacional</span></label>
+                    </div>
+                    <div class="quiz-feedback" id="fb3"></div>
+                </div>
+
+                <div class="quiz-question" id="q4">
+                    <p class="quiz-q-text"><span class="q-num">4.4</span> ¿Por qué fue estratégicamente importante prohibir la trata (1807) antes de abolir la esclavitud (1833)?</p>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q4" value="a"> <span>a) Porque los esclavos ya existentes eran suficientes para las plantaciones</span></label>
+                        <label class="quiz-option"><input type="radio" name="q4" value="b"> <span>b) Porque la abolición directa generaba indemnizaciones muy altas al Estado</span></label>
+                        <label class="quiz-option"><input type="radio" name="q4" value="c"> <span>c) Porque atacar la fuente de reposición debilitaba el sistema sin confrontación política directa, presionando hacia su colapso gradual</span></label>
+                        <label class="quiz-option"><input type="radio" name="q4" value="d"> <span>d) Porque los esclavos africanos eran más caros que los trabajadores libres</span></label>
+                    </div>
+                    <div class="quiz-feedback" id="fb4"></div>
+                </div>
+
+                <div class="quiz-question" id="q5">
+                    <p class="quiz-q-text"><span class="q-num">4.5</span> ¿Qué solución adoptó Brasil ante la escasez de mano de obra post-abolición de la trata (1850)?</p>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q5" value="a"> <span>a) Importación masiva de trabajadores asiáticos (chinos y japoneses)</span></label>
+                        <label class="quiz-option"><input type="radio" name="q5" value="b"> <span>b) Trata interna (compra de esclavos de provincias menos prósperas) e inmigración europea bajo sistema de colonato</span></label>
+                        <label class="quiz-option"><input type="radio" name="q5" value="c"> <span>c) Mecanización total de las plantaciones de café y azúcar</span></label>
+                        <label class="quiz-option"><input type="radio" name="q5" value="d"> <span>d) Creación de cooperativas agrícolas de ex-esclavos libres</span></label>
+                    </div>
+                    <div class="quiz-feedback" id="fb5"></div>
+                </div>
+            </div>
+
+            <!-- UNIDAD 5 -->
+            <div class="guide-section">
+                <h3>UNIDAD V — Reformas Liberales</h3>
+
+                <div class="quiz-question" id="q6">
+                    <p class="quiz-q-text"><span class="q-num">5.1</span> ¿Cuál fue el objetivo económico central de las reformas liberales en América Latina?</p>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q6" value="a"> <span>a) Crear economías autárquicas e independientes del mercado mundial</span></label>
+                        <label class="quiz-option"><input type="radio" name="q6" value="b"> <span>b) Fortalecer la pequeña propiedad campesina e indígena</span></label>
+                        <label class="quiz-option"><input type="radio" name="q6" value="c"> <span>c) Integrar las economías latinoamericanas al mercado capitalista mundial como exportadoras de materias primas</span></label>
+                        <label class="quiz-option"><input type="radio" name="q6" value="d"> <span>d) Nacionalizar los recursos naturales bajo control del Estado republicano</span></label>
+                    </div>
+                    <div class="quiz-feedback" id="fb6"></div>
+                </div>
+
+                <div class="quiz-question" id="q7">
+                    <p class="quiz-q-text"><span class="q-num">5.2</span> ¿Qué fue la "desamortización" y cuál fue su paradoja social?</p>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q7" value="a"> <span>a) La redistribución de tierras eclesiásticas entre campesinos pobres, logrando mayor igualdad agraria</span></label>
+                        <label class="quiz-option"><input type="radio" name="q7" value="b"> <span>b) La venta forzada de tierras eclesiásticas y comunales; buscaba crear propiedad privada pero resultó en concentración en manos de élites</span></label>
+                        <label class="quiz-option"><input type="radio" name="q7" value="c"> <span>c) La confiscación de tierras privadas por el Estado para financiar guerras de independencia</span></label>
+                        <label class="quiz-option"><input type="radio" name="q7" value="d"> <span>d) El proceso de tasación y registro catastral de todas las propiedades coloniales</span></label>
+                    </div>
+                    <div class="quiz-feedback" id="fb7"></div>
+                </div>
+
+                <div class="quiz-question" id="q8">
+                    <p class="quiz-q-text"><span class="q-num">5.3</span> ¿Cuál fue la diferencia entre las reformas liberales de México y las de Bolivia/Perú?</p>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q8" value="a"> <span>a) México no tuvo reformas liberales; Bolivia y Perú sí las implementaron completamente</span></label>
+                        <label class="quiz-option"><input type="radio" name="q8" value="b"> <span>b) México tuvo reformas radicales (Ley Lerdo, Constitución 1857); Bolivia/Perú tuvieron reformas débiles por inestabilidad política y fuerte poder de la Iglesia</span></label>
+                        <label class="quiz-option"><input type="radio" name="q8" value="c"> <span>c) Bolivia y Perú fueron más radicales por su mayor riqueza minera disponible</span></label>
+                        <label class="quiz-option"><input type="radio" name="q8" value="d"> <span>d) Las reformas de todos los países fueron igualmente moderadas y graduales</span></label>
+                    </div>
+                    <div class="quiz-feedback" id="fb8"></div>
+                </div>
+
+                <div class="quiz-question" id="q9">
+                    <p class="quiz-q-text"><span class="q-num">5.4</span> ¿Qué leyes principales incluyó la Reforma Juárez en México?</p>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q9" value="a"> <span>a) Ley de Encomiendas (1856), Ley de Tributos y Constitución de 1854</span></label>
+                        <label class="quiz-option"><input type="radio" name="q9" value="b"> <span>b) Ley Lerdo (desamortización), Ley Iglesias (restricción económica de la Iglesia), Leyes de Reforma 1859-60 y Constitución 1857</span></label>
+                        <label class="quiz-option"><input type="radio" name="q9" value="c"> <span>c) Ley Agraria (1855), Ley de Minas y Ley de Comercio Exterior</span></label>
+                        <label class="quiz-option"><input type="radio" name="q9" value="d"> <span>d) Solo la Constitución de 1857; las demás leyes fueron posteriores al porfiriato</span></label>
+                    </div>
+                    <div class="quiz-feedback" id="fb9"></div>
+                </div>
+
+                <div class="quiz-question" id="q10">
+                    <p class="quiz-q-text"><span class="q-num">5.5</span> ¿Cuál fue el impacto de las reformas liberales sobre las comunidades indígenas?</p>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q10" value="a"> <span>a) Mejoraron sus condiciones al reconocerles derechos de propiedad individual</span></label>
+                        <label class="quiz-option"><input type="radio" name="q10" value="b"> <span>b) No tuvieron impacto porque las comunidades estaban fuera del alcance de las leyes</span></label>
+                        <label class="quiz-option"><input type="radio" name="q10" value="c"> <span>c) Las tierras comunales pasaron al mercado; campesinos pobres no podían comprar y fueron desplazados, convertidos en peones de terratenientes</span></label>
+                        <label class="quiz-option"><input type="radio" name="q10" value="d"> <span>d) Las comunidades indígenas fueron las principales beneficiarias de la distribución de tierras eclesiásticas</span></label>
+                    </div>
+                    <div class="quiz-feedback" id="fb10"></div>
+                </div>
+
+                <div class="quiz-question" id="q11">
+                    <p class="quiz-q-text"><span class="q-num">5.6</span> ¿Por qué las reformas liberales resultaron más estables en Chile que en Colombia?</p>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q11" value="a"> <span>a) Chile tenía una economía más diversificada y no dependía de exportaciones agrícolas</span></label>
+                        <label class="quiz-option"><input type="radio" name="q11" value="b"> <span>b) Chile tuvo mayor estabilidad política y reformas graduales; Colombia experimentó reversión con la Constitución conservadora de 1886</span></label>
+                        <label class="quiz-option"><input type="radio" name="q11" value="c"> <span>c) En Colombia la Iglesia fue completamente eliminada del poder político antes que en Chile</span></label>
+                        <label class="quiz-option"><input type="radio" name="q11" value="d"> <span>d) Chile recibió más inversión extranjera que financió sus reformas directamente</span></label>
+                    </div>
+                    <div class="quiz-feedback" id="fb11"></div>
+                </div>
+            </div>
+
+            <!-- UNIDAD 6 -->
+            <div class="guide-section">
+                <h3>UNIDAD VI — Colonización en Áreas Vacías</h3>
+
+                <div class="quiz-question" id="q12">
+                    <p class="quiz-q-text"><span class="q-num">6.1</span> ¿Cuál es la diferencia fundamental entre "ocupación lenta" y "ocupación rápida"?</p>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q12" value="a"> <span>a) La ocupación lenta fue protagonizada por europeos y la rápida por migrantes internos</span></label>
+                        <label class="quiz-option"><input type="radio" name="q12" value="b"> <span>b) La ocupación rápida generó economías de exportación dominantes y fue acelerada; la lenta fue pionera con importancia económica limitada</span></label>
+                        <label class="quiz-option"><input type="radio" name="q12" value="c"> <span>c) La ocupación lenta fue urbana y la rápida exclusivamente rural</span></label>
+                        <label class="quiz-option"><input type="radio" name="q12" value="d"> <span>d) La ocupación lenta fue promovida por el Estado y la rápida fue espontánea</span></label>
+                    </div>
+                    <div class="quiz-feedback" id="fb12"></div>
+                </div>
+
+                <div class="quiz-question" id="q13">
+                    <p class="quiz-q-text"><span class="q-num">6.2</span> ¿Cuál fue el impacto de las Campañas al Desierto (Rosas 1833 y Roca 1879) en Argentina?</p>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q13" value="a"> <span>a) Extendieron derechos y tierras a comunidades indígenas de la pampa</span></label>
+                        <label class="quiz-option"><input type="radio" name="q13" value="b"> <span>b) Crearon colonias agrícolas igualitarias financiadas por el Estado</span></label>
+                        <label class="quiz-option"><input type="radio" name="q13" value="c"> <span>c) Permitieron la expansión territorial pero resultaron en exterminio indígena y concentración de tierra en pocas manos</span></label>
+                        <label class="quiz-option"><input type="radio" name="q13" value="d"> <span>d) Establecieron límites definitivos con Chile y Uruguay resolviendo conflictos fronterizos</span></label>
+                    </div>
+                    <div class="quiz-feedback" id="fb13"></div>
+                </div>
+
+                <div class="quiz-question" id="q14">
+                    <p class="quiz-q-text"><span class="q-num">6.3</span> ¿Qué representó el Reglamento Provisorio de 1815 de Artigas históricamente?</p>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q14" value="a"> <span>a) El primer código civil del Río de la Plata basado en el modelo napoleónico</span></label>
+                        <label class="quiz-option"><input type="radio" name="q14" value="b"> <span>b) El proyecto de reforma agraria más avanzado de su época: distribución de tierras a los más infelices bajo principio igualitario</span></label>
+                        <label class="quiz-option"><input type="radio" name="q14" value="c"> <span>c) La constitución federal que unió las provincias del Río de la Plata</span></label>
+                        <label class="quiz-option"><input type="radio" name="q14" value="d"> <span>d) El tratado comercial que estableció libre comercio con Gran Bretaña</span></label>
+                    </div>
+                    <div class="quiz-feedback" id="fb14"></div>
+                </div>
+
+                <div class="quiz-question" id="q15">
+                    <p class="quiz-q-text"><span class="q-num">6.4</span> ¿Cómo funcionaba el sistema de colonato en las plantaciones de café de San Pablo?</p>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q15" value="a"> <span>a) Era esclavitud reformada: el colono trabajaba sin pago pero con techo y comida garantizados</span></label>
+                        <label class="quiz-option"><input type="radio" name="q15" value="b"> <span>b) El Estado asignaba familias inmigrantes a haciendas y pagaba sus salarios directamente</span></label>
+                        <label class="quiz-option"><input type="radio" name="q15" value="c"> <span>c) Familias inmigrantes recibían vivienda, parcelas de subsistencia y porcentaje de ganancias del café; nunca acumulaban capital suficiente para independizarse</span></label>
+                        <label class="quiz-option"><input type="radio" name="q15" value="d"> <span>d) Las familias compraban la tierra a plazos al hacendado y se convertían en propietarias al cabo de 10 años</span></label>
+                    </div>
+                    <div class="quiz-feedback" id="fb15"></div>
+                </div>
+
+                <div class="quiz-question" id="q16">
+                    <p class="quiz-q-text"><span class="q-num">6.5</span> ¿Por qué se describe la Amazonia cauchera como un "campamento"?</p>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q16" value="a"> <span>a) Porque estaba administrada militarmente por el ejército brasileño</span></label>
+                        <label class="quiz-option"><input type="radio" name="q16" value="b"> <span>b) Porque la extracción de caucho era actividad temporal sin instituciones sociales estables, infraestructura permanente ni diversificación económica</span></label>
+                        <label class="quiz-option"><input type="radio" name="q16" value="c"> <span>c) Porque tenía una población completamente masculina sin familias asentadas</span></label>
+                        <label class="quiz-option"><input type="radio" name="q16" value="d"> <span>d) Porque la fiebre del caucho duró solo 5 años y no dio tiempo a ningún asentamiento</span></label>
+                    </div>
+                    <div class="quiz-feedback" id="fb16"></div>
+                </div>
+
+                <div class="quiz-question" id="q17">
+                    <p class="quiz-q-text"><span class="q-num">6.6</span> ¿Qué características hicieron única a la colonización antioqueña frente a la de Argentina?</p>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q17" value="a"> <span>a) Antioquia también recibió inmigrantes europeos pero en menor cantidad que Argentina</span></label>
+                        <label class="quiz-option"><input type="radio" name="q17" value="b"> <span>b) Fue una migración interna de campesinos mestizos, con pequeña propiedad familiar en zonas montañosas y café como cultivo democratizador</span></label>
+                        <label class="quiz-option"><input type="radio" name="q17" value="c"> <span>c) Antioquia replicó exactamente el modelo argentino pero con producción de banano</span></label>
+                        <label class="quiz-option"><input type="radio" name="q17" value="d"> <span>d) La colonización antioqueña fue dirigida por el Estado con distribución planificada de tierras</span></label>
+                    </div>
+                    <div class="quiz-feedback" id="fb17"></div>
+                </div>
+
+                <div class="quiz-question" id="q18">
+                    <p class="quiz-q-text"><span class="q-num">6.7</span> ¿Qué fue una "economía de enclave" y cuál es su consecuencia estructural?</p>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q18" value="a"> <span>a) Una economía autosuficiente que protegía la industria nacional de la competencia extranjera</span></label>
+                        <label class="quiz-option"><input type="radio" name="q18" value="b"> <span>b) Territorio controlado por compañías extranjeras, orientado a exportación, con mínima integración nacional; las ganancias fluyen al exterior sin generar desarrollo local</span></label>
+                        <label class="quiz-option"><input type="radio" name="q18" value="c"> <span>c) Una zona franca industrial donde el Estado atraía inversión extranjera para desarrollar manufactura</span></label>
+                        <label class="quiz-option"><input type="radio" name="q18" value="d"> <span>d) El modelo económico que aplicaron los países latinoamericanos para industrializarse en el siglo XIX</span></label>
+                    </div>
+                    <div class="quiz-feedback" id="fb18"></div>
+                </div>
+
+                <div class="quiz-question" id="q19">
+                    <p class="quiz-q-text"><span class="q-num">6.8</span> ¿Por qué la sociedad costarricense era "igualitaria en la pobreza" antes del café?</p>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q19" value="a"> <span>a) Porque el Estado costarricense distribuía los ingresos por igual entre todos los ciudadanos</span></label>
+                        <label class="quiz-option"><input type="radio" name="q19" value="b"> <span>b) Porque no existía ni oro, ni población indígena masiva, ni latifundios, ni esclavitud: todos eran pequeños agricultores pobres sin jerarquías marcadas</span></label>
+                        <label class="quiz-option"><input type="radio" name="q19" value="c"> <span>c) Porque Costa Rica aplicó políticas socialistas desde su independencia</span></label>
+                        <label class="quiz-option"><input type="radio" name="q19" value="d"> <span>d) Porque la Iglesia repartió sus tierras entre los campesinos antes de las reformas liberales</span></label>
+                    </div>
+                    <div class="quiz-feedback" id="fb19"></div>
+                </div>
+
+                <div class="quiz-question" id="q20">
+                    <p class="quiz-q-text"><span class="q-num">6.9</span> ¿Cuál fue la función del ferrocarril en la consolidación del modelo exportador latinoamericano?</p>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q20" value="a"> <span>a) Integró el mercado interno nacional conectando todas las regiones entre sí</span></label>
+                        <label class="quiz-option"><input type="radio" name="q20" value="b"> <span>b) Conectó los territorios productivos con los puertos de exportación (diseño radial), consolidando la economía exportadora pero profundizando la dependencia</span></label>
+                        <label class="quiz-option"><input type="radio" name="q20" value="c"> <span>c) Fue utilizado principalmente para transporte de pasajeros y correo oficial del Estado</span></label>
+                        <label class="quiz-option"><input type="radio" name="q20" value="d"> <span>d) Permitió la industrialización al mover materias primas hacia fábricas internas</span></label>
+                    </div>
+                    <div class="quiz-feedback" id="fb20"></div>
+                </div>
+
+                <div class="quiz-question" id="q21">
+                    <p class="quiz-q-text"><span class="q-num">6.10</span> ¿Cuál fue la principal consecuencia del colapso del ciclo del caucho amazónico?</p>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q21" value="a"> <span>a) Brasil diversificó su economía hacia la industria manufacturera gracias al capital acumulado</span></label>
+                        <label class="quiz-option"><input type="radio" name="q21" value="b"> <span>b) La región amazónica quedó en depresión económica crónica por haber sido monoproductora sin diversificación ni integración económica local</span></label>
+                        <label class="quiz-option"><input type="radio" name="q21" value="c"> <span>c) Los trabajadores del caucho se convirtieron en pequeños propietarios agrícolas gracias a la reforma agraria de 1910</span></label>
+                        <label class="quiz-option"><input type="radio" name="q21" value="d"> <span>d) El Estado brasileño nacionalizó todas las áreas caucheras y las administró directamente</span></label>
+                    </div>
+                    <div class="quiz-feedback" id="fb21"></div>
+                </div>
+
+            </div>
         </div>
 
-        <!-- TAB 1: CONTENIDO EXPANDIDO -->
-        <div id="content" class="tab-content active">
-            <h2>📖 Contenido Expandido - Unidades 4, 5 y 6</h2>
-
-            <div class="section-intro">
-                <strong>Nota:</strong> Este tab contiene el contenido teórico ampliado de las tres unidades. 
-                Usa los otros tabs para la Guía de Estudio y Preguntas de Selección Múltiple.
-            </div>
-
-            <h3>UNIDAD 4: RÉGIMEN DE ESCLAVITUD</h3>
-
-            <h4>1. Origen de la Esclavitud</h4>
-            <p>La esclavitud es una situación jurídica en la que un individuo (el esclavo) es considerado propiedad de otro (el amo), careciendo de libertad y derechos sobre sí mismo. Un esclavo puede ser tratado como objeto o mercancía: vendido, comprado, intercambiado o donado.</p>
-
-            <p><strong>La Hispanoamérica esclavista:</strong> La isla de La Española fue rápidamente colonizada, provocando drástica reducción de población indígena. Los españoles colonizaron Cuba enfocándose en minería de oro. Al agotarse los recursos, la población fue reemplazada por esclavos africanos.</p>
-
-            <h4>2. Desarrollo del Sistema Esclavista</h4>
-            <table>
-                <tr><th>Período</th><th>Concesionario</th><th>Detalles</th></tr>
-                <tr><td>1516-1640</td><td>Portugueses y Génova</td><td>Concesión inicial a empresa genovesa</td></tr>
-                <tr><td>1640-1695</td><td>Neerlandeses</td><td>Control del comercio</td></tr>
-                <tr><td>1701</td><td>Compañía Real de Guinea</td><td>Asiento de Felipe V</td></tr>
-                <tr><td>1713-1750</td><td>Gran Bretaña</td><td>South Sea Company (144.000 esclavos en 30 años)</td></tr>
-            </table>
-
-            <h4>3. Abolición de la Esclavitud</h4>
-            <ul>
-                <li><strong>Gran Bretaña (1807-1833):</strong> Abolición de la trata en 1807; abolición de esclavitud en 1833</li>
-                <li><strong>España:</strong> Último país europeo en prohibir esclavitud (1865); última nación en terminar comercio transatlántico (1866)</li>
-                <li><strong>Brasil:</strong> Prohibición de trata africana en 1850; esclavitud abolida en 1888 (última nación americana)</li>
-            </ul>
-
-            <h4>3.1 La Disolución del Sistema Esclavista</h4>
-            <p>Según Fernando Henrique Cardoso, tres límites definieron la elasticidad del esclavismo:</p>
-            <ol>
-                <li><strong>La trata negrera:</strong> Debía continuar para abastecer mano de obra a precios aceptables</li>
-                <li><strong>Coyunturas económicas:</strong> Debían propiciar grandes ganancias sin cambiar estructuras</li>
-                <li><strong>Competencia:</strong> NO debía existir competencia de producción con mano de obra libre</li>
-            </ol>
-
-            <h4>4. Mercado de Mano de Obra Después de la Abolición</h4>
-            <p>En Brasil, después de 1850, se intentaron soluciones como la compra de esclavos de provincias menos prósperas. La trata intraprovincial en Río de Janeiro fue muy importante. El impacto demográfico fue crucial: se requería que la población esclava se reprodujera naturalmente para mantener el sistema, pero esto no ocurrió en Latinoamérica.</p>
-
-            <hr style="margin: 40px 0; border: none; border-top: 2px solid #e0e0e0;">
-
-            <h3>UNIDAD 5: REFORMAS LIBERALES</h3>
-
-            <h4>1. Significado Económico de las Reformas Liberales</h4>
-            <p>Las reformas liberales buscaban integrar las economías latinoamericanas al mercado mundial capitalista. Su objetivo era facilitar la acumulación privada de capital y la mercantilización de tierras.</p>
-
-            <h4>2. Caracterización General</h4>
-            <p>Las reformas liberales se caracterizaron por:</p>
-            <ul>
-                <li>Desamortización de tierras eclesiásticas y corporativas</li>
-                <li>Privatización de tierras comunales indígenas</li>
-                <li>Reducción del poder de la Iglesia y corporaciones</li>
-                <li>Creación de mercado de tierras</li>
-                <li>Facilitación de inversión extranjera</li>
-            </ul>
-
-            <h4>3. Tipos Básicos de Reforma Liberal</h4>
-            <p>Existen dos tipos principales:</p>
-            <ol>
-                <li><strong>Reforma radical:</strong> Desamortización completa (México bajo Benito Juárez)</li>
-                <li><strong>Reforma moderada:</strong> Desamortización parcial (Chile, Perú)</li>
-            </ol>
-
-            <h4>4. Impacto Social en la Propiedad de la Tierra</h4>
-            <p>Resultado paradójico: aunque buscaban crear pequeña propiedad, generaron concentración de tierras en manos de élites y latifundistas. Los pobres rurales, indígenas y campesinos perdieron acceso a tierras comunales.</p>
-
-            <h4>5. Procesos Diferenciados por País</h4>
-            <ul>
-                <li><strong>México:</strong> Reforma más radical (1857-1911); desamortización masiva</li>
-                <li><strong>Perú:</strong> Desamortización de tierras eclesiásticas</li>
-                <li><strong>Chile:</strong> Reformas moderadas; consolidación de haciendas</li>
-                <li><strong>Bolivia:</strong> Cambios significativos en propiedad comunal indígena</li>
-                <li><strong>Colombia:</strong> Procesos diversos según región</li>
-            </ul>
-
-            <hr style="margin: 40px 0; border: none; border-top: 2px solid #e0e0e0;">
-
-            <h3>UNIDAD 6: COLONIZACIÓN EN ÁREAS VACÍAS</h3>
-
-            <h4>1. Concepto: Colonización en Áreas Vacías</h4>
-            <p>Expansión y asentamiento en regiones poco pobladas tras la independencia, buscando: recursos naturales para exportación, fortalecimiento estatal, integración de economías regionales al capitalismo mundial.</p>
-
-            <h4>2. Tipos de Colonización</h4>
-            <ul>
-                <li><strong>Ocupación lenta (pionera):</strong> Expansión gradual, importancia económica limitada. Ejemplo: zonas selváticas de Ecuador, Perú, Bolivia</li>
-                <li><strong>Ocupación rápida:</strong> Expansión acelerada, economía de exportación dominante. Ejemplo: llanuras del Río de la Plata, San Pablo, Antioquia</li>
-            </ul>
-
-            <h4>3. Argentina: Economía Ganadera</h4>
-            <p><strong>Saladero (s. XIX):</strong> Producción de carne salada (tasajo). Actividad extensiva basada en ganado vacuno.</p>
-            <p><strong>Crisis (1830s):</strong> Sequías y competencia generan declive.</p>
-            <p><strong>Ciclo de la lana (mediados s. XIX):</strong> Introducción de ovejas merinas. Requería cercado de campos (1870+). Entre 1865-1880, la lana representó casi 50% de exportaciones.</p>
-            <p><strong>Campaña de Roca (1879):</strong> Expansión territorial resultando en exterminio de indígenas y apropiación masiva de tierras. Consolidación de clase terrateniente poderosa.</p>
-
-            <h4>4. Uruguay: Transformación de la Propiedad</h4>
-            <p><strong>Reglamento Provisorio (1815) - Artigas:</strong> Plan de reforma agraria distribuyendo tierras confiscadas entre peones y pobres. Representaba alternativa igualitaria pero enfrentó resistencia de élite.</p>
-            <p><strong>Transformación post-1870:</strong> Alambrado permitió cercamiento eficiente. Código Rural reguló propiedad y criminalizó ocupación de tierras. Paulatina sustitución de trabajo indígena por asalariados.</p>
-
-            <h4>5. Brasil: Café y Caucho</h4>
-            <p><strong>San Pablo - Café:</strong> Transición de esclavitud a colonato. Sistema donde familias inmigrantes recibían vivienda, parcelas para subsistencia, y porcentaje de ganancias. Permitía reproducción generacional de fuerza de trabajo.</p>
-            <p><strong>Amazonía - Caucho (1870s-1910s):</strong> Actividad extractiva temporal sin asentamiento permanente. Carencia de instituciones sociales estables. Relación de dependencia: seringueiro (deudor perpetuo) - aviador (financista) - patrón (monopolista de compra).</p>
-
-            <h4>6. Colombia: Colonización Antioqueña</h4>
-            <p>Proceso único caracterizado por:</p>
-            <ul>
-                <li>Migración interna (no europea)</li>
-                <li>Pequeña propiedad familiar campesina</li>
-                <li>Policultivo diversificado</li>
-                <li>Ocupación de tierras montañosas</li>
-                <li>Mayor equidad en distribución de tierra</li>
-                <li>Café como cultivo motor, relacionado con minería pasada</li>
-            </ul>
-
-            <h4>7. Costa Rica: Sociedad Igualitaria en la Pobreza</h4>
-            <p>Ausencia de: población indígena masiva, latifundios consolidados, esclavitud sistemática, estratificación social extrema. Resultado: pequeña propiedad campesina homogénea pero en condiciones de subsistencia precaria.</p>
-
-            <h4>8. Impacto del Ferrocarril</h4>
-            <p>Fundamental para conectar territorios colonizados con puertos de exportación. Integró territorios periféricos a economía de exportación, consolidando hegemonía económica de élites sobre el interior.</p>
-        </div>
-
-        <!-- TAB 2: GUÍA DE ESTUDIO UNIDAD 6 -->
-        <div id="guia" class="tab-content">
-            <h2>✍️ Guía de Estudio - Unidad 6: Colonización en Áreas Vacías</h2>
-
-            <div class="section-intro">
-                <strong>Instrucciones:</strong> Esta sección contiene 18 preguntas respondidas sobre la Unidad 6, 
-                organizadas por temas. Las respuestas están basadas en el texto de Máximo Zorrilla.
-            </div>
-
-            <h3 style="background-color: #e3f2fd; padding: 10px; border-radius: 5px;">I. COMPRENSIÓN GENERAL Y CONCEPTOS</h3>
-
-            <div class="question-block unit6">
-                <div class="question-number">1</div>
-                <div class="question-title">¿A qué se refiere el proceso de "colonización en áreas vacías" en el contexto de la transición hacia el capitalismo dependiente?</div>
-                <div class="answer-text">
-                    Es la expansión y asentamiento en regiones poco pobladas tras la independencia de los países latinoamericanos. Este proceso estuvo motivado por la búsqueda de recursos, el fortalecimiento del estado-nación y la necesidad de integrar diversas economías regionales. Resultó en el desplazamiento de comunidades indígenas hacia áreas marginales y en la consolidación de fronteras internas para explotar las nuevas tierras.
-                </div>
-            </div>
-
-            <div class="question-block unit6">
-                <div class="question-number">2</div>
-                <div class="question-title">¿Cuáles fueron los tres factores principales que motivaron la expansión?</div>
-                <div class="answer-text">
-                    <ol>
-                        <li>Búsqueda de recursos naturales para exportación y desarrollo económico</li>
-                        <li>Fortalecimiento y consolidación del estado-nación mediante la integración territorial</li>
-                        <li>Necesidad de integrar diversas economías regionales al mercado capitalista mundial</li>
-                    </ol>
-                </div>
-            </div>
-
-            <div class="question-block unit6">
-                <div class="question-number">3</div>
-                <div class="question-title">Explique la diferencia entre "ocupación lenta" y "ocupación rápida"</div>
-                <div class="answer-text">
-                    <strong>OCUPACIÓN LENTA (PIONERA):</strong> Expansión gradual, conserva carácter colonizador lento, importancia económica limitada en el contexto global.<br>
-                    Ejemplos: Zonas selváticas de Ecuador, Perú y Bolivia; regiones interiores de Paraguay, Brasil y sur de Chile.<br><br>
-                    <strong>OCUPACIÓN RÁPIDA:</strong> Expansión acelerada, genera economía de exportación predominante, relevancia económica significativa.<br>
-                    Ejemplos: Llanuras del Río de la Plata, San Pablo, Amazonia brasileña, Antioquia en Colombia, valle central de Costa Rica.
-                </div>
-            </div>
-
-            <div class="question-block unit6">
-                <div class="question-number">4</div>
-                <div class="question-title">¿Qué criterios caracterizaban los procesos de colonización?</div>
-                <div class="answer-text">
-                    <ol>
-                        <li>Acceso a la propiedad agrícola y distribución de tierras</li>
-                        <li>Patrones de poblamiento (europeo o interno)</li>
-                        <li>Inversión extranjera y su penetración en la economía local</li>
-                        <li>Tipo de migración predominante (europea o interna)</li>
-                    </ol>
-                </div>
-            </div>
-
-            <div class="question-block unit6">
-                <div class="question-number">5</div>
-                <div class="question-title">Defina colonización espontánea, dirigida y de frontera</div>
-                <div class="answer-text">
-                    <strong>COLONIZACIÓN ESPONTÁNEA:</strong> Proceso sin intervención estatal planificada, basado en iniciativa de colonos individuales.<br><br>
-                    <strong>COLONIZACIÓN DIRIGIDA:</strong> Proceso planificado y promovido por el estado, con distribución de tierras y regulación.<br><br>
-                    <strong>COLONIZACIÓN DE FRONTERA:</strong> Expansión territorial hacia zonas de frontera con límites internacionales o territorios no consolidados, frecuentemente acompañada de conflictos militares.
-                </div>
-            </div>
-
-            <h3 style="background-color: #e3f2fd; padding: 10px; border-radius: 5px;">II. ARGENTINA Y URUGUAY (RÍO DE LA PLATA)</h3>
-
-            <div class="question-block unit6">
-                <div class="question-number">6</div>
-                <div class="question-title">¿Cómo evolucionó la economía ganadera en Argentina desde el "saladero" hasta el ciclo de la lana?</div>
-                <div class="answer-text">
-                    <strong>SALADERO (s. XIX):</strong> Producción de carne salada (tasajo) y exportación de cuero y sebo. Era una actividad extensiva basada en el ganado vacuno.<br><br>
-                    <strong>CRISIS (1830s):</strong> Sequías y competencia de otras regiones generan declive.<br><br>
-                    <strong>CICLO DE LA LANA (mediados s. XIX):</strong> Introducción de ovejas merinas. Requería cercado de campos, mano de obra especializada y mestizaje de animales. Entre 1865-1880, la lana representó casi el 50% de exportaciones argentinas.
-                </div>
-            </div>
-
-            <div class="question-block unit6">
-                <div class="question-number">7</div>
-                <div class="question-title">¿Qué importancia tuvieron las Campañas al Desierto?</div>
-                <div class="answer-text">
-                    <strong>CAMPAÑA DE ROSAS (1833):</strong> Primera expansión hacia sur y oeste de la pampa. Permitió formación de grandes fortunas terratenientes (1820-1830).<br><br>
-                    <strong>CAMPAÑA DE ROCA (1879):</strong> Segunda expansión relacionada con cría de ovejas. Resultó en exterminio de indígenas y apropiación masiva de nuevas tierras, consolidando una poderosa clase terrateniente.
-                </div>
-            </div>
-
-            <div class="question-block unit6">
-                <div class="question-number">8</div>
-                <div class="question-title">¿Cuál fue el papel del ferrocarril y capital británico?</div>
-                <div class="answer-text">
-                    El ferrocarril fue fundamental para conectar las llanuras pampeanas con el puerto de Buenos Aires, facilitando la exportación masiva de productos ganaderos (cueros, lana, tasajo). La inversión británica en ferrocarriles integró territorios periféricos a la economía de exportación, consolidando la hegemonía económica y política de la clase terrateniente porteña sobre el interior argentino.
-                </div>
-            </div>
-
-            <div class="question-block unit6">
-                <div class="question-number">9</div>
-                <div class="question-title">¿En qué consistió el Reglamento Provisorio de 1815 de Artigas?</div>
-                <div class="answer-text">
-                    Fue un plan de reforma agraria revolucionario que buscaba distribuir tierras confiscadas a españoles y realistas entre peones, soldados licenciados y pobres. Representaba una alternativa igualitaria al latifundismo, aunque enfrentó resistencia de la élite terrateniente y fue superado por fuerzas unitarias.
-                </div>
-            </div>
-
-            <div class="question-block unit6">
-                <div class="question-number">10</div>
-                <div class="question-title">¿Qué factores transformaron la propiedad del suelo en Uruguay después de 1870?</div>
-                <div class="answer-text">
-                    <strong>ALAMBRADO:</strong> Introducción de alambres de púa permitió cercamiento eficiente de campos, delimitando propiedad privada.<br><br>
-                    <strong>CÓDIGO RURAL:</strong> Marco legal que regulaba la propiedad, criminalización de ocupación de tierras, protección de la ganadería.<br><br>
-                    <strong>Mano de obra:</strong> Paulatina sustitución de trabajo indígena y esclavo por trabajo de asalariados.<br><br>
-                    <strong>Tecnología ganadera:</strong> Selección de razas, reproducción controlada, prácticas modernas de crianza.
-                </div>
-            </div>
-
-            <h3 style="background-color: #e3f2fd; padding: 10px; border-radius: 5px;">III. BRASIL: CAFÉ Y CAUCHO</h3>
-
-            <div class="question-block unit6">
-                <div class="question-number">11</div>
-                <div class="question-title">¿Cómo se transformó la mano de obra en plantaciones de café de San Pablo?</div>
-                <div class="answer-text">
-                    Tras la abolición de la esclavitud (1888) y la crisis del sistema esclavista en el siglo XIX, se produjo una transición hacia trabajo asalariado y colonato. Inicialmente se utilizaba mano de obra indígena (declarada ineficaz), luego fuerza de trabajo africana esclavizada, y finalmente inmigrantes europeos bajo sistema de colonato que permitía reproducción de fuerza de trabajo.
-                </div>
-            </div>
-
-            <div class="question-block unit6">
-                <div class="question-number">12</div>
-                <div class="question-title">Describa el sistema de "colonato"</div>
-                <div class="answer-text">
-                    El colonato era un sistema de trabajo en plantaciones donde familias inmigrantes europeas recibían vivienda, parcelas para cultivo de subsistencia y porcentaje de ganancia de la venta de café. Permitía: (1) reducción de costos para patronal; (2) reproducción natural de fuerza de trabajo generacional; (3) fijación de población en el territorio; (4) provisión de alimentos a través de agricultura de subsistencia en parcelas propias.
-                </div>
-            </div>
-
-            <div class="question-block unit6">
-                <div class="question-number">13</div>
-                <div class="question-title">¿Por qué la Amazonia era un "campamento" durante la fiebre del caucho?</div>
-                <div class="answer-text">
-                    La extracción de caucho (1870s-1910s) fue actividad extractiva temporal sin asentamiento permanente. Carecía de: (1) instituciones sociales estables; (2) infraestructura de vivienda permanente; (3) diversificación económica; (4) articulación social. Los trabajadores (seringueiros) eran itinerantes, dependientes de compañías extractoras, sin integración territorial ni formación de comunidades duraderas.
-                </div>
-            </div>
-
-            <div class="question-block unit6">
-                <div class="question-number">14</div>
-                <div class="question-title">Explique la relación de dependencia en la extracción de caucho</div>
-                <div class="answer-text">
-                    <strong>DEPENDENCIA VERTICALIZADA:</strong><br>
-                    - <strong>Seringueiro (extractor):</strong> Deudor permanente, compra suministros a precios inflados del patrón/aviador<br>
-                    - <strong>Aviador (intermediario):</strong> Financista que proporciona crédito inicial, recibe comisión, controla precios<br>
-                    - <strong>Patrón (dueño de tierra/empresa):</strong> Monopoliza compra de caucho, fija precios monopólicos<br><br>
-                    Resultado: Sistema de endeudamiento perpetuo que impide acumulación y genera pobreza de trabajadores.
-                </div>
-            </div>
-
-            <h3 style="background-color: #e3f2fd; padding: 10px; border-radius: 5px;">IV. COLOMBIA Y COSTA RICA (MIGRACIÓN INTERNA)</h3>
-
-            <div class="question-block unit6">
-                <div class="question-number">15</div>
-                <div class="question-title">¿Qué características hizo única a la colonización antioqueña?</div>
-                <div class="answer-text">
-                    La colonización antioqueña (s. XIX-XX) se caracterizó por: (1) Migración interna (no europea); (2) Pequeña propiedad familiar campesina; (3) Policultivo diversificado; (4) Ocupación de tierras montañosas; (5) Participación de múltiples etnias (antioqueños, no solo europeos); (6) Mayor equidad en distribución de tierra; (7) Formación de comunidades rurales estables con poder local descentralizado.
-                </div>
-            </div>
-
-            <div class="question-block unit6">
-                <div class="question-number">16</div>
-                <div class="question-title">¿Cuál fue el cultivo motor en Antioquia y su relación con minería?</div>
-                <div class="answer-text">
-                    El CAFÉ fue el cultivo motor. Se relacionaba con minería porque: (1) Ambos permitían generación rápida de capital; (2) Tecnología similar de explotación intensiva de recurso; (3) Ambos se concentraban en zonas montañosas; (4) Mano de obra: transición de minería a cultivo de café; (5) Capital acumulado en minería financiaba expansión cafetera; (6) Integración regional mediante economía de exportación.
-                </div>
-            </div>
-
-            <div class="question-block unit6">
-                <div class="question-number">17</div>
-                <div class="question-title">¿Por qué Costa Rica era "igualitaria en la pobreza"?</div>
-                <div class="answer-text">
-                    Costa Rica (época colonial tardía y temprana independencia) no tenía: (1) Grandes depósitos de metales preciosos; (2) Población indígena masiva para encomienda; (3) Latifundios consolidados; (4) Esclavitud sistemática; (5) Estratificación social extrema. Resultado: población homogénea de pequeños propietarios campesinos pobres, con acceso similar a tierra marginal. 'Igualdad' relativa en condiciones de subsistencia precaria.
-                </div>
-            </div>
-
-            <div class="question-block unit6">
-                <div class="question-number">18</div>
-                <div class="question-title">¿Cómo era la estructura de propiedad en Costa Rica vs otros países?</div>
-                <div class="answer-text">
-                    <strong>COSTA RICA:</strong> Predominio de pequeña y mediana propiedad campesina. Distribución más equitativa. Acceso facilitado a tierra para colonos. Estructura descentralizada.<br><br>
-                    <strong>OTROS PAÍSES (Argentina, Uruguay, Brasil, Colombia andino):</strong> Grandes latifundios concentrados. Estructura oligárquica. Acceso restringido a tierra. Concentración de poder en élite terrateniente.<br><br>
-                    <strong>Factor:</strong> En Costa Rica, ausencia de encomienda exitosa permitió pequeña propiedad; en otras regiones, herencia colonial de latifundio consolidó concentración.
-                </div>
-            </div>
-        </div>
-
-        <!-- TAB 3: SELECCIÓN MÚLTIPLE -->
-        <div id="preguntas" class="tab-content">
-            <h2>❓ Ejercicios de Selección Múltiple - Unidades 4, 5 y 6</h2>
-
-            <div class="section-intro">
-                <strong>Instrucciones:</strong> Selecciona la respuesta correcta. La respuesta correcta se muestra en recuadro verde.
-                Total: 21 preguntas distribuidas en 3 unidades.
-            </div>
-
-            <h3 style="background-color: #d1ecf1; padding: 10px; border-radius: 5px; color: #0c5460;">
-                <span class="unit4-label">UNIDAD 4</span>RÉGIMEN DE ESCLAVITUD
-            </h3>
-
-            <div class="question-block unit4">
-                <div class="question-number">4.1</div>
-                <div class="question-title">¿Cuál fue el origen principal del sistema de esclavitud en América Latina?</div>
-                <div class="options-list">
-                    <p>a) La encomienda transformada en esclavitud total</p>
-                    <p>b) La necesidad de mano de obra tras el colapso demográfico indígena</p>
-                    <p>c) Las guerras entre colonos españoles</p>
-                    <p>d) La importación de esclavos desde Asia</p>
-                </div>
-                <div class="correct-answer">Respuesta correcta: b) La necesidad de mano de obra tras el colapso demográfico indígena</div>
-            </div>
-
-            <div class="question-block unit4">
-                <div class="question-number">4.2</div>
-                <div class="question-title">¿En qué región tuvo mayor desarrollo e importancia económica el sistema esclavista?</div>
-                <div class="options-list">
-                    <p>a) En el Altiplano andino</p>
-                    <p>b) En las plantaciones de azúcar del Caribe y Brasil</p>
-                    <p>c) En las regiones mineras de México</p>
-                    <p>d) En las llanuras del Río de la Plata</p>
-                </div>
-                <div class="correct-answer">Respuesta correcta: b) En las plantaciones de azúcar del Caribe y Brasil</div>
-            </div>
-
-            <div class="question-block unit4">
-                <div class="question-number">4.3</div>
-                <div class="question-title">¿Cuál fue el principal factor económico que aceleró la abolición de la esclavitud?</div>
-                <div class="options-list">
-                    <p>a) La presión moral de la Iglesia Católica</p>
-                    <p>b) La revolución haitiana y la presión británica anti-esclavista</p>
-                    <p>c) El agotamiento de la población africana disponible</p>
-                    <p>d) La invención de máquinas que reemplazaban trabajo esclavo</p>
-                </div>
-                <div class="correct-answer">Respuesta correcta: b) La revolución haitiana y la presión británica anti-esclavista</div>
-            </div>
-
-            <div class="question-block unit4">
-                <div class="question-number">4.4</div>
-                <div class="question-title">¿Qué sucedió con la mano de obra después de la abolición de la esclavitud?</div>
-                <div class="options-list">
-                    <p>a) Desapareció completamente del mercado laboral</p>
-                    <p>b) Fue reemplazada por trabajo asalariado y nuevos sistemas de coerción</p>
-                    <p>c) Retornó a África</p>
-                    <p>d) Se dedicó exclusivamente a la agricultura de subsistencia</p>
-                </div>
-                <div class="correct-answer">Respuesta correcta: b) Fue reemplazada por trabajo asalariado y nuevos sistemas de coerción</div>
-            </div>
-
-            <div class="question-block unit4">
-                <div class="question-number">4.5</div>
-                <div class="question-title">¿Cuál es la característica más distintiva de la "disolución del sistema esclavista"?</div>
-                <div class="options-list">
-                    <p>a) Fue un proceso rápido y total</p>
-                    <p>b) Fue acompañado de reformas laborales progresivas</p>
-                    <p>c) Fue un proceso lento que ocultaba nuevas formas de explotación</p>
-                    <p>d) Fue impulsado por los propios esclavizados</p>
-                </div>
-                <div class="correct-answer">Respuesta correcta: c) Fue un proceso lento que ocultaba nuevas formas de explotación</div>
-            </div>
-
-            <h3 style="background-color: #f8d7da; padding: 10px; border-radius: 5px; color: #721c24; margin-top: 30px;">
-                <span class="unit5-label">UNIDAD 5</span>REFORMAS LIBERALES
-            </h3>
-
-            <div class="question-block unit5">
-                <div class="question-number">5.1</div>
-                <div class="question-title">¿Cuál fue el objetivo económico principal de las reformas liberales?</div>
-                <div class="options-list">
-                    <p>a) Crear economías completamente autárquicas</p>
-                    <p>b) Integrar la economía latinoamericana al mercado mundial capitalista</p>
-                    <p>c) Fortalecer la pequeña propiedad campesina</p>
-                    <p>d) Eliminar toda forma de comercio</p>
-                </div>
-                <div class="correct-answer">Respuesta correcta: b) Integrar la economía latinoamericana al mercado mundial capitalista</div>
-            </div>
-
-            <div class="question-block unit5">
-                <div class="question-number">5.2</div>
-                <div class="question-title">¿Qué tipo básico de reforma liberal se implementó en países como Chile y Perú?</div>
-                <div class="options-list">
-                    <p>a) Reforma agraria distribuyendo tierras</p>
-                    <p>b) Nacionalización de recursos naturales</p>
-                    <p>c) Desamortización de tierras eclesiásticas y corporativas</p>
-                    <p>d) Colectivización de la propiedad privada</p>
-                </div>
-                <div class="correct-answer">Respuesta correcta: c) Desamortización de tierras eclesiásticas y corporativas</div>
-            </div>
-
-            <div class="question-block unit5">
-                <div class="question-number">5.3</div>
-                <div class="question-title">¿Cuál fue el impacto social de las reformas liberales en la propiedad de la tierra?</div>
-                <div class="options-list">
-                    <p>a) Mayor equidad en distribución de tierras</p>
-                    <p>b) Concentración de tierras en manos de élites y latifundistas</p>
-                    <p>c) Eliminación total del latifundio</p>
-                    <p>d) Generación de una clase de pequeños propietarios dominante</p>
-                </div>
-                <div class="correct-answer">Respuesta correcta: b) Concentración de tierras en manos de élites y latifundistas</div>
-            </div>
-
-            <div class="question-block unit5">
-                <div class="question-number">5.4</div>
-                <div class="question-title">¿Qué país experimentó una reforma liberal particularmente radical?</div>
-                <div class="options-list">
-                    <p>a) Perú</p>
-                    <p>b) México</p>
-                    <p>c) Colombia</p>
-                    <p>d) Bolivia</p>
-                </div>
-                <div class="correct-answer">Respuesta correcta: b) México</div>
-            </div>
-
-            <div class="question-block unit5">
-                <div class="question-number">5.5</div>
-                <div class="question-title">¿Cómo se relacionaban las reformas liberales con el desarrollo del capitalismo?</div>
-                <div class="options-list">
-                    <p>a) Las reformas debilitaban el capitalismo</p>
-                    <p>b) Las reformas eran independientes del capitalismo</p>
-                    <p>c) Las reformas facilitaban la acumulación privada de capital y mercantilización de tierra</p>
-                    <p>d) Las reformas prohibían actividades capitalistas</p>
-                </div>
-                <div class="correct-answer">Respuesta correcta: c) Las reformas facilitaban la acumulación privada de capital y mercantilización de tierra</div>
-            </div>
-
-            <div class="question-block unit5">
-                <div class="question-number">5.6</div>
-                <div class="question-title">¿Cuál fue el rol de la Iglesia en las reformas liberales?</div>
-                <div class="options-list">
-                    <p>a) Promovió activamente todas las reformas</p>
-                    <p>b) Fue despojada de tierras y poder mediante desamortización</p>
-                    <p>c) Mantuvo su poder intacto</p>
-                    <p>d) Se alió exclusivamente con conservadores</p>
-                </div>
-                <div class="correct-answer">Respuesta correcta: b) Fue despojada de tierras y poder mediante desamortización</div>
-            </div>
-
-            <h3 style="background-color: #d4edda; padding: 10px; border-radius: 5px; color: #155724; margin-top: 30px;">
-                <span class="unit6-label">UNIDAD 6</span>COLONIZACIÓN EN ÁREAS VACÍAS
-            </h3>
-
-            <div class="question-block unit6">
-                <div class="question-number">6.1</div>
-                <div class="question-title">¿Cuál fue la principal diferencia entre ocupación lenta y ocupación rápida?</div>
-                <div class="options-list">
-                    <p>a) La ocupación lenta fue más exitosa económicamente</p>
-                    <p>b) La ocupación rápida generó economías de exportación dominantes y fue acelerada</p>
-                    <p>c) Ambas tuvieron igual importancia económica</p>
-                    <p>d) La ocupación lenta fue urbana y la rápida rural</p>
-                </div>
-                <div class="correct-answer">Respuesta correcta: b) La ocupación rápida generó economías de exportación dominantes y fue acelerada</div>
-            </div>
-
-            <div class="question-block unit6">
-                <div class="question-number">6.2</div>
-                <div class="question-title">¿Qué papel jugó la inmigración europea en Argentina y Uruguay?</div>
-                <div class="options-list">
-                    <p>a) Fue inexistente hasta el siglo XX</p>
-                    <p>b) Constituyó el grueso de la población, especialmente entre 1880-1904</p>
-                    <p>c) Se limitó a la ciudad de Buenos Aires</p>
-                    <p>d) Fue rechazada por los gobiernos locales</p>
-                </div>
-                <div class="correct-answer">Respuesta correcta: b) Constituyó el grueso de la población, especialmente entre 1880-1904</div>
-            </div>
-
-            <div class="question-block unit6">
-                <div class="question-number">6.3</div>
-                <div class="question-title">¿Cuál fue el impacto de las Campañas al Desierto en Argentina?</div>
-                <div class="options-list">
-                    <p>a) Extendieron derechos a comunidades indígenas</p>
-                    <p>b) Permitieron expansión territorial pero resultaron en exterminio indígena y concentración de tierras</p>
-                    <p>c) No tuvieron impacto significativo en la estructura de propiedad</p>
-                    <p>d) Promovieron distribución equitativa de tierras</p>
-                </div>
-                <div class="correct-answer">Respuesta correcta: b) Permitieron expansión territorial pero resultaron en exterminio indígena y concentración de tierras</div>
-            </div>
-
-            <div class="question-block unit6">
-                <div class="question-number">6.4</div>
-                <div class="question-title">¿Cómo se transformó el modelo de trabajo en las plantaciones de café de Brasil?</div>
-                <div class="options-list">
-                    <p>a) Pasó de esclavitud a colonato con inmigrantes europeos</p>
-                    <p>b) Permaneció igual desde la colonia</p>
-                    <p>c) Se basó exclusivamente en trabajo indígena</p>
-                    <p>d) Eliminó todo trabajo coercitivo</p>
-                </div>
-                <div class="correct-answer">Respuesta correcta: a) Pasó de esclavitud a colonato con inmigrantes europeos</div>
-            </div>
-
-            <div class="question-block unit6">
-                <div class="question-number">6.5</div>
-                <div class="question-title">¿Cuál fue la característica distintiva de la colonización antioqueña?</div>
-                <div class="options-list">
-                    <p>a) Fue dominada por inmigración europea masiva</p>
-                    <p>b) Se basó en migración interna y pequeña propiedad campesina familiar</p>
-                    <p>c) Replicó exactamente el modelo de Argentina</p>
-                    <p>d) Fue un fracaso económico total</p>
-                </div>
-                <div class="correct-answer">Respuesta correcta: b) Se basó en migración interna y pequeña propiedad campesina familiar</div>
-            </div>
-
-            <div class="question-block unit6">
-                <div class="question-number">6.6</div>
-                <div class="question-title">¿Por qué la estructura de propiedad en Costa Rica difería de otros países?</div>
-                <div class="options-list">
-                    <p>a) Porque fue colonizado por portugueses</p>
-                    <p>b) Porque nunca tuvo economía de exportación</p>
-                    <p>c) Porque no tuvo población indígena densa ni encomienda exitosa, facilitando pequeña propiedad</p>
-                    <p>d) Porque implementó comunismo desde la independencia</p>
-                </div>
-                <div class="correct-answer">Respuesta correcta: c) Porque no tuvo población indígena densa ni encomienda exitosa, facilitando pequeña propiedad</div>
-            </div>
-
-            <div class="question-block unit6">
-                <div class="question-number">6.7</div>
-                <div class="question-title">¿Qué fue el "colonato" en las plantaciones brasileñas?</div>
-                <div class="options-list">
-                    <p>a) Un tipo de esclavitud reformada</p>
-                    <p>b) Sistema donde familias inmigrantes recibían vivienda, parcelas y porcentaje de ganancias</p>
-                    <p>c) Una cooperativa agrícola igualitaria</p>
-                    <p>d) Un sindicato de trabajadores rurales</p>
-                </div>
-                <div class="correct-answer">Respuesta correcta: b) Sistema donde familias inmigrantes recibían vivienda, parcelas y porcentaje de ganancias</div>
-            </div>
-
-            <div class="question-block unit6">
-                <div class="question-number">6.8</div>
-                <div class="question-title">¿Cuál fue el papel del ferrocarril en la colonización?</div>
-                <div class="options-list">
-                    <p>a) No tuvo impacto significativo</p>
-                    <p>b) Conectó territorios colonizados con puertos para exportación, consolidando economía exportadora</p>
-                    <p>c) Solo sirvió para transporte local</p>
-                    <p>d) Fue construido principalmente para uso militar</p>
-                </div>
-                <div class="correct-answer">Respuesta correcta: b) Conectó territorios colonizados con puertos para exportación, consolidando economía exportadora</div>
-            </div>
-
-            <div class="question-block unit6">
-                <div class="question-number">6.9</div>
-                <div class="question-title">¿Qué significaba que la Amazonia fuera un "campamento" durante la fiebre del caucho?</div>
-                <div class="options-list">
-                    <p>a) Que era un campamento militar permanente</p>
-                    <p>b) Que carecía de instituciones sociales estables y era población extractiva temporal</p>
-                    <p>c) Que tenía excelente infraestructura urbana</p>
-                    <p>d) Que era una comunidad indígena organizada</p>
-                </div>
-                <div class="correct-answer">Respuesta correcta: b) Que carecía de instituciones sociales estables y era población extractiva temporal</div>
-            </div>
-
-            <div class="question-block unit6">
-                <div class="question-number">6.10</div>
-                <div class="question-title">¿Cuál fue el resultado de la colonización para la estructura del estado-nación?</div>
-                <div class="options-list">
-                    <p>a) Debilitó los estados-nación</p>
-                    <p>b) Permitió consolidación territorial pero bajo control de élites terratenientes</p>
-                    <p>c) No afectó la estructura estatal</p>
-                    <p>d) Generó democracia igualitaria en todos los países</p>
-                </div>
-                <div class="correct-answer">Respuesta correcta: b) Permitió consolidación territorial pero bajo control de élites terratenientes</div>
-            </div>
-        </div>
-
-        <div class="footer">
-            <p>📚 Material de estudio compilado para Historia Social Latinoamericana</p>
-            <p>Basado en: Máximo Zorrilla - Historia Social Latinoamericana</p>
-            <p>Última actualización: Mayo 2026</p>
-        </div>
     </div>
 
+    <footer>
+        <p>Referencia: Zorrilla, M. Historia Social Latinoamericana. Páginas 31-61 (Unidades IV-VI)</p>
+        <p>Material de estudio elaborado para complementar análisis histórico-social de América Latina</p>
+        <p style="margin-top: 15px;">© 2026 - Versión Expandida Completa con Contenido Detallado + Guías Interactivas</p>
+    </footer>
+
     <script>
-        function openTab(evt, tabName) {
-            var i, tabcontent, tabbuttons;
+        const correctAnswers = {"q1": "b", "q2": "c", "q3": "b", "q4": "c", "q5": "b", "q6": "c", "q7": "b", "q8": "b", "q9": "b", "q10": "c", "q11": "b", "q12": "b", "q13": "c", "q14": "b", "q15": "c", "q16": "b", "q17": "b", "q18": "b", "q19": "b", "q20": "b", "q21": "b"};
 
-            // Ocultar todos los tabs
-            tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].classList.remove("active");
-            }
+        let answered = 0;
+        let correct  = 0;
+        let wrong    = 0;
 
-            // Remover clase active de todos los botones
-            tabbuttons = document.getElementsByClassName("tab-btn");
-            for (i = 0; i < tabbuttons.length; i++) {
-                tabbuttons[i].classList.remove("active");
-            }
+        document.querySelectorAll('.quiz-options input[type=radio]').forEach(function(radio) {
+            radio.addEventListener('change', function() {
+                const qId   = this.name;
+                const block = document.getElementById(qId);
+                if (block.classList.contains('answered-correct') || block.classList.contains('answered-wrong')) return;
+                const selected  = this.value;
+                const isCorrect = selected === correctAnswers[qId];
+                block.querySelectorAll('input[type=radio]').forEach(r => r.disabled = true);
+                block.querySelectorAll('.quiz-option').forEach(function(lbl) {
+                    const optVal = lbl.querySelector('input').value;
+                    if (optVal === correctAnswers[qId]) lbl.classList.add('correct-opt');
+                    else if (optVal === selected && !isCorrect) lbl.classList.add('wrong-opt');
+                });
+                const fb = document.getElementById('fb' + qId.replace('q',''));
+                fb.classList.add('show');
+                if (isCorrect) {
+                    fb.textContent = '✅ ¡Correcto!';
+                    fb.classList.add('correct');
+                    block.classList.add('answered-correct');
+                    correct++;
+                } else {
+                    const correctLabel = block.querySelector('.correct-opt span').textContent;
+                    fb.textContent = '❌ Incorrecto. La respuesta correcta es: ' + correctLabel;
+                    fb.classList.add('wrong');
+                    block.classList.add('answered-wrong');
+                    wrong++;
+                }
+                answered++;
+                document.getElementById('score-text').textContent  = answered + ' / 21 respondidas';
+                document.getElementById('correct-text').textContent = '✓ ' + correct + ' correctas';
+                document.getElementById('wrong-text').textContent   = '✗ ' + wrong + ' incorrectas';
+            });
+        });
 
-            // Mostrar el tab actual y marcar el botón como activo
-            document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.classList.add("active");
+        function resetQuiz() {
+            answered = 0; correct = 0; wrong = 0;
+            document.getElementById('score-text').textContent  = '0 / 21 respondidas';
+            document.getElementById('correct-text').textContent = '✓ 0 correctas';
+            document.getElementById('wrong-text').textContent   = '✗ 0 incorrectas';
+            document.querySelectorAll('.quiz-question').forEach(b => b.classList.remove('answered-correct','answered-wrong'));
+            document.querySelectorAll('.quiz-option').forEach(l => l.classList.remove('correct-opt','wrong-opt'));
+            document.querySelectorAll('.quiz-options input[type=radio]').forEach(r => { r.checked = false; r.disabled = false; });
+            document.querySelectorAll('.quiz-feedback').forEach(f => { f.classList.remove('show','correct','wrong'); f.textContent = ''; });
+        }
+
+        function expandAll() {
+            document.querySelectorAll('#contenido .section').forEach(s => s.classList.remove('collapsed'));
+        }
+        function collapseAll() {
+            document.querySelectorAll('#contenido .section').forEach(s => s.classList.add('collapsed'));
+        }
+
+        function switchTab(tabName) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => button.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function toggleSection(element) {
+            const section = element.closest('.section');
+            section.classList.toggle('collapsed');
+        }
+
+        function toggleAnswer(element) {
+            const answer = element.previousElementSibling;
+            answer.classList.toggle('show');
+            element.textContent = answer.classList.contains('show') ? 'Ocultar respuesta ▲' : 'Ver respuesta ▼';
         }
     </script>
 </body>
