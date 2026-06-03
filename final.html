@@ -243,6 +243,102 @@
   .flash-hint  { text-align:center; color:var(--muted); font-size:0.8rem; margin-bottom:0.8rem; }
   @media (max-width:640px) { .flash-grid { grid-template-columns: 1fr 1fr; } .flash-card { height: 140px; } }
 
+
+  /* ─── RESUMEN RÁPIDO ─── */
+  .resumen-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--secondary); color: #1a1a1a;
+    border: none; border-radius: 20px; padding: 0.4rem 1.1rem;
+    font-size: 0.82rem; font-weight: 700; cursor: pointer;
+    margin-top: 0.8rem; transition: opacity 0.2s;
+  }
+  .resumen-btn:hover { opacity: 0.85; }
+  .resumen-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.55); z-index: 900;
+    align-items: center; justify-content: center; padding: 1rem;
+  }
+  .resumen-overlay.open { display: flex; }
+  .resumen-box {
+    background: #fff; border-radius: 16px; max-width: 620px; width: 100%;
+    padding: 2rem; max-height: 85vh; overflow-y: auto;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.25);
+  }
+  .resumen-box h2 { color: var(--primary); margin-bottom: 1rem; font-size: 1.1rem; }
+  .resumen-box ul { padding-left: 1.2rem; line-height: 1.8; }
+  .resumen-box li { margin-bottom: 0.3rem; font-size: 0.93rem; }
+  .resumen-box li strong { color: var(--primary); }
+  .resumen-close {
+    float: right; background: none; border: none; font-size: 1.4rem;
+    cursor: pointer; color: var(--muted); line-height: 1;
+  }
+
+  /* ─── COMPARADOR DE PAÍSES ─── */
+  .comparador-wrap { margin-top: 1.5rem; }
+  .comparador-selects { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
+  .comparador-selects select {
+    flex: 1; min-width: 160px; padding: 0.5rem 0.8rem;
+    border-radius: 8px; border: 2px solid var(--primary);
+    font-size: 0.9rem; background: #fff; color: var(--primary); font-weight: 600;
+    cursor: pointer;
+  }
+  .comparador-grid {
+    display: grid; grid-template-columns: 140px 1fr 1fr;
+    border-radius: 12px; overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  }
+  .cmp-header { background: var(--primary); color: #fff; padding: 0.7rem 1rem; font-weight: 700; font-size: 0.9rem; }
+  .cmp-label  { background: #f0f4f8; padding: 0.7rem 1rem; font-weight: 600; font-size: 0.85rem; color: #444; border-bottom: 1px solid #dde; }
+  .cmp-cell   { background: #fff; padding: 0.7rem 1rem; font-size: 0.85rem; border-bottom: 1px solid #eef; line-height: 1.4; }
+  .cmp-cell.diff  { background: #fff5f5; border-left: 3px solid #e74c3c; }
+  .cmp-cell.same  { background: #f0fff4; border-left: 3px solid #27ae60; }
+  .cmp-legend { margin-top: 0.8rem; font-size: 0.78rem; color: var(--muted); display: flex; gap: 1.2rem; }
+  .cmp-legend span { display: flex; align-items: center; gap: 5px; }
+  .cmp-legend .dot { width: 10px; height: 10px; border-radius: 2px; }
+
+  /* ─── MAPA CONCEPTUAL ─── */
+  #map-panel {
+    display: none; background: #f5f8fc;
+    min-height: 100vh; padding: 2rem 1rem;
+  }
+  #map-panel.active { display: block; }
+  .map-title { text-align: center; color: var(--primary); font-size: 1.3rem; font-weight: 800; margin-bottom: 0.4rem; }
+  .map-sub   { text-align: center; color: var(--muted); font-size: 0.88rem; margin-bottom: 2rem; }
+  .map-svg-wrap { display: flex; justify-content: center; overflow-x: auto; }
+  .map-svg-wrap svg { max-width: 900px; width: 100%; height: auto; }
+
+  /* nodos SVG */
+  .map-node { cursor: pointer; }
+  .map-node rect { rx: 16; transition: filter 0.2s; }
+  .map-node:hover rect { filter: brightness(1.12) drop-shadow(0 4px 12px rgba(0,0,0,0.25)); }
+  .map-node text { pointer-events: none; }
+
+  /* tooltip */
+  .map-tooltip {
+    position: fixed; background: #1a3a5c; color: #fff;
+    border-radius: 10px; padding: 0.7rem 1rem; font-size: 0.82rem;
+    max-width: 240px; line-height: 1.5; z-index: 800;
+    pointer-events: none; opacity: 0; transition: opacity 0.15s;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  }
+  .map-tooltip.visible { opacity: 1; }
+  .map-tooltip strong { color: var(--secondary); display: block; margin-bottom: 4px; }
+
+  /* cards de conceptos del mapa */
+  .map-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1rem; margin-top: 2.5rem; }
+  .map-card { background: #fff; border-radius: 12px; padding: 1.2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-top: 4px solid var(--primary); }
+  .map-card h4 { color: var(--primary); font-size: 0.9rem; margin-bottom: 0.5rem; }
+  .map-card ul { padding-left: 1rem; font-size: 0.82rem; color: #444; line-height: 1.6; }
+  .map-card.c8 { border-color: #2980b9; } .map-card.c8 h4 { color: #2980b9; }
+  .map-card.c9 { border-color: #8e44ad; } .map-card.c9 h4 { color: #8e44ad; }
+  .map-card.c10{ border-color: #c0392b; } .map-card.c10 h4 { color: #c0392b; }
+  .map-nav-btn {
+    display: block; margin: 0.8rem auto 0; padding: 0.4rem 1.2rem;
+    background: var(--primary); color: #fff; border: none; border-radius: 20px;
+    font-size: 0.8rem; cursor: pointer; font-weight: 600;
+  }
+  .map-nav-btn:hover { opacity: 0.85; }
+
 </style>
 </head>
 <body>
@@ -258,6 +354,7 @@
   <button class="chapter-btn" onclick="showChapter('cap8', this)">Capítulo 8 &mdash; Transformación del Comercio</button>
   <button class="chapter-btn" onclick="showChapter('cap9', this)">Capítulo 9 &mdash; Dependencia Externa</button>
   <button class="chapter-btn" onclick="showChapter('cap10', this)">Capítulo 10 &mdash; Ocaso de la Era Liberal</button>
+  <button class="chapter-btn" onclick="showChapter('map-panel', this)" style="background:var(--secondary);color:#1a1a1a;border-color:var(--secondary);">🗺 Mapa Conceptual</button>
 </nav>
 
 <div class="container">
@@ -272,7 +369,8 @@
     <p>Análisis de cómo América Latina se incorporó al sistema económico capitalista global, los mecanismos del comercio internacional, los flujos de capital, la orientación geográfica del comercio exterior, el grado de integración y la naturaleza del mercado mundial de bienes primarios.</p>
     <div style="margin-top:1rem;">
       <span style="font-size:0.85rem; color:#aac8e8;">📖 Libro: <strong style="color:#c8a951;">pp. 64 – 79</strong></span>
-    </div>
+    
+    <button class="resumen-btn" onclick="abrirResumen('cap7')">📋 Resumen rápido</button></div>
   </div>
 
   <div class="tabs-wrapper">
@@ -1027,7 +1125,8 @@
     <p>La Revolución Industrial, la división internacional del trabajo y la tipología de las economías exportadoras de materias primas latinoamericanas (Furtado, 1975).</p>
     <div style="margin-top:1rem;">
       <span style="font-size:0.85rem; color:#aac8e8;">📖 Libro: <strong style="color:#c8a951;">pp. 80 – 86</strong></span>
-    </div>
+    
+    <button class="resumen-btn" onclick="abrirResumen('cap8')">📋 Resumen rápido</button></div>
   </div>
 
   <div class="tabs-wrapper">
@@ -1361,7 +1460,8 @@
     <p>Teoría de la dependencia, políticas correctivas y casos nacionales: Venezuela, Brasil, Argentina, México y Chile (Furtado, 1975, pp. 87–108).</p>
     <div style="margin-top:1rem;">
       <span style="font-size:0.85rem; color:#aac8e8;">📖 Libro: <strong style="color:#c8a951;">pp. 87 – 108</strong></span>
-    </div>
+    
+    <button class="resumen-btn" onclick="abrirResumen('cap9')">📋 Resumen rápido</button></div>
   </div>
 
   <div class="tabs-wrapper">
@@ -1372,6 +1472,7 @@
       <button class="tab-btn" onclick="showTab('c9','t4',this)">⏳ Línea de Tiempo</button>
       <button class="tab-btn" onclick="showTab('c9','t5',this)">🃏 Flashcards</button>
       <button class="tab-btn" onclick="showTab('c9','t6',this)">✅ Quiz</button>
+      <button class="tab-btn" onclick="showTab('c9','t7',this)">🆚 Comparador</button>
     </div>
 
     <!-- TAB 1: INTRODUCCIÓN + PUNTOS CRÍTICOS + CONSECUENCIAS + ESTRATEGIAS -->
@@ -1715,6 +1816,37 @@
       </div>
     </div>
 
+
+    <!-- TAB 7: COMPARADOR DE PAÍSES CAP9 -->
+    <div id="c9-t7" class="tab-content">
+      <h3>🆚 Comparador de Países — Capítulo 9</h3>
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1.2rem;">Seleccioná dos países para comparar sus políticas correctivas lado a lado. Las celdas <span style="color:#27ae60;font-weight:700;">verdes</span> indican similitudes; las <span style="color:#e74c3c;font-weight:700;">rojas</span>, diferencias clave.</p>
+
+      <div class="comparador-wrap">
+        <div class="comparador-selects">
+          <select id="cmp-pais1" onchange="actualizarComparador()">
+            <option value="Venezuela">🇻🇪 Venezuela</option>
+            <option value="Brasil">🇧🇷 Brasil</option>
+            <option value="Argentina">🇦🇷 Argentina</option>
+            <option value="Mexico">🇲🇽 México</option>
+            <option value="Chile">🇨🇱 Chile</option>
+          </select>
+          <select id="cmp-pais2" onchange="actualizarComparador()">
+            <option value="Venezuela">🇻🇪 Venezuela</option>
+            <option value="Brasil">🇧🇷 Brasil</option>
+            <option value="Argentina" selected>🇦🇷 Argentina</option>
+            <option value="Mexico">🇲🇽 México</option>
+            <option value="Chile">🇨🇱 Chile</option>
+          </select>
+        </div>
+        <div id="cmp-resultado"></div>
+        <div class="cmp-legend">
+          <span><div class="dot" style="background:#27ae60"></div> Similitud estructural</span>
+          <span><div class="dot" style="background:#e74c3c"></div> Diferencia clave</span>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -1724,7 +1856,8 @@
     <p>La crisis del orden oligárquico liberal: causas políticas, sociales y económicas, la Revolución Mexicana, la polarización ideológica, las rutas de la crisis y el intervencionismo estadounidense (Zanatta, 2012; Furtado, 1975, pp. 109–124).</p>
     <div style="margin-top:1rem;">
       <span style="font-size:0.85rem; color:#aac8e8;">📖 Libro: <strong style="color:#c8a951;">pp. 109 – 124</strong></span>
-    </div>
+    
+    <button class="resumen-btn" onclick="abrirResumen('cap10')">📋 Resumen rápido</button></div>
   </div>
 
   <div class="tabs-wrapper">
@@ -2124,6 +2257,158 @@
 </div>
 
 
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- MAPA CONCEPTUAL INTERACTIVO                                  -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div id="map-panel">
+  <div class="map-title">🗺 Mapa Conceptual — Historia Social Latinoamericana</div>
+  <div class="map-sub">El hilo conductor del programa: de la inserción colonial al ocaso del liberalismo oligárquico.<br>Hacé hover sobre los nodos para ver conceptos clave. Hacé click para ir al capítulo.</div>
+
+  <div class="map-tooltip" id="map-tooltip"></div>
+
+  <div class="map-svg-wrap">
+    <svg viewBox="0 0 860 420" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif">
+      <defs>
+        <marker id="arr" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+          <polygon points="0 0, 10 3.5, 0 7" fill="#2e5f8a"/>
+        </marker>
+        <marker id="arr2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+          <polygon points="0 0, 10 3.5, 0 7" fill="#2980b9"/>
+        </marker>
+        <marker id="arr3" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+          <polygon points="0 0, 10 3.5, 0 7" fill="#8e44ad"/>
+        </marker>
+        <marker id="arr4" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+          <polygon points="0 0, 10 3.5, 0 7" fill="#c0392b"/>
+        </marker>
+        <!-- Flechas de arco con etiquetas -->
+      </defs>
+
+      <!-- LÍNEA CENTRAL DE PROGRESIÓN -->
+      <line x1="170" y1="150" x2="290" y2="150" stroke="#2e5f8a" stroke-width="2.5" marker-end="url(#arr)"/>
+      <line x1="460" y1="150" x2="580" y2="150" stroke="#2980b9" stroke-width="2.5" marker-end="url(#arr2)"/>
+      <line x1="730" y1="150" x2="820" y2="195" stroke="#8e44ad" stroke-width="2.5" marker-end="url(#arr3)" stroke-dasharray="0"/>
+
+      <!-- FLECHAS DE CRISIS / RESPUESTA -->
+      <!-- Cap8 → Cap9 curva superior -->
+      <path d="M 390 105 Q 520 50 660 105" stroke="#2980b9" stroke-width="1.8" fill="none" stroke-dasharray="6 3" marker-end="url(#arr2)"/>
+      <!-- Cap9 → Cap10 curva inferior -->
+      <path d="M 660 195 Q 770 260 830 210" stroke="#8e44ad" stroke-width="1.8" fill="none" stroke-dasharray="6 3" marker-end="url(#arr3)"/>
+
+      <!-- ETIQUETAS DE FLECHAS -->
+      <text x="225" y="140" text-anchor="middle" font-size="10" fill="#2e5f8a" font-weight="600">DIT</text>
+      <text x="515" y="140" text-anchor="middle" font-size="10" fill="#2980b9" font-weight="600">dependencia</text>
+      <text x="520" y="62" text-anchor="middle" font-size="9" fill="#2980b9" fill-opacity="0.8">ISI paradoja</text>
+      <text x="760" y="258" text-anchor="middle" font-size="9" fill="#8e44ad" fill-opacity="0.8">crisis → golpes</text>
+      <text x="775" y="168" text-anchor="middle" font-size="10" fill="#8e44ad" font-weight="600">colapso</text>
+
+      <!-- ══ NODO CAP 7 ══ -->
+      <g class="map-node" onclick="irACapitulo('cap7')"
+         onmouseenter="mostrarTooltip(event,'Cap. 7 — Inserción al Mercado Mundial','• Patrón agroexportador\n• Patrón oro y sus límites\n• Términos de intercambio\n• Hegemonía británica')"
+         onmouseleave="ocultarTooltip()">
+        <rect x="20" y="100" width="150" height="100" rx="16" fill="#1a3a5c" stroke="#f0c040" stroke-width="2.5"/>
+        <text x="95" y="130" text-anchor="middle" font-size="11" fill="#f0c040" font-weight="800">CAP. 7</text>
+        <text x="95" y="148" text-anchor="middle" font-size="10" fill="#fff">Inserción al</text>
+        <text x="95" y="163" text-anchor="middle" font-size="10" fill="#fff">Mercado Mundial</text>
+        <text x="95" y="182" text-anchor="middle" font-size="9" fill="#aac8e8">s. XIX — 1913</text>
+      </g>
+
+      <!-- ══ NODO CAP 8 ══ -->
+      <g class="map-node" onclick="irACapitulo('cap8')"
+         onmouseenter="mostrarTooltip(event,'Cap. 8 — Transformación del Comercio','• División Intl. del Trabajo\n• Grupos A / B / C\n• Rev. Industrial inglesa\n• Enclave vs. encadenamiento')"
+         onmouseleave="ocultarTooltip()">
+        <rect x="290" y="100" width="170" height="100" rx="16" fill="#2980b9" stroke="#f0c040" stroke-width="2.5"/>
+        <text x="375" y="130" text-anchor="middle" font-size="11" fill="#f0c040" font-weight="800">CAP. 8</text>
+        <text x="375" y="148" text-anchor="middle" font-size="10" fill="#fff">Transformación del</text>
+        <text x="375" y="163" text-anchor="middle" font-size="10" fill="#fff">Comercio Int.</text>
+        <text x="375" y="182" text-anchor="middle" font-size="9" fill="#d4eeff">1760 — 1914</text>
+      </g>
+
+      <!-- ══ NODO CAP 9 ══ -->
+      <g class="map-node" onclick="irACapitulo('cap9')"
+         onmouseenter="mostrarTooltip(event,'Cap. 9 — Formas de Dependencia','• ISI y su paradoja\n• Nuevas dependencias (IED, tech)\n• 5 casos nacionales\n• Flujos financieros BID/BIRF')"
+         onmouseleave="ocultarTooltip()">
+        <rect x="580" y="100" width="150" height="100" rx="16" fill="#8e44ad" stroke="#f0c040" stroke-width="2.5"/>
+        <text x="655" y="130" text-anchor="middle" font-size="11" fill="#f0c040" font-weight="800">CAP. 9</text>
+        <text x="655" y="148" text-anchor="middle" font-size="10" fill="#fff">Dependencia</text>
+        <text x="655" y="163" text-anchor="middle" font-size="10" fill="#fff">Externa</text>
+        <text x="655" y="182" text-anchor="middle" font-size="9" fill="#e8d4ff">1938 — 1965</text>
+      </g>
+
+      <!-- ══ NODO CAP 10 ══ -->
+      <g class="map-node" onclick="irACapitulo('cap10')"
+         onmouseenter="mostrarTooltip(event,'Cap. 10 — Ocaso del Liberalismo','• Liberalismo oligárquico\n• Rev. Mexicana (1910–17)\n• Crisis 1929 → ola de golpes\n• Good Neighbor Policy')"
+         onmouseleave="ocultarTooltip()">
+        <rect x="690" y="195" width="155" height="100" rx="16" fill="#c0392b" stroke="#f0c040" stroke-width="2.5"/>
+        <text x="767" y="225" text-anchor="middle" font-size="11" fill="#f0c040" font-weight="800">CAP. 10</text>
+        <text x="767" y="243" text-anchor="middle" font-size="10" fill="#fff">Ocaso del</text>
+        <text x="767" y="258" text-anchor="middle" font-size="10" fill="#fff">Liberalismo</text>
+        <text x="767" y="277" text-anchor="middle" font-size="9" fill="#ffd4d4">1873 — 1934</text>
+      </g>
+
+      <!-- HILO CONDUCTOR -->
+      <rect x="20" y="330" width="820" height="50" rx="10" fill="#f0f4f8" stroke="#2e5f8a" stroke-width="1.5" stroke-dasharray="4 2"/>
+      <text x="430" y="350" text-anchor="middle" font-size="10" fill="#2e5f8a" font-weight="700">HILO CONDUCTOR DEL PROGRAMA</text>
+      <text x="430" y="368" text-anchor="middle" font-size="10" fill="#555">Colonialismo → División Internacional del Trabajo → Dependencia → Crisis del Liberalismo Oligárquico → Populismo / Autoritarismo</text>
+
+      <!-- LEYENDA -->
+      <line x1="30" y1="400" x2="70" y2="400" stroke="#2e5f8a" stroke-width="2.5"/>
+      <text x="75" y="404" font-size="9" fill="#555">Relación directa</text>
+      <line x1="160" y1="400" x2="200" y2="400" stroke="#2980b9" stroke-width="1.8" stroke-dasharray="5 3"/>
+      <text x="205" y="404" font-size="9" fill="#555">Consecuencia/tensión</text>
+    </svg>
+  </div>
+
+  <!-- CARDS POR CAPÍTULO -->
+  <div class="map-cards">
+    <div class="map-card">
+      <h4>📗 Cap. 7 — Inserción al Mercado Mundial</h4>
+      <ul>
+        <li>Patrón agroexportador: bienes primarios → manufacturas</li>
+        <li>Hegemonía británica: finanzas + industria + transporte</li>
+        <li>Patrón oro: ajuste deflacionario sin política autónoma</li>
+        <li>Términos de intercambio: deterioro secular (Prebisch-Singer)</li>
+        <li>1873: primera crisis → freno al modelo exportador</li>
+      </ul>
+      <button class="map-nav-btn" onclick="irACapitulo('cap7')">Ir al Capítulo 7 →</button>
+    </div>
+    <div class="map-card c8">
+      <h4>📘 Cap. 8 — Transformación del Comercio</h4>
+      <ul>
+        <li>División Internacional del Trabajo: centro/periferia</li>
+        <li>Grupo A (templado), B (tropical), C (minero)</li>
+        <li>1846–49: libre comercio inglés sin reciprocidad</li>
+        <li>Enclave vs. encadenamiento productivo interno</li>
+        <li>Desnacionalización minera (capital norteamericano)</li>
+      </ul>
+      <button class="map-nav-btn" onclick="irACapitulo('cap8')" style="background:#2980b9">Ir al Capítulo 8 →</button>
+    </div>
+    <div class="map-card c9">
+      <h4>📙 Cap. 9 — Dependencia Externa</h4>
+      <ul>
+        <li>ISI: paradoja → atrae multinacionales que controla</li>
+        <li>IED: $780M (1950) → $2.741M (1965)</li>
+        <li>Nuevas dependencias: flujos, tecnología, industria</li>
+        <li>5 casos: VE (petróleo), BR (café), AR (cereales), MX (petróleo), CL (cobre)</li>
+        <li>BID + BIRF + EXIMBANK: financiamiento condicionado</li>
+      </ul>
+      <button class="map-nav-btn" onclick="irACapitulo('cap9')" style="background:#8e44ad">Ir al Capítulo 9 →</button>
+    </div>
+    <div class="map-card c10">
+      <h4>📕 Cap. 10 — Ocaso del Liberalismo</h4>
+      <ul>
+        <li>Liberalismo oligárquico: retórica liberal + poder exclusivo</li>
+        <li>Rev. Mexicana 1910: primera revolución social del siglo</li>
+        <li>Rev. Rusa 1917: bipolarización ideológica en AL</li>
+        <li>1929: Gran Depresión + ola de 6 golpes de Estado</li>
+        <li>Good Neighbor (1933): cambio de táctica, no de estrategia</li>
+      </ul>
+      <button class="map-nav-btn" onclick="irACapitulo('cap10')" style="background:#c0392b">Ir al Capítulo 10 →</button>
+    </div>
+  </div>
+</div>
+
 <script>
 /* ─── CHAPTER NAVIGATION ─── */
 function showChapter(capId, btn) {
@@ -2287,7 +2572,258 @@ registerAnswer('q10-1','b'); registerAnswer('q10-2','b'); registerAnswer('q10-3'
 registerAnswer('q10-4','b'); registerAnswer('q10-5','b'); registerAnswer('q10-6','b');
 registerAnswer('q10-7','b'); registerAnswer('q10-8','b');
 
+
+/* ─── RESUMEN RÁPIDO ─── */
+function abrirResumen(capId) {
+  const el = document.getElementById('resumen-' + capId);
+  if (el) el.classList.add('open');
+}
+function cerrarResumen(capId) {
+  const el = document.getElementById('resumen-' + capId);
+  if (el) el.classList.remove('open');
+}
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('resumen-overlay')) {
+    e.target.classList.remove('open');
+  }
+});
+
+/* ─── MAPA CONCEPTUAL: navegación ─── */
+function irACapitulo(capId) {
+  // Ocultar panel del mapa
+  const mapPanel = document.getElementById('map-panel');
+  if (mapPanel) mapPanel.classList.remove('active');
+  // Simular click en el botón del capítulo
+  const btns = document.querySelectorAll('.chapter-btn');
+  btns.forEach(b => {
+    if (b.getAttribute('onclick') && b.getAttribute('onclick').includes(capId)) {
+      b.click();
+    }
+  });
+}
+
+/* ─── MAPA CONCEPTUAL: tooltip ─── */
+function mostrarTooltip(e, titulo, puntos) {
+  const tip = document.getElementById('map-tooltip');
+  if (!tip) return;
+  const lineas = puntos.split('\n').map(l => '<span style="display:block">' + l + '</span>').join('');
+  tip.innerHTML = '<strong>' + titulo + '</strong>' + lineas;
+  tip.classList.add('visible');
+  posTooltip(e);
+}
+function posTooltip(e) {
+  const tip = document.getElementById('map-tooltip');
+  if (!tip) return;
+  let x = e.clientX + 14, y = e.clientY - 10;
+  if (x + 250 > window.innerWidth) x = e.clientX - 260;
+  if (y + 140 > window.innerHeight) y = e.clientY - 150;
+  tip.style.left = x + 'px';
+  tip.style.top  = y + 'px';
+}
+function ocultarTooltip() {
+  const tip = document.getElementById('map-tooltip');
+  if (tip) tip.classList.remove('visible');
+}
+document.addEventListener('mousemove', function(e) {
+  const tip = document.getElementById('map-tooltip');
+  if (tip && tip.classList.contains('visible')) posTooltip(e);
+});
+
+/* ─── COMPARADOR DE PAÍSES ─── */
+const PAISES_DATA = {
+  'Venezuela': {
+    flag: '🇻🇪', recurso: 'Petróleo',
+    problema: 'Estado rentista; dependencia total del crudo; volatilidad del precio',
+    instrumento: 'Concesiones → fifty-fifty (1943) → CVP (1960) → PDVSA (1976)',
+    resultado: 'Riqueza petrolera sin diversificación productiva; enfermedad holandesa',
+    actor_ext: 'Shell, Standard Oil (EE.UU.)',
+    logro: 'Creación de la OPEP (1960) para negociar precios colectivamente',
+  },
+  'Brasil': {
+    flag: '🇧🇷', recurso: 'Café',
+    problema: 'Sobreproducción crónica y caída de precios en el mercado mundial',
+    instrumento: 'Valorización / Convenio de Taubaté (1906): compra y quema de stocks',
+    resultado: 'Sostuvo precios temporalmente; perpetuó la dependencia monoexportadora',
+    actor_ext: 'Compradores europeos/norteamericanos (mercado difuso)',
+    logro: 'San Pablo usó el excedente cafetero para financiar industrialización temprana',
+  },
+  'Argentina': {
+    flag: '🇦🇷', recurso: 'Cereales y carnes',
+    problema: 'Concentración de la renta agraria en terratenientes; conflicto campo-industria',
+    instrumento: 'Junta Reguladora de Granos + tipo de cambio diferencial (Perón)',
+    resultado: 'Redistribución parcial hacia la industria; conflicto estructural permanente',
+    actor_ext: 'Frigoríficos ingleses y norteamericanos (Swift, Armour)',
+    logro: 'Mayor diversificación productiva de la región gracias al mercado interno',
+  },
+  'Mexico': {
+    flag: '🇲🇽', recurso: 'Petróleo',
+    problema: 'Control extranjero total (EE.UU./Reino Unido); Art. 27 Constitución ignorado',
+    instrumento: 'Expropiación petrolera (1938, Cárdenas) → creación de PEMEX',
+    resultado: 'Soberanía económica plena; modelo de referencia para América Latina',
+    actor_ext: 'Standard Oil (EE.UU.), Royal Dutch Shell (RU)',
+    logro: 'Primera expropiación exitosa de empresa extranjera en la región',
+  },
+  'Chile': {
+    flag: '🇨🇱', recurso: 'Cobre',
+    problema: 'Baja retención de divisas; renta minera capturada por empresas extranjeras',
+    instrumento: 'Retención divisas → chilenización (1966) → nacionalización (1971)',
+    resultado: 'Recuperación progresiva de la renta cuprífera; creación de CODELCO',
+    actor_ext: 'Anaconda Copper, Kennecott (EE.UU.)',
+    logro: 'Cobre = 70% de exportaciones — recuperación fue estratégicamente vital',
+  },
+};
+
+const CAMPOS_CMP = [
+  ['recurso',      '⛏ Recurso estratégico'],
+  ['problema',     '⚠️ Problema central'],
+  ['instrumento',  '🔧 Instrumento principal'],
+  ['resultado',    '📊 Resultado'],
+  ['actor_ext',    '🏢 Actor externo'],
+  ['logro',        '🏆 Logro/Hito clave'],
+];
+
+// campos que son "similares" si comparten el mismo recurso
+function esSimilar(campo, v1, v2) {
+  if (campo === 'recurso') return v1 === v2;
+  if (campo === 'actor_ext') {
+    return v1.includes('EE.UU.') && v2.includes('EE.UU.');
+  }
+  return false;
+}
+
+function actualizarComparador() {
+  const p1key = document.getElementById('cmp-pais1').value;
+  const p2key = document.getElementById('cmp-pais2').value;
+  const p1 = PAISES_DATA[p1key];
+  const p2 = PAISES_DATA[p2key];
+  if (!p1 || !p2) return;
+
+  if (p1key === p2key) {
+    document.getElementById('cmp-resultado').innerHTML =
+      '<p style="color:var(--muted);padding:1rem;text-align:center;">⚠️ Seleccioná dos países diferentes para comparar.</p>';
+    return;
+  }
+
+  let grid = '<div class="comparador-grid">';
+  // Headers
+  grid += '<div class="cmp-header">Dimensión</div>';
+  grid += '<div class="cmp-header">' + p1.flag + ' ' + p1key + '</div>';
+  grid += '<div class="cmp-header">' + p2.flag + ' ' + p2key + '</div>';
+
+  CAMPOS_CMP.forEach(([campo, label]) => {
+    const sim = esSimilar(campo, p1[campo], p2[campo]);
+    const cls = sim ? 'same' : 'diff';
+    grid += '<div class="cmp-label">' + label + '</div>';
+    grid += '<div class="cmp-cell ' + cls + '">' + p1[campo] + '</div>';
+    grid += '<div class="cmp-cell ' + cls + '">' + p2[campo] + '</div>';
+  });
+  grid += '</div>';
+  document.getElementById('cmp-resultado').innerHTML = grid;
+}
+
+// Inicializar comparador al cargar
+window.addEventListener('DOMContentLoaded', function() { actualizarComparador(); });
+
+/* ─── PATCH showChapter para map-panel ─── */
+const _origShowChapter = window.showChapter;
+window.showChapter = function(capId, btn) {
+  const mapPanel = document.getElementById('map-panel');
+  if (capId === 'map-panel') {
+    document.querySelectorAll('.chapter-panel').forEach(p => p.classList.remove('active'));
+    if (mapPanel) mapPanel.classList.add('active');
+    document.querySelectorAll('.chapter-btn').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  } else {
+    if (mapPanel) mapPanel.classList.remove('active');
+    if (_origShowChapter) _origShowChapter(capId, btn);
+    else {
+      document.querySelectorAll('.chapter-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.chapter-btn').forEach(b => b.classList.remove('active'));
+      const panel = document.getElementById(capId);
+      if (panel) panel.classList.add('active');
+      if (btn) btn.classList.add('active');
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+  }
+};
+
 </script>
+
+
+<!-- ─── OVERLAYS DE RESUMEN RÁPIDO ─── -->
+
+<div class="resumen-overlay" id="resumen-cap7">
+  <div class="resumen-box">
+    <button class="resumen-close" onclick="cerrarResumen('cap7')">✕</button>
+    <h2>📋 Resumen Rápido — Cap. 7 — Inserción al Mercado Mundial</h2>
+    <ul>
+<li><strong>Patrón estructural:</strong> AL exportó bienes primarios e importó manufacturas — nunca fue intercambio equitativo.</li>
+<li><strong>Kuznets:</strong> el "crecimiento económico moderno" se define por el ritmo de incremento sostenido del producto per cápita.</li>
+<li><strong>Mecanismo de Ford:</strong> inversión británica en ferrocarriles generaba demanda de productos británicos → superávit en su balanza.</li>
+<li><strong>Patrón oro:</strong> obligaba a ajuste deflacionario interno cuando se perdían reservas — sin margen de política autónoma.</li>
+<li><strong>1873:</strong> primera gran depresión. Muchos países adoptan proteccionismo, frenando la expansión exportadora de AL.</li>
+<li><strong>Relevo hegemónico:</strong> 1898–1901, Gran Bretaña cede el Caribe a EE.UU. (Tratado Hay-Pauncefote).</li>
+<li><strong>Términos de intercambio:</strong> tendencia secular al deterioro de los precios de las materias primas vs. las manufacturas (Prebisch-Singer).</li>
+<li><strong>ISI como respuesta:</strong> ante el colapso del modelo exportador post-1929, AL busca industrializarse internamente.</li>
+    </ul>
+    <p style="margin-top:1rem;font-size:0.78rem;color:var(--muted);text-align:center;">Hacé click fuera del cuadro o en ✕ para cerrar</p>
+  </div>
+</div>
+
+<div class="resumen-overlay" id="resumen-cap8">
+  <div class="resumen-box">
+    <button class="resumen-close" onclick="cerrarResumen('cap8')">✕</button>
+    <h2>📋 Resumen Rápido — Cap. 8 — Transformación del Comercio Internacional</h2>
+    <ul>
+<li><strong>1846–1849:</strong> Inglaterra elimina las Corn Laws y abre el libre comercio global sin esperar reciprocidad.</li>
+<li><strong>Revolución del transporte:</strong> tonelaje mercante crece de 6,7 millones (1840) a 43 millones de toneladas (1913).</li>
+<li><strong>Transferencia del crecimiento (Furtado):</strong> AL crecía cuando GB crecía, colapsaba cuando GB colapsaba — total subordinación.</li>
+<li><strong>Grupo A (Argentina/Uruguay):</strong> clima templado, cereales/carnes, mayor encadenamiento interno pero tierra concentrada.</li>
+<li><strong>Grupo B (Brasil, café):</strong> economías tropicales de plantación. Excepción San Pablo: escala + infraestructura creó mercado interno.</li>
+<li><strong>Grupo C (Chile, México):</strong> economía de enclave minero, mínimo efecto multiplicador, todo el excedente sale al exterior.</li>
+<li><strong>Desnacionalización minera:</strong> empresas norteamericanas desplazaron a productores nacionales con superioridad tecnológica/financiera.</li>
+<li><strong>1914:</strong> la WWI quiebra el sistema de 100 años de comercio libre — AL pierde mercados y fuentes de capital.</li>
+    </ul>
+    <p style="margin-top:1rem;font-size:0.78rem;color:var(--muted);text-align:center;">Hacé click fuera del cuadro o en ✕ para cerrar</p>
+  </div>
+</div>
+
+<div class="resumen-overlay" id="resumen-cap9">
+  <div class="resumen-box">
+    <button class="resumen-close" onclick="cerrarResumen('cap9')">✕</button>
+    <h2>📋 Resumen Rápido — Cap. 9 — Formas de Dependencia Externa</h2>
+    <ul>
+<li><strong>Formas tradicionales:</strong> dependencia vía materias primas — precios volátiles, monoproducción, ingresos fiscales inestables.</li>
+<li><strong>Paradoja ISI:</strong> diseñada para reducir la dependencia, atrajo multinacionales que controlaron los sectores más dinámicos.</li>
+<li><strong>IED:</strong> de $780M (1950) a $2.741M (1965) — las multinacionales dominaron química, farmacia, eléctrico, metálica.</li>
+<li><strong>Venezuela fifty-fifty (1943):</strong> reparto 50-50 de ganancias petroleras — avance sin llegar a la nacionalización.</li>
+<li><strong>Brasil café — valorización:</strong> compra y destrucción de stocks. Éxito → más productores → más excedente → nueva crisis.</li>
+<li><strong>México 1938 (Cárdenas):</strong> primera expropiación petrolera exitosa — PEMEX como modelo de referencia regional.</li>
+<li><strong>Chile cobre:</strong> chilenización (1966) → nacionalización total (Allende, 1971) → CODELCO. 70% de exportaciones.</li>
+<li><strong>Nuevas dependencias:</strong> 1) flujos financieros (BID/BIRF/EXIMBANK), 2) know-how tecnológico, 3) control industrial externo.</li>
+    </ul>
+    <p style="margin-top:1rem;font-size:0.78rem;color:var(--muted);text-align:center;">Hacé click fuera del cuadro o en ✕ para cerrar</p>
+  </div>
+</div>
+
+<div class="resumen-overlay" id="resumen-cap10">
+  <div class="resumen-box">
+    <button class="resumen-close" onclick="cerrarResumen('cap10')">✕</button>
+    <h2>📋 Resumen Rápido — Cap. 10 — Ocaso del Liberalismo Oligárquico</h2>
+    <ul>
+<li><strong>Liberalismo oligárquico:</strong> retórica liberal + poder real concentrado en oligarquías exportadoras. Excluía clases medias y obreros.</li>
+<li><strong>1873 — Larga Depresión:</strong> primera señal de fragilidad del modelo exportador. Varios países entran en cesación de pagos.</li>
+<li><strong>Corolario Roosevelt (1904):</strong> EE.UU. se arroga el derecho de intervenir militarmente en AL para "mantener el orden".</li>
+<li><strong>Rev. Mexicana (1910–17):</strong> primera revolución social del siglo XX. Constitución 1917: primera con derechos sociales explícitos (Arts. 27 y 123).</li>
+<li><strong>Rev. Rusa (1917):</strong> bipolarización ideológica — partidos comunistas en AL + radicalización anticomunista de las élites.</li>
+<li><strong>Reforma de Córdoba (1918):</strong> irrupción de las clases medias como actor político. Se extiende a Chile, Perú, Cuba, México.</li>
+<li><strong>1929–30:</strong> Gran Depresión + ola de golpes (AR, BR, PE, BO, CL). El patrón oro agravó la crisis al impedir la devaluación.</li>
+<li><strong>Good Neighbor Policy (1933):</strong> FDR renuncia a intervenciones militares pero mantiene control económico vía UFCO y dictaduras.</li>
+    </ul>
+    <p style="margin-top:1rem;font-size:0.78rem;color:var(--muted);text-align:center;">Hacé click fuera del cuadro o en ✕ para cerrar</p>
+  </div>
+</div>
 
 </body>
 </html>
