@@ -227,6 +227,22 @@
     .tab-content { border-radius: 0 0 8px 8px; }
     .tl-dot { width: 44px; min-width: 44px; height: 44px; font-size: 0.62rem; }
   }
+
+  .flash-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; margin-top: 1.2rem; }
+  .flash-card { perspective: 900px; height: 160px; cursor: pointer; }
+  .flash-inner { position: relative; width: 100%; height: 100%; transition: transform 0.5s; transform-style: preserve-3d; }
+  .flash-card.flipped .flash-inner { transform: rotateY(180deg); }
+  .flash-front, .flash-back {
+    position: absolute; width: 100%; height: 100%;
+    backface-visibility: hidden; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    padding: 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  .flash-front { background: var(--primary); color: #fff; font-weight: 700; font-size: 0.95rem; }
+  .flash-back  { background: var(--secondary); color: #1a1a1a; font-size: 0.82rem; transform: rotateY(180deg); line-height: 1.45; }
+  .flash-hint  { text-align:center; color:var(--muted); font-size:0.8rem; margin-bottom:0.8rem; }
+  @media (max-width:640px) { .flash-grid { grid-template-columns: 1fr 1fr; } .flash-card { height: 140px; } }
+
 </style>
 </head>
 <body>
@@ -1016,9 +1032,12 @@
 
   <div class="tabs-wrapper">
     <div class="tabs-header">
-      <button class="tab-btn active" onclick="showTab('c8','t1',this)">1. Introducción</button>
-      <button class="tab-btn" onclick="showTab('c8','t2',this)">2. División Internacional del Trabajo</button>
-      <button class="tab-btn" onclick="showTab('c8','t3',this)">3. Tipología de Economías Exportadoras</button>
+      <button class="tab-btn active" onclick="showTab('c8','t1',this)">📖 Introducción</button>
+      <button class="tab-btn" onclick="showTab('c8','t2',this)">🌍 División del Trabajo</button>
+      <button class="tab-btn" onclick="showTab('c8','t3',this)">🌾 Tipología de Economías</button>
+      <button class="tab-btn" onclick="showTab('c8','t4',this)">⏳ Línea de Tiempo</button>
+      <button class="tab-btn" onclick="showTab('c8','t5',this)">🃏 Flashcards</button>
+      <button class="tab-btn" onclick="showTab('c8','t6',this)">✅ Quiz</button>
     </div>
 
     <!-- TAB 1: INTRODUCCIÓN -->
@@ -1217,6 +1236,122 @@
       </table>
     </div>
 
+    <!-- TAB 4: TIMELINE CAP8 -->
+    <div id="c8-t4" class="tab-content">
+      <h3>⏳ Línea de Tiempo — Capítulo 8</h3>
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1.5rem;">La transformación del comercio internacional y su impacto en América Latina (1760–1914).</p>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-dot">1760<br>1840</div><div class="tl-body">
+          <h4>Revolución Industrial inglesa</h4>
+          <p>Gran Bretaña mecaniza la producción textil, metalúrgica y química. Rompe la ley de rendimientos decrecientes agrícolas. Tres oleadas tecnológicas: textil → ferrocarril → electricidad/química. Concentra 2/3 de las manufacturas del comercio mundial.</p>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot">1840<br>1850</div><div class="tl-body">
+          <h4>Revolución del transporte marítimo</h4>
+          <p>Hélice de acero y cascos de hierro reducen costos marítimos drásticamente. El tonelaje mercante mundial pasa de 6,7 millones de toneladas (1840) a 43 millones (1913).</p>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot">1846<br>1849</div><div class="tl-body">
+          <h4>Inglaterra abandona el proteccionismo</h4>
+          <p>Eliminación de las Corn Laws (1846) y generalización del libre comercio (1849). La burguesía industrial desplaza a la aristocracia terrateniente. Se consolida la división internacional del trabajo: GB produce manufacturas, el mundo provee materias primas.</p>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot">1860<br>1880</div><div class="tl-body">
+          <h4>Expansión ferroviaria en América Latina</h4>
+          <p>Capital inglés financia ferrocarriles en Argentina, Brasil, Chile, México y Perú. Los ferrocarriles conectan zonas productoras con puertos de exportación, no con mercados internos. Se consolida la integración subordinada al sistema mundial.</p>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot">1880<br>1913</div><div class="tl-body">
+          <h4>Auge del sistema de división internacional del trabajo</h4>
+          <p>Pico máximo del comercio mundial. AL exporta materias primas e importa manufacturas. Los Grupos A (clima templado), B (tropicales) y C (mineros) consolidan sus distintas capacidades de generar encadenamientos internos.</p>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot">1914</div><div class="tl-body">
+          <h4>Primera Guerra Mundial — Fin del sistema</h4>
+          <p>La guerra interrumpe flujos de capital y comercio. El sistema construido durante un siglo se quiebra. AL pierde mercados y fuentes de financiamiento europeo. Se inicia la búsqueda de alternativas al modelo exportador.</p>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- TAB 5: FLASHCARDS CAP8 -->
+    <div id="c8-t5" class="tab-content">
+      <h3>🃏 Flashcards — Capítulo 8</h3>
+      <p class="flash-hint">Hacé click en cada tarjeta para ver la definición. Click de nuevo para voltear.</p>
+      <div class="flash-grid">
+        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">División Internacional del Trabajo</div><div class="flash-back">Sistema en que el centro industrial produce manufacturas y la periferia provee materias primas. No es neutral: establece jerarquías de poder entre naciones.</div></div></div>
+        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Ley de Rendimientos Decrecientes</div><div class="flash-back">En economías agrícolas, agregar más trabajo a tierra fija reduce la productividad marginal. La Revolución Industrial rompió este límite mediante la mecanización.</div></div></div>
+        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Corn Laws (Leyes de Granos)</div><div class="flash-back">Aranceles ingleses que protegían la agricultura interna. Su abolición en 1846 marcó el triunfo de la burguesía industrial y el inicio del libre comercio global.</div></div></div>
+        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Transferencia del Crecimiento</div><div class="flash-back">Concepto de Furtado: el crecimiento industrial inglés se transfería a AL vía demanda de materias primas. Cuando GB prosperaba, AL prosperaba; cuando GB caía, AL sufría.</div></div></div>
+        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Economía de Enclave (Grupo C)</div><div class="flash-back">Economías mineras controladas por capital extranjero. Infraestructura al servicio de la exportación. Mínimo efecto multiplicador interno. Ej: cobre en Chile, plata en México.</div></div></div>
+        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Grupo A — Clima Templado</div><div class="flash-back">Argentina y Uruguay. Exportaban cereales y carnes. Mayor encadenamiento interno por necesidad de infraestructura de transporte. Limitados por concentración de la tierra.</div></div></div>
+        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Hegemonía Británica (s. XIX)</div><div class="flash-back">GB controlaba simultáneamente: producción industrial (2/3 de manufacturas mundiales), finanzas (libra esterlina), comercio (bolsas de commodities) e infraestructura (flota, ferrocarriles).</div></div></div>
+        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Desnacionalización de la Minería</div><div class="flash-back">Productores mineros nacionales fueron desplazados por grandes empresas norteamericanas con superioridad tecnológica y financiera. Ocurrió en Chile, México, Perú y Bolivia.</div></div></div>
+        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Encadenamiento Productivo</div><div class="flash-back">Grado en que una actividad exportadora genera actividad adicional dentro del país (empleos, proveedores, infraestructura). Los enclaves mineros tenían mínimo encadenamiento.</div></div></div>
+        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Grupo B — Economías Tropicales</div><div class="flash-back">Exportadoras de café, cacao, azúcar, banana. Dependían de salarios bajos y no generaban tecnología propia. Excepción: San Pablo (café), con mayor efecto multiplicador por escala.</div></div></div>
+      </div>
+    </div>
+
+    <!-- TAB 6: QUIZ CAP8 -->
+    <div id="c8-t6" class="tab-content">
+      <h3>✅ Quiz de Autoevaluación — Capítulo 8</h3>
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1.5rem;text-align:center;">Seleccioná la opción correcta. Obtendrás retroalimentación inmediata.</p>
+      <div class="quiz-section" id="quiz8-container">
+        <div class="quiz-card" id="q8-1"><div class="q-num">Pregunta 1 de 8</div><div class="q-text">¿En qué años Inglaterra eliminó barreras comerciales sin esperar reciprocidad, consolidando el libre comercio global?</div><div class="quiz-options">
+          <button class="quiz-option" data-opt="a" onclick="checkAnswer(this,'q8-1','a')">a) 1776–1789</button>
+          <button class="quiz-option" data-opt="b" onclick="checkAnswer(this,'q8-1','b')">b) 1846–1849</button>
+          <button class="quiz-option" data-opt="c" onclick="checkAnswer(this,'q8-1','c')">c) 1860–1870</button>
+          <button class="quiz-option" data-opt="d" onclick="checkAnswer(this,'q8-1','d')">d) 1880–1890</button>
+        </div><div class="quiz-feedback" id="fb-q8-1"></div></div>
+
+        <div class="quiz-card" id="q8-2"><div class="q-num">Pregunta 2 de 8</div><div class="q-text">¿Cuál fue el tonelaje mercante mundial en 1913, evidenciando la expansión del transporte?</div><div class="quiz-options">
+          <button class="quiz-option" data-opt="a" onclick="checkAnswer(this,'q8-2','a')">a) 6,7 millones de toneladas</button>
+          <button class="quiz-option" data-opt="b" onclick="checkAnswer(this,'q8-2','b')">b) 20 millones de toneladas</button>
+          <button class="quiz-option" data-opt="c" onclick="checkAnswer(this,'q8-2','c')">c) 43 millones de toneladas</button>
+          <button class="quiz-option" data-opt="d" onclick="checkAnswer(this,'q8-2','d')">d) 100 millones de toneladas</button>
+        </div><div class="quiz-feedback" id="fb-q8-2"></div></div>
+
+        <div class="quiz-card" id="q8-3"><div class="q-num">Pregunta 3 de 8</div><div class="q-text">Según Furtado, ¿qué caracteriza al "núcleo industrial central" del sistema económico mundial del siglo XIX?</div><div class="quiz-options">
+          <button class="quiz-option" data-opt="a" onclick="checkAnswer(this,'q8-3','a')">a) Exporta materias primas y controla tecnología militar</button>
+          <button class="quiz-option" data-opt="b" onclick="checkAnswer(this,'q8-3','b')">b) Concentra la industria, financia exportaciones, controla transporte y es el principal importador de bienes primarios</button>
+          <button class="quiz-option" data-opt="c" onclick="checkAnswer(this,'q8-3','c')">c) Administra precios internacionales mediante acuerdos multilaterales</button>
+          <button class="quiz-option" data-opt="d" onclick="checkAnswer(this,'q8-3','d')">d) Establece aranceles proteccionistas para defender su agricultura</button>
+        </div><div class="quiz-feedback" id="fb-q8-3"></div></div>
+
+        <div class="quiz-card" id="q8-4"><div class="q-num">Pregunta 4 de 8</div><div class="q-text">¿Cuál es el factor diferenciador clave entre los tres grupos de economías exportadoras latinoamericanas según Furtado?</div><div class="quiz-options">
+          <button class="quiz-option" data-opt="a" onclick="checkAnswer(this,'q8-4','a')">a) El tipo de clima y geografía del país</button>
+          <button class="quiz-option" data-opt="b" onclick="checkAnswer(this,'q8-4','b')">b) El volumen total de exportaciones en toneladas</button>
+          <button class="quiz-option" data-opt="c" onclick="checkAnswer(this,'q8-4','c')">c) Cuánto del excedente generado por las exportaciones queda dentro del país y se reinvierte internamente</button>
+          <button class="quiz-option" data-opt="d" onclick="checkAnswer(this,'q8-4','d')">d) La distancia geográfica con los principales mercados compradores</button>
+        </div><div class="quiz-feedback" id="fb-q8-4"></div></div>
+
+        <div class="quiz-card" id="q8-5"><div class="q-num">Pregunta 5 de 8</div><div class="q-text">¿Qué países conforman el Grupo A (clima templado) de economías exportadoras?</div><div class="quiz-options">
+          <button class="quiz-option" data-opt="a" onclick="checkAnswer(this,'q8-5','a')">a) Brasil y Colombia</button>
+          <button class="quiz-option" data-opt="b" onclick="checkAnswer(this,'q8-5','b')">b) Chile y Perú</button>
+          <button class="quiz-option" data-opt="c" onclick="checkAnswer(this,'q8-5','c')">c) Argentina y Uruguay</button>
+          <button class="quiz-option" data-opt="d" onclick="checkAnswer(this,'q8-5','d')">d) México y Venezuela</button>
+        </div><div class="quiz-feedback" id="fb-q8-5"></div></div>
+
+        <div class="quiz-card" id="q8-6"><div class="q-num">Pregunta 6 de 8</div><div class="q-text">¿Qué fue la "desnacionalización de la minería"?</div><div class="quiz-options">
+          <button class="quiz-option" data-opt="a" onclick="checkAnswer(this,'q8-6','a')">a) La estatización de las minas por los gobiernos latinoamericanos</button>
+          <button class="quiz-option" data-opt="b" onclick="checkAnswer(this,'q8-6','b')">b) El desplazamiento de productores mineros nacionales por grandes empresas norteamericanas con superioridad tecnológica y financiera</button>
+          <button class="quiz-option" data-opt="c" onclick="checkAnswer(this,'q8-6','c')">c) La exportación ilegal de minerales a través de redes clandestinas</button>
+          <button class="quiz-option" data-opt="d" onclick="checkAnswer(this,'q8-6','d')">d) La fusión de empresas mineras latinoamericanas con europeas</button>
+        </div><div class="quiz-feedback" id="fb-q8-6"></div></div>
+
+        <div class="quiz-card" id="q8-7"><div class="q-num">Pregunta 7 de 8</div><div class="q-text">¿Qué es la "transferencia del crecimiento" según Furtado?</div><div class="quiz-options">
+          <button class="quiz-option" data-opt="a" onclick="checkAnswer(this,'q8-7','a')">a) El proceso por el cual AL transfirió tecnología industrial a Europa</button>
+          <button class="quiz-option" data-opt="b" onclick="checkAnswer(this,'q8-7','b')">b) El mecanismo por el que el crecimiento industrial inglés dinamizaba a AL vía demanda de materias primas, haciendo que el crecimiento latinoamericano fuera un reflejo del inglés</button>
+          <button class="quiz-option" data-opt="c" onclick="checkAnswer(this,'q8-7','c')">c) La migración de capitales desde las economías periféricas hacia los países centrales</button>
+          <button class="quiz-option" data-opt="d" onclick="checkAnswer(this,'q8-7','d')">d) El traslado de industrias europeas hacia América Latina en el siglo XIX</button>
+        </div><div class="quiz-feedback" id="fb-q8-7"></div></div>
+
+        <div class="quiz-card" id="q8-8"><div class="q-num">Pregunta 8 de 8</div><div class="q-text">¿Por qué la excepción de San Pablo en el Grupo B fue significativa?</div><div class="quiz-options">
+          <button class="quiz-option" data-opt="a" onclick="checkAnswer(this,'q8-8','a')">a) Porque industrializó su economía sin depender del café</button>
+          <button class="quiz-option" data-opt="b" onclick="checkAnswer(this,'q8-8','b')">b) Porque la alta productividad cafetera y la magnitud del área plantada favorecieron la infraestructura y la creación de un mercado interno</button>
+          <button class="quiz-option" data-opt="c" onclick="checkAnswer(this,'q8-8','c')">c) Porque exportó manufacturas en lugar de materias primas</button>
+          <button class="quiz-option" data-opt="d" onclick="checkAnswer(this,'q8-8','d')">d) Porque fue el único caso donde el Estado nacionalizó las exportaciones agrícolas</button>
+        </div><div class="quiz-feedback" id="fb-q8-8"></div></div>
+
+        <div class="quiz-score"><h3></h3><p></p></div>
+        <button onclick="resetQuizNew('quiz8-container')" style="margin-top:1rem;padding:0.6rem 1.4rem;background:var(--primary);color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;">🔄 Reintentar</button>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -1231,9 +1366,12 @@
 
   <div class="tabs-wrapper">
     <div class="tabs-header">
-      <button class="tab-btn active" onclick="showTab('c9','t1',this)">1. Introducción y Marco Teórico</button>
-      <button class="tab-btn" onclick="showTab('c9','t2',this)">2. Casos por País</button>
-      <button class="tab-btn" onclick="showTab('c9','t3',this)">3. Nuevas Formas de Dependencia</button>
+      <button class="tab-btn active" onclick="showTab('c9','t1',this)">📖 Intro y Marco Teórico</button>
+      <button class="tab-btn" onclick="showTab('c9','t2',this)">🗺 Casos por País</button>
+      <button class="tab-btn" onclick="showTab('c9','t3',this)">🔗 Nuevas Formas de Dependencia</button>
+      <button class="tab-btn" onclick="showTab('c9','t4',this)">⏳ Línea de Tiempo</button>
+      <button class="tab-btn" onclick="showTab('c9','t5',this)">🃏 Flashcards</button>
+      <button class="tab-btn" onclick="showTab('c9','t6',this)">✅ Quiz</button>
     </div>
 
     <!-- TAB 1: INTRODUCCIÓN + PUNTOS CRÍTICOS + CONSECUENCIAS + ESTRATEGIAS -->
@@ -1461,6 +1599,122 @@
       </table>
     </div>
 
+    <!-- TAB 4: TIMELINE CAP9 -->
+    <div id="c9-t4" class="tab-content">
+      <h3>⏳ Línea de Tiempo — Capítulo 9</h3>
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1.5rem;">Formas de dependencia externa: hitos clave en las políticas correctivas y la nueva dependencia (1938–1965).</p>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-dot">1938</div><div class="tl-body">
+          <h4>Nacionalización del petróleo en México (Cárdenas)</h4>
+          <p>El presidente Lázaro Cárdenas expropió las empresas petroleras extranjeras y creó PEMEX. Primera gran política correctiva exitosa de la región. Demostró que era posible recuperar soberanía sobre recursos estratégicos pese a la presión de EE.UU. y Reino Unido.</p>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot">1943</div><div class="tl-body">
+          <h4>Venezuela: acuerdo "fifty-fifty" con petroleras</h4>
+          <p>Venezuela negoció el reparto 50-50 de las ganancias con las empresas petroleras extranjeras. Fue un avance respecto a las concesiones previas, pero sin llegar a la nacionalización. Antecedente directo de la creación de la OPEP en 1960.</p>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot">1950</div><div class="tl-body">
+          <h4>IED en AL: $780 millones — Inicio del control externo</h4>
+          <p>La inversión extranjera directa en América Latina totalizaba $780 millones. EE.UU. reemplazó a Gran Bretaña como principal inversor. Los sectores de destino cambiaban: de infraestructura (ferrocarriles, puertos) hacia industria manufacturera.</p>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot">1950s</div><div class="tl-body">
+          <h4>ISI y la paradoja de la desnacionalización</h4>
+          <p>La ISI fue diseñada para reducir la dependencia. Paradoja: atrajo multinacionales que tomaron el control de los sectores más dinámicos (química, metálica, farmacia, eléctrico), reemplazando importaciones de bienes por importaciones de capital y tecnología.</p>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot">1959<br>1960</div><div class="tl-body">
+          <h4>Creación del BID y la OPEP</h4>
+          <p>El BID (Banco Interamericano de Desarrollo) fue fundado en 1959, operativo desde 1960. Ese mismo año Venezuela lideró la creación de la OPEP. Entre 1961 y 1963, BID + BIRF + EXIMBANK proveyeron créditos por $1.200 millones anuales, pero con condicionalidades que limitaban la soberanía económica.</p>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot">1965</div><div class="tl-body">
+          <h4>IED alcanza $2.741 millones — Nueva dependencia consolidada</h4>
+          <p>La inversión extranjera se triplicó en 15 años. El control externo sobre la industria latinoamericana se consolidó. Las empresas multinacionales tomaban decisiones en sus casas matrices, drenando excedentes y limitando el desarrollo autónomo.</p>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- TAB 5: FLASHCARDS CAP9 -->
+    <div id="c9-t5" class="tab-content">
+      <h3>🃏 Flashcards — Capítulo 9</h3>
+      <p class="flash-hint">Hacé click en cada tarjeta para ver la definición. Click de nuevo para voltear.</p>
+      <div class="flash-grid">
+        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Formas Tradicionales de Dependencia</div><div class="flash-back">Dependencia vía control de materias primas exportables: precios volátiles, monoproducción, ingresos fiscales dependientes de exportaciones. Las "políticas correctivas" intentaron compensarla.</div></div></div>
+        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">ISI (Sustitución de Importaciones)</div><div class="flash-back">Estrategia: producir internamente lo que antes se importaba, protegiendo la industria local con aranceles. Redujo dependencia de bienes pero generó nueva dependencia de capital y tecnología extranjera.</div></div></div>
+        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Política de Valorización (Brasil/café)</div><div class="flash-back">Brasil compraba y destruía stocks de café para sostener precios. El éxito atraía más productores → mayor oferta → nuevos excedentes → nueva crisis. Ciclo estructural sin solución permanente.</div></div></div>
+        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">EXIMBANK / BID / BIRF</div><div class="flash-back">La tríada de financiamiento multilateral para AL. Entre 1961–63 otorgaron $1.200M/año con condicionalidades. El BID fue creado en 1959, operativo en 1960.</div></div></div>
+        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Know-how tecnológico</div><div class="flash-back">Conocimiento técnico patentado y no patentado que las multinacionales cobran por transferir. Genera dependencia tecnológica crónica porque rara vez se reproduce localmente.</div></div></div>
+        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Flujo Neto Negativo de Capital</div><div class="flash-back">Cuando lo que sale del país (remesas de utilidades, intereses, regalías) supera lo que entra (inversiones, préstamos). AL tendió a este resultado desde los años 60.</div></div></div>
+        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Control Externo de la Industria</div><div class="flash-back">IED pasó de $780M (1950) a $2.741M (1965). Las multinacionales dominaron sectores dinámicos: química, farmacia, eléctrico, metálica. La ISI atrajo el mismo capital que buscaba desplazar.</div></div></div>
+        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Política del Cobre — Chile</div><div class="flash-back">Chile negoció creciente participación en ganancias del cobre (Anaconda, Kennecott). "Chilenización" (1966) → nacionalización total (1971, Allende). El cobre era el 70% de los ingresos de exportación.</div></div></div>
+        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Nuevas Formas de Dependencia</div><div class="flash-back">Tres dimensiones: 1) flujos financieros (BID, BIRF, banca privada), 2) tecnología (licencias, patentes, know-how), 3) control industrial (multinacionales en sectores dinámicos).</div></div></div>
+        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Política Petrolera de Venezuela</div><div class="flash-back">Evolución: concesiones privadas totales (s.XIX) → "fifty-fifty" (1943) → CVP (Corporación Venezolana de Petróleo, 1960) → OPEP (1960) → nacionalización (1976).</div></div></div>
+      </div>
+    </div>
+
+    <!-- TAB 6: QUIZ CAP9 -->
+    <div id="c9-t6" class="tab-content">
+      <h3>✅ Quiz de Autoevaluación — Capítulo 9</h3>
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1.5rem;text-align:center;">Seleccioná la opción correcta. Obtendrás retroalimentación inmediata.</p>
+      <div class="quiz-section" id="quiz9-container">
+        <div class="quiz-card" id="q9-1"><div class="q-num">Pregunta 1 de 8</div><div class="q-text">¿Cuánto creció la inversión extranjera directa en América Latina entre 1950 y 1965?</div><div class="quiz-options">
+          <button class="quiz-option" data-opt="a" onclick="checkAnswer(this,'q9-1','a')">a) De $200M a $780M</button>
+          <button class="quiz-option" data-opt="b" onclick="checkAnswer(this,'q9-1','b')">b) De $780M a $2.741M</button>
+          <button class="quiz-option" data-opt="c" onclick="checkAnswer(this,'q9-1','c')">c) De $1.200M a $5.000M</button>
+          <button class="quiz-option" data-opt="d" onclick="checkAnswer(this,'q9-1','d')">d) De $2.741M a $10.000M</button>
+        </div><div class="quiz-feedback" id="fb-q9-1"></div></div>
+
+        <div class="quiz-card" id="q9-2"><div class="q-num">Pregunta 2 de 8</div><div class="q-text">¿Cuál es la paradoja central de la ISI según Furtado?</div><div class="quiz-options">
+          <button class="quiz-option" data-opt="a" onclick="checkAnswer(this,'q9-2','a')">a) Redujo las exportaciones cuando buscaba aumentarlas</button>
+          <button class="quiz-option" data-opt="b" onclick="checkAnswer(this,'q9-2','b')">b) Diseñada para reducir la dependencia, atrajo multinacionales que controlaron los sectores más dinámicos, generando una nueva forma de dependencia</button>
+          <button class="quiz-option" data-opt="c" onclick="checkAnswer(this,'q9-2','c')">c) Industrializó la agricultura cuando debía industrializar la manufactura</button>
+          <button class="quiz-option" data-opt="d" onclick="checkAnswer(this,'q9-2','d')">d) Aumentó la deuda externa cuando buscaba reducir las importaciones</button>
+        </div><div class="quiz-feedback" id="fb-q9-2"></div></div>
+
+        <div class="quiz-card" id="q9-3"><div class="q-num">Pregunta 3 de 8</div><div class="q-text">¿Qué política siguió Brasil para sostener los precios del café en el mercado internacional?</div><div class="quiz-options">
+          <button class="quiz-option" data-opt="a" onclick="checkAnswer(this,'q9-3','a')">a) Estatizó todas las exportaciones cafetaleras y fijó precios mínimos globales</button>
+          <button class="quiz-option" data-opt="b" onclick="checkAnswer(this,'q9-3','b')">b) Compró y destruyó stocks excedentes para reducir la oferta y estabilizar precios, financiándose con deuda externa</button>
+          <button class="quiz-option" data-opt="c" onclick="checkAnswer(this,'q9-3','c')">c) Prohibió la producción de café a nuevos productores nacionales</button>
+          <button class="quiz-option" data-opt="d" onclick="checkAnswer(this,'q9-3','d')">d) Vendió el café a precio subsidiado para ganar mayor cuota de mercado</button>
+        </div><div class="quiz-feedback" id="fb-q9-3"></div></div>
+
+        <div class="quiz-card" id="q9-4"><div class="q-num">Pregunta 4 de 8</div><div class="q-text">¿Qué acuerdo estableció Venezuela con las empresas petroleras extranjeras en 1943?</div><div class="quiz-options">
+          <button class="quiz-option" data-opt="a" onclick="checkAnswer(this,'q9-4','a')">a) Nacionalización total del petróleo al estilo mexicano</button>
+          <button class="quiz-option" data-opt="b" onclick="checkAnswer(this,'q9-4','b')">b) La fórmula "fifty-fifty": reparto 50-50 de las ganancias entre el Estado y las empresas</button>
+          <button class="quiz-option" data-opt="c" onclick="checkAnswer(this,'q9-4','c')">c) Concesiones por 99 años sin impuestos a las empresas</button>
+          <button class="quiz-option" data-opt="d" onclick="checkAnswer(this,'q9-4','d')">d) Creación inmediata de la OPEP como mecanismo de precios</button>
+        </div><div class="quiz-feedback" id="fb-q9-4"></div></div>
+
+        <div class="quiz-card" id="q9-5"><div class="q-num">Pregunta 5 de 8</div><div class="q-text">¿Cuáles son las tres nuevas formas de dependencia externa identificadas por Furtado?</div><div class="quiz-options">
+          <button class="quiz-option" data-opt="a" onclick="checkAnswer(this,'q9-5','a')">a) Deuda, inflación y corrupción</button>
+          <button class="quiz-option" data-opt="b" onclick="checkAnswer(this,'q9-5','b')">b) Flujos financieros, acceso a tecnología moderna y control externo de la industria</button>
+          <button class="quiz-option" data-opt="c" onclick="checkAnswer(this,'q9-5','c')">c) Exportaciones, importaciones y balanza comercial</button>
+          <button class="quiz-option" data-opt="d" onclick="checkAnswer(this,'q9-5','d')">d) Petróleo, café y cobre</button>
+        </div><div class="quiz-feedback" id="fb-q9-5"></div></div>
+
+        <div class="quiz-card" id="q9-6"><div class="q-num">Pregunta 6 de 8</div><div class="q-text">¿Qué representaba el cobre para Chile como porcentaje de sus ingresos de exportación?</div><div class="quiz-options">
+          <button class="quiz-option" data-opt="a" onclick="checkAnswer(this,'q9-6','a')">a) 30%</button>
+          <button class="quiz-option" data-opt="b" onclick="checkAnswer(this,'q9-6','b')">b) 50%</button>
+          <button class="quiz-option" data-opt="c" onclick="checkAnswer(this,'q9-6','c')">c) 70%</button>
+          <button class="quiz-option" data-opt="d" onclick="checkAnswer(this,'q9-6','d')">d) 90%</button>
+        </div><div class="quiz-feedback" id="fb-q9-6"></div></div>
+
+        <div class="quiz-card" id="q9-7"><div class="q-num">Pregunta 7 de 8</div><div class="q-text">¿En qué año fue creado el BID (Banco Interamericano de Desarrollo)?</div><div class="quiz-options">
+          <button class="quiz-option" data-opt="a" onclick="checkAnswer(this,'q9-7','a')">a) 1944 (junto a Bretton Woods)</button>
+          <button class="quiz-option" data-opt="b" onclick="checkAnswer(this,'q9-7','b')">b) 1955</button>
+          <button class="quiz-option" data-opt="c" onclick="checkAnswer(this,'q9-7','c')">c) 1959</button>
+          <button class="quiz-option" data-opt="d" onclick="checkAnswer(this,'q9-7','d')">d) 1965</button>
+        </div><div class="quiz-feedback" id="fb-q9-7"></div></div>
+
+        <div class="quiz-card" id="q9-8"><div class="q-num">Pregunta 8 de 8</div><div class="q-text">¿Qué es el "know-how" en el contexto de la dependencia tecnológica latinoamericana?</div><div class="quiz-options">
+          <button class="quiz-option" data-opt="a" onclick="checkAnswer(this,'q9-8','a')">a) El conjunto de técnicas agrícolas tradicionales de las comunidades indígenas</button>
+          <button class="quiz-option" data-opt="b" onclick="checkAnswer(this,'q9-8','b')">b) El conocimiento técnico patentado y no patentado que las multinacionales cobran por transferir, creando dependencia tecnológica crónica</button>
+          <button class="quiz-option" data-opt="c" onclick="checkAnswer(this,'q9-8','c')">c) La capacidad de los gobiernos latinoamericanos para gestionar empresas estatales</button>
+          <button class="quiz-option" data-opt="d" onclick="checkAnswer(this,'q9-8','d')">d) Los acuerdos de transferencia tecnológica firmados en el marco del GATT</button>
+        </div><div class="quiz-feedback" id="fb-q9-8"></div></div>
+
+        <div class="quiz-score"><h3></h3><p></p></div>
+        <button onclick="resetQuizNew('quiz9-container')" style="margin-top:1rem;padding:0.6rem 1.4rem;background:var(--primary);color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;">🔄 Reintentar</button>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -1475,9 +1729,12 @@
 
   <div class="tabs-wrapper">
     <div class="tabs-header">
-      <button class="tab-btn active" onclick="showTab('c10','t1',this)">1. Intro y Puntos de Inflexión</button>
-      <button class="tab-btn" onclick="showTab('c10','t2',this)">2. Causas y Rev. Mexicana</button>
-      <button class="tab-btn" onclick="showTab('c10','t3',this)">3. Polarización, Crisis e Intervencionismo</button>
+      <button class="tab-btn active" onclick="showTab('c10','t1',this)">📖 Intro y Puntos de Inflexión</button>
+      <button class="tab-btn" onclick="showTab('c10','t2',this)">⚙️ Causas y Rev. Mexicana</button>
+      <button class="tab-btn" onclick="showTab('c10','t3',this)">🌎 Polarización e Intervencionismo</button>
+      <button class="tab-btn" onclick="showTab('c10','t4',this)">⏳ Línea de Tiempo</button>
+      <button class="tab-btn" onclick="showTab('c10','t5',this)">🃏 Flashcards</button>
+      <button class="tab-btn" onclick="showTab('c10','t6',this)">✅ Quiz</button>
     </div>
 
     <!-- TAB 1: INTRODUCCIÓN + PUNTOS DE INFLEXIÓN -->
@@ -1739,6 +1996,130 @@
       <p>El intervencionismo estadounidense y la crisis del liberalismo oligárquico estaban estructuralmente vinculados: las elites agroexportadoras latinoamericanas necesitaban la estabilidad política que EE. UU. garantizaba para mantener sus negocios; a su vez, EE. UU. necesitaba esas elites para proteger sus inversiones. Este pacto implícito fue uno de los factores que retrasó la democratización efectiva en la región y que nutrió el antiimperialismo como respuesta política de los sectores excluidos.</p>
     </div>
 
+    <!-- TAB 4: TIMELINE CAP10 -->
+    <div id="c10-t4" class="tab-content">
+      <h3>⏳ Línea de Tiempo — Capítulo 10</h3>
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1.5rem;">La decadencia del liberalismo oligárquico en América Latina (1873–1934).</p>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-dot">1873</div><div class="tl-body">
+          <h4>Primera crisis capitalista global — "La Larga Depresión"</h4>
+          <p>Pánico financiero en Viena que se extiende a Europa y EE.UU. Deflación prolongada 1873–1896. Primera señal de la fragilidad del modelo exportador latinoamericano: cuando los precios caían, los ingresos fiscales colapsaban y varios países entraron en cesación de pagos.</p>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot">1904</div><div class="tl-body">
+          <h4>Corolario Roosevelt — EE.UU. como "policía" hemisférico</h4>
+          <p>Ampliación de la Doctrina Monroe: EE.UU. se arrogó el derecho de intervenir militarmente en países latinoamericanos "incapaces" de mantener el orden o pagar deudas. Legitimó décadas de intervenciones en Cuba, Nicaragua, Haití, República Dominicana y México.</p>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot">1910<br>1917</div><div class="tl-body">
+          <h4>Revolución Mexicana — Primera revolución social del siglo XX</h4>
+          <p>Derrocamiento de Porfirio Díaz (1910). Zapata (Plan de Ayala 1911, "Tierra y Libertad"), Villa, Carranza. La Constitución de 1917 fue la primera en el mundo con derechos sociales explícitos: Art. 27 (reforma agraria) y Art. 123 (derechos laborales).</p>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot">1914<br>1918</div><div class="tl-body">
+          <h4>Primera Guerra Mundial — Quiebre del referente europeo</h4>
+          <p>La guerra destruyó la imagen de Europa como modelo de civilización y progreso que sustentaba el positivismo latinoamericano. Cortó los flujos de capital europeo hacia AL y erosionó la legitimidad del liberalismo oligárquico que había tomado a Europa como modelo.</p>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot">1917</div><div class="tl-body">
+          <h4>Revolución Rusa — Nuevo polo ideológico</h4>
+          <p>La Revolución Bolchevique polarizó la política latinoamericana. Surgieron partidos comunistas: Argentina (1918), México (1919), Brasil y Chile (1922), Cuba (1925). Las élites radicalizaron su anticomunismo; los movimientos obreros encontraron un referente alternativo al liberalismo.</p>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot">1918</div><div class="tl-body">
+          <h4>Reforma Universitaria de Córdoba</h4>
+          <p>Movimiento estudiantil en Córdoba, Argentina. Demandó autonomía universitaria, cogobierno y modernización académica. Se extendió a Chile, Perú, Cuba, Uruguay y México. Simbolizó la irrupción de las clases medias como actor político independiente del orden oligárquico.</p>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot">1929<br>1930</div><div class="tl-body">
+          <h4>Gran Depresión — Colapso del orden liberal oligárquico</h4>
+          <p>La caída de Wall Street (octubre 1929) desencadenó el colapso del modelo exportador. El patrón oro impidió la devaluación y forzó deflación interna. En 1930 se produjo una ola de golpes de Estado: Argentina, Brasil, Perú, Bolivia, Chile. El viejo orden liberal cayó en cascada.</p>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot">1933<br>1934</div><div class="tl-body">
+          <h4>Good Neighbor Policy — FDR cambia la táctica estadounidense</h4>
+          <p>Roosevelt anunció la "Política del Buen Vecino": renuncia formal a intervenciones militares directas. Derogó la Enmienda Platt (1934) y retiró marines de Nicaragua. Sin embargo el control económico continuó vía corporaciones (UFCO) y apoyo a dictaduras amigables.</p>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- TAB 5: FLASHCARDS CAP10 -->
+    <div id="c10-t5" class="tab-content">
+      <h3>🃏 Flashcards — Capítulo 10</h3>
+      <p class="flash-hint">Hacé click en cada tarjeta para ver la definición. Click de nuevo para voltear.</p>
+      <div class="flash-grid">
+        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Liberalismo Oligárquico</div><div class="flash-back">Régimen que combinaba retórica liberal con poder concentrado en las oligarquías exportadoras. Excluía sistemáticamente a clases medias, obreros y campesinos del poder político.</div></div></div>
+        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Patrón Oro y su colapso</div><div class="flash-back">Sistema monetario de valor fijo en oro. Al perder reservas, el Estado debía contraer el gasto y subir tasas → deflación, desempleo y recesión. Los países que lo abandonaron antes de 1932 se recuperaron antes.</div></div></div>
+        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Populismo Latinoamericano</div><div class="flash-back">Movimiento surgido del colapso liberal: alianzas entre clases medias, obreros y capital nacional, bajo un Estado árbitro y redistribuidor. Ejemplos: peronismo (AR), varguismo (BR), cardenismo (MX).</div></div></div>
+        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Corolario Roosevelt (1904)</div><div class="flash-back">Ampliación de la Doctrina Monroe: EE.UU. se arrogó el derecho de intervenir en AL para "mantener el orden". Legitimó ocupaciones en Cuba, Nicaragua (1912–1933), Haití (1915–1934) y RD.</div></div></div>
+        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Good Neighbor Policy (1933)</div><div class="flash-back">Política de FDR: renuncia formal a intervenciones militares. Derogó la Enmienda Platt y retiró marines de Nicaragua. Cambio de táctica —no de estrategia—: el control económico y el apoyo a dictaduras continuaron.</div></div></div>
+        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">United Fruit Company (UFCO)</div><div class="flash-back">Empresa que controlaba tierra, ferrocarriles y puertos en Centroamérica. En 1954 la CIA derrocó a Árbenz (Guatemala) cuando este amenazó sus tierras con la reforma agraria (Operación PBSUCCESS).</div></div></div>
+        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Constitución Mexicana 1917</div><div class="flash-back">Primera constitución en el mundo con derechos sociales explícitos: Art. 27 (reforma agraria, petróleo y minerales bienes de la nación) y Art. 123 (derechos laborales, jornada de 8 horas).</div></div></div>
+        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Organicismo Autoritario</div><div class="flash-back">Visión jerárquica y corporativa de la sociedad como un organismo donde cada parte tiene su lugar natural. Base ideológica de los regímenes militares latinoamericanos de los años 30 como alternativa al liberalismo fracasado.</div></div></div>
+        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Plan de Ayala (1911)</div><div class="flash-back">Manifiesto de Emiliano Zapata: exigía la restitución de tierras comunales (ejidos) a los pueblos indígenas despojados durante el Porfiriato. Síntesis del agrarismo popular: "La tierra es de quien la trabaja."</div></div></div>
+        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Crisis de Representación Liberal</div><div class="flash-back">El Estado liberal respondía solo a los exportadores. Clases medias urbanas, proletariado y campesinado excluidos por diseño: sufragio restringido, fraude electoral y represión de la movilización popular.</div></div></div>
+      </div>
+    </div>
+
+    <!-- TAB 6: QUIZ CAP10 -->
+    <div id="c10-t6" class="tab-content">
+      <h3>✅ Quiz de Autoevaluación — Capítulo 10</h3>
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1.5rem;text-align:center;">Seleccioná la opción correcta. Obtendrás retroalimentación inmediata.</p>
+      <div class="quiz-section" id="quiz10-container">
+        <div class="quiz-card" id="q10-1"><div class="q-num">Pregunta 1 de 8</div><div class="q-text">¿Cuál fue la primera gran crisis capitalista global que anticipó la vulnerabilidad del modelo exportador latinoamericano antes de 1929?</div><div class="quiz-options">
+          <button class="quiz-option" data-opt="a" onclick="checkAnswer(this,'q10-1','a')">a) La crisis de 1857</button>
+          <button class="quiz-option" data-opt="b" onclick="checkAnswer(this,'q10-1','b')">b) La crisis de 1873 ("La Larga Depresión")</button>
+          <button class="quiz-option" data-opt="c" onclick="checkAnswer(this,'q10-1','c')">c) La crisis de 1907</button>
+          <button class="quiz-option" data-opt="d" onclick="checkAnswer(this,'q10-1','d')">d) La Primera Guerra Mundial (1914)</button>
+        </div><div class="quiz-feedback" id="fb-q10-1"></div></div>
+
+        <div class="quiz-card" id="q10-2"><div class="q-num">Pregunta 2 de 8</div><div class="q-text">¿Qué exigía el Plan de Ayala (1911) de Emiliano Zapata?</div><div class="quiz-options">
+          <button class="quiz-option" data-opt="a" onclick="checkAnswer(this,'q10-2','a')">a) La expropiación de empresas extranjeras y la creación de un banco nacional</button>
+          <button class="quiz-option" data-opt="b" onclick="checkAnswer(this,'q10-2','b')">b) La restitución de tierras comunales (ejidos) a los pueblos indígenas despojados durante el Porfiriato</button>
+          <button class="quiz-option" data-opt="c" onclick="checkAnswer(this,'q10-2','c')">c) La creación de un ejército popular y la abolición del ejército federal</button>
+          <button class="quiz-option" data-opt="d" onclick="checkAnswer(this,'q10-2','d')">d) El establecimiento de una república socialista federal en México</button>
+        </div><div class="quiz-feedback" id="fb-q10-2"></div></div>
+
+        <div class="quiz-card" id="q10-3"><div class="q-num">Pregunta 3 de 8</div><div class="q-text">¿Por qué el patrón oro agravó la crisis de 1929 en América Latina?</div><div class="quiz-options">
+          <button class="quiz-option" data-opt="a" onclick="checkAnswer(this,'q10-3','a')">a) Porque elevó artificialmente los precios de las exportaciones latinoamericanas</button>
+          <button class="quiz-option" data-opt="b" onclick="checkAnswer(this,'q10-3','b')">b) Porque impidió devaluar la moneda y obligó a deflación interna, desempleo y recesión justo cuando se necesitaba estímulo</button>
+          <button class="quiz-option" data-opt="c" onclick="checkAnswer(this,'q10-3','c')">c) Porque concentró todas las reservas de oro en EE.UU., dejando sin liquidez a los bancos europeos</button>
+          <button class="quiz-option" data-opt="d" onclick="checkAnswer(this,'q10-3','d')">d) Porque obligó a los países a exportar sus reservas de oro para pagar deudas</button>
+        </div><div class="quiz-feedback" id="fb-q10-3"></div></div>
+
+        <div class="quiz-card" id="q10-4"><div class="q-num">Pregunta 4 de 8</div><div class="q-text">¿Qué estableció la Constitución Mexicana de 1917 que la hacía única en el mundo?</div><div class="quiz-options">
+          <button class="quiz-option" data-opt="a" onclick="checkAnswer(this,'q10-4','a')">a) Fue la primera constitución en declarar la soberanía popular como fuente del poder</button>
+          <button class="quiz-option" data-opt="b" onclick="checkAnswer(this,'q10-4','b')">b) Fue la primera constitución en el mundo con derechos sociales explícitos: reforma agraria (Art. 27) y derechos laborales (Art. 123)</button>
+          <button class="quiz-option" data-opt="c" onclick="checkAnswer(this,'q10-4','c')">c) Fue la primera constitución que estableció el sufragio universal incluyendo a las mujeres</button>
+          <button class="quiz-option" data-opt="d" onclick="checkAnswer(this,'q10-4','d')">d) Fue la primera constitución latinoamericana en separar la Iglesia del Estado</button>
+        </div><div class="quiz-feedback" id="fb-q10-4"></div></div>
+
+        <div class="quiz-card" id="q10-5"><div class="q-num">Pregunta 5 de 8</div><div class="q-text">¿Qué cambió formalmente la Good Neighbor Policy de Roosevelt (1933)?</div><div class="quiz-options">
+          <button class="quiz-option" data-opt="a" onclick="checkAnswer(this,'q10-5','a')">a) EE.UU. transfirió el Canal de Panamá a control latinoamericano</button>
+          <button class="quiz-option" data-opt="b" onclick="checkAnswer(this,'q10-5','b')">b) EE.UU. renunció formalmente a intervenciones militares directas, derogó la Enmienda Platt y retiró marines de Nicaragua, aunque mantuvo el control económico</button>
+          <button class="quiz-option" data-opt="c" onclick="checkAnswer(this,'q10-5','c')">c) EE.UU. reconoció la soberanía latinoamericana sobre sus recursos naturales</button>
+          <button class="quiz-option" data-opt="d" onclick="checkAnswer(this,'q10-5','d')">d) EE.UU. canceló todas las deudas que los países latinoamericanos tenían con bancos estadounidenses</button>
+        </div><div class="quiz-feedback" id="fb-q10-5"></div></div>
+
+        <div class="quiz-card" id="q10-6"><div class="q-num">Pregunta 6 de 8</div><div class="q-text">¿Qué operación de la CIA derrocó al presidente guatemalteco Jacobo Árbenz en 1954?</div><div class="quiz-options">
+          <button class="quiz-option" data-opt="a" onclick="checkAnswer(this,'q10-6','a')">a) Operación Cóndor</button>
+          <button class="quiz-option" data-opt="b" onclick="checkAnswer(this,'q10-6','b')">b) Operación PBSUCCESS</button>
+          <button class="quiz-option" data-opt="c" onclick="checkAnswer(this,'q10-6','c')">c) Operación Mongoose</button>
+          <button class="quiz-option" data-opt="d" onclick="checkAnswer(this,'q10-6','d')">d) Operación Zapata</button>
+        </div><div class="quiz-feedback" id="fb-q10-6"></div></div>
+
+        <div class="quiz-card" id="q10-7"><div class="q-num">Pregunta 7 de 8</div><div class="q-text">¿Cuál fue el doble impacto de la Revolución Rusa de 1917 en América Latina?</div><div class="quiz-options">
+          <button class="quiz-option" data-opt="a" onclick="checkAnswer(this,'q10-7','a')">a) Aumentó la inversión soviética en AL y redujo la dependencia de EE.UU.</button>
+          <button class="quiz-option" data-opt="b" onclick="checkAnswer(this,'q10-7','b')">b) Catalizó la izquierda (surgimiento de partidos comunistas) y radicalizó la respuesta conservadora anticomunista, polarizando la política latinoamericana</button>
+          <button class="quiz-option" data-opt="c" onclick="checkAnswer(this,'q10-7','c')">c) Provocó la migración masiva de exiliados rusos hacia Argentina y Brasil</button>
+          <button class="quiz-option" data-opt="d" onclick="checkAnswer(this,'q10-7','d')">d) Inspiró inmediatamente una revolución obrera en Chile y Uruguay</button>
+        </div><div class="quiz-feedback" id="fb-q10-7"></div></div>
+
+        <div class="quiz-card" id="q10-8"><div class="q-num">Pregunta 8 de 8</div><div class="q-text">Según Zanatta, ¿hacia qué tipo de régimen derivó el declive del liberalismo oligárquico en la mayoría de los países latinoamericanos?</div><div class="quiz-options">
+          <button class="quiz-option" data-opt="a" onclick="checkAnswer(this,'q10-8','a')">a) Hacia democracias liberales consolidadas con sufragio universal pleno</button>
+          <button class="quiz-option" data-opt="b" onclick="checkAnswer(this,'q10-8','b')">b) Hacia autoritarismos o populismos, no a democracias representativas</button>
+          <button class="quiz-option" data-opt="c" onclick="checkAnswer(this,'q10-8','c')">c) Hacia repúblicas socialistas al estilo soviético</button>
+          <button class="quiz-option" data-opt="d" onclick="checkAnswer(this,'q10-8','d')">d) Hacia sistemas parlamentarios de tipo europeo</button>
+        </div><div class="quiz-feedback" id="fb-q10-8"></div></div>
+
+        <div class="quiz-score"><h3></h3><p></p></div>
+        <button onclick="resetQuizNew('quiz10-container')" style="margin-top:1rem;padding:0.6rem 1.4rem;background:var(--primary);color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;">🔄 Reintentar</button>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -1842,6 +2223,70 @@ document.addEventListener('DOMContentLoaded', function () {
     updateProgress(panel.id.replace('cap',''));
   });
 });
+
+/* ─── CHECK ANSWER ─── */
+const CORRECT_ANSWERS = {};
+function registerAnswer(qId, correct) { CORRECT_ANSWERS[qId] = correct; }
+
+function checkAnswer(btn, cardId, chosen) {
+  const card = document.getElementById(cardId);
+  if (!card || card.dataset.answered) return;
+  card.dataset.answered = '1';
+  const correct = CORRECT_ANSWERS[cardId];
+  card.querySelectorAll('.quiz-option').forEach(opt => opt.classList.add('disabled'));
+  btn.classList.add(chosen === correct ? 'correct' : 'incorrect');
+  if (chosen !== correct) {
+    card.querySelectorAll('.quiz-option').forEach(opt => {
+      if (opt.dataset.opt === correct) opt.classList.add('correct');
+    });
+  }
+  const fb = document.getElementById('fb-' + cardId);
+  if (fb) {
+    fb.classList.add('show', chosen === correct ? 'ok' : 'fail');
+    fb.textContent = chosen === correct ? '✅ ¡Correcto!' : '❌ Incorrecto. La respuesta correcta está marcada en verde.';
+  }
+  const container = card.closest('.quiz-section');
+  if (!container) return;
+  const all = container.querySelectorAll('.quiz-card');
+  const done = container.querySelectorAll('.quiz-card[data-answered]');
+  if (done.length < all.length) return;
+  const ok = container.querySelectorAll('.quiz-option.correct').length;
+  const scoreEl = container.querySelector('.quiz-score');
+  if (!scoreEl) return;
+  scoreEl.style.display = 'block';
+  const h3 = scoreEl.querySelector('h3');
+  const p  = scoreEl.querySelector('p');
+  if (h3) h3.textContent = ok + ' / ' + all.length + ' correctas';
+  if (p)  p.textContent = ok === all.length ? '🏆 ¡Perfecto! Dominas este capítulo.'
+    : ok >= Math.ceil(all.length * 0.7) ? '✅ Buen trabajo. Repasá los errores.'
+    : '📖 Revisá el contenido y volvé a intentarlo.';
+}
+
+function resetQuizNew(containerId) {
+  const c = document.getElementById(containerId);
+  if (!c) return;
+  c.querySelectorAll('.quiz-card').forEach(card => {
+    delete card.dataset.answered;
+    card.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('correct','incorrect','disabled'));
+    card.querySelectorAll('.quiz-feedback').forEach(f => { f.classList.remove('show','ok','fail'); f.textContent=''; });
+  });
+  const s = c.querySelector('.quiz-score');
+  if (s) s.style.display = 'none';
+}
+
+function flipCard(el) { el.classList.toggle('flipped'); }
+
+/* ─── ANSWER REGISTRY ─── */
+registerAnswer('q8-1','b'); registerAnswer('q8-2','c'); registerAnswer('q8-3','b');
+registerAnswer('q8-4','c'); registerAnswer('q8-5','c'); registerAnswer('q8-6','b');
+registerAnswer('q8-7','b'); registerAnswer('q8-8','b');
+registerAnswer('q9-1','b'); registerAnswer('q9-2','b'); registerAnswer('q9-3','b');
+registerAnswer('q9-4','b'); registerAnswer('q9-5','b'); registerAnswer('q9-6','c');
+registerAnswer('q9-7','c'); registerAnswer('q9-8','b');
+registerAnswer('q10-1','b'); registerAnswer('q10-2','b'); registerAnswer('q10-3','b');
+registerAnswer('q10-4','b'); registerAnswer('q10-5','b'); registerAnswer('q10-6','b');
+registerAnswer('q10-7','b'); registerAnswer('q10-8','b');
+
 </script>
 
 </body>
