@@ -1,1 +1,995 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>HSL - Historia Social Latinoamericana</title>
+<style>
+  :root {
+    --primary: #1a3a5c;
+    --secondary: #c8a951;
+    --accent: #2e7d32;
+    --danger: #c62828;
+    --bg: #f4f1eb;
+    --card: #ffffff;
+    --text: #1c1c1c;
+    --muted: #5a5a5a;
+    --border: #d0c9bb;
+    --tab-active: #1a3a5c;
+    --tab-hover: #2c5282;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Georgia', serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.75;
+  }
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, #0d2137 0%, #1a3a5c 60%, #2e5f8a 100%);
+    color: white;
+    padding: 2.5rem 2rem 2rem;
+    text-align: center;
+    border-bottom: 4px solid var(--secondary);
+  }
+  header .badge {
+    display: inline-block;
+    background: var(--secondary);
+    color: #1a1a1a;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    margin-bottom: 0.8rem;
+  }
+  header h1 { font-size: 2rem; letter-spacing: 1px; margin-bottom: 0.4rem; }
+  header p { font-size: 1rem; color: #aac8e8; font-style: italic; }
 
+  /* CHAPTER NAV */
+  .chapter-nav {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    background: #0d2137;
+    padding: 0.8rem 1rem;
+    flex-wrap: wrap;
+  }
+  .chapter-btn {
+    background: transparent;
+    color: #aac8e8;
+    border: 1px solid #2e5f8a;
+    padding: 0.4rem 1.2rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+  }
+  .chapter-btn:hover { background: #1a3a5c; color: white; }
+  .chapter-btn.active { background: var(--secondary); color: #1a1a1a; border-color: var(--secondary); font-weight: bold; }
+
+  /* MAIN LAYOUT */
+  .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+  /* CHAPTER PANEL */
+  .chapter-panel { display: none; }
+  .chapter-panel.active { display: block; }
+
+  /* CHAPTER INTRO BANNER */
+  .chapter-intro {
+    background: linear-gradient(135deg, #1a3a5c, #2e5f8a);
+    color: white;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-left: 6px solid var(--secondary);
+  }
+  .chapter-intro h2 { font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--secondary); }
+  .chapter-intro p { color: #d0e8ff; font-size: 0.97rem; }
+
+  /* SECTION TABS */
+  .tabs-wrapper { margin-bottom: 2rem; }
+  .tabs-header {
+    display: flex;
+    gap: 0.3rem;
+    border-bottom: 3px solid var(--primary);
+    flex-wrap: wrap;
+    margin-bottom: 0;
+  }
+  .tab-btn {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    background: #ddd8ce;
+    color: var(--primary);
+    cursor: pointer;
+    border-radius: 8px 8px 0 0;
+    font-size: 0.85rem;
+    font-weight: bold;
+    transition: all 0.2s;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -3px;
+  }
+  .tab-btn:hover { background: #c8c0b0; }
+  .tab-btn.active {
+    background: var(--primary);
+    color: white;
+    border-bottom: 3px solid var(--secondary);
+  }
+  .tab-content { display: none; background: var(--card); border-radius: 0 8px 8px 8px; padding: 2rem; border: 1px solid var(--border); border-top: none; }
+  .tab-content.active { display: block; }
+
+  /* CONTENT TYPOGRAPHY */
+  .tab-content h3 { color: var(--primary); font-size: 1.2rem; margin: 1.5rem 0 0.5rem; border-left: 4px solid var(--secondary); padding-left: 0.8rem; }
+  .tab-content h4 { color: var(--primary); font-size: 1rem; margin: 1.2rem 0 0.4rem; }
+  .tab-content p { margin-bottom: 1rem; font-size: 0.97rem; text-align: justify; }
+  .tab-content ul, .tab-content ol { margin: 0.5rem 0 1rem 1.5rem; }
+  .tab-content li { margin-bottom: 0.4rem; font-size: 0.95rem; }
+
+  /* CONCEPT CARDS */
+  .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.2rem; margin: 1.5rem 0; }
+  .concept-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--primary);
+    border-radius: 8px;
+    padding: 1.2rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: default;
+  }
+  .concept-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
+  .concept-card .card-icon { font-size: 2rem; margin-bottom: 0.6rem; }
+  .concept-card h4 { color: var(--primary); font-size: 0.95rem; margin-bottom: 0.4rem; }
+  .concept-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.5; margin: 0; }
+  .concept-card.gold { border-top-color: var(--secondary); }
+  .concept-card.green { border-top-color: var(--accent); }
+  .concept-card.red { border-top-color: var(--danger); }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding: 1rem 0; }
+  .timeline::before { content: ""; position: absolute; left: 28px; top: 0; bottom: 0; width: 3px; background: linear-gradient(to bottom, var(--primary), var(--secondary)); }
+  .tl-item { display: flex; gap: 1.2rem; margin-bottom: 1.5rem; position: relative; }
+  .tl-dot {
+    width: 56px; min-width: 56px; height: 56px;
+    background: var(--primary); color: var(--secondary);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-weight: bold; font-size: 0.7rem; text-align: center; line-height: 1.2;
+    z-index: 1; border: 3px solid var(--secondary);
+  }
+  .tl-body { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; flex: 1; }
+  .tl-body h4 { color: var(--primary); margin-bottom: 0.3rem; font-size: 0.95rem; }
+  .tl-body p { font-size: 0.88rem; color: var(--muted); margin: 0; }
+
+  /* TABLE */
+  .styled-table { width: 100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.88rem; }
+  .styled-table th { background: var(--primary); color: white; padding: 0.7rem 1rem; text-align: left; }
+  .styled-table td { padding: 0.65rem 1rem; border-bottom: 1px solid var(--border); }
+  .styled-table tr:nth-child(even) td { background: #f8f5ef; }
+  .styled-table tr:hover td { background: #eee9df; }
+
+  /* CALLOUT BOXES */
+  .callout { border-radius: 8px; padding: 1.2rem 1.5rem; margin: 1.2rem 0; font-size: 0.93rem; }
+  .callout.info { background: #e8f4fd; border-left: 5px solid #1565c0; color: #0d3c7a; }
+  .callout.warning { background: #fff8e1; border-left: 5px solid #f9a825; color: #5a4000; }
+  .callout.danger { background: #fdecea; border-left: 5px solid var(--danger); color: #7a1010; }
+  .callout.success { background: #e8f5e9; border-left: 5px solid var(--accent); color: #1a4a1e; }
+  .callout strong { display: block; margin-bottom: 0.3rem; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+
+  /* AUTHOR QUOTE */
+  .author-quote { background: #f0ece3; border-left: 5px solid var(--secondary); padding: 1rem 1.5rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-style: italic; color: var(--muted); }
+  .author-quote cite { display: block; margin-top: 0.4rem; font-style: normal; font-size: 0.82rem; color: var(--primary); font-weight: bold; }
+
+  /* QUIZ */
+  .quiz-section { margin-top: 2rem; }
+  .quiz-section h3 { color: var(--primary); font-size: 1.2rem; margin-bottom: 1.2rem; text-align: center; }
+  .quiz-card { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; margin-bottom: 1.5rem; }
+  .quiz-card .q-num { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.4rem; }
+  .quiz-card .q-text { font-size: 1rem; font-weight: bold; color: var(--primary); margin-bottom: 1rem; }
+  .quiz-options { display: flex; flex-direction: column; gap: 0.5rem; }
+  .quiz-option {
+    background: #f8f5ef;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    padding: 0.7rem 1rem;
+    cursor: pointer;
+    font-size: 0.92rem;
+    transition: all 0.2s;
+    text-align: left;
+  }
+  .quiz-option:hover { background: #e8e0d0; border-color: var(--primary); }
+  .quiz-option.correct { background: #e8f5e9; border-color: var(--accent); color: #1a4a1e; font-weight: bold; }
+  .quiz-option.incorrect { background: #fdecea; border-color: var(--danger); color: #7a1010; }
+  .quiz-option.disabled { cursor: default; pointer-events: none; }
+  .quiz-feedback { margin-top: 0.8rem; font-size: 0.88rem; padding: 0.6rem 1rem; border-radius: 6px; display: none; }
+  .quiz-feedback.show { display: block; }
+  .quiz-feedback.ok { background: #e8f5e9; color: #1a4a1e; }
+  .quiz-feedback.fail { background: #fdecea; color: #7a1010; }
+  .quiz-score { text-align: center; background: var(--primary); color: white; border-radius: 12px; padding: 2rem; margin-top: 1.5rem; display: none; }
+  .quiz-score h3 { font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--secondary); }
+  .quiz-score p { font-size: 1rem; color: #aac8e8; }
+  .btn-quiz { background: var(--primary); color: white; border: none; padding: 0.8rem 2rem; border-radius: 8px; cursor: pointer; font-size: 1rem; margin-top: 1rem; transition: background 0.2s; }
+  .btn-quiz:hover { background: #2c5282; }
+  .btn-reset { background: var(--secondary); color: #1a1a1a; border: none; padding: 0.6rem 1.5rem; border-radius: 8px; cursor: pointer; font-size: 0.9rem; margin-top: 0.5rem; }
+
+  /* PROGRESS TRACKER */
+  .progress-bar-wrap { background: #ddd8ce; border-radius: 20px; height: 10px; margin: 0.5rem 0 1.5rem; overflow: hidden; }
+  .progress-bar-fill { height: 100%; background: linear-gradient(to right, var(--primary), var(--secondary)); border-radius: 20px; transition: width 0.5s; }
+
+  /* FOOTER */
+  footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.82rem; border-top: 1px solid var(--border); margin-top: 3rem; }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    header h1 { font-size: 1.4rem; }
+    .tabs-header { flex-direction: column; }
+    .tab-btn { border-radius: 6px; margin-bottom: 2px; }
+    .tab-content { border-radius: 0 0 8px 8px; }
+    .tl-dot { width: 44px; min-width: 44px; height: 44px; font-size: 0.62rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">Universidad &bull; Historia Social Latinoamericana</div>
+  <h1>📚 Historia Social Latinoamericana</h1>
+  <p>Herramienta didáctica interactiva &mdash; Programa de estudio completo</p>
+</header>
+
+<nav class="chapter-nav">
+  <button class="chapter-btn active" onclick="showChapter('cap7', this)">Capítulo 7 &mdash; Inserción al Mercado Mundial</button>
+  <button class="chapter-btn" onclick="showChapter('cap8', this)">Capítulo 8 &mdash; Transformación del Comercio</button>
+  <button class="chapter-btn" onclick="showChapter('cap9', this)">Capítulo 9 &mdash; Dependencia Externa</button>
+  <button class="chapter-btn" onclick="showChapter('cap10', this)">Capítulo 10 &mdash; Ocaso de la Era Liberal</button>
+</nav>
+
+<div class="container">
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  CAPÍTULO 7                                                 -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div id="cap7" class="chapter-panel active">
+
+  <div class="chapter-intro">
+    <h2>Capítulo VII &mdash; Proceso de Inserción en el Mercado Mundial</h2>
+    <p>Análisis de cómo América Latina se incorporó al sistema económico capitalista global, los mecanismos del comercio internacional, los flujos de capital, la orientación geográfica del comercio exterior, el grado de integración y la naturaleza del mercado mundial de bienes primarios.</p>
+    <div style="margin-top:1rem;">
+      <span style="font-size:0.82rem; color:#aac8e8;">Progreso de estudio:</span>
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="prog7" style="width:0%"></div></div>
+    </div>
+  </div>
+
+  <div class="tabs-wrapper">
+    <div class="tabs-header">
+      <button class="tab-btn active" onclick="showTab('c7','t1',this)">📌 Introducción</button>
+      <button class="tab-btn" onclick="showTab('c7','t2',this)">📈 2.1 Comercio y Capital</button>
+      <button class="tab-btn" onclick="showTab('c7','t3',this)">🗺 2.2 Orientación Geográfica</button>
+      <button class="tab-btn" onclick="showTab('c7','t4',this)">🔗 2.3 Integración</button>
+      <button class="tab-btn" onclick="showTab('c7','t5',this)">🌾 2.4 Mercado de Bienes Primarios</button>
+      <button class="tab-btn" onclick="showTab('c7','t6',this)">🃏 Conceptos Clave</button>
+      <button class="tab-btn" onclick="showTab('c7','t7',this)">⏳ Línea de Tiempo</button>
+      <button class="tab-btn" onclick="showTab('c7','t8',this)">✅ Quiz</button>
+    </div>
+
+    <!-- TAB 1: INTRODUCCIÓN -->
+    <div id="c7-t1" class="tab-content active">
+      <h3>1. Capitalismo y Mercado Mundial</h3>
+      <p>La incorporación de América Latina al mercado global implicó su vinculación con la economía internacional a través de un patrón estructural muy específico: la región exportaba <strong>bienes primarios</strong> (productos agrícolas y minerales) e importaba <strong>productos manufacturados</strong> de los centros industriales.</p>
+
+      <div class="callout info">
+        <strong>🔑 Idea central</strong>
+        Esta estructura de intercambio desigual derivó en una situación de <em>dependencia y subordinación</em> dentro de la economía mundial, cuyas consecuencias se proyectaron durante todo el siglo XX.
+      </div>
+
+      <h3>El Marco Teórico: Industrialización y Desarrollo</h3>
+      <p>Se estableció una fuerte identificación entre <strong>industrialización</strong> y <strong>desarrollo económico</strong>, consolidada especialmente después de la Segunda Guerra Mundial. Esta identificación se basó en dos modelos históricos exitosos:</p>
+      <ul>
+        <li>La expansión del capitalismo industrial en los siglos XIX y XX (modelo occidental)</li>
+        <li>La industrialización soviética de 1928 a la década de 1960 (modelo planificado)</li>
+      </ul>
+
+      <p><strong>Simon Kuznets</strong> señaló que la característica más sobresaliente del <em>"crecimiento económico moderno"</em> es el ritmo de incremento sostenido en el <strong>producto per cápita</strong>. Por su parte, <strong>Maurice Dobb</strong> planteó que acumulación de capital e industrialización son procesos virtualmente idénticos, dado que las técnicas mecanizadas son más aplicables a la industria que a la agricultura.</p>
+
+      <div class="author-quote">
+        "La inversión y el desarrollo de la capacidad para producir herramientas, maquinaria e infraestructura es la clave estratégica para el desarrollo económico y la modernización."
+        <cite>— Cardoso, Ciro F. (1979)</cite>
+      </div>
+
+      <h3>La Posición de América Latina</h3>
+      <p>Mientras los países industrializados diversificaban y complejizaban su estructura productiva, América Latina quedó atrapada en la especialización exportadora de bienes primarios. Este modelo no mejoró la productividad laboral a largo plazo y generó una dependencia estructural frente a las fluctuaciones del mercado mundial.</p>
+
+      <div class="callout warning">
+        <strong>⚠ Punto crítico</strong>
+        El factor crucial para el desarrollo sostenible a largo plazo no son las ganancias de exportación, sino la <em>fortaleza de la estructura interna de producción</em>. Esto explica el desencanto de los especialistas en desarrollo respecto a los beneficios automáticos del comercio internacional.
+      </div>
+    </div>
+
+    <!-- TAB 2: COMERCIO INTERNACIONAL Y FLUJOS DE CAPITAL -->
+    <div id="c7-t2" class="tab-content">
+      <h3>2.1 El Comercio Internacional, Flujos de Capital y Desarrollo Económico</h3>
+
+      <h4>2.1.1 Papel del Comercio Internacional en el Desarrollo</h4>
+      <p>Entre <strong>1820 y 1913</strong>, el intercambio mundial de mercancías experimentó un crecimiento sin precedentes. Kuznets analizó la proporción del comercio exterior en relación al PNB, encontrando que:</p>
+      <ul>
+        <li>Los países europeos mostraron un incremento constante hasta la Primera Guerra Mundial.</li>
+        <li>Naciones de poblamiento reciente (EE.UU., Canadá, Australia) sufrieron una ligera disminución relativa.</li>
+        <li>Las <em>naciones pequeñas</em> dependen del comercio exterior mucho más que las grandes, compensando a través de los intercambios la especialización de su estructura productiva interna.</li>
+        <li>Tras 1913, el crecimiento del comercio mundial comenzó a declinar.</li>
+      </ul>
+
+      <p>Eric Hobsbawm destacó la interconexión entre exportaciones, cambio tecnológico y disponibilidad de recursos naturales como motores del desarrollo. Sin embargo, el ritmo de crecimiento fue afectado negativamente por guerras y la Gran Depresión, así como por la especialización latinoamericana en bienes primarios que no mejoró la productividad a largo plazo.</p>
+
+      <div class="callout danger">
+        <strong>🚨 Límite estructural</strong>
+        A pesar del crecimiento del comercio y la producción industrial de los países desarrollados desde 1913, América Latina <em>no logró diversificarse ni aumentar su productividad de manera similar</em>.
+      </div>
+
+      <h4>2.1.2 Los Flujos de Capital: 1820-1913</h4>
+      <p>En el período 1820-1913, los flujos de capital hacia regiones periféricas fueron dominados por Gran Bretaña, Francia y Alemania. Este proceso fue analizado bajo el concepto de <strong>"exportación de capital"</strong>:</p>
+
+      <table class="styled-table">
+        <tr><th>Autor / Teoría</th><th>Planteo central</th></tr>
+        <tr><td><strong>J.A. Hobson y Lenin</strong></td><td>Vincularon la exportación de capital a la expansión imperialista: lucha por colonias, mercados y materias primas. Identifican concentración industrial, disminución de beneficios locales e inversión colonial en busca de mayor retorno.</td></tr>
+        <tr><td><strong>J. Knapp</strong></td><td>Revisó inversiones británicas en 1913: la mayoría del capital provenía de <em>reinversiones de ganancias pasadas</em>, no de exportaciones netas reales. Cuestiona a Hobson y Lenin.</td></tr>
+        <tr><td><strong>A.G. Ford</strong></td><td>Analizó la relación Gran Bretaña–Argentina (1880-1914): la inversión en ferrocarriles estimulaba la demanda de productos británicos, generando superávit en la cuenta corriente de GB. "Mecanismo de Ford".</td></tr>
+        <tr><td><strong>John H. Coatsworth</strong></td><td>En México del Porfiriato, los ferrocarriles no impulsaron la industria nacional; sirvieron al modelo exportador de materias primas, enriqueciendo inversores extranjeros y generando crecimiento desigual.</td></tr>
+      </table>
+
+      <div class="author-quote">
+        "La búsqueda de mercados, la necesidad de asegurarse fuentes de materias primas, y el flujo de capitales, configuraron los elementos básicos del nuevo sistema de dominación."
+        <cite>— Cardoso, Ciro F. (1979, p. 110)</cite>
+      </div>
+
+      <h4>2.1.3 Los Flujos de Capital: Post-Primera Guerra Mundial</h4>
+      <p>Las transformaciones fueron significativas:</p>
+      <ul>
+        <li>EE.UU. ascendió como principal acreedor global desde la década de 1920.</li>
+        <li>En los años 30 hubo una notable disminución del flujo de inversiones.</li>
+        <li>La recuperación en los años 50 vino con un cambio en la composición: <em>donaciones oficiales y préstamos gubernamentales</em> en lugar de inversiones privadas.</li>
+        <li>Toda América Latina experimentó una <strong>entrada neta negativa de capital</strong> desde el período de posguerra.</li>
+      </ul>
+
+      <p>Después de 1945, las relaciones entre EE.UU. y América Latina se estructuraron en torno a: (a) intereses políticos y militares de la Guerra Fría; (b) garantía de inversiones privadas y vínculos comerciales; (c) crédito gubernamental vía AID, BID y BM.</p>
+    </div>
+
+    <!-- TAB 3: ORIENTACIÓN GEOGRÁFICA -->
+    <div id="c7-t3" class="tab-content">
+      <h3>2.2 Tendencia y Orientación Geográfica del Comercio Exterior</h3>
+
+      <p>La onda expansiva de las exportaciones latinoamericanas, detenida por la crisis de 1873, se retomó con fuerza en los últimos años del siglo XIX y se mantuvo hasta la Primera Guerra Mundial. El análisis se basa principalmente en estadísticas de importaciones de EE.UU. y el Reino Unido desde América Latina (1850-1914), dada la escasez de otros datos confiables.</p>
+
+      <div class="callout info">
+        <strong>📊 Participación en el comercio mundial</strong>
+        En los últimos cien años (fines del siglo XIX a fines del XX), la participación de América Latina en el comercio mundial fue baja y constante, oscilando entre el 5% y el 9% (Cardoso, 1979).
+      </div>
+
+      <h4>Fases del Comercio Exterior Latinoamericano</h4>
+      <p>Los años de análisis más relevantes son <strong>1913, 1929, 1938, 1950 y 1972</strong>, que permiten comparar el período previo a la Primera Guerra Mundial, la crisis de 1929, el fin de la Depresión y la crisis de 1973.</p>
+
+      <table class="styled-table">
+        <tr><th>Período</th><th>Característica principal</th><th>Impacto en AL</th></tr>
+        <tr><td><strong>1873–1895</strong></td><td>Crisis de 1873, quiebras bancarias, deflación</td><td>Freno a la expansión exportadora</td></tr>
+        <tr><td><strong>1895–1913</strong></td><td>Auge prolongado del comercio mundial</td><td>Integración al sistema neocolonial; exportaciones se triplican (1880-1913)</td></tr>
+        <tr><td><strong>1913–1929</strong></td><td>Primera Guerra Mundial + auge transitorio</td><td>Interrupción de flujos; auge frágil en los 20</td></tr>
+        <tr><td><strong>1929–1939</strong></td><td>Gran Depresión y crisis del laissez-faire</td><td>Volumen comercial cae drásticamente</td></tr>
+        <tr><td><strong>1945–1970s</strong></td><td>Nuevo orden econom. internacional; intervencionismo</td><td>Comportamiento "mediocre" de exportaciones; presiones importadoras</td></tr>
+      </table>
+
+      <h4>Orientación Geográfica de las Exportaciones</h4>
+      <p>Se identificaron tres bloques: <strong>EE.UU., Europa Occidental</strong> y <strong>otros países</strong>.</p>
+      <ul>
+        <li>La influencia de <strong>Europa Occidental</strong> disminuyó a lo largo del siglo XX. En 1950, solo Canadá vendía más del 50% de sus exportaciones a esos mercados.</li>
+        <li><strong>EE.UU.</strong> siempre tuvo papel dominante, especialmente en México, el Caribe y Honduras. Entre 1929 y 1950, nuevos países comenzaron a exportar a EE.UU.</li>
+        <li>En 1972, <strong>Paraguay</strong> se destacaba en exportaciones a "otros países" (Argentina y Brasil como principales destinos). Se sumaron Cuba, Nicaragua, El Salvador y Uruguay.</li>
+        <li>Aumentaron intercambios con mercados no tradicionales: Japón y el bloque socialista.</li>
+      </ul>
+
+      <h4>Las Relaciones con EE.UU. y el Reino Unido</h4>
+
+      <table class="styled-table">
+        <tr><th>Potencia</th><th>Países privilegiados</th><th>Factores clave</th></tr>
+        <tr><td><strong>Reino Unido</strong></td><td>Argentina (principalmente)</td><td>Complementariedad agrícola: cereales y ganadería pampeana. Ventaja competitiva de la carne enfriada vs. Australia/NZ.</td></tr>
+        <tr><td><strong>EE.UU.</strong></td><td>México, Cuba, Brasil, Colombia, Venezuela</td><td>Cercanía geográfica (geopolítica del Caribe). Materias primas: petróleo, azúcar, café.</td></tr>
+        <tr><td><strong>Ambas</strong></td><td>Toda la región</td><td>Vínculo político-económico: inversión de capital y proyección de poder global.</td></tr>
+      </table>
+
+      <p>La <strong>participación de EE.UU.</strong> en el comercio latinoamericano evolucionó así: en 1913 representaba el 26% de importaciones y 30% de exportaciones; en 1948 subió al 53% y 39%; en 1970 se moderó al 34% y 30% respectivamente. El <strong>Reino Unido</strong> comenzó fuerte pero fue cediendo posiciones sistemáticamente.</p>
+
+      <h4>El Relevo Hegemónico: Gran Bretaña → EE.UU.</h4>
+      <p>El siglo XIX fue testigo de la transferencia de hegemonía en América Latina de Gran Bretaña a EE.UU. Hitos clave: el retiro británico del Caribe en 1898 y el <em>Tratado Hay-Pauncefote de 1901</em> (que dio a EE.UU. el control exclusivo del canal interoceánico). En América del Sur, Brasil mantuvo estrechos vínculos con EE.UU. impulsados por el café y las inversiones en la "valoración" cafetalera. Las inversiones estadounidenses se expandieron luego hacia minería (Perú, Bolivia, Chile), agricultura (Perú, Ecuador) y petróleo (Venezuela).</p>
+
+      <div class="callout success">
+        <strong>🌍 El orden neocolonial (Halperin Donghi)</strong>
+        "La vinculación permanente de las economías exportadoras a un sistema mundial dominado por las potencias industriales."
+      </div>
+    </div>
+
+    <!-- TAB 4: GRADO DE INTEGRACIÓN -->
+    <div id="c7-t4" class="tab-content">
+      <h3>2.3 El Grado de Integración al Mercado Mundial</h3>
+
+      <p>Al realizar el balance de América Latina en <strong>1913</strong> —año tomado como referencia porque el auge prolongado del comercio mundial proporciona un ambiente de evaluación homogéneo—, la región estaba plenamente inserta en la economía mundial, pero como <em>proveedora de recursos y receptora de capital</em>, con estructura productiva rígida y fuerte desigualdad interna (Bértola, 2010).</p>
+
+      <h4>Rasgos de la Integración en 1913</h4>
+      <p>La economía regional producía plata, cobre, café, azúcar, plátano, carne y cereales, según la región. Tres factores profundizaron la integración:</p>
+      <ul>
+        <li><strong>A. Expansión del comercio de materias primas:</strong> La región se convirtió en proveedora clave de productos primarios para Europa (especialmente RU, Francia, Alemania) y EE.UU. Este comercio se había <em>triplicado</em> entre 1880 y 1913.</li>
+        <li><strong>B. Atracción de capital extranjero:</strong> Capital europeo y estadounidense financiaba infraestructura (ferrocarriles, puertos, servicios públicos) y las propias explotaciones de materias primas.</li>
+        <li><strong>C. Reducción de costos de transporte:</strong> La revolución de los transportes (ferrocarriles, barcos de vapor) hizo rentable exportar bienes voluminosos y perecederos desde AL a los centros industriales.</li>
+      </ul>
+
+      <h4>Balance: Luces y Sombras de la Integración</h4>
+
+      <div class="cards-grid">
+        <div class="concept-card green">
+          <div class="card-icon">📈</div>
+          <h4>Crecimiento económico</h4>
+          <p>Las exportaciones crecieron constantemente, generando ingresos para las élites. Argentina y Cuba lideraban el ingreso per cápita regional.</p>
+        </div>
+        <div class="concept-card green">
+          <div class="card-icon">🏗</div>
+          <h4>Infraestructura moderna</h4>
+          <p>Puertos, ferrocarriles y telégrafos esenciales para la exportación. Las ciudades principales experimentaron notable modernización.</p>
+        </div>
+        <div class="concept-card red">
+          <div class="card-icon">⛓</div>
+          <h4>Monocultivos y vulnerabilidad</h4>
+          <p>Café en Brasil, estaño en Bolivia, cobre en Chile, plátanos en Centroamérica. Extrema vulnerabilidad a fluctuaciones de precios.</p>
+        </div>
+        <div class="concept-card red">
+          <div class="card-icon">📉</div>
+          <h4>Integración subordinada</h4>
+          <p>Exportación de bienes con bajo valor agregado; importación de manufacturas y capital. Dependencia financiera y tecnológica estructural.</p>
+        </div>
+        <div class="concept-card red">
+          <div class="card-icon">⚖</div>
+          <h4>Desigualdad interna</h4>
+          <p>Riqueza concentrada en élites terratenientes y mineras. Inmensas brechas entre países ricos (Argentina) y pobres (Haití, Ecuador).</p>
+        </div>
+        <div class="concept-card red">
+          <div class="card-icon">💸</div>
+          <h4>Fragilidad financiera</h4>
+          <p>La dependencia del capital extranjero hizo a las economías vulnerables. La Primera Guerra Mundial (1914) interrumpió abruptamente flujos de capital y comercio.</p>
+        </div>
+      </div>
+
+      <div class="author-quote">
+        "El crecimiento hacia afuera impulsado por la integración económica en América Latina, si bien generó beneficios económicos, también creó una desigualdad estructural y una dependencia económica con los países desarrollados, perpetuando un modelo dependiente del capital y las materias primas."
+        <cite>— Cardoso, Ciro F. (1979)</cite>
+      </div>
+    </div>
+
+    <!-- TAB 5: MERCADO DE BIENES PRIMARIOS -->
+    <div id="c7-t5" class="tab-content">
+      <h3>2.4 Naturaleza y Evolución del Mercado Mundial de Bienes Primarios</h3>
+
+      <h4>Características Básicas del Mercado Mundial Capitalista</h4>
+      <p>Según Cardoso (1979), las características más resaltantes son:</p>
+      <ul>
+        <li><strong>(a)</strong> Intercambios masivos con incremento permanente en volumen y variedad de productos.</li>
+        <li><strong>(b)</strong> Cambio permanente en la naturaleza de los productos, derivado del progreso tecnológico continuo, inherente al desarrollo industrial.</li>
+        <li><strong>(c)</strong> Transformaciones continuas en los sistemas de transporte, almacenamiento y en las formas de pago en el campo financiero.</li>
+      </ul>
+
+      <p>La expansión del capitalismo condujo a un flujo desigual de mercancías, capitales y personas (cf. Immanuel Wallerstein y su <em>Análisis del Sistema-Mundo</em>). Este proceso cambió después de 1914 y no garantizó aumento de productividad a largo plazo para las regiones periféricas.</p>
+
+      <h4>2.4.1 La Concentración: Factores</h4>
+      <p>La oferta de bienes primarios está <strong>geográficamente concentrada</strong> debido a:</p>
+      <ul>
+        <li><strong>Factores ambientales:</strong> clima y calidad del suelo condicionan qué se puede producir en cada región. En minerales, la dependencia del medio natural es aún mayor.</li>
+        <li><strong>Factores tecnológicos:</strong> la tecnología permite cierta independencia, pero siempre hay un límite geográfico definido por rentabilidad económica.</li>
+        <li><strong>Factores histórico-coloniales:</strong> la fiscalidad colonial creó excedentes exportables artificiales. Ejemplo: en la India Británica, la tributación colonial motivó a los campesinos a cultivar trigo en lugar de cultivos básicos propios, generando excedente para el mercado mundial.</li>
+      </ul>
+
+      <div class="callout info">
+        <strong>📌 Wallerstein: Teoría del Sistema-Mundo</strong>
+        La economía capitalista global opera dividida en zonas: el <em>Centro</em> (países ricos), la <em>semiperiferia</em> y la <em>periferia</em> (países pobres). El capitalismo mantiene esta estructura mediante el <em>intercambio desigual</em>: materias primas de la periferia fluyen hacia el centro a cambio de productos de alto valor agregado.
+      </div>
+
+      <h4>Concentración del Suministro Mundial (1913 vs. 1953)</h4>
+
+      <table class="styled-table">
+        <tr><th>Producto</th><th>País/Región dominante (1953)</th><th>Dinámica / Tendencia</th></tr>
+        <tr><td>☕ <strong>Café</strong></td><td>Brasil (46%)</td><td>Disminución del peso relativo, pero sigue siendo decisivo.</td></tr>
+        <tr><td>🍫 <strong>Cacao</strong></td><td>Países africanos</td><td>Fuerte concentración; desplazamiento de Latinoamérica.</td></tr>
+        <tr><td>🍬 <strong>Azúcar</strong></td><td>Cuba</td><td>Aumento del dominio en el comercio mundial.</td></tr>
+        <tr><td>🌾 <strong>Cereales</strong></td><td>Canadá y EE.UU.</td><td>Desplazamiento de Europa; deterioro de India y Argentina.</td></tr>
+        <tr><td>🛢 <strong>Petróleo</strong></td><td>Venezuela, Medio Oriente, EE.UU.</td><td>Concentración creciente de la producción.</td></tr>
+      </table>
+
+      <h4>La Concentración de la Demanda</h4>
+      <p>La demanda mundial de bienes primarios también estaba concentrada geográficamente en los países industrializados, donde la demanda es <em>inversamente proporcional al tamaño del país</em>. Esto explica por qué algunos productos tienen un mercado verdaderamente mundial y otros no.</p>
+
+      <h4>2.4.2 Mecanismos Básicos de Funcionamiento</h4>
+      <p>El mercado mundial de bienes primarios operaba mediante mecanismos específicos:</p>
+      <ul>
+        <li><strong>Sistema de crédito comercial:</strong> financiamiento de las operaciones de exportación a través de bancos internacionales, especialmente londinenses.</li>
+        <li><strong>Mercados a término (futuros):</strong> contratos para compraventa futura de materias primas, que permitían cubrir riesgos de precio pero también especular.</li>
+        <li><strong>Bolsas internacionales de materias primas:</strong> concentradas en Londres, Nueva York y Chicago, estas bolsas fijaban los precios de referencia mundial, sin que los países productores tuvieran capacidad de influir en ellos.</li>
+        <li><strong>Formación de precios:</strong> los precios se fijaban en los mercados de los países compradores (países industrializados), no en los países productores, lo que implicaba una asimetría estructural de poder.</li>
+      </ul>
+
+      <div class="callout warning">
+        <strong>⚠ Deterioro de los Términos del Intercambio</strong>
+        A precios de 1913, las exportaciones latinoamericanas crecieron más que las importaciones en volumen, pero los <em>términos del intercambio se deterioraron significativamente</em> con el tiempo: los precios de los bienes primarios exportados cayeron en relación a los precios de las manufacturas importadas.
+      </div>
+
+      <h4>La Nueva Situación Post-1945</h4>
+      <p>El nuevo orden económico internacional emergido de la Gran Depresión y la Segunda Guerra Mundial presentó escasas ventajas para los países productores de bienes primarios, debido a:</p>
+      <ul>
+        <li>El comercio internacional creció de manera lenta, y los aumentos se concentraron en países industrializados.</li>
+        <li>Los productos exportados por las regiones periféricas apenas evolucionaron, mientras que la demanda en los países desarrollados cambió significativamente: sustitución de ciertas materias primas por productos sintéticos.</li>
+        <li><strong>Baja elasticidad de la demanda</strong> de los productos primarios: la cantidad demandada cambia muy poco ante variaciones significativas de precio.</li>
+        <li>El nuevo orden económico global quedó sesgado a favor de la producción industrial y el comercio entre naciones industrializadas.</li>
+      </ul>
+
+      <p>Desde 1945 en adelante, la situación de América Latina se puede resumir en: <strong>"comportamiento mediocre de las exportaciones —salvo cortos y localizados episodios— y presiones cada vez más fuertes por el lado de las importaciones"</strong> (Cardoso, 1979).</p>
+    </div>
+
+    <!-- TAB 6: CONCEPTOS CLAVE -->
+    <div id="c7-t6" class="tab-content">
+      <h3>🃏 Conceptos Clave del Capítulo 7</h3>
+      <p style="color:var(--muted); font-size:0.9rem; margin-bottom:1.5rem;">Pasa el cursor por cada tarjeta para repasar las definiciones esenciales.</p>
+
+      <div class="cards-grid">
+        <div class="concept-card gold">
+          <div class="card-icon">🏭</div>
+          <h4>Industrialización</h4>
+          <p>Proceso de transformación de la economía basado en la producción fabril y mecanizada. Identificada con el desarrollo económico moderno, permite la acumulación de capital y el aumento del producto per cápita.</p>
+        </div>
+        <div class="concept-card">
+          <div class="card-icon">💰</div>
+          <h4>Exportación de Capital</h4>
+          <p>Flujo de inversiones desde los países industrializados (GB, Francia, Alemania, EE.UU.) hacia regiones periféricas, vinculado por Hobson y Lenin a la expansión imperialista.</p>
+        </div>
+        <div class="concept-card gold">
+          <div class="card-icon">🚂</div>
+          <h4>Mecanismo de Ford</h4>
+          <p>La inversión británica en ferrocarriles extranjeros estimulaba la demanda de productos británicos, generando superávit en la balanza de pagos de Gran Bretaña vía aumento de exportaciones.</p>
+        </div>
+        <div class="concept-card">
+          <div class="card-icon">🌍</div>
+          <h4>Orden Neocolonial</h4>
+          <p>Según Halperin Donghi: "La vinculación permanente de las economías exportadoras a un sistema mundial dominado por las potencias industriales."</p>
+        </div>
+        <div class="concept-card red">
+          <div class="card-icon">📉</div>
+          <h4>Términos del Intercambio</h4>
+          <p>Relación entre los precios de las exportaciones y las importaciones de un país. Su deterioro para AL significa que cada unidad exportada compraba cada vez menos manufacturas importadas.</p>
+        </div>
+        <div class="concept-card red">
+          <div class="card-icon">⛓</div>
+          <h4>Dependencia</h4>
+          <p>Situación estructural en que las economías latinoamericanas no pueden expandirse ni contraerse sino en función de los impulsos de los centros industriales.</p>
+        </div>
+        <div class="concept-card green">
+          <div class="card-icon">📊</div>
+          <h4>Baja Elasticidad de Demanda</h4>
+          <p>La cantidad demandada de un producto cambia muy poco, incluso ante variaciones significativas en su precio. Característica de los bienes primarios que limita el ingreso de los países exportadores.</p>
+        </div>
+        <div class="concept-card green">
+          <div class="card-icon">🌐</div>
+          <h4>Sistema-Mundo (Wallerstein)</h4>
+          <p>La economía capitalista global opera como un sistema único dividido en Centro (ricos), semiperiferia y periferia (pobres), mantenido por el intercambio desigual.</p>
+        </div>
+        <div class="concept-card">
+          <div class="card-icon">🛤</div>
+          <h4>Laissez-faire</h4>
+          <p>Doctrina económica de mínima interferencia estatal. Su fracaso durante la Gran Depresión llevó al intervencionismo del Estado como nuevo modelo dominante.</p>
+        </div>
+        <div class="concept-card gold">
+          <div class="card-icon">🌾</div>
+          <h4>Economía Primaria Exportadora</h4>
+          <p>Modelo en que la producción y exportación de materias primas (agrícolas o minerales) constituye el eje del crecimiento. Fundamento del modelo agroexportador latinoamericano.</p>
+        </div>
+        <div class="concept-card">
+          <div class="card-icon">📈</div>
+          <h4>PNB (Producto Nacional Bruto)</h4>
+          <p>Valor total de bienes y servicios producidos por los residentes de un país en un período determinado. Kuznets lo usó para analizar la dependencia del comercio exterior.</p>
+        </div>
+        <div class="concept-card red">
+          <div class="card-icon">🏦</div>
+          <h4>Flujo Neto Negativo de Capital</h4>
+          <p>Situación en que los capitales que salen de una región (remisión de utilidades, pagos de deuda) superan a los que entran (inversiones, préstamos). Realidad de AL desde la posguerra.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 7: LÍNEA DE TIEMPO -->
+    <div id="c7-t7" class="tab-content">
+      <h3>⏳ Línea de Tiempo Histórica — Capítulo 7</h3>
+      <p style="color:var(--muted); font-size:0.9rem; margin-bottom:1.5rem;">Principales eventos y procesos del proceso de inserción latinoamericana en el mercado mundial.</p>
+
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot">1820<br>1850</div>
+          <div class="tl-body">
+            <h4>Inicio del gran crecimiento del comercio internacional</h4>
+            <p>Entre 1820 y 1913, el intercambio mundial de mercancías experimenta un crecimiento sin precedentes. Gran Bretaña lidera las exportaciones de capital hacia América Latina. Se sientan las bases del modelo agroexportador.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">1873</div>
+          <div class="tl-body">
+            <h4>Primera Gran Depresión mundial</h4>
+            <p>Pánico financiero en Viena que se extiende a Europa y Norteamérica. Quiebras bancarias, caída de bolsas, desempleo y deflación. Se frena la onda expansiva de las exportaciones latinoamericanas. Muchas naciones abandonan el libre comercio y adoptan el proteccionismo.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">1880<br>1913</div>
+          <div class="tl-body">
+            <h4>Auge neocolonial y consolidación del modelo exportador</h4>
+            <p>El comercio de materias primas latinoamericanas se triplica. Gran inversión extranjera en ferrocarriles y puertos. Argentina y Brasil consolidan su rol como proveedores clave del mercado mundial. Se establece el "orden neocolonial" (Halperin Donghi).</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">1898<br>1901</div>
+          <div class="tl-body">
+            <h4>Relevo hegemónico: Gran Bretaña cede a EE.UU.</h4>
+            <p>Retiro británico del Caribe (1898) y Tratado Hay-Pauncefote (1901), que otorga a EE.UU. control exclusivo del canal interoceánico. Marca el inicio de la hegemonía estadounidense en América Latina, especialmente en México, Centroamérica y el Caribe.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">1913<br>1918</div>
+          <div class="tl-body">
+            <h4>Primera Guerra Mundial: quiebre del sistema liberal</h4>
+            <p>Interrupción abrupta de flujos de capital y comercio. El auge prolongado del comercio mundial —que había alcanzado su cúspide en 1913— comienza a declinar. Las proporciones de comercio en el PNB se estancan o reducen en la mayoría de los países desarrollados.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">1920s</div>
+          <div class="tl-body">
+            <h4>EE.UU. emerge como principal acreedor global</h4>
+            <p>Auge transitorio del comercio latinoamericano. EE.UU. toma el lugar de Gran Bretaña como acreedor global. La dependencia del capital norteamericano sustituye progresivamente a la dependencia británica.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">1929</div>
+          <div class="tl-body">
+            <h4>Gran Depresión de 1929</h4>
+            <p>El mayor crack económico del siglo XX comienza con el colapso de la bolsa de Nueva York. América Latina sufre un golpe catastrófico: el volumen comercial cae drásticamente para finales de los años 30. Marca el fracaso definitivo del laissez-faire y el inicio del intervencionismo estatal.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">1928<br>1960</div>
+          <div class="tl-body">
+            <h4>Industrialización soviética como modelo alternativo</h4>
+            <p>La planificación soviética basada en la prioridad de la industria pesada (Feldman-Gosplan) ofrece un modelo de industrialización dirigido por el Estado. Junto con el capitalismo industrial occidental, este modelo influye en el pensamiento desarrollista latinoamericano.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">1939<br>1945</div>
+          <div class="tl-body">
+            <h4>Segunda Guerra Mundial: nuevo orden económico</h4>
+            <p>El crecimiento industrial posterior (desde 1939) fue impulsado por: reconstrucción de Europa y Japón, ampliación del consumo interno y aumento del gasto público. El nuevo orden favoreció el comercio entre naciones industrializadas, dejando a los exportadores primarios en posición de vulnerabilidad.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">1945<br>1970s</div>
+          <div class="tl-body">
+            <h4>Posguerra: comportamiento mediocre de las exportaciones</h4>
+            <p>América Latina experimenta una entrada neta negativa de capital. Las relaciones con EE.UU. se estructuran bajo la Guerra Fría (AID, BID, BM). La participación de AL en el comercio mundial oscila apenas entre el 5% y 9%. La sustitución de materias primas por productos sintéticos reduce la demanda de exportaciones latinoamericanas.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 8: QUIZ -->
+    <div id="c7-t8" class="tab-content">
+      <h3>✅ Quiz de Autoevaluación — Capítulo 7</h3>
+      <p style="color:var(--muted); font-size:0.9rem; margin-bottom:1.5rem; text-align:center;">Seleccioná la opción correcta. Obtendrás retroalimentación inmediata.</p>
+
+      <div id="quiz7-container">
+
+        <div class="quiz-card" id="q7-1">
+          <div class="q-num">Pregunta 1 de 10</div>
+          <div class="q-text">¿Cuál fue el patrón estructural mediante el cual América Latina se incorporó al mercado mundial?</div>
+          <div class="quiz-options">
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-1','a')">a) Exportación de manufacturas e importación de materias primas</button>
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-1','b')">b) Exportación de bienes primarios e importación de productos manufacturados</button>
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-1','c')">c) Intercambio equilibrado de bienes industriales entre regiones</button>
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-1','d')">d) Autarquía productiva con comercio solo entre países latinoamericanos</button>
+          </div>
+          <div class="quiz-feedback" id="fb-q7-1"></div>
+        </div>
+
+        <div class="quiz-card" id="q7-2">
+          <div class="q-num">Pregunta 2 de 10</div>
+          <div class="q-text">Según Kuznets, ¿cuál es la característica más sobresaliente del "crecimiento económico moderno"?</div>
+          <div class="quiz-options">
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-2','a')">a) La expansión del comercio exterior como porcentaje del PNB</button>
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-2','b')">b) El ritmo de incremento sostenido en el producto per cápita</button>
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-2','c')">c) La reducción de la desigualdad entre países centrales y periféricos</button>
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-2','d')">d) La especialización en la producción de bienes primarios</button>
+          </div>
+          <div class="quiz-feedback" id="fb-q7-2"></div>
+        </div>
+
+        <div class="quiz-card" id="q7-3">
+          <div class="q-num">Pregunta 3 de 10</div>
+          <div class="q-text">¿Qué es el "Mecanismo de Ford" (A.G. Ford)?</div>
+          <div class="quiz-options">
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-3','a')">a) La teoría de que los ferrocarriles eliminan la dependencia de materias primas</button>
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-3','b')">b) La explicación de cómo la inversión británica en ferrocarriles extranjeros estimulaba la demanda de productos británicos, generando superávit en su balanza de pagos</button>
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-3','c')">c) El modelo industrial de Henry Ford aplicado a la producción latinoamericana</button>
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-3','d')">d) La teoría de sustitución de importaciones impulsada por ferrocarriles</button>
+          </div>
+          <div class="quiz-feedback" id="fb-q7-3"></div>
+        </div>
+
+        <div class="quiz-card" id="q7-4">
+          <div class="q-num">Pregunta 4 de 10</div>
+          <div class="q-text">¿Cuánto se triplicó el comercio de materias primas latinoamericanas y en qué período?</div>
+          <div class="quiz-options">
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-4','a')">a) Entre 1850 y 1880</button>
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-4','b')">b) Entre 1880 y 1913</button>
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-4','c')">c) Entre 1913 y 1929</button>
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-4','d')">d) Entre 1929 y 1945</button>
+          </div>
+          <div class="quiz-feedback" id="fb-q7-4"></div>
+        </div>
+
+        <div class="quiz-card" id="q7-5">
+          <div class="q-num">Pregunta 5 de 10</div>
+          <div class="q-text">¿Qué marcaron el retiro británico del Caribe (1898) y el Tratado Hay-Pauncefote (1901)?</div>
+          <div class="quiz-options">
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-5','a')">a) El inicio de la hegemonía británica en América del Sur</button>
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-5','b')">b) El fin de la rivalidad entre Gran Bretaña y EE.UU. y el comienzo de la hegemonía estadounidense en América Latina</button>
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-5','c')">c) La independencia económica de América Central</button>
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-5','d')">d) La creación del sistema de libre comercio interamericano</button>
+          </div>
+          <div class="quiz-feedback" id="fb-q7-5"></div>
+        </div>
+
+        <div class="quiz-card" id="q7-6">
+          <div class="q-num">Pregunta 6 de 10</div>
+          <div class="q-text">¿Cuál era la participación de América Latina en el comercio mundial en los últimos cien años del siglo analizado?</div>
+          <div class="quiz-options">
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-6','a')">a) Entre el 15% y el 25%</button>
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-6','b')">b) Entre el 5% y el 9%</button>
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-6','c')">c) Más del 30%</button>
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-6','d')">d) Menos del 1%</button>
+          </div>
+          <div class="quiz-feedback" id="fb-q7-6"></div>
+        </div>
+
+        <div class="quiz-card" id="q7-7">
+          <div class="q-num">Pregunta 7 de 10</div>
+          <div class="q-text">Según Halperin Donghi, ¿qué es el "orden neocolonial"?</div>
+          <div class="quiz-options">
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-7','a')">a) El dominio territorial directo de potencias europeas sobre América Latina</button>
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-7','b')">b) La vinculación permanente de las economías exportadoras a un sistema mundial dominado por las potencias industriales</button>
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-7','c')">c) El modelo de industrialización impulsado por los estados latinoamericanos</button>
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-7','d')">d) La alianza comercial entre países latinoamericanos para negociar con potencias externas</button>
+          </div>
+          <div class="quiz-feedback" id="fb-q7-7"></div>
+        </div>
+
+        <div class="quiz-card" id="q7-8">
+          <div class="q-num">Pregunta 8 de 10</div>
+          <div class="q-text">¿Cuál producto vio su producción desplazada de América Latina hacia África en torno a 1953?</div>
+          <div class="quiz-options">
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-8','a')">a) Café</button>
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-8','b')">b) Petróleo</button>
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-8','c')">c) Cacao</button>
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-8','d')">d) Cereales</button>
+          </div>
+          <div class="quiz-feedback" id="fb-q7-8"></div>
+        </div>
+
+        <div class="quiz-card" id="q7-9">
+          <div class="q-num">Pregunta 9 de 10</div>
+          <div class="q-text">¿Qué significa que los bienes primarios tienen "baja elasticidad de la demanda"?</div>
+          <div class="quiz-options">
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-9','a')">a) Que su demanda crece muy rápido cuando la economía mundial se expande</button>
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-9','b')">b) Que la cantidad demandada cambia muy poco incluso ante variaciones significativas en su precio</button>
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-9','c')">c) Que son productos que solo se comercian dentro de la región latinoamericana</button>
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-9','d')">d) Que pueden ser fácilmente sustituidos por productos industriales de la misma región</button>
+          </div>
+          <div class="quiz-feedback" id="fb-q7-9"></div>
+        </div>
+
+        <div class="quiz-card" id="q7-10">
+          <div class="q-num">Pregunta 10 de 10</div>
+          <div class="q-text">¿Cuál fue la conclusión de Coatsworth sobre los ferrocarriles en el México porfiriano?</div>
+          <div class="quiz-options">
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-10','a')">a) Que impulsaron el desarrollo industrial interno y redujeron la dependencia extranjera</button>
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-10','b')">b) Que sirvieron como herramienta del modelo exportador de materias primas, enriqueciendo inversores extranjeros y generando crecimiento muy desigual</button>
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-10','c')">c) Que crearon una clase obrera industrial que transformó la estructura social mexicana</button>
+            <button class="quiz-option" onclick="checkAnswer(this,'q7-10','d')">d) Que permitieron la integración del mercado interno mexicano independientemente del capital extranjero</button>
+          </div>
+          <div class="quiz-feedback" id="fb-q7-10"></div>
+        </div>
+
+        <div style="text-align:center; margin-top:1.5rem;">
+          <button class="btn-quiz" onclick="submitQuiz7()">Ver mi resultado</button>
+          <br>
+          <button class="btn-reset" onclick="resetQuiz7()" style="margin-top:0.8rem;">🔄 Reiniciar quiz</button>
+        </div>
+
+        <div class="quiz-score" id="score7">
+          <h3 id="score7-title">🎯 Resultado</h3>
+          <p id="score7-text"></p>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end tabs-wrapper cap7 -->
+</div><!-- end cap7 -->
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  CAPÍTULOS 8, 9, 10 — PRÓXIMAMENTE                        -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div id="cap8" class="chapter-panel">
+  <div class="chapter-intro">
+    <h2>Capítulo VIII — La Transformación del Comercio Internacional</h2>
+    <p>La división internacional del trabajo. Tipología de las economías exportadoras de materias primas.</p>
+  </div>
+  <div class="callout info" style="text-align:center; padding:2.5rem;">
+    <strong>📖 Capítulo en desarrollo</strong>
+    Este capítulo será habilitado próximamente con todo su contenido. ¡Seguí estudiando el Capítulo 7 mientras tanto!
+  </div>
+</div>
+
+<div id="cap9" class="chapter-panel">
+  <div class="chapter-intro">
+    <h2>Capítulo IX — Las Formas Tradicionales de la Dependencia Externa</h2>
+    <p>Objetivos e instrumentos de las políticas correctivas. Venezuela, Brasil, Argentina, México, Chile.</p>
+  </div>
+  <div class="callout info" style="text-align:center; padding:2.5rem;">
+    <strong>📖 Capítulo en desarrollo</strong>
+    Este capítulo será habilitado próximamente con todo su contenido.
+  </div>
+</div>
+
+<div id="cap10" class="chapter-panel">
+  <div class="chapter-intro">
+    <h2>Capítulo X — El Ocaso de la Era Liberal</h2>
+    <p>La crisis y sus nudos. Las causas políticas, sociales y económicas. La revolución mexicana. El nuevo clima ideológico.</p>
+  </div>
+  <div class="callout info" style="text-align:center; padding:2.5rem;">
+    <strong>📖 Capítulo en desarrollo</strong>
+    Este capítulo será habilitado próximamente con todo su contenido.
+  </div>
+</div>
+
+</div><!-- end container -->
+
+<footer>
+  <p>📚 Historia Social Latinoamericana &mdash; Fuente: Zorrilla, M. / Cardoso, Ciro F. (1979)</p>
+  <p style="margin-top:0.3rem;">Herramienta didáctica interactiva &mdash; Uso exclusivamente académico</p>
+</footer>
+
+<script>
+// ── CHAPTER NAVIGATION ──
+function showChapter(id, btn) {
+  document.querySelectorAll('.chapter-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.chapter-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ── TAB NAVIGATION ──
+function showTab(chapter, tabId, btn) {
+  const prefix = chapter + '-';
+  document.querySelectorAll('[id^="' + prefix + '"]').forEach(t => t.classList.remove('active'));
+  const header = btn.closest('.tabs-header');
+  header.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(prefix + tabId).classList.add('active');
+  btn.classList.add('active');
+  updateProgress(chapter);
+}
+
+// ── PROGRESS TRACKING ──
+const visitedTabs = { c7: new Set() };
+function updateProgress(chapter) {
+  const total = document.querySelectorAll('[id^="' + chapter + '-t"]').length;
+  visitedTabs[chapter] = visitedTabs[chapter] || new Set();
+  const activeTab = document.querySelector('#' + chapter + ' .tab-content.active');
+  if (activeTab) visitedTabs[chapter].add(activeTab.id);
+  const pct = Math.round((visitedTabs[chapter].size / total) * 100);
+  const bar = document.getElementById('prog' + chapter.replace('c',''));
+  if (bar) bar.style.width = pct + '%';
+}
+
+// ── QUIZ LOGIC ──
+const correctAnswers7 = {
+  'q7-1': 'b',
+  'q7-2': 'b',
+  'q7-3': 'b',
+  'q7-4': 'b',
+  'q7-5': 'b',
+  'q7-6': 'b',
+  'q7-7': 'b',
+  'q7-8': 'c',
+  'q7-9': 'b',
+  'q7-10': 'b'
+};
+
+const feedback7 = {
+  'q7-1': 'Correcto. América Latina exportaba bienes primarios (agrícolas y minerales) e importaba productos manufacturados, lo que derivó en dependencia y subordinación.',
+  'q7-2': 'Correcto. Kuznets define el crecimiento económico moderno principalmente por el incremento sostenido del producto per cápita.',
+  'q7-3': 'Correcto. Ford demostró que la inversión británica en ferrocarriles extranjeros estimulaba la importación de bienes de inversión y consumo británicos, generando superávit en la balanza de pagos de Gran Bretaña.',
+  'q7-4': 'Correcto. El comercio de materias primas latinoamericanas se triplicó entre 1880 y 1913, el período del gran auge agroexportador.',
+  'q7-5': 'Correcto. Ambos eventos marcaron el fin de la rivalidad angloestadounidense y el inicio de la hegemonía de EE.UU. en la región, especialmente en el Caribe.',
+  'q7-6': 'Correcto. La participación fue baja y constante, oscilando entre el 5% y el 9% en los últimos cien años analizados por Cardoso (1979).',
+  'q7-7': 'Correcto. Halperin Donghi define el orden neocolonial como la vinculación permanente de las economías exportadoras a un sistema mundial dominado por potencias industriales.',
+  'q7-8': 'Correcto. El cacao fue desplazado de América Latina hacia países africanos, que consolidaron su dominio en ese mercado alrededor de 1953.',
+  'q7-9': 'Correcto. La baja elasticidad significa que la demanda cambia muy poco ante variaciones de precio, lo que limita los ingresos de los países exportadores.',
+  'q7-10': 'Correcto. Coatsworth concluyó que los ferrocarriles porfirianos no impulsaron la industria nacional, sino que sirvieron al modelo exportador, enriqueciendo inversores extranjeros y generando crecimiento muy desigual.'
+};
+
+let quizAnswered7 = {};
+
+function checkAnswer(btn, qId, chosen) {
+  if (quizAnswered7[qId]) return;
+  quizAnswered7[qId] = chosen;
+  const correct = correctAnswers7[qId];
+  const card = document.getElementById(qId);
+  const allBtns = card.querySelectorAll('.quiz-option');
+  const fb = document.getElementById('fb-' + qId);
+
+  allBtns.forEach(b => b.classList.add('disabled'));
+  allBtns.forEach(b => {
+    const opt = b.getAttribute('onclick').match(/'([a-d])'\)$/)[1];
+    if (opt === correct) b.classList.add('correct');
+  });
+  if (chosen !== correct) btn.classList.add('incorrect');
+
+  fb.textContent = (chosen === correct ? '✅ ' : '❌ Incorrecto. ') + feedback7[qId];
+  fb.className = 'quiz-feedback show ' + (chosen === correct ? 'ok' : 'fail');
+}
+
+function submitQuiz7() {
+  const total = Object.keys(correctAnswers7).length;
+  const answered = Object.keys(quizAnswered7).length;
+  if (answered < total) {
+    alert('Por favor respondé todas las preguntas antes de ver el resultado.');
+    return;
+  }
+  let score = 0;
+  for (const qId in quizAnswered7) {
+    if (quizAnswered7[qId] === correctAnswers7[qId]) score++;
+  }
+  const pct = Math.round((score / total) * 100);
+  let msg = '';
+  if (pct === 100) msg = '¡Perfecto! Dominás completamente el Capítulo 7. 🏆';
+  else if (pct >= 80) msg = '¡Muy bien! Tenés un sólido conocimiento del capítulo. 👍';
+  else if (pct >= 60) msg = 'Bien, pero hay algunos conceptos para repasar. 📖';
+  else msg = 'Te recomendamos repasar el contenido del capítulo. ¡Podés hacerlo! 💪';
+
+  const scoreEl = document.getElementById('score7');
+  document.getElementById('score7-title').textContent = score + ' / ' + total + ' correctas (' + pct + '%)';
+  document.getElementById('score7-text').textContent = msg;
+  scoreEl.style.display = 'block';
+  scoreEl.scrollIntoView({ behavior: 'smooth' });
+}
+
+function resetQuiz7() {
+  quizAnswered7 = {};
+  document.querySelectorAll('#quiz7-container .quiz-option').forEach(b => {
+    b.classList.remove('correct','incorrect','disabled');
+  });
+  document.querySelectorAll('#quiz7-container .quiz-feedback').forEach(f => {
+    f.className = 'quiz-feedback';
+    f.textContent = '';
+  });
+  document.getElementById('score7').style.display = 'none';
+}
+
+// Init progress tracking on tab clicks
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    setTimeout(() => updateProgress('c7'), 100);
+  });
+});
+// Mark first tab as visited on load
+window.addEventListener('load', () => {
+  visitedTabs['c7'] = visitedTabs['c7'] || new Set();
+  visitedTabs['c7'].add('c7-t1');
+  updateProgress('c7');
+});
+</script>
+</body>
+</html>
