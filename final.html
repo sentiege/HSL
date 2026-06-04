@@ -445,6 +445,25 @@
     }
   }
 
+
+  /* ─── FOOTER ─── */
+  .site-footer {
+    background: #0d2137;
+    border-top: 3px solid var(--primary);
+    padding: 1.2rem 1rem;
+    text-align: center;
+    margin-top: 3rem;
+  }
+  .site-footer p {
+    color: #6a8faf;
+    font-size: 0.78rem;
+    margin: 0.3rem 0;
+  }
+  .footer-badge { margin: 0.5rem 0; }
+  .footer-badge img { height: 22px; vertical-align: middle; border-radius: 4px; }
+  .footer-badge a { text-decoration: none; }
+  @media print { .site-footer { display: none !important; } }
+
 </style>
 </head>
 <body>
@@ -2961,6 +2980,16 @@ function limpiarMarcasCorrectas(container) {
 
 </script>
 
+
+<footer class="site-footer">
+  <div class="footer-badge">
+    <a href="https://hits.sh/sentiege.github.io/HSL/final.html/" target="_blank" title="Ver estadísticas de visitas">
+      <img src="https://hits.sh/sentiege.github.io/HSL/final.html.svg" alt="Visitas" />
+    </a>
+  </div>
+  <p>📚 Historia Social Latinoamericana &mdash; Herramienta didáctica interactiva</p>
+  <p>Cada carga de página suma una visita &bull; Hacé click en el badge para ver las estadísticas</p>
+</footer>
 
 <!-- ─── OVERLAYS DE RESUMEN RÁPIDO ─── -->
 
