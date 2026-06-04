@@ -541,31 +541,31 @@
     padding: 1rem 1.2rem;
     margin-bottom: 1rem;
   }
-  .cq-num  { font-size: 0.72rem; font-weight: 700; color: var(--secondary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.3rem; }
-  .cq-q    { font-weight: 600; color: #d0e8ff; margin-bottom: 0.8rem; line-height: 1.5; }
+  .cq-num  { font-size: 0.72rem; font-weight: 700; color: #1a5c3a; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.3rem; }
+  .cq-q    { font-weight: 600; color: #1a2e40; margin-bottom: 0.8rem; line-height: 1.5; }
   .cq-opts { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.35rem; }
-  .cq-opts li { font-size: 0.9rem; color: #aac8e8; padding: 0.4rem 0.7rem; border-radius: 6px; border: 1px solid transparent; }
+  .cq-opts li { font-size: 0.9rem; color: #2c3e50; padding: 0.4rem 0.7rem; border-radius: 6px; border: 1px solid #dde; background: #f7f9fc; }
   .cq-correct {
-    background: rgba(39,174,96,0.12) !important;
-    border: 1px solid rgba(39,174,96,0.4) !important;
-    color: #2ecc71 !important;
-    font-weight: 600 !important;
+    background: rgba(39,174,96,0.15) !important;
+    border: 1px solid rgba(39,174,96,0.5) !important;
+    color: #1a6b3a !important;
+    font-weight: 700 !important;
   }
   .cq-justif {
     margin-top: 0.8rem;
     font-size: 0.85rem;
-    color: #aac8e8;
-    background: rgba(200,169,81,0.08);
-    border-left: 3px solid var(--secondary);
+    color: #2c3e50;
+    background: #fffbe6;
+    border-left: 3px solid #c8a951;
     padding: 0.6rem 0.8rem;
     border-radius: 0 6px 6px 0;
     line-height: 1.5;
   }
   .cq-vf { font-weight: 800; font-size: 1rem; margin: 0.6rem 0 0.3rem; }
-  .cq-verdad { color: #2ecc71; }
-  .cq-falso  { color: #e74c3c; }
+  .cq-verdad { color: #1a6b3a; }
+  .cq-falso  { color: #c0392b; }
   .cq-dev-list { list-style: none; padding: 0; margin: 0.5rem 0 0; display: flex; flex-direction: column; gap: 0.5rem; }
-  .cq-dev-list li { font-size: 0.9rem; color: #aac8e8; padding: 0.5rem 0.7rem; background: rgba(44,100,150,0.15); border-radius: 6px; line-height: 1.5; }
+  .cq-dev-list li { font-size: 0.9rem; color: #2c3e50; padding: 0.5rem 0.7rem; background: #eef4fb; border-radius: 6px; line-height: 1.5; border-left: 3px solid #2980b9; }
 
   /* Print cuestionario */
   @media print {
@@ -3247,7 +3247,7 @@ const _origToggleAccordion = window.toggleAccordion;
         <span>🔢 Parte I — Selección Múltiple</span><span class="acc-arrow">▾</span>
       </button>
       <div class="accordion-body">
-        <p style="color:var(--muted);font-size:0.85rem;margin-bottom:1.2rem;">Seleccioná la opción correcta. Las respuestas correctas están marcadas en verde.</p>
+        <p style="color:#555;font-size:0.85rem;margin-bottom:1.2rem;">Seleccioná la opción correcta. Las respuestas correctas están marcadas en verde.</p>
 
         <div class="cq-card">
           <div class="cq-num">Pregunta 1</div>
@@ -3513,7 +3513,7 @@ const _origToggleAccordion = window.toggleAccordion;
         <span>✅ Parte II — Verdadero / Falso (con justificación)</span><span class="acc-arrow">▸</span>
       </button>
       <div class="accordion-body" style="display:none">
-        <p style="color:var(--muted);font-size:0.85rem;margin-bottom:1.2rem;">Indicá si la afirmación es verdadera o falsa. Cuando es falsa, se incluye la justificación.</p>
+        <p style="color:#555;font-size:0.85rem;margin-bottom:1.2rem;">Indicá si la afirmación es verdadera o falsa. Cuando es falsa, se incluye la justificación.</p>
 
         <div class="cq-card">
           <div class="cq-num">Enunciado 1</div>
@@ -3571,7 +3571,7 @@ const _origToggleAccordion = window.toggleAccordion;
         <span>📖 Parte III — Citas y Desarrollo</span><span class="acc-arrow">▸</span>
       </button>
       <div class="accordion-body" style="display:none">
-        <p style="color:var(--muted);font-size:0.85rem;margin-bottom:1.2rem;">Preguntas de desarrollo que requieren enumerar puntos clave del programa.</p>
+        <p style="color:#555;font-size:0.85rem;margin-bottom:1.2rem;">Preguntas de desarrollo que requieren enumerar puntos clave del programa.</p>
 
         <div class="cq-card">
           <div class="cq-num">Desarrollo 1</div>
