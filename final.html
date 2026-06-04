@@ -464,6 +464,74 @@
   .footer-badge a { text-decoration: none; }
   @media print { .site-footer { display: none !important; } }
 
+
+  /* ─── ACORDEÓN ─── */
+  .accordion-wrapper { margin-bottom: 2rem; }
+
+  .accordion-item {
+    border: 1px solid #2e5f8a;
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  }
+
+  .accordion-btn {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--primary);
+    color: #aac8e8;
+    border: none;
+    padding: 0.85rem 1.2rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.2s, color 0.2s;
+    gap: 0.5rem;
+  }
+  .accordion-btn:hover {
+    background: #1e4a70;
+    color: #fff;
+  }
+  .accordion-btn.open {
+    background: #1e4a70;
+    color: var(--secondary);
+    border-bottom: 2px solid var(--secondary);
+  }
+  .acc-arrow {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    transition: transform 0.25s;
+  }
+  .accordion-btn.open .acc-arrow { transform: rotate(0deg); }
+
+  .accordion-body {
+    background: #fff;
+    padding: 1.5rem 1.5rem 1rem;
+    animation: accFadeIn 0.2s ease;
+  }
+  @keyframes accFadeIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Ocultar tabs-header vacíos (por si quedó alguno) */
+  .tabs-header:empty { display: none; }
+
+  /* Print: mostrar todos los accordion-body */
+  @media print {
+    .accordion-btn { background: #1a3a5c !important; color: #f0c040 !important;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+      page-break-after: avoid; }
+    .accordion-body { display: block !important; padding: 0.5rem 0; }
+    .accordion-item { border: none; box-shadow: none; margin-bottom: 0.5rem;
+      border-bottom: 1px dashed #ccc; }
+    .acc-arrow { display: none; }
+  }
+
 </style>
 </head>
 <body>
@@ -499,20 +567,13 @@
     <button class="pdf-btn" onclick="imprimirCapitulo('cap7')">📄 Exportar PDF</button></div>
   </div>
 
-  <div class="tabs-wrapper">
-    <div class="tabs-header">
-      <button class="tab-btn active" onclick="showTab('c7','t1',this)">📌 Introducción</button>
-      <button class="tab-btn" onclick="showTab('c7','t2',this)">📈 2.1 Comercio y Capital</button>
-      <button class="tab-btn" onclick="showTab('c7','t3',this)">🗺 2.2 Orientación Geográfica</button>
-      <button class="tab-btn" onclick="showTab('c7','t4',this)">🔗 2.3 Integración</button>
-      <button class="tab-btn" onclick="showTab('c7','t5',this)">🌾 2.4 Mercado de Bienes Primarios</button>
-      <button class="tab-btn" onclick="showTab('c7','t6',this)">🃏 Conceptos Clave</button>
-      <button class="tab-btn" onclick="showTab('c7','t7',this)">⏳ Línea de Tiempo</button>
-      <button class="tab-btn" onclick="showTab('c7','t8',this)">✅ Quiz</button>
-    </div>
+  <div class="accordion-wrapper">
+  <div class="accordion-item">
+    <button class="accordion-btn open" onclick="toggleAccordion(this)">
+      <span>📌 Introducción</span><span class="acc-arrow">▾</span>
+    </button>
+    <div class="accordion-body">
 
-    <!-- TAB 1: INTRODUCCIÓN -->
-    <div id="c7-t1" class="tab-content active">
       <h3>1. Capitalismo y Mercado Mundial</h3>
       <p>La incorporación de América Latina al mercado global implicó su vinculación con la economía internacional a través de un patrón estructural muy específico: la región exportaba <strong>bienes primarios</strong> (productos agrícolas y minerales) e importaba <strong>productos manufacturados</strong> de los centros industriales.</p>
 
@@ -542,10 +603,15 @@
         <strong>⚠ Punto crítico</strong>
         El factor crucial para el desarrollo sostenible a largo plazo no son las ganancias de exportación, sino la <em>fortaleza de la estructura interna de producción</em>. Esto explica el desencanto de los especialistas en desarrollo respecto a los beneficios automáticos del comercio internacional.
       </div>
+    
     </div>
+  </div>
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>📈 2.1 Comercio y Capital</span><span class="acc-arrow">▸</span>
+    </button>
+    <div class="accordion-body" style="display:none">
 
-    <!-- TAB 2: COMERCIO INTERNACIONAL Y FLUJOS DE CAPITAL -->
-    <div id="c7-t2" class="tab-content">
       <h3>2.1 El Comercio Internacional, Flujos de Capital y Desarrollo Económico</h3>
 
       <h4>2.1.1 Papel del Comercio Internacional en el Desarrollo</h4>
@@ -625,10 +691,15 @@
       <p>Cardoso señala un fenómeno intelectual e histórico importante: el <strong>desencanto generalizado</strong> que surgió entre muchos especialistas en desarrollo después de la Segunda Guerra Mundial respecto a los beneficios automáticos y suficientes del comercio internacional para alcanzar el desarrollo. Durante el siglo XIX y parte del XX se había sostenido que integrarse al mercado mundial como exportador era suficiente para impulsar el crecimiento.</p>
       <p>La experiencia histórica mostró lo contrario. El factor crucial para el desarrollo económico sostenible a largo plazo no son las ganancias —a veces elevadas y sorprendentes— de las exportaciones, sino la <strong>fortaleza y la estructura interna de la producción</strong> de un país. América Latina creció exportando, pero no logró transformar esa riqueza en industrialización autónoma ni en mejora estructural de su economía interna. Ese fracaso es lo que explica el abandono progresivo del modelo agroexportador como estrategia de desarrollo.</p>
 
+    
     </div>
+  </div>
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>🗺 2.2 Orientación Geográfica</span><span class="acc-arrow">▸</span>
+    </button>
+    <div class="accordion-body" style="display:none">
 
-    <!-- TAB 3: ORIENTACIÓN GEOGRÁFICA -->
-    <div id="c7-t3" class="tab-content">
       <h3>2.2 Tendencia y Orientación Geográfica del Comercio Exterior</h3>
 
       <p>La onda expansiva de las exportaciones latinoamericanas, detenida por la crisis de 1873, se retomó con fuerza en los últimos años del siglo XIX y se mantuvo hasta la Primera Guerra Mundial. El análisis se basa principalmente en estadísticas de importaciones de EE.UU. y el Reino Unido desde América Latina (1850-1914), dada la escasez de otros datos confiables.</p>
@@ -691,10 +762,15 @@
       </div>
       <p>Con el tiempo, esa rivalidad se fue transformando en cooperación. El retiro británico del Caribe y el ascenso estratégico estadounidense convirtieron a México, Centroamérica y el Caribe en zonas prioritarias para la expansión política, militar, comercial y financiera de Estados Unidos.</p>
 
+    
     </div>
+  </div>
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>🔗 2.3 Integración</span><span class="acc-arrow">▸</span>
+    </button>
+    <div class="accordion-body" style="display:none">
 
-    <!-- TAB 4: GRADO DE INTEGRACIÓN -->
-    <div id="c7-t4" class="tab-content">
       <h3>2.3 El Grado de Integración al Mercado Mundial</h3>
 
       <p>Al realizar el balance de América Latina en <strong>1913</strong> —año tomado como referencia porque el auge prolongado del comercio mundial proporciona un ambiente de evaluación homogéneo—, la región estaba plenamente inserta en la economía mundial, pero como <em>proveedora de recursos y receptora de capital</em>, con estructura productiva rígida y fuerte desigualdad interna (Bértola, 2010).</p>
@@ -768,10 +844,15 @@
           <td>Bolivia (estaño), América Central (bananeras), Venezuela pre-1943</td>
         </tr>
       </table>
+    
     </div>
+  </div>
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>🌾 2.4 Mercado de Bienes Primarios</span><span class="acc-arrow">▸</span>
+    </button>
+    <div class="accordion-body" style="display:none">
 
-    <!-- TAB 5: MERCADO DE BIENES PRIMARIOS -->
-    <div id="c7-t5" class="tab-content">
       <h3>2.4 Naturaleza y Evolución del Mercado Mundial de Bienes Primarios</h3>
 
       <h4>Características Básicas del Mercado Mundial Capitalista</h4>
@@ -895,10 +976,15 @@
         Ante el deterioro estructural que describía el libro, los países en desarrollo impulsaron en los años 60 y 70 dos iniciativas clave para reformar el sistema: la <strong>UNCTAD</strong> (Conferencia de las Naciones Unidas sobre Comercio y Desarrollo, fundada en 1964) y el <strong>Nuevo Orden Económico Internacional</strong> (NIEO, proclamado en la ONU en 1974). La UNCTAD buscaba negociar reglas comerciales más justas para los países exportadores de materias primas: precios de referencia estables, fondos de estabilización, preferencias arancelarias. El NIEO exigía soberanía permanente sobre los recursos naturales, control de las multinacionales y acceso preferencial a mercados industrializados. Ambos intentos fracasaron ante la resistencia de los países desarrollados, que no aceptaron modificar las reglas del sistema en su contra —ilustrando, como señala el Prólogo del libro, el <em>"desinterés de los países desarrollados por acompañar un cambio efectivo en el sistema global"</em> (Furtado, 1975; Prebisch, 1964).
       </div>
 
+    
     </div>
+  </div>
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>🃏 Conceptos Clave</span><span class="acc-arrow">▸</span>
+    </button>
+    <div class="accordion-body" style="display:none">
 
-    <!-- TAB 6: CONCEPTOS CLAVE -->
-    <div id="c7-t6" class="tab-content">
       <h3>🃏 Conceptos Clave del Capítulo 7</h3>
       <p style="color:var(--muted); font-size:0.9rem; margin-bottom:1.5rem;">Pasa el cursor por cada tarjeta para repasar las definiciones esenciales.</p>
 
@@ -996,10 +1082,15 @@
         </div>
 
       </div>
+    
     </div>
+  </div>
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>⏳ Línea de Tiempo</span><span class="acc-arrow">▸</span>
+    </button>
+    <div class="accordion-body" style="display:none">
 
-    <!-- TAB 7: LÍNEA DE TIEMPO -->
-    <div id="c7-t7" class="tab-content">
       <h3>⏳ Línea de Tiempo Histórica — Capítulo 7</h3>
       <p style="color:var(--muted); font-size:0.9rem; margin-bottom:1.5rem;">Principales eventos y procesos del proceso de inserción latinoamericana en el mercado mundial.</p>
 
@@ -1097,10 +1188,15 @@
         </div>
 
       </div>
+    
     </div>
+  </div>
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>✅ Quiz</span><span class="acc-arrow">▸</span>
+    </button>
+    <div class="accordion-body" style="display:none">
 
-    <!-- TAB 8: QUIZ -->
-    <div id="c7-t8" class="tab-content">
       <h3>✅ Quiz de Autoevaluación — Capítulo 7</h3>
       <p style="color:var(--muted); font-size:0.9rem; margin-bottom:1.5rem; text-align:center;">Seleccioná la opción correcta. Obtendrás retroalimentación inmediata.</p>
 
@@ -1237,9 +1333,11 @@
           <p id="score7-text"></p>
         </div>
       </div>
+    
     </div>
-
-  </div><!-- end tabs-wrapper cap7 -->
+  </div>
+</div>
+<!-- end tabs-wrapper cap7 -->
 </div><!-- end cap7 -->
 
 <!-- ═══════════════════════════════════════════════════════════ -->
@@ -1256,18 +1354,13 @@
     <button class="pdf-btn" onclick="imprimirCapitulo('cap8')">📄 Exportar PDF</button></div>
   </div>
 
-  <div class="tabs-wrapper">
-    <div class="tabs-header">
-      <button class="tab-btn active" onclick="showTab('c8','t1',this)">📖 Introducción</button>
-      <button class="tab-btn" onclick="showTab('c8','t2',this)">🌍 División del Trabajo</button>
-      <button class="tab-btn" onclick="showTab('c8','t3',this)">🌾 Tipología de Economías</button>
-      <button class="tab-btn" onclick="showTab('c8','t4',this)">⏳ Línea de Tiempo</button>
-      <button class="tab-btn" onclick="showTab('c8','t5',this)">🃏 Flashcards</button>
-      <button class="tab-btn" onclick="showTab('c8','t6',this)">✅ Quiz</button>
-    </div>
+  <div class="accordion-wrapper">
+  <div class="accordion-item">
+    <button class="accordion-btn open" onclick="toggleAccordion(this)">
+      <span>📖 Introducción</span><span class="acc-arrow">▾</span>
+    </button>
+    <div class="accordion-body">
 
-    <!-- TAB 1: INTRODUCCIÓN -->
-    <div id="c8-t1" class="tab-content active">
       <h3>1. Introducción</h3>
 
       <p>La transformación del comercio mundial ha reafirmado la posición histórica de América Latina en la división internacional del trabajo como <strong>proveedora de bienes primarios para el resto del mundo</strong><sup>176</sup>, a la vez que abre ventanas de oportunidad para una integración más sofisticada que requiere de políticas activas para el desarrollo industrial y la mejora de la infraestructura.</p>
@@ -1324,10 +1417,15 @@
           <td>En los países mineros, los productores locales fueron desplazados por organizaciones norteamericanas con gran poder financiero y capacidad tecnológica para tratar minerales de baja ley, profundizando la dependencia.</td>
         </tr>
       </table>
+    
     </div>
+  </div>
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>🌍 División del Trabajo</span><span class="acc-arrow">▸</span>
+    </button>
+    <div class="accordion-body" style="display:none">
 
-    <!-- TAB 2: DIVISIÓN INTERNACIONAL DEL TRABAJO -->
-    <div id="c8-t2" class="tab-content">
       <h3>2. La División Internacional del Trabajo</h3>
 
       <p>La <strong>división internacional del trabajo</strong> es el sistema mediante el cual las naciones se especializan en la producción de determinados bienes o servicios para el comercio global. Este sistema no es neutral: establece una jerarquía entre los estados que considera no solo factores económicos, sino también relaciones de poder político y militar. La pregunta de quién produce materias primas, quién fabrica manufacturas y quién controla los flujos financieros internacionales define esa jerarquía.</p>
@@ -1369,10 +1467,15 @@
         <strong>⚠️ América Latina en ese sistema</strong>
         Las economías latinoamericanas quedaron articuladas al sistema mundial en el rol de la periferia: exportadoras de materias primas e importadoras de manufactura y capital. Este esquema limitó la posibilidad de que el progreso tecnológico se difundiera hacia la región, ya que la creación de nuevas técnicas permanecía concentrada geográficamente en el núcleo industrial del norte.
       </div>
+    
     </div>
+  </div>
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>🌾 Tipología de Economías</span><span class="acc-arrow">▸</span>
+    </button>
+    <div class="accordion-body" style="display:none">
 
-    <!-- TAB 3: TIPOLOGÍA DE ECONOMÍAS EXPORTADORAS -->
-    <div id="c8-t3" class="tab-content">
       <h3>3. Tipología de las Economías Exportadoras de Materias Primas</h3>
 
       <p>Furtado (1975) distingue tres grandes tipos de economías exportadoras en América Latina. La inserción tendió a configurarse en: <strong>a)</strong> países exportadores de productos agrícolas de clima templado, <strong>b)</strong> países exportadores de productos agrícolas tropicales, y <strong>c)</strong> países exportadores de productos minerales. Esta tipología permite comprender por qué algunos países generaron más encadenamientos internos que otros a partir de sus exportaciones.</p>
@@ -1460,10 +1563,15 @@
           <td>Mínimo; "no contribuyó en forma significativa a crear mercado interno" (Furtado)</td>
         </tr>
       </table>
+    
     </div>
+  </div>
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>⏳ Línea de Tiempo</span><span class="acc-arrow">▸</span>
+    </button>
+    <div class="accordion-body" style="display:none">
 
-    <!-- TAB 4: TIMELINE CAP8 -->
-    <div id="c8-t4" class="tab-content">
       <h3>⏳ Línea de Tiempo — Capítulo 8</h3>
       <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1.5rem;">La transformación del comercio internacional y su impacto en América Latina (1760–1914).</p>
       <div class="timeline">
@@ -1492,10 +1600,15 @@
           <p>La guerra interrumpe flujos de capital y comercio. El sistema construido durante un siglo se quiebra. AL pierde mercados y fuentes de financiamiento europeo. Se inicia la búsqueda de alternativas al modelo exportador.</p>
         </div></div>
       </div>
+    
     </div>
+  </div>
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>🃏 Flashcards</span><span class="acc-arrow">▸</span>
+    </button>
+    <div class="accordion-body" style="display:none">
 
-    <!-- TAB 5: FLASHCARDS CAP8 -->
-    <div id="c8-t5" class="tab-content">
       <h3>🃏 Flashcards — Capítulo 8</h3>
       <p class="flash-hint">Hacé click en cada tarjeta para ver la definición. Click de nuevo para voltear.</p>
       <div class="flash-grid">
@@ -1510,10 +1623,15 @@
         <div class="flash-card" data-concept="Encadenamiento Productivo" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Encadenamiento Productivo</div><div class="flash-back">Grado en que una actividad exportadora genera actividad adicional dentro del país (empleos, proveedores, infraestructura). Los enclaves mineros tenían mínimo encadenamiento.</div></div></div>
         <div class="flash-card" data-concept="Grupo B — Economías Tropicales" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Grupo B — Economías Tropicales</div><div class="flash-back">Exportadoras de café, cacao, azúcar, banana. Dependían de salarios bajos y no generaban tecnología propia. Excepción: San Pablo (café), con mayor efecto multiplicador por escala.</div></div></div>
       </div>
+    
     </div>
+  </div>
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>✅ Quiz</span><span class="acc-arrow">▸</span>
+    </button>
+    <div class="accordion-body" style="display:none">
 
-    <!-- TAB 6: QUIZ CAP8 -->
-    <div id="c8-t6" class="tab-content">
       <h3>✅ Quiz de Autoevaluación — Capítulo 8</h3>
       <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1.5rem;text-align:center;">Seleccioná la opción correcta. Obtendrás retroalimentación inmediata.</p>
       <div class="quiz-section" id="quiz8-container">
@@ -1576,9 +1694,11 @@
         <div class="quiz-score"><h3></h3><p></p></div>
         <button onclick="resetQuizNew('quiz8-container')" style="margin-top:1rem;padding:0.6rem 1.4rem;background:var(--primary);color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;">🔄 Reintentar</button>
       </div>
+    
     </div>
-
   </div>
+</div>
+
 </div>
 
 <div id="cap9" class="chapter-panel" data-cap-name="Capítulo 9 — Dependencia Externa">
@@ -1592,19 +1712,13 @@
     <button class="pdf-btn" onclick="imprimirCapitulo('cap9')">📄 Exportar PDF</button></div>
   </div>
 
-  <div class="tabs-wrapper">
-    <div class="tabs-header">
-      <button class="tab-btn active" onclick="showTab('c9','t1',this)">📖 Intro y Marco Teórico</button>
-      <button class="tab-btn" onclick="showTab('c9','t2',this)">🗺 Casos por País</button>
-      <button class="tab-btn" onclick="showTab('c9','t3',this)">🔗 Nuevas Formas de Dependencia</button>
-      <button class="tab-btn" onclick="showTab('c9','t4',this)">⏳ Línea de Tiempo</button>
-      <button class="tab-btn" onclick="showTab('c9','t5',this)">🃏 Flashcards</button>
-      <button class="tab-btn" onclick="showTab('c9','t6',this)">✅ Quiz</button>
-      <button class="tab-btn" onclick="showTab('c9','t7',this)">🆚 Comparador</button>
-    </div>
+  <div class="accordion-wrapper">
+  <div class="accordion-item">
+    <button class="accordion-btn open" onclick="toggleAccordion(this)">
+      <span>📖 Intro y Marco Teórico</span><span class="acc-arrow">▾</span>
+    </button>
+    <div class="accordion-body">
 
-    <!-- TAB 1: INTRODUCCIÓN + PUNTOS CRÍTICOS + CONSECUENCIAS + ESTRATEGIAS -->
-    <div id="c9-t1" class="tab-content active">
       <h3>1. Introducción</h3>
 
       <p>Las <strong>formas tradicionales de la dependencia externa</strong> en América Latina se enmarcan en la <strong>Teoría de la Dependencia</strong><sup>188</sup>, surgida en los años 60 y 70. Esta teoría sostiene que el subdesarrollo de la periferia no es una etapa previa al desarrollo, sino un resultado de las relaciones de poder desiguales entre países centrales e industrializados y países periféricos exportadores de materias primas. La subordinación de las economías latinoamericanas a los intereses externos se manifestó históricamente en tres grandes dimensiones (Cardoso y Faletto):</p>
@@ -1655,10 +1769,15 @@
 
       <h4>2.5 Instrumentos</h4>
       <p>Las políticas económicas se identifican mejor por el tipo de instrumento utilizado: <strong>cambiario</strong> (moneda y tipo de cambio), <strong>fiscal</strong> (impuestos y gasto público) y <strong>comercial</strong> (aranceles, cuotas). La producción de metales no ferrosos y petróleo, controlada por empresas internacionales, dejaba solo una pequeña parte de ingresos para factores locales: el avance tecnológico reducía la participación laboral, las compañías importaban la mayoría de insumos y las empresas petroleras limitaban los gastos locales al igualar salarios a ingresos locales de ventas de combustibles. <strong>Chile fue pionero</strong>: implementó políticas para retener divisas generadas por exportaciones de cobre, aumentando la retención del <strong>17% en 1928–29 a más del 34% a fines de los años treinta</strong> (Furtado, 1975), marcando un cambio clave respecto al aislamiento económico previo.</p>
+    
     </div>
+  </div>
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>🗺 Casos por País</span><span class="acc-arrow">▸</span>
+    </button>
+    <div class="accordion-body" style="display:none">
 
-    <!-- TAB 2: CASOS POR PAÍS -->
-    <div id="c9-t2" class="tab-content">
       <h3>Casos Nacionales de Políticas Correctivas</h3>
 
       <h4>2.6 La Política de Petróleo en Venezuela (p. 90)</h4>
@@ -1731,10 +1850,15 @@
           <td>Recuperación progresiva de la renta cuprífera; CODELCO</td>
         </tr>
       </table>
+    
     </div>
+  </div>
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>🔗 Nuevas Formas de Dependencia</span><span class="acc-arrow">▸</span>
+    </button>
+    <div class="accordion-body" style="display:none">
 
-    <!-- TAB 3: NUEVAS FORMAS DE DEPENDENCIA -->
-    <div id="c9-t3" class="tab-content">
       <h3>3. Nuevas Formas de Dependencia Externa</h3>
 
       <p>Aunque las formas tradicionales de dependencia estaban siendo superadas a mediados del siglo XX, surgieron nuevas y más complejas formas de dependencia exterior, impulsadas principalmente por la expansión del control de grupos extranjeros sobre las economías latinoamericanas (Furtado, 1975). El problema central que se vislumbró para la política económica de la región fue cómo lidiar con estas nuevas modalidades de dependencia, que se convirtieron en el eje de debate de los decenios siguientes.</p>
@@ -1826,10 +1950,15 @@
           <td>Decisiones estratégicas tomadas en el exterior; drenaje de excedentes</td>
         </tr>
       </table>
+    
     </div>
+  </div>
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>⏳ Línea de Tiempo</span><span class="acc-arrow">▸</span>
+    </button>
+    <div class="accordion-body" style="display:none">
 
-    <!-- TAB 4: TIMELINE CAP9 -->
-    <div id="c9-t4" class="tab-content">
       <h3>⏳ Línea de Tiempo — Capítulo 9</h3>
       <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1.5rem;">Formas de dependencia externa: hitos clave en las políticas correctivas y la nueva dependencia (1938–1965).</p>
       <div class="timeline">
@@ -1858,10 +1987,15 @@
           <p>La inversión extranjera se triplicó en 15 años. El control externo sobre la industria latinoamericana se consolidó. Las empresas multinacionales tomaban decisiones en sus casas matrices, drenando excedentes y limitando el desarrollo autónomo.</p>
         </div></div>
       </div>
+    
     </div>
+  </div>
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>🃏 Flashcards</span><span class="acc-arrow">▸</span>
+    </button>
+    <div class="accordion-body" style="display:none">
 
-    <!-- TAB 5: FLASHCARDS CAP9 -->
-    <div id="c9-t5" class="tab-content">
       <h3>🃏 Flashcards — Capítulo 9</h3>
       <p class="flash-hint">Hacé click en cada tarjeta para ver la definición. Click de nuevo para voltear.</p>
       <div class="flash-grid">
@@ -1876,10 +2010,15 @@
         <div class="flash-card" data-concept="Nuevas Formas de Dependencia" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Nuevas Formas de Dependencia</div><div class="flash-back">Tres dimensiones: 1) flujos financieros (BID, BIRF, banca privada), 2) tecnología (licencias, patentes, know-how), 3) control industrial (multinacionales en sectores dinámicos).</div></div></div>
         <div class="flash-card" data-concept="Política Petrolera de Venezuela" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Política Petrolera de Venezuela</div><div class="flash-back">Evolución: concesiones privadas totales (s.XIX) → "fifty-fifty" (1943) → CVP (Corporación Venezolana de Petróleo, 1960) → OPEP (1960) → nacionalización (1976).</div></div></div>
       </div>
+    
     </div>
+  </div>
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>✅ Quiz</span><span class="acc-arrow">▸</span>
+    </button>
+    <div class="accordion-body" style="display:none">
 
-    <!-- TAB 6: QUIZ CAP9 -->
-    <div id="c9-t6" class="tab-content">
       <h3>✅ Quiz de Autoevaluación — Capítulo 9</h3>
       <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1.5rem;text-align:center;">Seleccioná la opción correcta. Obtendrás retroalimentación inmediata.</p>
       <div class="quiz-section" id="quiz9-container">
@@ -1942,11 +2081,15 @@
         <div class="quiz-score"><h3></h3><p></p></div>
         <button onclick="resetQuizNew('quiz9-container')" style="margin-top:1rem;padding:0.6rem 1.4rem;background:var(--primary);color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;">🔄 Reintentar</button>
       </div>
+    
     </div>
+  </div>
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>🆚 Comparador</span><span class="acc-arrow">▸</span>
+    </button>
+    <div class="accordion-body" style="display:none">
 
-
-    <!-- TAB 7: COMPARADOR DE PAÍSES CAP9 -->
-    <div id="c9-t7" class="tab-content">
       <h3>🆚 Comparador de Países — Capítulo 9</h3>
       <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1.2rem;">Seleccioná dos países para comparar sus políticas correctivas lado a lado. Las celdas <span style="color:#27ae60;font-weight:700;">verdes</span> indican similitudes; las <span style="color:#e74c3c;font-weight:700;">rojas</span>, diferencias clave.</p>
 
@@ -1973,9 +2116,11 @@
           <span><div class="dot" style="background:#e74c3c"></div> Diferencia clave</span>
         </div>
       </div>
+    
     </div>
-
   </div>
+</div>
+
 </div>
 
 <div id="cap10" class="chapter-panel" data-cap-name="Capítulo 10 — Ocaso del Liberalismo">
@@ -1989,18 +2134,13 @@
     <button class="pdf-btn" onclick="imprimirCapitulo('cap10')">📄 Exportar PDF</button></div>
   </div>
 
-  <div class="tabs-wrapper">
-    <div class="tabs-header">
-      <button class="tab-btn active" onclick="showTab('c10','t1',this)">📖 Intro y Puntos de Inflexión</button>
-      <button class="tab-btn" onclick="showTab('c10','t2',this)">⚙️ Causas y Rev. Mexicana</button>
-      <button class="tab-btn" onclick="showTab('c10','t3',this)">🌎 Polarización e Intervencionismo</button>
-      <button class="tab-btn" onclick="showTab('c10','t4',this)">⏳ Línea de Tiempo</button>
-      <button class="tab-btn" onclick="showTab('c10','t5',this)">🃏 Flashcards</button>
-      <button class="tab-btn" onclick="showTab('c10','t6',this)">✅ Quiz</button>
-    </div>
+  <div class="accordion-wrapper">
+  <div class="accordion-item">
+    <button class="accordion-btn open" onclick="toggleAccordion(this)">
+      <span>📖 Intro y Puntos de Inflexión</span><span class="acc-arrow">▾</span>
+    </button>
+    <div class="accordion-body">
 
-    <!-- TAB 1: INTRODUCCIÓN + PUNTOS DE INFLEXIÓN -->
-    <div id="c10-t1" class="tab-content active">
       <h3>1. Introducción</h3>
 
       <p>La <strong>decadencia del liberalismo oligárquico</strong> en América Latina fue el resultado de tensiones acumuladas durante décadas entre el modelo agroexportador y las nuevas demandas sociales, políticas e ideológicas surgidas del propio proceso de modernización que ese modelo había impulsado. El orden liberal no colapsó por un solo golpe externo: fue erosionado desde adentro por las contradicciones que generó.</p>
@@ -2073,10 +2213,15 @@
         <strong>📌 América Latina vs. Europa: el mismo pasaje a la modernidad</strong>
         Los problemas que enfrentó América Latina no eran sustancialmente distintos a los europeos. Ambas regiones transitaron de una sociedad de elite a una de masas, y de un enfoque religioso a uno político. Ambas lidiaron con el paso del liberalismo oligárquico a la democracia popular. La diferencia clave: América Latina lo hizo <em>sin la presión directa de la guerra</em> pero también siendo <em>más arcaica y atrasada</em> que los países europeos más modernos. El resultado fue el mismo: largas y trágicas crisis políticas, sociales, espirituales y culturales (Zanatta, 2012).
       </div>
+    
     </div>
+  </div>
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>⚙️ Causas y Rev. Mexicana</span><span class="acc-arrow">▸</span>
+    </button>
+    <div class="accordion-body" style="display:none">
 
-    <!-- TAB 2: CAUSAS + REVOLUCIÓN MEXICANA -->
-    <div id="c10-t2" class="tab-content">
       <h3>3. Causas Políticas</h3>
 
       <p>¿Qué causó la crisis de los regímenes oligárquicos de la edad liberal? Una respuesta única es inalcanzable dado que los países experimentaron evoluciones distintas, pero existe un <strong>hilo conductor transversal</strong>: la <strong>Gran Depresión de 1929</strong> y sus profundas consecuencias económicas y sociales, que obligaron a cada sistema político a reaccionar, resultando en golpes, revoluciones, agonías o evoluciones democráticas (Zanatta, 2012).</p>
@@ -2146,10 +2291,15 @@
         <strong>⚠️ Sindicalismo, anarquismo y "cuestión obrera"</strong>
         La <strong>"cuestión obrera"</strong> —el conflicto entre el capital y el trabajo— emergió como el gran desafío social de los regímenes liberales desde fines del siglo XIX. Los movimientos <strong>anarquistas</strong> y <strong>sindicalistas</strong>, liderados frecuentemente por inmigrantes europeos (italianos, españoles) en Argentina, Uruguay y Brasil, organizaron huelgas generales y demandaron derechos laborales básicos. La <strong>Semana Trágica</strong> en Argentina (1919) y el movimiento obrero chileno y brasileño mostraron la profundidad de este conflicto. En Brasil, el <strong>integralismo</strong> —movimiento fascista liderado por Plínio Salgado, fundado en 1932— y el Partido Comunista (1922) representaron los polos ideológicos opuestos en la respuesta a esta cuestión (Zanatta, 2012).
       </div>
+    
     </div>
+  </div>
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>🌎 Polarización e Intervencionismo</span><span class="acc-arrow">▸</span>
+    </button>
+    <div class="accordion-body" style="display:none">
 
-    <!-- TAB 3: POLARIZACIÓN + RUTAS DE CRISIS + INTERVENCIONISMO -->
-    <div id="c10-t3" class="tab-content">
       <h3>6. Polarización Ideológica</h3>
 
       <div class="callout info">
@@ -2256,10 +2406,15 @@
 
       <h4>Relación entre intervencionismo y crisis liberal</h4>
       <p>El intervencionismo estadounidense y la crisis del liberalismo oligárquico estaban estructuralmente vinculados: las elites agroexportadoras latinoamericanas necesitaban la estabilidad política que EE. UU. garantizaba para mantener sus negocios; a su vez, EE. UU. necesitaba esas elites para proteger sus inversiones. Este pacto implícito fue uno de los factores que retrasó la democratización efectiva en la región y que nutrió el antiimperialismo como respuesta política de los sectores excluidos.</p>
+    
     </div>
+  </div>
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>⏳ Línea de Tiempo</span><span class="acc-arrow">▸</span>
+    </button>
+    <div class="accordion-body" style="display:none">
 
-    <!-- TAB 4: TIMELINE CAP10 -->
-    <div id="c10-t4" class="tab-content">
       <h3>⏳ Línea de Tiempo — Capítulo 10</h3>
       <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1.5rem;">La decadencia del liberalismo oligárquico en América Latina (1873–1934).</p>
       <div class="timeline">
@@ -2296,10 +2451,15 @@
           <p>Roosevelt anunció la "Política del Buen Vecino": renuncia formal a intervenciones militares directas. Derogó la Enmienda Platt (1934) y retiró marines de Nicaragua. Sin embargo el control económico continuó vía corporaciones (UFCO) y apoyo a dictaduras amigables.</p>
         </div></div>
       </div>
+    
     </div>
+  </div>
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>🃏 Flashcards</span><span class="acc-arrow">▸</span>
+    </button>
+    <div class="accordion-body" style="display:none">
 
-    <!-- TAB 5: FLASHCARDS CAP10 -->
-    <div id="c10-t5" class="tab-content">
       <h3>🃏 Flashcards — Capítulo 10</h3>
       <p class="flash-hint">Hacé click en cada tarjeta para ver la definición. Click de nuevo para voltear.</p>
       <div class="flash-grid">
@@ -2314,10 +2474,15 @@
         <div class="flash-card" data-concept="Plan de Ayala (1911)" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Plan de Ayala (1911)</div><div class="flash-back">Manifiesto de Emiliano Zapata: exigía la restitución de tierras comunales (ejidos) a los pueblos indígenas despojados durante el Porfiriato. Síntesis del agrarismo popular: "La tierra es de quien la trabaja."</div></div></div>
         <div class="flash-card" data-concept="Crisis de Representación Liberal" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Crisis de Representación Liberal</div><div class="flash-back">El Estado liberal respondía solo a los exportadores. Clases medias urbanas, proletariado y campesinado excluidos por diseño: sufragio restringido, fraude electoral y represión de la movilización popular.</div></div></div>
       </div>
+    
     </div>
+  </div>
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>✅ Quiz</span><span class="acc-arrow">▸</span>
+    </button>
+    <div class="accordion-body" style="display:none">
 
-    <!-- TAB 6: QUIZ CAP10 -->
-    <div id="c10-t6" class="tab-content">
       <h3>✅ Quiz de Autoevaluación — Capítulo 10</h3>
       <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1.5rem;text-align:center;">Seleccioná la opción correcta. Obtendrás retroalimentación inmediata.</p>
       <div class="quiz-section" id="quiz10-container">
@@ -2380,9 +2545,11 @@
         <div class="quiz-score"><h3></h3><p></p></div>
         <button onclick="resetQuizNew('quiz10-container')" style="margin-top:1rem;padding:0.6rem 1.4rem;background:var(--primary);color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;">🔄 Reintentar</button>
       </div>
+    
     </div>
-
   </div>
+</div>
+
 </div>
 
 
@@ -2902,8 +3069,9 @@ function imprimirCapitulo(capId) {
   if (!target) return;
   target.classList.add('print-target');
 
-  // 3. Dentro del capítulo, mostrar TODOS los tabs
-  target.querySelectorAll('.tab-content').forEach(t => t.classList.add('tab-print-open'));
+  // 3. Dentro del capítulo, mostrar TODOS los accordion-body
+  target.querySelectorAll('.accordion-body').forEach(b => b.setAttribute('data-print-open','1'));
+  target.querySelectorAll('.accordion-body').forEach(b => b.style.display='block');
 
   // 4. Marcar respuestas correctas del quiz para que se vean en print
   marcarCorrectas(target);
@@ -2924,7 +3092,9 @@ function imprimirCapitulo(capId) {
     document.title = prevTitle;
     document.body.classList.remove('print-mode');
     allPanels.forEach(p => p.classList.remove('print-target'));
-    target.querySelectorAll('.tab-content').forEach(t => t.classList.remove('tab-print-open'));
+    target.querySelectorAll('[data-print-open]').forEach(b => { b.removeAttribute('data-print-open'); });
+    // Restaurar estado visual de los accordion (solo los que estaban cerrados)
+    target.querySelectorAll('.accordion-body:not([data-was-open])').forEach(b => b.style.display='none');
     limpiarMarcasCorrectas(target);
   }, 500);
 }
@@ -2978,6 +3148,33 @@ function limpiarMarcasCorrectas(container) {
   });
 }
 
+
+/* ─── ACORDEÓN ─── */
+function toggleAccordion(btn) {
+  const body  = btn.nextElementSibling;
+  const arrow = btn.querySelector('.acc-arrow');
+  const isOpen = btn.classList.contains('open');
+
+  if (isOpen) {
+    // Cerrar
+    body.style.display = 'none';
+    btn.classList.remove('open');
+    arrow.textContent = '▸';
+  } else {
+    // Abrir
+    body.style.display = 'block';
+    btn.classList.add('open');
+    arrow.textContent = '▾';
+    // Scroll suave al ítem abierto (útil en mobile)
+    setTimeout(() => {
+      btn.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 50);
+  }
+}
+
+/* Asegurarse que el comparador se inicialice cuando se abre ese acordeón */
+const _origToggleAccordion = window.toggleAccordion;
+</script>
 </script>
 
 
