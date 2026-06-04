@@ -978,16 +978,16 @@
       <h3>✅ Quiz de Autoevaluación — Capítulo 7</h3>
       <p style="color:var(--muted); font-size:0.9rem; margin-bottom:1.5rem; text-align:center;">Seleccioná la opción correcta. Obtendrás retroalimentación inmediata.</p>
 
-      <div id="quiz7-container">
+      <div id="quiz7-container" class="quiz-section">
 
         <div class="quiz-card" id="q7-1">
           <div class="q-num">Pregunta 1 de 10</div>
           <div class="q-text">¿Cuál fue el patrón estructural mediante el cual América Latina se incorporó al mercado mundial?</div>
           <div class="quiz-options">
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-1','a')">a) Exportación de manufacturas e importación de materias primas</button>
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-1','b')">b) Exportación de bienes primarios e importación de productos manufacturados</button>
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-1','c')">c) Intercambio equilibrado de bienes industriales entre regiones</button>
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-1','d')">d) Autarquía productiva con comercio solo entre países latinoamericanos</button>
+            <button class="quiz-option" data-opt="a" onclick="checkAnswer(this,'q7-1','a')" >a) Exportación de manufacturas e importación de materias primas</button>
+            <button class="quiz-option" data-opt="b" onclick="checkAnswer(this,'q7-1','b')" >b) Exportación de bienes primarios e importación de productos manufacturados</button>
+            <button class="quiz-option" data-opt="c" onclick="checkAnswer(this,'q7-1','c')" >c) Intercambio equilibrado de bienes industriales entre regiones</button>
+            <button class="quiz-option" data-opt="d" onclick="checkAnswer(this,'q7-1','d')" >d) Autarquía productiva con comercio solo entre países latinoamericanos</button>
           </div>
           <div class="quiz-feedback" id="fb-q7-1"></div>
         </div>
@@ -996,10 +996,10 @@
           <div class="q-num">Pregunta 2 de 10</div>
           <div class="q-text">Según Kuznets, ¿cuál es la característica más sobresaliente del "crecimiento económico moderno"?</div>
           <div class="quiz-options">
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-2','a')">a) La expansión del comercio exterior como porcentaje del PNB</button>
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-2','b')">b) El ritmo de incremento sostenido en el producto per cápita</button>
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-2','c')">c) La reducción de la desigualdad entre países centrales y periféricos</button>
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-2','d')">d) La especialización en la producción de bienes primarios</button>
+            <button class="quiz-option" data-opt="a" onclick="checkAnswer(this,'q7-2','a')" >a) La expansión del comercio exterior como porcentaje del PNB</button>
+            <button class="quiz-option" data-opt="b" onclick="checkAnswer(this,'q7-2','b')" >b) El ritmo de incremento sostenido en el producto per cápita</button>
+            <button class="quiz-option" data-opt="c" onclick="checkAnswer(this,'q7-2','c')" >c) La reducción de la desigualdad entre países centrales y periféricos</button>
+            <button class="quiz-option" data-opt="d" onclick="checkAnswer(this,'q7-2','d')" >d) La especialización en la producción de bienes primarios</button>
           </div>
           <div class="quiz-feedback" id="fb-q7-2"></div>
         </div>
@@ -1008,10 +1008,10 @@
           <div class="q-num">Pregunta 3 de 10</div>
           <div class="q-text">¿Qué es el "Mecanismo de Ford" (A.G. Ford)?</div>
           <div class="quiz-options">
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-3','a')">a) La teoría de que los ferrocarriles eliminan la dependencia de materias primas</button>
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-3','b')">b) La explicación de cómo la inversión británica en ferrocarriles extranjeros estimulaba la demanda de productos británicos, generando superávit en su balanza de pagos</button>
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-3','c')">c) El modelo industrial de Henry Ford aplicado a la producción latinoamericana</button>
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-3','d')">d) La teoría de sustitución de importaciones impulsada por ferrocarriles</button>
+            <button class="quiz-option" data-opt="a" onclick="checkAnswer(this,'q7-3','a')" >a) La teoría de que los ferrocarriles eliminan la dependencia de materias primas</button>
+            <button class="quiz-option" data-opt="b" onclick="checkAnswer(this,'q7-3','b')" >b) La explicación de cómo la inversión británica en ferrocarriles extranjeros estimulaba la demanda de productos británicos, generando superávit en su balanza de pagos</button>
+            <button class="quiz-option" data-opt="c" onclick="checkAnswer(this,'q7-3','c')" >c) El modelo industrial de Henry Ford aplicado a la producción latinoamericana</button>
+            <button class="quiz-option" data-opt="d" onclick="checkAnswer(this,'q7-3','d')" >d) La teoría de sustitución de importaciones impulsada por ferrocarriles</button>
           </div>
           <div class="quiz-feedback" id="fb-q7-3"></div>
         </div>
@@ -1020,10 +1020,10 @@
           <div class="q-num">Pregunta 4 de 10</div>
           <div class="q-text">¿Cuánto se triplicó el comercio de materias primas latinoamericanas y en qué período?</div>
           <div class="quiz-options">
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-4','a')">a) Entre 1850 y 1880</button>
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-4','b')">b) Entre 1880 y 1913</button>
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-4','c')">c) Entre 1913 y 1929</button>
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-4','d')">d) Entre 1929 y 1945</button>
+            <button class="quiz-option" data-opt="a" onclick="checkAnswer(this,'q7-4','a')" >a) Entre 1850 y 1880</button>
+            <button class="quiz-option" data-opt="b" onclick="checkAnswer(this,'q7-4','b')" >b) Entre 1880 y 1913</button>
+            <button class="quiz-option" data-opt="c" onclick="checkAnswer(this,'q7-4','c')" >c) Entre 1913 y 1929</button>
+            <button class="quiz-option" data-opt="d" onclick="checkAnswer(this,'q7-4','d')" >d) Entre 1929 y 1945</button>
           </div>
           <div class="quiz-feedback" id="fb-q7-4"></div>
         </div>
@@ -1032,10 +1032,10 @@
           <div class="q-num">Pregunta 5 de 10</div>
           <div class="q-text">¿Qué marcaron el retiro británico del Caribe (1898) y el Tratado Hay-Pauncefote (1901)?</div>
           <div class="quiz-options">
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-5','a')">a) El inicio de la hegemonía británica en América del Sur</button>
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-5','b')">b) El fin de la rivalidad entre Gran Bretaña y EE.UU. y el comienzo de la hegemonía estadounidense en América Latina</button>
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-5','c')">c) La independencia económica de América Central</button>
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-5','d')">d) La creación del sistema de libre comercio interamericano</button>
+            <button class="quiz-option" data-opt="a" onclick="checkAnswer(this,'q7-5','a')" >a) El inicio de la hegemonía británica en América del Sur</button>
+            <button class="quiz-option" data-opt="b" onclick="checkAnswer(this,'q7-5','b')" >b) El fin de la rivalidad entre Gran Bretaña y EE.UU. y el comienzo de la hegemonía estadounidense en América Latina</button>
+            <button class="quiz-option" data-opt="c" onclick="checkAnswer(this,'q7-5','c')" >c) La independencia económica de América Central</button>
+            <button class="quiz-option" data-opt="d" onclick="checkAnswer(this,'q7-5','d')" >d) La creación del sistema de libre comercio interamericano</button>
           </div>
           <div class="quiz-feedback" id="fb-q7-5"></div>
         </div>
@@ -1044,10 +1044,10 @@
           <div class="q-num">Pregunta 6 de 10</div>
           <div class="q-text">¿Cuál era la participación de América Latina en el comercio mundial en los últimos cien años del siglo analizado?</div>
           <div class="quiz-options">
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-6','a')">a) Entre el 15% y el 25%</button>
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-6','b')">b) Entre el 5% y el 9%</button>
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-6','c')">c) Más del 30%</button>
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-6','d')">d) Menos del 1%</button>
+            <button class="quiz-option" data-opt="a" onclick="checkAnswer(this,'q7-6','a')" >a) Entre el 15% y el 25%</button>
+            <button class="quiz-option" data-opt="b" onclick="checkAnswer(this,'q7-6','b')" >b) Entre el 5% y el 9%</button>
+            <button class="quiz-option" data-opt="c" onclick="checkAnswer(this,'q7-6','c')" >c) Más del 30%</button>
+            <button class="quiz-option" data-opt="d" onclick="checkAnswer(this,'q7-6','d')" >d) Menos del 1%</button>
           </div>
           <div class="quiz-feedback" id="fb-q7-6"></div>
         </div>
@@ -1056,10 +1056,10 @@
           <div class="q-num">Pregunta 7 de 10</div>
           <div class="q-text">Según Halperin Donghi, ¿qué es el "orden neocolonial"?</div>
           <div class="quiz-options">
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-7','a')">a) El dominio territorial directo de potencias europeas sobre América Latina</button>
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-7','b')">b) La vinculación permanente de las economías exportadoras a un sistema mundial dominado por las potencias industriales</button>
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-7','c')">c) El modelo de industrialización impulsado por los estados latinoamericanos</button>
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-7','d')">d) La alianza comercial entre países latinoamericanos para negociar con potencias externas</button>
+            <button class="quiz-option" data-opt="a" onclick="checkAnswer(this,'q7-7','a')" >a) El dominio territorial directo de potencias europeas sobre América Latina</button>
+            <button class="quiz-option" data-opt="b" onclick="checkAnswer(this,'q7-7','b')" >b) La vinculación permanente de las economías exportadoras a un sistema mundial dominado por las potencias industriales</button>
+            <button class="quiz-option" data-opt="c" onclick="checkAnswer(this,'q7-7','c')" >c) El modelo de industrialización impulsado por los estados latinoamericanos</button>
+            <button class="quiz-option" data-opt="d" onclick="checkAnswer(this,'q7-7','d')" >d) La alianza comercial entre países latinoamericanos para negociar con potencias externas</button>
           </div>
           <div class="quiz-feedback" id="fb-q7-7"></div>
         </div>
@@ -1068,10 +1068,10 @@
           <div class="q-num">Pregunta 8 de 10</div>
           <div class="q-text">¿Cuál producto vio su producción desplazada de América Latina hacia África en torno a 1953?</div>
           <div class="quiz-options">
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-8','a')">a) Café</button>
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-8','b')">b) Petróleo</button>
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-8','c')">c) Cacao</button>
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-8','d')">d) Cereales</button>
+            <button class="quiz-option" data-opt="a" onclick="checkAnswer(this,'q7-8','a')" >a) Café</button>
+            <button class="quiz-option" data-opt="b" onclick="checkAnswer(this,'q7-8','b')" >b) Petróleo</button>
+            <button class="quiz-option" data-opt="c" onclick="checkAnswer(this,'q7-8','c')" >c) Cacao</button>
+            <button class="quiz-option" data-opt="d" onclick="checkAnswer(this,'q7-8','d')" >d) Cereales</button>
           </div>
           <div class="quiz-feedback" id="fb-q7-8"></div>
         </div>
@@ -1080,10 +1080,10 @@
           <div class="q-num">Pregunta 9 de 10</div>
           <div class="q-text">¿Qué significa que los bienes primarios tienen "baja elasticidad de la demanda"?</div>
           <div class="quiz-options">
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-9','a')">a) Que su demanda crece muy rápido cuando la economía mundial se expande</button>
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-9','b')">b) Que la cantidad demandada cambia muy poco incluso ante variaciones significativas en su precio</button>
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-9','c')">c) Que son productos que solo se comercian dentro de la región latinoamericana</button>
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-9','d')">d) Que pueden ser fácilmente sustituidos por productos industriales de la misma región</button>
+            <button class="quiz-option" data-opt="a" onclick="checkAnswer(this,'q7-9','a')" >a) Que su demanda crece muy rápido cuando la economía mundial se expande</button>
+            <button class="quiz-option" data-opt="b" onclick="checkAnswer(this,'q7-9','b')" >b) Que la cantidad demandada cambia muy poco incluso ante variaciones significativas en su precio</button>
+            <button class="quiz-option" data-opt="c" onclick="checkAnswer(this,'q7-9','c')" >c) Que son productos que solo se comercian dentro de la región latinoamericana</button>
+            <button class="quiz-option" data-opt="d" onclick="checkAnswer(this,'q7-9','d')" >d) Que pueden ser fácilmente sustituidos por productos industriales de la misma región</button>
           </div>
           <div class="quiz-feedback" id="fb-q7-9"></div>
         </div>
@@ -1092,10 +1092,10 @@
           <div class="q-num">Pregunta 10 de 10</div>
           <div class="q-text">¿Cuál fue la conclusión de Coatsworth sobre los ferrocarriles en el México porfiriano?</div>
           <div class="quiz-options">
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-10','a')">a) Que impulsaron el desarrollo industrial interno y redujeron la dependencia extranjera</button>
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-10','b')">b) Que sirvieron como herramienta del modelo exportador de materias primas, enriqueciendo inversores extranjeros y generando crecimiento muy desigual</button>
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-10','c')">c) Que crearon una clase obrera industrial que transformó la estructura social mexicana</button>
-            <button class="quiz-option" onclick="checkAnswer(this,'q7-10','d')">d) Que permitieron la integración del mercado interno mexicano independientemente del capital extranjero</button>
+            <button class="quiz-option" data-opt="a" onclick="checkAnswer(this,'q7-10','a')" >a) Que impulsaron el desarrollo industrial interno y redujeron la dependencia extranjera</button>
+            <button class="quiz-option" data-opt="b" onclick="checkAnswer(this,'q7-10','b')" >b) Que sirvieron como herramienta del modelo exportador de materias primas, enriqueciendo inversores extranjeros y generando crecimiento muy desigual</button>
+            <button class="quiz-option" data-opt="c" onclick="checkAnswer(this,'q7-10','c')" >c) Que crearon una clase obrera industrial que transformó la estructura social mexicana</button>
+            <button class="quiz-option" data-opt="d" onclick="checkAnswer(this,'q7-10','d')" >d) Que permitieron la integración del mercado interno mexicano independientemente del capital extranjero</button>
           </div>
           <div class="quiz-feedback" id="fb-q7-10"></div>
         </div>
@@ -2562,6 +2562,10 @@ function resetQuizNew(containerId) {
 function flipCard(el) { el.classList.toggle('flipped'); }
 
 /* ─── ANSWER REGISTRY ─── */
+registerAnswer('q7-1','b'); registerAnswer('q7-2','b'); registerAnswer('q7-3','b');
+registerAnswer('q7-4','b'); registerAnswer('q7-5','b'); registerAnswer('q7-6','b');
+registerAnswer('q7-7','b'); registerAnswer('q7-8','c'); registerAnswer('q7-9','b');
+registerAnswer('q7-10','b');
 registerAnswer('q8-1','b'); registerAnswer('q8-2','c'); registerAnswer('q8-3','b');
 registerAnswer('q8-4','c'); registerAnswer('q8-5','c'); registerAnswer('q8-6','b');
 registerAnswer('q8-7','b'); registerAnswer('q8-8','b');
@@ -2747,6 +2751,10 @@ window.showChapter = function(capId, btn) {
     }
   }
 };
+
+
+/* ─── ALIAS COMPAT CAP7 ─── */
+function resetQuiz7() { resetQuizNew('quiz7-container'); }
 
 </script>
 
