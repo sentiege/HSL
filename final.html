@@ -339,6 +339,112 @@
   }
   .map-nav-btn:hover { opacity: 0.85; }
 
+
+  /* ─── BOTÓN PDF ─── */
+  .pdf-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: #c0392b; color: #fff;
+    border: none; border-radius: 20px; padding: 0.4rem 1.1rem;
+    font-size: 0.82rem; font-weight: 700; cursor: pointer;
+    margin-top: 0.5rem; margin-left: 0.5rem; transition: opacity 0.2s;
+  }
+  .pdf-btn:hover { opacity: 0.85; }
+  .pdf-btn-global {
+    display: flex; align-items: center; gap: 8px;
+    background: #c0392b; color: #fff;
+    border: none; border-radius: 8px; padding: 0.6rem 1.4rem;
+    font-size: 0.88rem; font-weight: 700; cursor: pointer;
+    margin: 1.2rem auto 0; transition: opacity 0.2s;
+  }
+  .pdf-btn-global:hover { opacity: 0.85; }
+
+  /* ─── PRINT STYLES ─── */
+  @media print {
+    /* Ocultar todo lo que no es contenido */
+    header, nav, .resumen-btn, .pdf-btn, .pdf-btn-global,
+    .tabs-header, .tab-btn, .quiz-option, .quiz-score,
+    button, .resumen-overlay, .map-tooltip,
+    #map-panel, .tl-dot { display: none !important; }
+
+    /* Resetear layout */
+    body { background: #fff !important; color: #000 !important; font-size: 11pt; }
+    .container { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
+
+    /* Mostrar SOLO el capítulo marcado para imprimir */
+    .chapter-panel { display: none !important; }
+    .chapter-panel.print-target { display: block !important; }
+    .tab-content.tab-print-open { display: block !important; }
+
+    /* Mostrar TODOS los tabs dentro del capítulo */
+    .tab-content { display: block !important; margin-bottom: 1.5rem; border-bottom: 1px dashed #ccc; padding-bottom: 1rem; }
+
+    /* Encabezado del capítulo */
+    .chapter-intro {
+      background: #1a3a5c !important; color: #fff !important;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+      border-radius: 0 !important; padding: 1rem !important;
+      margin-bottom: 1rem !important;
+    }
+    .chapter-intro h2 { color: #f0c040 !important; font-size: 14pt !important; }
+    .chapter-intro p  { color: #d0e8ff !important; }
+
+    /* Títulos */
+    h3 { font-size: 12pt; color: #1a3a5c; margin-top: 1.2rem; border-bottom: 1px solid #ccc; padding-bottom: 4px; }
+    h4 { font-size: 11pt; color: #2980b9; margin-top: 0.8rem; }
+    p  { font-size: 10pt; line-height: 1.6; }
+
+    /* Tablas */
+    .styled-table { width: 100%; border-collapse: collapse; font-size: 9pt; page-break-inside: avoid; }
+    .styled-table th { background: #1a3a5c !important; color: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .styled-table td, .styled-table th { border: 1px solid #ccc; padding: 4px 6px; }
+
+    /* Timeline */
+    .timeline { margin: 0.5rem 0; }
+    .tl-item  { display: flex; gap: 10px; margin-bottom: 0.8rem; page-break-inside: avoid; }
+    .tl-body  { flex: 1; }
+    .tl-body::before { content: "▸ "; color: #1a3a5c; font-weight: bold; }
+
+    /* Flashcards — mostrar como lista */
+    .flash-grid { display: block !important; }
+    .flash-card { height: auto !important; perspective: none !important; margin-bottom: 0.5rem; page-break-inside: avoid; }
+    .flash-inner { transform: none !important; position: static !important; }
+    .flash-front { display: none !important; }
+    .flash-back  {
+      position: static !important; transform: none !important;
+      background: #f5f8fc !important; color: #000 !important;
+      border: 1px solid #ccc; border-left: 4px solid #1a3a5c;
+      border-radius: 6px !important; padding: 6px 10px !important;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+    /* Mostrar el concepto (front) como bold antes del back */
+    .flash-card::before {
+      content: attr(data-concept);
+      display: block; font-weight: 700; color: #1a3a5c;
+      font-size: 9pt; margin-bottom: 2px;
+    }
+
+    /* Quiz — mostrar como lista de preguntas con respuesta correcta */
+    .quiz-card { page-break-inside: avoid; margin-bottom: 0.8rem; border: 1px solid #ddd; padding: 6px 10px; border-radius: 4px; }
+    .q-num     { font-size: 8pt; color: #666; }
+    .q-text    { font-weight: 700; font-size: 10pt; margin-bottom: 4px; }
+    .quiz-option.correct { background: #d4edda !important; font-weight: 700; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .quiz-option         { display: block; font-size: 9pt; padding: 2px 0; }
+    .quiz-options        { margin-top: 4px; }
+
+    /* Callouts */
+    .callout { page-break-inside: avoid; border: 1px solid #ccc; padding: 6px; margin: 0.5rem 0; border-radius: 4px; }
+
+    /* Paginación */
+    h2, h3 { page-break-after: avoid; }
+    .tab-content { page-break-before: auto; }
+
+    /* Pie de página con número */
+    @page {
+      margin: 2cm 1.5cm;
+      @bottom-center { content: "Historia Social Latinoamericana — " attr(data-cap-name) " — Página " counter(page); font-size: 8pt; color: #666; }
+    }
+  }
+
 </style>
 </head>
 <body>
@@ -347,6 +453,7 @@
   <div class="badge">Universidad &bull; Historia Social Latinoamericana</div>
   <h1>📚 Historia Social Latinoamericana</h1>
   <p>Herramienta didáctica interactiva &mdash; Programa de estudio completo</p>
+<button class="pdf-btn-global" onclick="imprimirTodo()">📄 Exportar programa completo (PDF)</button>
 </header>
 
 <nav class="chapter-nav">
@@ -362,7 +469,7 @@
 <!-- ═══════════════════════════════════════════════════════════ -->
 <!--  CAPÍTULO 7                                                 -->
 <!-- ═══════════════════════════════════════════════════════════ -->
-<div id="cap7" class="chapter-panel active">
+<div id="cap7" class="chapter-panel active" data-cap-name="Capítulo 7 — Inserción al Mercado Mundial">
 
   <div class="chapter-intro">
     <h2>Capítulo VII &mdash; Proceso de Inserción en el Mercado Mundial</h2>
@@ -370,7 +477,8 @@
     <div style="margin-top:1rem;">
       <span style="font-size:0.85rem; color:#aac8e8;">📖 Libro: <strong style="color:#c8a951;">pp. 64 – 79</strong></span>
     
-    <button class="resumen-btn" onclick="abrirResumen('cap7')">📋 Resumen rápido</button></div>
+    <button class="resumen-btn" onclick="abrirResumen('cap7')">📋 Resumen rápido</button>
+    <button class="pdf-btn" onclick="imprimirCapitulo('cap7')">📄 Exportar PDF</button></div>
   </div>
 
   <div class="tabs-wrapper">
@@ -1119,14 +1227,15 @@
 <!-- ═══════════════════════════════════════════════════════════ -->
 <!--  CAPÍTULOS 8, 9, 10 — PRÓXIMAMENTE                        -->
 <!-- ═══════════════════════════════════════════════════════════ -->
-<div id="cap8" class="chapter-panel">
+<div id="cap8" class="chapter-panel" data-cap-name="Capítulo 8 — Transformación del Comercio">
   <div class="chapter-intro">
     <h2>Capítulo VIII — La Transformación del Comercio Internacional y sus Efectos en América Latina</h2>
     <p>La Revolución Industrial, la división internacional del trabajo y la tipología de las economías exportadoras de materias primas latinoamericanas (Furtado, 1975).</p>
     <div style="margin-top:1rem;">
       <span style="font-size:0.85rem; color:#aac8e8;">📖 Libro: <strong style="color:#c8a951;">pp. 80 – 86</strong></span>
     
-    <button class="resumen-btn" onclick="abrirResumen('cap8')">📋 Resumen rápido</button></div>
+    <button class="resumen-btn" onclick="abrirResumen('cap8')">📋 Resumen rápido</button>
+    <button class="pdf-btn" onclick="imprimirCapitulo('cap8')">📄 Exportar PDF</button></div>
   </div>
 
   <div class="tabs-wrapper">
@@ -1372,16 +1481,16 @@
       <h3>🃏 Flashcards — Capítulo 8</h3>
       <p class="flash-hint">Hacé click en cada tarjeta para ver la definición. Click de nuevo para voltear.</p>
       <div class="flash-grid">
-        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">División Internacional del Trabajo</div><div class="flash-back">Sistema en que el centro industrial produce manufacturas y la periferia provee materias primas. No es neutral: establece jerarquías de poder entre naciones.</div></div></div>
-        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Ley de Rendimientos Decrecientes</div><div class="flash-back">En economías agrícolas, agregar más trabajo a tierra fija reduce la productividad marginal. La Revolución Industrial rompió este límite mediante la mecanización.</div></div></div>
-        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Corn Laws (Leyes de Granos)</div><div class="flash-back">Aranceles ingleses que protegían la agricultura interna. Su abolición en 1846 marcó el triunfo de la burguesía industrial y el inicio del libre comercio global.</div></div></div>
-        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Transferencia del Crecimiento</div><div class="flash-back">Concepto de Furtado: el crecimiento industrial inglés se transfería a AL vía demanda de materias primas. Cuando GB prosperaba, AL prosperaba; cuando GB caía, AL sufría.</div></div></div>
-        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Economía de Enclave (Grupo C)</div><div class="flash-back">Economías mineras controladas por capital extranjero. Infraestructura al servicio de la exportación. Mínimo efecto multiplicador interno. Ej: cobre en Chile, plata en México.</div></div></div>
-        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Grupo A — Clima Templado</div><div class="flash-back">Argentina y Uruguay. Exportaban cereales y carnes. Mayor encadenamiento interno por necesidad de infraestructura de transporte. Limitados por concentración de la tierra.</div></div></div>
-        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Hegemonía Británica (s. XIX)</div><div class="flash-back">GB controlaba simultáneamente: producción industrial (2/3 de manufacturas mundiales), finanzas (libra esterlina), comercio (bolsas de commodities) e infraestructura (flota, ferrocarriles).</div></div></div>
-        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Desnacionalización de la Minería</div><div class="flash-back">Productores mineros nacionales fueron desplazados por grandes empresas norteamericanas con superioridad tecnológica y financiera. Ocurrió en Chile, México, Perú y Bolivia.</div></div></div>
-        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Encadenamiento Productivo</div><div class="flash-back">Grado en que una actividad exportadora genera actividad adicional dentro del país (empleos, proveedores, infraestructura). Los enclaves mineros tenían mínimo encadenamiento.</div></div></div>
-        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Grupo B — Economías Tropicales</div><div class="flash-back">Exportadoras de café, cacao, azúcar, banana. Dependían de salarios bajos y no generaban tecnología propia. Excepción: San Pablo (café), con mayor efecto multiplicador por escala.</div></div></div>
+        <div class="flash-card" data-concept="División Internacional del Trabajo" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">División Internacional del Trabajo</div><div class="flash-back">Sistema en que el centro industrial produce manufacturas y la periferia provee materias primas. No es neutral: establece jerarquías de poder entre naciones.</div></div></div>
+        <div class="flash-card" data-concept="Ley de Rendimientos Decrecientes" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Ley de Rendimientos Decrecientes</div><div class="flash-back">En economías agrícolas, agregar más trabajo a tierra fija reduce la productividad marginal. La Revolución Industrial rompió este límite mediante la mecanización.</div></div></div>
+        <div class="flash-card" data-concept="Corn Laws (Leyes de Granos)" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Corn Laws (Leyes de Granos)</div><div class="flash-back">Aranceles ingleses que protegían la agricultura interna. Su abolición en 1846 marcó el triunfo de la burguesía industrial y el inicio del libre comercio global.</div></div></div>
+        <div class="flash-card" data-concept="Transferencia del Crecimiento" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Transferencia del Crecimiento</div><div class="flash-back">Concepto de Furtado: el crecimiento industrial inglés se transfería a AL vía demanda de materias primas. Cuando GB prosperaba, AL prosperaba; cuando GB caía, AL sufría.</div></div></div>
+        <div class="flash-card" data-concept="Economía de Enclave (Grupo C)" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Economía de Enclave (Grupo C)</div><div class="flash-back">Economías mineras controladas por capital extranjero. Infraestructura al servicio de la exportación. Mínimo efecto multiplicador interno. Ej: cobre en Chile, plata en México.</div></div></div>
+        <div class="flash-card" data-concept="Grupo A — Clima Templado" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Grupo A — Clima Templado</div><div class="flash-back">Argentina y Uruguay. Exportaban cereales y carnes. Mayor encadenamiento interno por necesidad de infraestructura de transporte. Limitados por concentración de la tierra.</div></div></div>
+        <div class="flash-card" data-concept="Hegemonía Británica (s. XIX)" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Hegemonía Británica (s. XIX)</div><div class="flash-back">GB controlaba simultáneamente: producción industrial (2/3 de manufacturas mundiales), finanzas (libra esterlina), comercio (bolsas de commodities) e infraestructura (flota, ferrocarriles).</div></div></div>
+        <div class="flash-card" data-concept="Desnacionalización de la Minería" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Desnacionalización de la Minería</div><div class="flash-back">Productores mineros nacionales fueron desplazados por grandes empresas norteamericanas con superioridad tecnológica y financiera. Ocurrió en Chile, México, Perú y Bolivia.</div></div></div>
+        <div class="flash-card" data-concept="Encadenamiento Productivo" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Encadenamiento Productivo</div><div class="flash-back">Grado en que una actividad exportadora genera actividad adicional dentro del país (empleos, proveedores, infraestructura). Los enclaves mineros tenían mínimo encadenamiento.</div></div></div>
+        <div class="flash-card" data-concept="Grupo B — Economías Tropicales" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Grupo B — Economías Tropicales</div><div class="flash-back">Exportadoras de café, cacao, azúcar, banana. Dependían de salarios bajos y no generaban tecnología propia. Excepción: San Pablo (café), con mayor efecto multiplicador por escala.</div></div></div>
       </div>
     </div>
 
@@ -1454,14 +1563,15 @@
   </div>
 </div>
 
-<div id="cap9" class="chapter-panel">
+<div id="cap9" class="chapter-panel" data-cap-name="Capítulo 9 — Dependencia Externa">
   <div class="chapter-intro">
     <h2>Capítulo IX — Formas Tradicionales de Dependencia Externa</h2>
     <p>Teoría de la dependencia, políticas correctivas y casos nacionales: Venezuela, Brasil, Argentina, México y Chile (Furtado, 1975, pp. 87–108).</p>
     <div style="margin-top:1rem;">
       <span style="font-size:0.85rem; color:#aac8e8;">📖 Libro: <strong style="color:#c8a951;">pp. 87 – 108</strong></span>
     
-    <button class="resumen-btn" onclick="abrirResumen('cap9')">📋 Resumen rápido</button></div>
+    <button class="resumen-btn" onclick="abrirResumen('cap9')">📋 Resumen rápido</button>
+    <button class="pdf-btn" onclick="imprimirCapitulo('cap9')">📄 Exportar PDF</button></div>
   </div>
 
   <div class="tabs-wrapper">
@@ -1737,16 +1847,16 @@
       <h3>🃏 Flashcards — Capítulo 9</h3>
       <p class="flash-hint">Hacé click en cada tarjeta para ver la definición. Click de nuevo para voltear.</p>
       <div class="flash-grid">
-        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Formas Tradicionales de Dependencia</div><div class="flash-back">Dependencia vía control de materias primas exportables: precios volátiles, monoproducción, ingresos fiscales dependientes de exportaciones. Las "políticas correctivas" intentaron compensarla.</div></div></div>
-        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">ISI (Sustitución de Importaciones)</div><div class="flash-back">Estrategia: producir internamente lo que antes se importaba, protegiendo la industria local con aranceles. Redujo dependencia de bienes pero generó nueva dependencia de capital y tecnología extranjera.</div></div></div>
-        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Política de Valorización (Brasil/café)</div><div class="flash-back">Brasil compraba y destruía stocks de café para sostener precios. El éxito atraía más productores → mayor oferta → nuevos excedentes → nueva crisis. Ciclo estructural sin solución permanente.</div></div></div>
-        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">EXIMBANK / BID / BIRF</div><div class="flash-back">La tríada de financiamiento multilateral para AL. Entre 1961–63 otorgaron $1.200M/año con condicionalidades. El BID fue creado en 1959, operativo en 1960.</div></div></div>
-        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Know-how tecnológico</div><div class="flash-back">Conocimiento técnico patentado y no patentado que las multinacionales cobran por transferir. Genera dependencia tecnológica crónica porque rara vez se reproduce localmente.</div></div></div>
-        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Flujo Neto Negativo de Capital</div><div class="flash-back">Cuando lo que sale del país (remesas de utilidades, intereses, regalías) supera lo que entra (inversiones, préstamos). AL tendió a este resultado desde los años 60.</div></div></div>
-        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Control Externo de la Industria</div><div class="flash-back">IED pasó de $780M (1950) a $2.741M (1965). Las multinacionales dominaron sectores dinámicos: química, farmacia, eléctrico, metálica. La ISI atrajo el mismo capital que buscaba desplazar.</div></div></div>
-        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Política del Cobre — Chile</div><div class="flash-back">Chile negoció creciente participación en ganancias del cobre (Anaconda, Kennecott). "Chilenización" (1966) → nacionalización total (1971, Allende). El cobre era el 70% de los ingresos de exportación.</div></div></div>
-        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Nuevas Formas de Dependencia</div><div class="flash-back">Tres dimensiones: 1) flujos financieros (BID, BIRF, banca privada), 2) tecnología (licencias, patentes, know-how), 3) control industrial (multinacionales en sectores dinámicos).</div></div></div>
-        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Política Petrolera de Venezuela</div><div class="flash-back">Evolución: concesiones privadas totales (s.XIX) → "fifty-fifty" (1943) → CVP (Corporación Venezolana de Petróleo, 1960) → OPEP (1960) → nacionalización (1976).</div></div></div>
+        <div class="flash-card" data-concept="Formas Tradicionales de Dependencia" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Formas Tradicionales de Dependencia</div><div class="flash-back">Dependencia vía control de materias primas exportables: precios volátiles, monoproducción, ingresos fiscales dependientes de exportaciones. Las "políticas correctivas" intentaron compensarla.</div></div></div>
+        <div class="flash-card" data-concept="ISI (Sustitución de Importaciones)" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">ISI (Sustitución de Importaciones)</div><div class="flash-back">Estrategia: producir internamente lo que antes se importaba, protegiendo la industria local con aranceles. Redujo dependencia de bienes pero generó nueva dependencia de capital y tecnología extranjera.</div></div></div>
+        <div class="flash-card" data-concept="Política de Valorización (Brasil/café)" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Política de Valorización (Brasil/café)</div><div class="flash-back">Brasil compraba y destruía stocks de café para sostener precios. El éxito atraía más productores → mayor oferta → nuevos excedentes → nueva crisis. Ciclo estructural sin solución permanente.</div></div></div>
+        <div class="flash-card" data-concept="EXIMBANK / BID / BIRF" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">EXIMBANK / BID / BIRF</div><div class="flash-back">La tríada de financiamiento multilateral para AL. Entre 1961–63 otorgaron $1.200M/año con condicionalidades. El BID fue creado en 1959, operativo en 1960.</div></div></div>
+        <div class="flash-card" data-concept="Know-how tecnológico" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Know-how tecnológico</div><div class="flash-back">Conocimiento técnico patentado y no patentado que las multinacionales cobran por transferir. Genera dependencia tecnológica crónica porque rara vez se reproduce localmente.</div></div></div>
+        <div class="flash-card" data-concept="Flujo Neto Negativo de Capital" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Flujo Neto Negativo de Capital</div><div class="flash-back">Cuando lo que sale del país (remesas de utilidades, intereses, regalías) supera lo que entra (inversiones, préstamos). AL tendió a este resultado desde los años 60.</div></div></div>
+        <div class="flash-card" data-concept="Control Externo de la Industria" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Control Externo de la Industria</div><div class="flash-back">IED pasó de $780M (1950) a $2.741M (1965). Las multinacionales dominaron sectores dinámicos: química, farmacia, eléctrico, metálica. La ISI atrajo el mismo capital que buscaba desplazar.</div></div></div>
+        <div class="flash-card" data-concept="Política del Cobre — Chile" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Política del Cobre — Chile</div><div class="flash-back">Chile negoció creciente participación en ganancias del cobre (Anaconda, Kennecott). "Chilenización" (1966) → nacionalización total (1971, Allende). El cobre era el 70% de los ingresos de exportación.</div></div></div>
+        <div class="flash-card" data-concept="Nuevas Formas de Dependencia" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Nuevas Formas de Dependencia</div><div class="flash-back">Tres dimensiones: 1) flujos financieros (BID, BIRF, banca privada), 2) tecnología (licencias, patentes, know-how), 3) control industrial (multinacionales en sectores dinámicos).</div></div></div>
+        <div class="flash-card" data-concept="Política Petrolera de Venezuela" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Política Petrolera de Venezuela</div><div class="flash-back">Evolución: concesiones privadas totales (s.XIX) → "fifty-fifty" (1943) → CVP (Corporación Venezolana de Petróleo, 1960) → OPEP (1960) → nacionalización (1976).</div></div></div>
       </div>
     </div>
 
@@ -1850,14 +1960,15 @@
   </div>
 </div>
 
-<div id="cap10" class="chapter-panel">
+<div id="cap10" class="chapter-panel" data-cap-name="Capítulo 10 — Ocaso del Liberalismo">
   <div class="chapter-intro">
     <h2>Capítulo X — Decadencia Liberal</h2>
     <p>La crisis del orden oligárquico liberal: causas políticas, sociales y económicas, la Revolución Mexicana, la polarización ideológica, las rutas de la crisis y el intervencionismo estadounidense (Zanatta, 2012; Furtado, 1975, pp. 109–124).</p>
     <div style="margin-top:1rem;">
       <span style="font-size:0.85rem; color:#aac8e8;">📖 Libro: <strong style="color:#c8a951;">pp. 109 – 124</strong></span>
     
-    <button class="resumen-btn" onclick="abrirResumen('cap10')">📋 Resumen rápido</button></div>
+    <button class="resumen-btn" onclick="abrirResumen('cap10')">📋 Resumen rápido</button>
+    <button class="pdf-btn" onclick="imprimirCapitulo('cap10')">📄 Exportar PDF</button></div>
   </div>
 
   <div class="tabs-wrapper">
@@ -2174,16 +2285,16 @@
       <h3>🃏 Flashcards — Capítulo 10</h3>
       <p class="flash-hint">Hacé click en cada tarjeta para ver la definición. Click de nuevo para voltear.</p>
       <div class="flash-grid">
-        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Liberalismo Oligárquico</div><div class="flash-back">Régimen que combinaba retórica liberal con poder concentrado en las oligarquías exportadoras. Excluía sistemáticamente a clases medias, obreros y campesinos del poder político.</div></div></div>
-        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Patrón Oro y su colapso</div><div class="flash-back">Sistema monetario de valor fijo en oro. Al perder reservas, el Estado debía contraer el gasto y subir tasas → deflación, desempleo y recesión. Los países que lo abandonaron antes de 1932 se recuperaron antes.</div></div></div>
-        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Populismo Latinoamericano</div><div class="flash-back">Movimiento surgido del colapso liberal: alianzas entre clases medias, obreros y capital nacional, bajo un Estado árbitro y redistribuidor. Ejemplos: peronismo (AR), varguismo (BR), cardenismo (MX).</div></div></div>
-        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Corolario Roosevelt (1904)</div><div class="flash-back">Ampliación de la Doctrina Monroe: EE.UU. se arrogó el derecho de intervenir en AL para "mantener el orden". Legitimó ocupaciones en Cuba, Nicaragua (1912–1933), Haití (1915–1934) y RD.</div></div></div>
-        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Good Neighbor Policy (1933)</div><div class="flash-back">Política de FDR: renuncia formal a intervenciones militares. Derogó la Enmienda Platt y retiró marines de Nicaragua. Cambio de táctica —no de estrategia—: el control económico y el apoyo a dictaduras continuaron.</div></div></div>
-        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">United Fruit Company (UFCO)</div><div class="flash-back">Empresa que controlaba tierra, ferrocarriles y puertos en Centroamérica. En 1954 la CIA derrocó a Árbenz (Guatemala) cuando este amenazó sus tierras con la reforma agraria (Operación PBSUCCESS).</div></div></div>
-        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Constitución Mexicana 1917</div><div class="flash-back">Primera constitución en el mundo con derechos sociales explícitos: Art. 27 (reforma agraria, petróleo y minerales bienes de la nación) y Art. 123 (derechos laborales, jornada de 8 horas).</div></div></div>
-        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Organicismo Autoritario</div><div class="flash-back">Visión jerárquica y corporativa de la sociedad como un organismo donde cada parte tiene su lugar natural. Base ideológica de los regímenes militares latinoamericanos de los años 30 como alternativa al liberalismo fracasado.</div></div></div>
-        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Plan de Ayala (1911)</div><div class="flash-back">Manifiesto de Emiliano Zapata: exigía la restitución de tierras comunales (ejidos) a los pueblos indígenas despojados durante el Porfiriato. Síntesis del agrarismo popular: "La tierra es de quien la trabaja."</div></div></div>
-        <div class="flash-card" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Crisis de Representación Liberal</div><div class="flash-back">El Estado liberal respondía solo a los exportadores. Clases medias urbanas, proletariado y campesinado excluidos por diseño: sufragio restringido, fraude electoral y represión de la movilización popular.</div></div></div>
+        <div class="flash-card" data-concept="Liberalismo Oligárquico" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Liberalismo Oligárquico</div><div class="flash-back">Régimen que combinaba retórica liberal con poder concentrado en las oligarquías exportadoras. Excluía sistemáticamente a clases medias, obreros y campesinos del poder político.</div></div></div>
+        <div class="flash-card" data-concept="Patrón Oro y su colapso" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Patrón Oro y su colapso</div><div class="flash-back">Sistema monetario de valor fijo en oro. Al perder reservas, el Estado debía contraer el gasto y subir tasas → deflación, desempleo y recesión. Los países que lo abandonaron antes de 1932 se recuperaron antes.</div></div></div>
+        <div class="flash-card" data-concept="Populismo Latinoamericano" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Populismo Latinoamericano</div><div class="flash-back">Movimiento surgido del colapso liberal: alianzas entre clases medias, obreros y capital nacional, bajo un Estado árbitro y redistribuidor. Ejemplos: peronismo (AR), varguismo (BR), cardenismo (MX).</div></div></div>
+        <div class="flash-card" data-concept="Corolario Roosevelt (1904)" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Corolario Roosevelt (1904)</div><div class="flash-back">Ampliación de la Doctrina Monroe: EE.UU. se arrogó el derecho de intervenir en AL para "mantener el orden". Legitimó ocupaciones en Cuba, Nicaragua (1912–1933), Haití (1915–1934) y RD.</div></div></div>
+        <div class="flash-card" data-concept="Good Neighbor Policy (1933)" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Good Neighbor Policy (1933)</div><div class="flash-back">Política de FDR: renuncia formal a intervenciones militares. Derogó la Enmienda Platt y retiró marines de Nicaragua. Cambio de táctica —no de estrategia—: el control económico y el apoyo a dictaduras continuaron.</div></div></div>
+        <div class="flash-card" data-concept="United Fruit Company (UFCO)" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">United Fruit Company (UFCO)</div><div class="flash-back">Empresa que controlaba tierra, ferrocarriles y puertos en Centroamérica. En 1954 la CIA derrocó a Árbenz (Guatemala) cuando este amenazó sus tierras con la reforma agraria (Operación PBSUCCESS).</div></div></div>
+        <div class="flash-card" data-concept="Constitución Mexicana 1917" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Constitución Mexicana 1917</div><div class="flash-back">Primera constitución en el mundo con derechos sociales explícitos: Art. 27 (reforma agraria, petróleo y minerales bienes de la nación) y Art. 123 (derechos laborales, jornada de 8 horas).</div></div></div>
+        <div class="flash-card" data-concept="Organicismo Autoritario" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Organicismo Autoritario</div><div class="flash-back">Visión jerárquica y corporativa de la sociedad como un organismo donde cada parte tiene su lugar natural. Base ideológica de los regímenes militares latinoamericanos de los años 30 como alternativa al liberalismo fracasado.</div></div></div>
+        <div class="flash-card" data-concept="Plan de Ayala (1911)" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Plan de Ayala (1911)</div><div class="flash-back">Manifiesto de Emiliano Zapata: exigía la restitución de tierras comunales (ejidos) a los pueblos indígenas despojados durante el Porfiriato. Síntesis del agrarismo popular: "La tierra es de quien la trabaja."</div></div></div>
+        <div class="flash-card" data-concept="Crisis de Representación Liberal" onclick="flipCard(this)"><div class="flash-inner"><div class="flash-front">Crisis de Representación Liberal</div><div class="flash-back">El Estado liberal respondía solo a los exportadores. Clases medias urbanas, proletariado y campesinado excluidos por diseño: sufragio restringido, fraude electoral y represión de la movilización popular.</div></div></div>
       </div>
     </div>
 
@@ -2755,6 +2866,99 @@ window.showChapter = function(capId, btn) {
 
 /* ─── ALIAS COMPAT CAP7 ─── */
 function resetQuiz7() { resetQuizNew('quiz7-container'); }
+
+
+/* ═══════════════════════════════════════════════════════════
+   GENERADOR DE PDF — impresión por capítulo y completo
+   ═══════════════════════════════════════════════════════════ */
+
+function imprimirCapitulo(capId) {
+  // 1. Guardar estado actual
+  const allPanels  = document.querySelectorAll('.chapter-panel');
+  const allTabs    = document.querySelectorAll('.tab-content');
+  const wasActive  = document.querySelector('.chapter-panel.active');
+
+  // 2. Marcar SOLO este capítulo como print-target
+  allPanels.forEach(p => p.classList.remove('print-target'));
+  const target = document.getElementById(capId);
+  if (!target) return;
+  target.classList.add('print-target');
+
+  // 3. Dentro del capítulo, mostrar TODOS los tabs
+  target.querySelectorAll('.tab-content').forEach(t => t.classList.add('tab-print-open'));
+
+  // 4. Marcar respuestas correctas del quiz para que se vean en print
+  marcarCorrectas(target);
+
+  // 5. Título del documento
+  const capName = target.getAttribute('data-cap-name') || capId;
+  const prevTitle = document.title;
+  document.title = 'HSL — ' + capName;
+
+  // 6. Aplicar clase print-mode al body para trigger de CSS
+  document.body.classList.add('print-mode');
+
+  // 7. Imprimir
+  window.print();
+
+  // 8. Restaurar estado
+  setTimeout(() => {
+    document.title = prevTitle;
+    document.body.classList.remove('print-mode');
+    allPanels.forEach(p => p.classList.remove('print-target'));
+    target.querySelectorAll('.tab-content').forEach(t => t.classList.remove('tab-print-open'));
+    limpiarMarcasCorrectas(target);
+  }, 500);
+}
+
+function imprimirTodo() {
+  const allPanels = document.querySelectorAll('.chapter-panel');
+
+  // Marcar TODOS los capítulos
+  allPanels.forEach(p => {
+    p.classList.add('print-target');
+    p.querySelectorAll('.tab-content').forEach(t => t.classList.add('tab-print-open'));
+    marcarCorrectas(p);
+  });
+
+  const prevTitle = document.title;
+  document.title = 'Historia Social Latinoamericana — Programa Completo';
+  document.body.classList.add('print-mode');
+
+  window.print();
+
+  setTimeout(() => {
+    document.title = prevTitle;
+    document.body.classList.remove('print-mode');
+    allPanels.forEach(p => {
+      p.classList.remove('print-target');
+      p.querySelectorAll('.tab-content').forEach(t => t.classList.remove('tab-print-open'));
+      limpiarMarcasCorrectas(p);
+    });
+  }, 500);
+}
+
+function marcarCorrectas(container) {
+  // Para cada quiz-card dentro del contenedor, marcar la opción correcta
+  container.querySelectorAll('.quiz-card').forEach(card => {
+    const qid = card.id;
+    const correctLetter = CORRECT_ANSWERS[qid];
+    if (!correctLetter) return;
+    card.querySelectorAll('.quiz-option').forEach(opt => {
+      if (opt.getAttribute('data-opt') === correctLetter) {
+        opt.classList.add('correct');
+        opt.setAttribute('data-print-marked', '1');
+      }
+    });
+  });
+}
+
+function limpiarMarcasCorrectas(container) {
+  container.querySelectorAll('[data-print-marked]').forEach(el => {
+    el.classList.remove('correct');
+    el.removeAttribute('data-print-marked');
+  });
+}
 
 </script>
 
