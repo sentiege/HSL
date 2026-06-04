@@ -532,6 +532,52 @@
     .acc-arrow { display: none; }
   }
 
+
+  /* ─── CUESTIONARIO ─── */
+  .cq-card {
+    background: var(--surface);
+    border: 1px solid #2e5f8a;
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    margin-bottom: 1rem;
+  }
+  .cq-num  { font-size: 0.72rem; font-weight: 700; color: var(--secondary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.3rem; }
+  .cq-q    { font-weight: 600; color: #d0e8ff; margin-bottom: 0.8rem; line-height: 1.5; }
+  .cq-opts { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.35rem; }
+  .cq-opts li { font-size: 0.9rem; color: #aac8e8; padding: 0.4rem 0.7rem; border-radius: 6px; border: 1px solid transparent; }
+  .cq-correct {
+    background: rgba(39,174,96,0.12) !important;
+    border: 1px solid rgba(39,174,96,0.4) !important;
+    color: #2ecc71 !important;
+    font-weight: 600 !important;
+  }
+  .cq-justif {
+    margin-top: 0.8rem;
+    font-size: 0.85rem;
+    color: #aac8e8;
+    background: rgba(200,169,81,0.08);
+    border-left: 3px solid var(--secondary);
+    padding: 0.6rem 0.8rem;
+    border-radius: 0 6px 6px 0;
+    line-height: 1.5;
+  }
+  .cq-vf { font-weight: 800; font-size: 1rem; margin: 0.6rem 0 0.3rem; }
+  .cq-verdad { color: #2ecc71; }
+  .cq-falso  { color: #e74c3c; }
+  .cq-dev-list { list-style: none; padding: 0; margin: 0.5rem 0 0; display: flex; flex-direction: column; gap: 0.5rem; }
+  .cq-dev-list li { font-size: 0.9rem; color: #aac8e8; padding: 0.5rem 0.7rem; background: rgba(44,100,150,0.15); border-radius: 6px; line-height: 1.5; }
+
+  /* Print cuestionario */
+  @media print {
+    .cq-card { background: #fff !important; border: 1px solid #ccc; page-break-inside: avoid; }
+    .cq-q    { color: #000 !important; }
+    .cq-opts li, .cq-dev-list li { color: #333 !important; background: none !important; }
+    .cq-correct { background: #d4edda !important; color: #155724 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .cq-verdad  { color: #155724 !important; }
+    .cq-falso   { color: #721c24 !important; }
+    .cq-justif  { background: #fff8e1 !important; border-left-color: #c8a951 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+
 </style>
 </head>
 <body>
@@ -547,6 +593,7 @@
   <button class="chapter-btn" onclick="showChapter('cap8', this)">Capítulo 8 &mdash; Transformación del Comercio</button>
   <button class="chapter-btn" onclick="showChapter('cap9', this)">Capítulo 9 &mdash; Dependencia Externa</button>
   <button class="chapter-btn" onclick="showChapter('cap10', this)">Capítulo 10 &mdash; Ocaso de la Era Liberal</button>
+  <button class="chapter-btn" onclick="showChapter('cuestionario', this)">📝 Cuestionario HSL</button>
   <button class="chapter-btn" onclick="showChapter('map-panel', this)" style="background:var(--secondary);color:#1a1a1a;border-color:var(--secondary);">🗺 Mapa Conceptual</button>
 </nav>
 
@@ -3177,6 +3224,415 @@ const _origToggleAccordion = window.toggleAccordion;
 </script>
 </script>
 
+
+<!-- ─── PANEL CUESTIONARIO HSL ─── -->
+<div id="cuestionario" class="chapter-panel" data-cap-name="Cuestionario HSL">
+
+  <div class="chapter-intro">
+    <h2>📝 Cuestionario de Historia Social Latinoamericana</h2>
+    <p>Preguntas de práctica y evaluación del programa. Incluye opción múltiple, verdadero/falso con justificación, y preguntas de desarrollo. Las respuestas correctas están destacadas.</p>
+    <div style="margin-top:1rem;">
+      <span style="font-size:0.85rem; color:#aac8e8;">🗂 Secciones: <strong style="color:#c8a951;">3 tipos de ejercicios · 30+ preguntas</strong></span>
+    </div>
+    <div style="margin-top:1rem;">
+      <button class="pdf-btn" onclick="imprimirCapitulo('cuestionario')">📄 Exportar PDF</button>
+    </div>
+  </div>
+
+  <div class="accordion-wrapper">
+
+    <!-- SECCIÓN 1: Opción Múltiple -->
+    <div class="accordion-item">
+      <button class="accordion-btn open" onclick="toggleAccordion(this)">
+        <span>🔢 Parte I — Selección Múltiple</span><span class="acc-arrow">▾</span>
+      </button>
+      <div class="accordion-body">
+        <p style="color:var(--muted);font-size:0.85rem;margin-bottom:1.2rem;">Seleccioná la opción correcta. Las respuestas correctas están marcadas en verde.</p>
+
+        <div class="cq-card">
+          <div class="cq-num">Pregunta 1</div>
+          <div class="cq-q">Según la Enciclopedia Concepto, ¿cuál es la característica jurídica fundamental de un individuo en situación de esclavitud?</div>
+          <ul class="cq-opts">
+            <li>a) Es un ciudadano extranjero que debe pagar deudas mediante trabajo.</li>
+            <li>b) Es un trabajador con derechos limitados y salario bajo.</li>
+            <li>c) Es un prisionero de guerra que conserva su estatus de persona.</li>
+            <li class="cq-correct">d) Es considerado propiedad de otro y carece de libertad. ✓</li>
+          </ul>
+        </div>
+
+        <div class="cq-card">
+          <div class="cq-num">Pregunta 2</div>
+          <div class="cq-q">¿Cuáles son los tres factores que define Fernando Henrique Cardoso como los límites de la "elasticidad" del sistema esclavista?</div>
+          <ul class="cq-opts">
+            <li>a) La intervención diplomática británica, el uso de ferrocarriles y la transición al trabajo asalariado.</li>
+            <li>b) La abolición de la trata, la industrialización inmediata y el aumento de la población esclava por crecimiento natural.</li>
+            <li>c) El comercio con las Antillas, la moralidad parlamentaria y la caída de los precios del azúcar.</li>
+            <li class="cq-correct">d) Que la trata negrera continúe, las coyunturas de grandes ganancias sin cambios estructurales y la ausencia de competencia de mano de obra libre. ✓</li>
+          </ul>
+        </div>
+
+        <div class="cq-card">
+          <div class="cq-num">Pregunta 3</div>
+          <div class="cq-q">Seymour Drescher critica la teoría de la decadencia económica argumentando que:</div>
+          <ul class="cq-opts">
+            <li>a) El sistema esclavista era inherentemente irracional y no podía generar ganancias significativas.</li>
+            <li class="cq-correct">b) La producción esclavista y el comercio entre Gran Bretaña y las Antillas crecieron antes de la abolición. ✓</li>
+            <li>c) Los abolicionistas no tenían ninguna influencia en el Parlamento.</li>
+            <li>d) La trata interna en Brasil fue suficiente para sustituir el comercio africano.</li>
+          </ul>
+        </div>
+
+        <div class="cq-card">
+          <div class="cq-num">Pregunta 4</div>
+          <div class="cq-q">¿Cuál fue el factor determinante que impulsó la abolición de las tierras comunales y ejidales en El Salvador en 1881?</div>
+          <ul class="cq-opts">
+            <li class="cq-correct">a) La necesidad de expandir el cultivo de café ante la crisis del añil. ✓</li>
+            <li>b) La presión de los inmigrantes europeos por obtener tierras para la industria.</li>
+            <li>c) Una revuelta indígena que exigía la propiedad privada individual.</li>
+            <li>d) La intervención directa de empresas estadounidenses interesadas en el ferrocarril.</li>
+          </ul>
+        </div>
+
+        <div class="cq-card">
+          <div class="cq-num">Pregunta 5</div>
+          <div class="cq-q">En el caso de Colombia, ¿qué consecuencia económica tuvo la abolición del monopolio estatal sobre el tabaco en 1848?</div>
+          <ul class="cq-opts">
+            <li>a) El estancamiento inmediato de la agricultura por falta de control estatal.</li>
+            <li class="cq-correct">b) Una expansión del cultivo en Ambalema y el desarrollo de la navegación a vapor por el río Magdalena. ✓</li>
+            <li>c) La pérdida definitiva de capitales de los comerciantes antioqueños.</li>
+            <li>d) El inicio de la Guerra de los Mil Días debido a la caída de los impuestos.</li>
+          </ul>
+        </div>
+
+        <div class="cq-card">
+          <div class="cq-num">Pregunta 6</div>
+          <div class="cq-q">¿Qué objetivo principal tenía el Reglamento Provisorio de 1815 impulsado por José Gervasio Artigas en Uruguay?</div>
+          <ul class="cq-opts">
+            <li class="cq-correct">a) Realizar una reforma agraria para beneficiar a los más desfavorecidos. ✓</li>
+            <li>b) Fomentar la inmigración de inversores británicos.</li>
+            <li>c) Privatizar las tierras de las comunidades indígenas.</li>
+            <li>d) Establecer el libre comercio con Buenos Aires.</li>
+          </ul>
+        </div>
+
+        <div class="cq-card">
+          <div class="cq-num">Pregunta 7</div>
+          <div class="cq-q">En el Perú del siglo XIX, ¿cómo se financiaron gran parte de las reformas institucionales (como la abolición de la esclavitud y del tributo indígena)?</div>
+          <ul class="cq-opts">
+            <li>a) Mediante préstamos masivos otorgados por el gobierno de Chile.</li>
+            <li>b) A través de la venta de tierras expropiadas a la Iglesia en la sierra.</li>
+            <li class="cq-correct">c) Con los ingresos generados por la exportación masiva de guano. ✓</li>
+            <li>d) Gracias a los impuestos pagados por los trabajadores chinos (culíes).</li>
+          </ul>
+        </div>
+
+        <div class="cq-card">
+          <div class="cq-num">Pregunta 8</div>
+          <div class="cq-q">¿Cuál fue una característica distintiva de la dictadura del Dr. Gaspar Rodríguez de Francia en Paraguay?</div>
+          <ul class="cq-opts">
+            <li>a) La privatización de todas las tierras públicas.</li>
+            <li>b) La promoción masiva de la inversión extranjera directa.</li>
+            <li>c) La creación de una estructura social altamente jerarquizada por la riqueza.</li>
+            <li class="cq-correct">d) El aislamiento total y el monopolio estatal del comercio exterior. ✓</li>
+          </ul>
+          <div class="cq-justif">💡 <strong>Justificación:</strong> El régimen del Dr. Francia cerró las fronteras del Paraguay para preservar la independencia, controlando de manera absoluta toda importación y exportación a través de los puertos estatales.</div>
+        </div>
+
+        <div class="cq-card">
+          <div class="cq-num">Pregunta 9</div>
+          <div class="cq-q">¿Por qué se considera a Honduras como uno de los casos donde el concepto de enclave se aplica con mayor exactitud?</div>
+          <ul class="cq-opts">
+            <li>a) Debido a que su economía estaba perfectamente integrada desde la independencia.</li>
+            <li class="cq-correct">b) Porque el control extranjero sobre sectores como el bananero era tan grande que la dinámica nacional dependía de decisiones externas. ✓</li>
+            <li>c) Debido a su temprana y exitosa integración al mercado mundial del café.</li>
+            <li>d) Porque logró desarrollar una burguesía nacional fuerte que organizó el Estado.</li>
+          </ul>
+          <div class="cq-justif">💡 <strong>Justificación:</strong> Las grandes empresas fruteras norteamericanas (como la United Fruit Company) controlaban la infraestructura ferroviaria, los puertos y la tierra, operando de espaldas a la economía local.</div>
+        </div>
+
+        <div class="cq-card">
+          <div class="cq-num">Pregunta 10 — Batalla de Trafalgar</div>
+          <div class="cq-q">Una consecuencia crucial de la Batalla de Trafalgar (1805) para el Imperio Español fue:</div>
+          <ul class="cq-opts">
+            <li class="cq-correct">a) La pérdida del control sobre las colonias y su influencia comercial y militar. ✓</li>
+            <li>b) La recuperación de las misiones jesuitas.</li>
+            <li>c) El fin de las Guerras Napoleónicas.</li>
+            <li>d) La firma inmediata del Tratado de Utrecht.</li>
+          </ul>
+        </div>
+
+        <div class="cq-card">
+          <div class="cq-num">Pregunta 11</div>
+          <div class="cq-q">Según el análisis en clase, el principal motor individual que estructuró el imperio español en América fue:</div>
+          <ul class="cq-opts">
+            <li>a) El deseo de aprender lenguas nativas por parte de los soldados.</li>
+            <li>b) La inversión directa y total del Estado español en expediciones.</li>
+            <li class="cq-correct">c) El interés privado del conquistador y el reparto del pillaje. ✓</li>
+            <li>d) La creación de cooperativas agrícolas indígenas.</li>
+          </ul>
+        </div>
+
+        <div class="cq-card">
+          <div class="cq-num">Pregunta 12 — Historia Social</div>
+          <div class="cq-q">¿Cuál es la principal característica de la Historia Social?</div>
+          <ul class="cq-opts">
+            <li class="cq-correct">a) El enfoque en la vida cotidiana y las interacciones de las personas comunes. ✓</li>
+            <li>b) La narración cronológica de batallas y tratados de paz.</li>
+            <li>c) La negación de la influencia económica en el progreso material.</li>
+            <li>d) El estudio exclusivo de las élites y los grandes eventos políticos.</li>
+          </ul>
+        </div>
+
+        <div class="cq-card">
+          <div class="cq-num">Pregunta 13 — Encomienda</div>
+          <div class="cq-q">La encomienda en América consistía fundamentalmente en:</div>
+          <ul class="cq-opts">
+            <li>a) La entrega de esclavos africanos para trabajar en las plantaciones de azúcar.</li>
+            <li class="cq-correct">b) Asignar a un conquistador una población indígena para cristianizarla a cambio de tributos o trabajo. ✓</li>
+            <li>c) Un contrato donde el Estado vendía tierras a los indígenas.</li>
+            <li>d) Un sistema de comercio libre entre España y sus colonias.</li>
+          </ul>
+        </div>
+
+        <div class="cq-card">
+          <div class="cq-num">Pregunta 14 — Brasil siglo XVIII</div>
+          <div class="cq-q">El factor principal que impulsó la integración de las regiones internas de Brasil y el desarrollo de su vida urbana en el siglo XVIII fue:</div>
+          <ul class="cq-opts">
+            <li>a) La expansión del monopolio del azúcar.</li>
+            <li>b) La unificación de las comunidades indígenas.</li>
+            <li>c) La prohibición de las importaciones inglesas.</li>
+            <li class="cq-correct">d) El descubrimiento de oro. ✓</li>
+          </ul>
+        </div>
+
+        <div class="cq-card">
+          <div class="cq-num">Pregunta 15 — Independencia de México</div>
+          <div class="cq-q">La diferencia social que se destaca sobre el inicio del movimiento de independencia en México es:</div>
+          <ul class="cq-opts">
+            <li>a) Se basó exclusivamente en la abolición de la minería de plata.</li>
+            <li>b) Fue dirigido por militares enviados desde Caracas.</li>
+            <li class="cq-correct">c) Tuvo un fuerte componente social y popular con influencia de sectores indígenas y mestizos. ✓</li>
+            <li>d) Fue un movimiento organizado únicamente por los grandes terratenientes criollos.</li>
+          </ul>
+        </div>
+
+        <div class="cq-card">
+          <div class="cq-num">Pregunta 16 — Positivismo</div>
+          <div class="cq-q">¿Cuál fue la razón principal por la cual los intelectuales criollos adoptaron el positivismo tras las independencias?</div>
+          <ul class="cq-opts">
+            <li>a) Una orden directa de la Corona española para modernizar las colonias.</li>
+            <li>b) El rechazo total a cualquier forma de avance económico industrial.</li>
+            <li>c) El deseo de profundizar en debates ontológicos y metafísicos complejos.</li>
+            <li class="cq-correct">d) La necesidad de establecer un orden que detuviera la anarquía y las guerras civiles. ✓</li>
+          </ul>
+        </div>
+
+        <div class="cq-card">
+          <div class="cq-num">Pregunta 17 — Primera fase mercado mundial</div>
+          <div class="cq-q">La primera fase de vinculación al mercado mundial (hasta mediados del XIX) se caracterizó por:</div>
+          <ul class="cq-opts">
+            <li>a) La prohibición absoluta de exportar productos ganaderos.</li>
+            <li>b) Una masiva llegada de capitales extranjeros para infraestructura.</li>
+            <li>c) La industrialización acelerada de las naciones latinoamericanas.</li>
+            <li class="cq-correct">d) El libre comercio, entrada de productos británicos y penuria de capitales. ✓</li>
+          </ul>
+        </div>
+
+        <div class="cq-card">
+          <div class="cq-num">Pregunta 18 — Metales preciosos</div>
+          <div class="cq-q">El principal destino de los metales preciosos que España y Portugal extraían de América en el siglo XVIII fue:</div>
+          <ul class="cq-opts">
+            <li>a) El desarrollo de una robusta industria textil y metalúrgica local.</li>
+            <li>b) La creación de un fondo de reserva para futuras guerras contra Napoleón.</li>
+            <li>c) La inversión exclusiva en la educación de las élites criollas.</li>
+            <li class="cq-correct">d) El pago de deudas con banqueros europeos y el consumo de productos extranjeros. ✓</li>
+          </ul>
+        </div>
+
+        <div class="cq-card">
+          <div class="cq-num">Pregunta 19 — Caudillismo</div>
+          <div class="cq-q">¿Cómo se define el fenómeno del "Caudillismo" según las características estudiadas?</div>
+          <ul class="cq-opts">
+            <li>a) Un sistema de gobierno basado en leyes constitucionales estrictas.</li>
+            <li class="cq-correct">b) Liderazgo de hombres fuertes cuya autoridad provenía del control de tierras y recursos. ✓</li>
+            <li>c) Un sindicato de trabajadores urbanos en busca de mejores salarios.</li>
+            <li>d) Una organización religiosa encargada de la educación colonial.</li>
+          </ul>
+        </div>
+
+        <div class="cq-card">
+          <div class="cq-num">Pregunta 20 — Contrabando (Cipolla)</div>
+          <div class="cq-q">Según Cipolla (1999), ¿qué actividad surgió como una "válvula de escape" ante la rigidez del monopolio comercial español?</div>
+          <ul class="cq-opts">
+            <li class="cq-correct">a) El contrabando. ✓</li>
+            <li>b) La industrialización local.</li>
+            <li>c) La agricultura de subsistencia.</li>
+            <li>d) La creación de bancos coloniales.</li>
+          </ul>
+        </div>
+
+        <div class="cq-card">
+          <div class="cq-num">Pregunta 21 — La Mita en Potosí</div>
+          <div class="cq-q">El sistema de la mita utilizado en Potosí se define como:</div>
+          <ul class="cq-opts">
+            <li>a) La libertad absoluta de los indígenas para elegir su empleador.</li>
+            <li>b) Un impuesto directo pagado en monedas de oro.</li>
+            <li>c) Un tratado de paz entre la Corona y los caciques locales.</li>
+            <li class="cq-correct">d) Un método de rotación laboral obligatorio para los indígenas. ✓</li>
+          </ul>
+        </div>
+
+        <div class="cq-card">
+          <div class="cq-num">Pregunta 22 — Jesuitas 1767</div>
+          <div class="cq-q">El papel de los jesuitas tras su expulsión en 1767 en relación con la Corona española fue:</div>
+          <ul class="cq-opts">
+            <li>a) Apoyaron incondicionalmente las reformas borbónicas de Carlos III.</li>
+            <li>b) Se retiraron de la vida política para dedicarse exclusivamente a la oración.</li>
+            <li>c) Financiaron las flotas piratas para atacar los puertos españoles.</li>
+            <li class="cq-correct">d) Mantuvieron una oposición abierta y defendieron la identidad americana. ✓</li>
+          </ul>
+        </div>
+
+        <div class="cq-card">
+          <div class="cq-num">Pregunta 23 — Emancipación americana</div>
+          <div class="cq-q">El evento externo identificado como decisivo para el inicio de la emancipación americana fue:</div>
+          <ul class="cq-opts">
+            <li>a) El descubrimiento de nuevos yacimientos de oro en Brasil.</li>
+            <li class="cq-correct">b) La invasión napoleónica a España. ✓</li>
+            <li>c) La Revolución Industrial en Inglaterra.</li>
+            <li>d) La caída de la bolsa de valores en Londres.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SECCIÓN 2: Verdadero / Falso -->
+    <div class="accordion-item">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        <span>✅ Parte II — Verdadero / Falso (con justificación)</span><span class="acc-arrow">▸</span>
+      </button>
+      <div class="accordion-body" style="display:none">
+        <p style="color:var(--muted);font-size:0.85rem;margin-bottom:1.2rem;">Indicá si la afirmación es verdadera o falsa. Cuando es falsa, se incluye la justificación.</p>
+
+        <div class="cq-card">
+          <div class="cq-num">Enunciado 1</div>
+          <div class="cq-q">En Cuba y Brasil, el proceso de abolición se caracterizó por ser rápido y libre de presiones externas.</div>
+          <div class="cq-vf cq-falso">❌ FALSO</div>
+          <div class="cq-justif">Fueron los dos últimos países en abolir la esclavitud en América, en procesos muy lentos y graduales, marcados por una fortísima presión diplomática y naval de Gran Bretaña.</div>
+        </div>
+
+        <div class="cq-card">
+          <div class="cq-num">Enunciado 2</div>
+          <div class="cq-q">Según la tesis de Cardoso Ciro, las reformas liberales fueron el proceso fundamental para la transición definitiva de las naciones latinoamericanas hacia un capitalismo dependiente.</div>
+          <div class="cq-vf cq-verdad">✅ VERDADERO</div>
+        </div>
+
+        <div class="cq-card">
+          <div class="cq-num">Enunciado 3</div>
+          <div class="cq-q">La especialización en la producción de unos pocos bienes requeridos por el mercado mundial hizo que las economías nacionales fueran más estables y menos vulnerables.</div>
+          <div class="cq-vf cq-falso">❌ FALSO</div>
+          <div class="cq-justif">Produjo el efecto contrario: la dependencia de los monocultivos o materias primas volvió a las economías extremadamente vulnerables ante las fluctuaciones de precios en los mercados internacionales.</div>
+        </div>
+
+        <div class="cq-card">
+          <div class="cq-num">Enunciado 4</div>
+          <div class="cq-q">En el proceso de manumisión de esclavos en Ecuador (1851), el General José María Urbina estableció un sistema para indemnizar a los antiguos dueños con fondos del presupuesto estatal.</div>
+          <div class="cq-vf cq-verdad">✅ VERDADERO</div>
+          <div class="cq-justif">💡 Se creó un impuesto a la pólvora y otros recursos fiscales para financiar las juntas de manumisión que pagaban el valor de los esclavos libres a sus amos.</div>
+        </div>
+
+        <div class="cq-card">
+          <div class="cq-num">Enunciado 5</div>
+          <div class="cq-q">La expansión fronteriza en el contexto de las colonizaciones tuvo una repercusión económica uniforme y de igual impacto en todo el continente latinoamericano.</div>
+          <div class="cq-vf cq-falso">❌ FALSO</div>
+          <div class="cq-justif">El impacto fue muy diverso: varió sustancialmente según los recursos de cada región (ganadería en la pampa, minería, plantaciones tropicales o café) y las condiciones locales de la mano de obra.</div>
+        </div>
+
+        <div class="cq-card">
+          <div class="cq-num">Enunciado 6</div>
+          <div class="cq-q">El modelo primario-exportador permitió que los países latinoamericanos lograran un desarrollo industrial propio e independiente.</div>
+          <div class="cq-vf cq-falso">❌ FALSO</div>
+          <div class="cq-justif">El modelo primario-exportador reforzó la dependencia: basaba la economía en exportar materias primas e importar manufacturas, frenando el desarrollo industrial local.</div>
+        </div>
+
+        <div class="cq-card">
+          <div class="cq-num">Enunciado 7</div>
+          <div class="cq-q">El auge americano del siglo XVIII estuvo marcado por un crecimiento demográfico y la expansión de exportaciones en regiones como el Río de la Plata.</div>
+          <div class="cq-vf cq-verdad">✅ VERDADERO</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SECCIÓN 3: Desarrollo y Citas -->
+    <div class="accordion-item">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        <span>📖 Parte III — Citas y Desarrollo</span><span class="acc-arrow">▸</span>
+      </button>
+      <div class="accordion-body" style="display:none">
+        <p style="color:var(--muted);font-size:0.85rem;margin-bottom:1.2rem;">Preguntas de desarrollo que requieren enumerar puntos clave del programa.</p>
+
+        <div class="cq-card">
+          <div class="cq-num">Desarrollo 1</div>
+          <div class="cq-q">Cita los cuatro virreinatos instituidos por España para organizar la Colonia:</div>
+          <ul class="cq-dev-list">
+            <li>🔹 Virreinato de Nueva España</li>
+            <li>🔹 Virreinato del Perú</li>
+            <li>🔹 Virreinato de Nueva Granada</li>
+            <li>🔹 Virreinato del Río de la Plata</li>
+          </ul>
+        </div>
+
+        <div class="cq-card">
+          <div class="cq-num">Desarrollo 2</div>
+          <div class="cq-q">Efectos estructurales y políticos de las ocupaciones norteamericanas (Rep. Dominicana, Haití, Nicaragua):</div>
+          <ul class="cq-dev-list">
+            <li>🔹 Creación y profesionalización de Guardias Nacionales (que luego dieron origen a dictaduras como las de Somoza o Trujillo).</li>
+            <li>🔹 Pérdida de la soberanía financiera mediante el control estadounidense de las aduanas y la recaudación fiscal.</li>
+            <li>🔹 Modernización de infraestructuras orientadas a la exportación (transporte, telecomunicaciones, saneamiento).</li>
+            <li>🔹 Desarme forzoso de la población y pacificación violenta de guerrillas locales (Cacos en Haití, Gavilleros en Rep. Dominicana).</li>
+          </ul>
+        </div>
+
+        <div class="cq-card">
+          <div class="cq-num">Desarrollo 3</div>
+          <div class="cq-q">Hitos importantes de la reforma liberal guatemalteca:</div>
+          <ul class="cq-dev-list">
+            <li>🔹 Expropiación de los bienes eclesiásticos y expulsión de las órdenes religiosas (especialmente los jesuitas) por Justo Rufino Barrios.</li>
+            <li>🔹 Abolición de la propiedad comunal indígena para impulsar el cultivo masivo de café.</li>
+            <li>🔹 Establecimiento del Reglamento de Jornaleros (1877): trabajo forzado de indígenas en fincas cafetaleras.</li>
+            <li>🔹 Modernización del Estado: Código Civil, matrimonio civil, divorcio y educación laica y gratuita.</li>
+          </ul>
+        </div>
+
+        <div class="cq-card">
+          <div class="cq-num">Desarrollo 4</div>
+          <div class="cq-q">Principales actores en la lucha por el poder en el siglo XIX en Ecuador:</div>
+          <ul class="cq-dev-list">
+            <li>🔹 La oligarquía terrateniente y conservadora de la Sierra (Quito), liderada por figuras como Gabriel García Moreno.</li>
+            <li>🔹 La burguesía comercial y liberal de la Costa (Guayaquil), vinculada al comercio del cacao.</li>
+            <li>🔹 Los caudillos militares (Juan José Flores, José María Urbina) que arbitraban los conflictos entre élites regionales.</li>
+            <li>🔹 La Iglesia Católica como actor político clave en la legitimación del orden social y el control educativo.</li>
+          </ul>
+        </div>
+
+        <div class="cq-card">
+          <div class="cq-num">Desarrollo 5</div>
+          <div class="cq-q">Al concluir las guerras de independencia en Hispanoamérica, ¿cuáles fueron las consecuencias más importantes para la vida social?</div>
+          <ul class="cq-dev-list">
+            <li>🔹 Militarización de la sociedad: emergencia de caudillos y preeminencia del ejército en la política.</li>
+            <li>🔹 Inestabilidad política y guerras civiles por falta de consensos constitucionales sobre el nuevo orden.</li>
+            <li>🔹 Crisis y desorganización económica: destrucción de campos productivos, minas y fuga de capitales peninsulares.</li>
+            <li>🔹 Ruptura de los lazos comerciales coloniales y apertura inmediata hacia el libre comercio con Gran Bretaña.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /accordion-wrapper -->
+</div><!-- /cuestionario panel -->
 
 <footer class="site-footer">
   <div class="footer-badge">
